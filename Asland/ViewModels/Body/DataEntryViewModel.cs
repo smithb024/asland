@@ -5,6 +5,7 @@
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
 
     /// <summary>
@@ -42,6 +43,13 @@
             this.detailsViewModel = new EventDetailsEntryViewModel();
 
             this.CurrentWorkspace = this.detailsViewModel;
+
+            this.SaveCommand =
+                new CommonCommand(
+                    this.Save);
+            this.LoadCommand =
+                new CommonCommand(
+                    this.Load);
         }
 
         /// <summary>
@@ -58,5 +66,21 @@
         /// Command used to load an existing event.
         /// </summary>
         public ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Save the current event.
+        /// </summary>
+        private void Save()
+        {
+            this.model.Save();
+        }
+
+        /// <summary>
+        /// Load a new event to edit.
+        /// </summary>
+        private void Load()
+        {
+            this.model.Load();
+        }
     }
 }

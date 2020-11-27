@@ -12,7 +12,27 @@
         /// </summary>
         public EventEntry()
         {
+        }
 
+        /// <summary>
+        /// Save the current model.
+        /// </summary>
+        public void Save()
+        {
+        }
+
+        /// <summary>
+        /// Load a model to edit.
+        /// </summary>
+        public void Load()
+        {
+        }
+
+        /// <summary>
+        /// Clear the existing model and reset to default.
+        /// </summary>
+        public void Clear()
+        {
         }
     }
 }
