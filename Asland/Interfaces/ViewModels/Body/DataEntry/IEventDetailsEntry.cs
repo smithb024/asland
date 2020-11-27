@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Asland.Interfaces.ViewModels.Body.DataEntry
+﻿namespace Asland.Interfaces.ViewModels.Body.DataEntry
 {
-    interface IEventDetailsEntry
+    /// <summary>
+    /// Interface for a view model which supports a view reposible for the entry of the event 
+    /// details.
+    /// </summary>
+    public interface IEventDetailsEntry
     {
     }
 }

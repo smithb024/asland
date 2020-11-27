@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using System.Windows.Input;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
@@ -28,11 +29,23 @@
         {
             this.beastieEntryViewModel = new BeastieEntryViewModel();
             this.detailsViewModel = new EventDetailsEntryViewModel();
+
+            this.CurrentWorkspace = this.detailsViewModel;
         }
 
         /// <summary>
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         public object CurrentWorkspace { get; private set; }
+
+        /// <summary>
+        /// Command used to save the current event.
+        /// </summary>
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Command used to load an existing event.
+        /// </summary>
+        public ICommand LoadCommand { get; }
     }
 }
