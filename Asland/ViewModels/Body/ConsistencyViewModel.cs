@@ -24,7 +24,7 @@
             this.HabitatCollection = new ComponentCounterCollectionViewModel("Habitat");
             this.KindCollection = new ComponentCounterCollectionViewModel("Kind");
 
-            return;
+            //return;
 
             //RawObservationsString cars = XmlFileIo.ReadXml<RawObservationsString>("./190120a.xml");
 

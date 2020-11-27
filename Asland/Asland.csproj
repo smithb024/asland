@@ -79,6 +79,9 @@
     <Compile Include="Common\Enums\ObservationTimeOfDay.cs" />
     <Compile Include="Common\Messages\MainViewMessage.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
+    <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\DataEntry\IEventDetailsEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IBodyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConsistencyViewModel.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Ribbon\IRibbonViewModel.cs" />
+    <Compile Include="Model\IO\DataEntry\EventEntry.cs" />
     <Compile Include="Model\IO\HabitatsString.cs" />
     <Compile Include="Model\IO\RawObservations.cs" />
     <Compile Include="Model\IO\RawObservationsString.cs" />
@@ -95,6 +99,8 @@
     <Compile Include="ViewModels\Body\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\ConsistencyViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntryViewModel.cs" />
+    <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
+    <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterCollectionViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -189,8 +195,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
