@@ -1,12 +1,14 @@
 namespace Asland.ViewModels
 {
-    using Asland.Interfaces.ViewModels;
-    using Asland.Interfaces.ViewModels.Body;
-    using Asland.Interfaces.ViewModels.Ribbon;
-    using Asland.ViewModels.Body;
-    using Asland.ViewModels.Ribbon;
+    using Interfaces.Model.IO.DataEntry;
+    using Interfaces.ViewModels;
+    using Interfaces.ViewModels.Body;
+    using Interfaces.ViewModels.Ribbon;
+    using Model.IO.DataEntry;
     using CommonServiceLocator;
     using GalaSoft.MvvmLight.Ioc;
+    using ViewModels.Body;
+    using ViewModels.Ribbon;
 
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -33,6 +35,10 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IMainWindowViewModel>();
             SimpleIoc.Default.Unregister<IRibbonViewModel>();
             SimpleIoc.Default.Unregister<IBodyViewModel>();
+
+            SimpleIoc.Default.Unregister<IEventEntry>();
+
+            SimpleIoc.Default.Register<IEventEntry, EventEntry>();
 
             SimpleIoc.Default.Register<IMainWindowViewModel, MainWindowViewModel>();
             SimpleIoc.Default.Register<IRibbonViewModel, RibbonViewModel>();

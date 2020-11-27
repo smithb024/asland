@@ -2,6 +2,7 @@
 {
     using System.Windows.Input;
     using Asland.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using NynaeveLib.ViewModel;
@@ -12,6 +13,11 @@
     /// </summary>
     public class DataEntryViewModel : ViewModelBase, IDataEntryViewModel
     {
+        /// <summary>
+        /// Associated model.
+        /// </summary>
+        public IEventEntry model;
+
         /// <summary>
         /// View model for the beastie entry view.
         /// </summary>
@@ -25,8 +31,13 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="DataEntryViewModel"/> class.
         /// </summary>
-        public DataEntryViewModel()
+        /// <param name="model">
+        ///  The associated model object.
+        /// </param>
+        public DataEntryViewModel(
+            IEventEntry model)
         {
+            this.model = model;
             this.beastieEntryViewModel = new BeastieEntryViewModel();
             this.detailsViewModel = new EventDetailsEntryViewModel();
 
