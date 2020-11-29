@@ -36,6 +36,11 @@
         private string date;
 
         /// <summary>
+        /// Any pertinent notes for the observations.
+        /// </summary>
+        private string notes;
+
+        /// <summary>
         /// Length of time the observations were taken over.
         /// </summary>
         private ObservationLength length;
@@ -78,6 +83,7 @@
             this.version = 3;
             this.location = UnknownString;
             this.date = DefaultDateString;
+            this.notes = string.Empty;
             this.length = ObservationLength.Unspecified;
             this.intensity = ObservationIntensity.NotRecorded;
             this.timeOfDay = ObservationTimeOfDay.NotRecorded;
@@ -146,6 +152,29 @@
                 else
                 {
                     this.date = DefaultDateString;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets any pertinent notes for the observations.
+        /// </summary>
+        [XmlElement("notes")]
+        public string Notes
+        {
+            get
+            {
+                return this.notes;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    this.notes = value;
+                }
+                else
+                {
+                    this.notes = string.Empty;
                 }
             }
         }
