@@ -51,6 +51,26 @@
         private ObservationTimeOfDay timeOfDay;
 
         /// <summary>
+        /// The weather when the observations were made.
+        /// </summary>
+        private ObservationWeather weather;
+
+        /// <summary>
+        /// Habitats present during the observation.
+        /// </summary>
+        private RawHabitats habitats;
+
+        /// <summary>
+        /// Beasties observed.
+        /// </summary>
+        private TypeString species;
+
+        /// <summary>
+        /// Beasties heard.
+        /// </summary>
+        private TypeString heard;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="RawObservations"/> class.
         /// </summary>
         public RawObservations()
@@ -61,6 +81,11 @@
             this.length = ObservationLength.Unspecified;
             this.intensity = ObservationIntensity.NotRecorded;
             this.timeOfDay = ObservationTimeOfDay.NotRecorded;
+            this.weather = ObservationWeather.NotRecorded;
+
+            this.habitats = new RawHabitats();
+            this.species = new TypeString();
+            this.heard = new TypeString();
         }
 
         /// <summary>
@@ -194,6 +219,78 @@
                 {
                     this.timeOfDay = ObservationTimeOfDay.NotRecorded;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the weather present during the observations.
+        /// </summary>
+        [XmlElement("weather")]
+        public ObservationWeather Weather
+        {
+            get
+            {
+                return this.weather;
+            }
+
+            set
+            {
+                if (Enum.IsDefined(typeof(ObservationWeather), value))
+                {
+                    this.weather = value;
+                }
+                else
+                {
+                    this.weather = ObservationWeather.NotRecorded;
+                }
+            }
+        }
+
+        [XmlElement("habitats")]
+        public RawHabitats Habitats
+        {
+            get
+            {
+                return this.habitats;
+            }
+
+            set
+            {
+                this.habitats = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the observed beasties.
+        /// </summary>
+        [XmlElement("species")]
+        public TypeString Species
+        {
+            get
+            {
+                return this.species;
+            }
+
+            set
+            {
+                this.species = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the heard beasties.
+        /// </summary>
+        [XmlElement("heard")]
+        public TypeString Heard
+        {
+            get
+            {
+                return this.heard;
+            }
+
+            set
+            {
+                this.heard = value;
             }
         }
     }
