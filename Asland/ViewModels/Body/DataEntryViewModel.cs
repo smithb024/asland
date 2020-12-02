@@ -1,12 +1,15 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using System.Windows.Input;
+    using Asland.Common.Enums;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Interfaces.ViewModels.Common;
     using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
+    using Asland.ViewModels.Common;
 
     /// <summary>
     /// View model which suports the data entry view.
@@ -50,12 +53,23 @@
             this.LoadCommand =
                 new CommonCommand(
                     this.Load);
+
+            this.TestSelector =
+                new EnumSelectorViewModel<ObservationIntensity>(
+                    "Test Selector",
+                    ObservationIntensity.NotRecorded,
+                    (ObservationIntensity) => {  });
         }
 
         /// <summary>
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         public object CurrentWorkspace { get; private set; }
+
+        /// <summary>
+        /// Gets a test selector.
+        /// </summary>
+        public IEnumSelectorViewModel<ObservationIntensity> TestSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.

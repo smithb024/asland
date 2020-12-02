@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:local="clr-namespace:Asland.Views.Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -19,7 +20,7 @@
                 <DataTemplate>
                     <Border 
                         BorderThickness="2"
-                        BorderBrush="HotPink">
+                        Background="LightGray">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderBrush">
@@ -31,13 +32,18 @@
                                     <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
                                         <Setter Property="BorderBrush">
                                             <Setter.Value>
-                                                <SolidColorBrush Color="Maroon"/>
+                                                <SolidColorBrush Color="Gray"/>
                                             </Setter.Value>
                                         </Setter>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding SelectStateCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <TextBlock Text="{Binding Path=Name}"/>
                     </Border>
                 </DataTemplate>
