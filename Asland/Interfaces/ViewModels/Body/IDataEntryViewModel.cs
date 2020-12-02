@@ -1,6 +1,8 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body
 {
     using System.Windows.Input;
+    using Asland.Common.Enums;
+    using Interfaces.ViewModels.Common;
 
     /// <summary>
     /// Interface for a view model which supports the data entry view. This is the top level view
@@ -12,6 +14,11 @@
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         object CurrentWorkspace { get; }
+
+        /// <summary>
+        /// Gets a test selector.
+        /// </summary>
+        IEnumSelectorViewModel<ObservationIntensity> TestSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.
