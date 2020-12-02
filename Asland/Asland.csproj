@@ -80,6 +80,7 @@
     <Compile Include="Common\Enums\ObservationLength.cs" />
     <Compile Include="Common\Enums\ObservationTimeOfDay.cs" />
     <Compile Include="Common\Messages\MainViewMessage.cs" />
+    <Compile Include="DataPath.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
@@ -93,6 +94,8 @@
     <Compile Include="Interfaces\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Ribbon\IRibbonViewModel.cs" />
     <Compile Include="Model\IO\DataEntry\EventEntry.cs" />
+    <Compile Include="Model\IO\DataEntry\Page.cs" />
+    <Compile Include="Model\IO\DataEntry\BeastiePages.cs" />
     <Compile Include="Model\IO\RawHabitats.cs" />
     <Compile Include="Model\IO\HabitatsString.cs" />
     <Compile Include="Model\IO\RawObservations.cs" />

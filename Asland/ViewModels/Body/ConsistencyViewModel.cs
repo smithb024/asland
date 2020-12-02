@@ -6,16 +6,23 @@
     using Asland.Model.IO;
     using Asland.ViewModels.Common;
     using NynaeveLib.ViewModel;
+    using Model.IO.DataEntry;
     using System;
     using System.IO;
+    using System.Collections.Generic;
 
     /// <summary>
     /// The view model which supports the main consistency check view.
     /// </summary>
     public class ConsistencyViewModel : ViewModelBase, IConsistencyViewModel
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="ConsistencyViewModel"/> class.
+        /// </summary>
         public ConsistencyViewModel()
         {
+            string basePath = DataPath.BasePath;
+
             this.LocationCollection = new ComponentCounterCollectionViewModel("Locations");
             this.LengthCollection = new ComponentCounterCollectionViewModel("Length");
             this.IntensityCollection = new ComponentCounterCollectionViewModel("Intensity");
@@ -24,12 +31,7 @@
             this.HabitatCollection = new ComponentCounterCollectionViewModel("Habitat");
             this.KindCollection = new ComponentCounterCollectionViewModel("Kind");
 
-            //return;
-
-            //RawObservationsString cars = XmlFileIo.ReadXml<RawObservationsString>("./190120a.xml");
-
-            string[] subdirectoryEntries = Directory.GetDirectories("C:\\_myDocs\\bert\\01_common_stuff\\birding");
-            string lastFile = string.Empty;
+            string[] subdirectoryEntries = Directory.GetDirectories(basePath);
 
             try
             {
@@ -39,7 +41,6 @@
 
                     foreach (string file in files)
                     {
-                        lastFile = file;
                         RawObservationsString cars = XmlFileIo.ReadXml<RawObservationsString>(file);
 
                         this.LocationCollection.AddOne(cars.Location);
