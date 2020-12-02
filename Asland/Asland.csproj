@@ -91,6 +91,8 @@
     <Compile Include="Interfaces\ViewModels\Body\IDataEntryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterCollectionViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Common\IEnumComponentViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Common\IEnumSelectorViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Ribbon\IRibbonViewModel.cs" />
     <Compile Include="Model\IO\DataEntry\EventEntry.cs" />
@@ -109,6 +111,8 @@
     <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterCollectionViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterViewModel.cs" />
+    <Compile Include="ViewModels\Common\EnumComponentViewModel.cs" />
+    <Compile Include="ViewModels\Common\EnumSelectorViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
