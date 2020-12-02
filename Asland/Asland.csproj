@@ -134,6 +134,9 @@
     <Compile Include="Views\Body\DataEntryView.xaml.cs">
       <DependentUpon>DataEntryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Common\EnumerationSelector.xaml.cs">
+      <DependentUpon>EnumerationSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ribbon\Ribbon.xaml.cs">
       <DependentUpon>Ribbon.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\DataEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Common\EnumerationSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
