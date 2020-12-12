@@ -98,6 +98,7 @@
     <Compile Include="Model\IO\DataEntry\EventEntry.cs" />
     <Compile Include="Model\IO\DataEntry\Page.cs" />
     <Compile Include="Model\IO\DataEntry\BeastiePages.cs" />
+    <Compile Include="Model\IO\Data\Beastie.cs" />
     <Compile Include="Model\IO\RawHabitats.cs" />
     <Compile Include="Model\IO\HabitatsString.cs" />
     <Compile Include="Model\IO\RawObservations.cs" />
