@@ -84,6 +84,7 @@
     <Compile Include="Factories\IO\XmlFileIo.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IEventDetailsEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IBodyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConfigurationViewModel.cs" />
