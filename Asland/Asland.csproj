@@ -110,6 +110,7 @@
     <Compile Include="ViewModels\Body\ConsistencyViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntryViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
+    <Compile Include="ViewModels\Body\DataEntry\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterCollectionViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterViewModel.cs" />
