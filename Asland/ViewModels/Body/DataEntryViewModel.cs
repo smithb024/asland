@@ -55,10 +55,9 @@
                     this.Load);
 
             this.TestSelector =
-                new EnumSelectorViewModel<ObservationIntensity>(
+                new EnumSelectorCompoundViewModel<ObservationIntensity>(
                     "Test Selector",
-                    ObservationIntensity.NotRecorded,
-                    (ObservationIntensity) => {  });
+                    (ObservationIntensity) => { });
         }
 
         /// <summary>
@@ -69,7 +68,7 @@
         /// <summary>
         /// Gets a test selector.
         /// </summary>
-        public IEnumSelectorViewModel<ObservationIntensity> TestSelector { get; }
+        public IEnumSelectorCompoundViewModel<ObservationIntensity> TestSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.

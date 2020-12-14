@@ -18,7 +18,7 @@
         /// <summary>
         /// Gets a test selector.
         /// </summary>
-        IEnumSelectorViewModel<ObservationIntensity> TestSelector { get; }
+        IEnumSelectorCompoundViewModel<ObservationIntensity> TestSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.
