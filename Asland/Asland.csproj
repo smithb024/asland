@@ -141,6 +141,12 @@
     <Compile Include="Views\Body\DataEntryView.xaml.cs">
       <DependentUpon>DataEntryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Body\DataEntry\Beastie.xaml.cs">
+      <DependentUpon>Beastie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\DataEntry\BeastieEntry.xaml.cs">
+      <DependentUpon>BeastieEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\EnumerationSelector.xaml.cs">
       <DependentUpon>EnumerationSelector.xaml</DependentUpon>
     </Compile>
@@ -180,6 +186,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\DataEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\DataEntry\Beastie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\DataEntry\BeastieEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
