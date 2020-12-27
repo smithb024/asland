@@ -3,6 +3,9 @@
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using NynaeveLib.ViewModel;
 
+    /// <summary>
+    /// View model used to describe a single beastie for display on the raw data entry view.
+    /// </summary>
     public class BeastieViewModel : ViewModelBase, IBeastieViewModel
     {
         /// <summary>

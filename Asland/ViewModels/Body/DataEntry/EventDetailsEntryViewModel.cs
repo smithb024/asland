@@ -53,7 +53,7 @@
         /// <summary>
         /// Gets the time of day selector.
         /// </summary>
-        public IEnumSelectorViewModel<ObservationTimeOfDay> TimeOfDatSelector { get; }
+        public IEnumSelectorViewModel<ObservationTimeOfDay> TimeOfDaySelector { get; }
 
         /// <summary>
         /// Gets the weather selector.

@@ -14,12 +14,12 @@
         /// </summary>
         public BeastieEntryViewModel()
         {
-            this.Beasties = new List<IBeastieEntry>();
+            this.Beasties = new List<IBeastieViewModel>();
         }
 
         /// <summary>
         /// Gets the collection of all beasties on this page.
         /// </summary>
-        public List<IBeastieEntry> Beasties { get; }
+        public List<IBeastieViewModel> Beasties { get; }
     }
 }

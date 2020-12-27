@@ -11,6 +11,6 @@
         /// <summary>
         /// Gets the collection of all beasties on this page.
         /// </summary>
-        List<IBeastieEntry> Beasties { get; }
+        List<IBeastieViewModel> Beasties { get; }
     }
 }
