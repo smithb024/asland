@@ -53,22 +53,12 @@
             this.LoadCommand =
                 new CommonCommand(
                     this.Load);
-
-            this.TestSelector =
-                new EnumSelectorCompoundViewModel<ObservationIntensity>(
-                    "Test Selector",
-                    (ObservationIntensity) => { });
         }
 
         /// <summary>
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         public object CurrentWorkspace { get; private set; }
-
-        /// <summary>
-        /// Gets a test selector.
-        /// </summary>
-        public IEnumSelectorCompoundViewModel<ObservationIntensity> TestSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.

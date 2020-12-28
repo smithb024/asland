@@ -38,12 +38,12 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <common:EnumerationSelector DataContext="{Binding ObservationTimeOfDay}"/>
-                    <common:EnumerationSelector DataContext="{Binding ObservationIntensity}"/>
+                    <common:EnumerationSelector DataContext="{Binding TimeOfDaySelector}"/>
+                    <common:EnumerationSelector DataContext="{Binding IntensitySelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <common:EnumerationSelector DataContext="{Binding ObservationWeather}"/>
+                    <common:EnumerationSelector DataContext="{Binding WeatherSelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="3">

@@ -5,8 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asland.Views.Body"
              xmlns:common="clr-namespace:Asland.Views.Common"
+             xmlns:viewModels="clr-namespace:Asland.ViewModels.Body.DataEntry"
+             xmlns:dataEntry="clr-namespace:Asland.Views.Body.DataEntry"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:BeastieEntryViewModel}">
+            <dataEntry:BeastieEntry/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:EventDetailsEntryViewModel}">
+            <dataEntry:EventDetailsEntry/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,9 +26,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
-            <common:EnumerationSelector DataContext="{Binding TestSelector}"/>
-        </Grid>
+        <ContentControl 
+            Grid.Row="1"
+            Content="{Binding CurrentWorkspace}" />
         
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal"

@@ -17,6 +17,9 @@
         /// </summary>
         public EventDetailsEntryViewModel()
         {
+            this.Date = DateTime.Now;
+            this.IsSeen = true;
+
             this.LengthSelector =
                 new EnumSelectorViewModel<ObservationLength>(
                     "Length",
