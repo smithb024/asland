@@ -3,6 +3,7 @@
     using System;
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.ViewModels.Common;
     using Interfaces.ViewModels.Common;
     using NynaeveLib.ViewModel;
 
@@ -16,7 +17,34 @@
         /// </summary>
         public EventDetailsEntryViewModel()
         {
+            this.LengthSelector =
+                new EnumSelectorViewModel<ObservationLength>(
+                    "Length",
+                    ObservationLength.Unspecified,
+                    (ObservationLength) => { });
 
+            this.IntensitySelector =
+                new EnumSelectorViewModel<ObservationIntensity>(
+                    "Intensity",
+                    ObservationIntensity.NotRecorded,
+                    (ObservationIntensity) => { });
+
+            this.TimeOfDaySelector =
+                new EnumSelectorViewModel<ObservationTimeOfDay>(
+                    "Time Of Day",
+                    ObservationTimeOfDay.NotRecorded,
+                    (ObservationTimeOfDay) => { });
+
+            this.WeatherSelector =
+                new EnumSelectorViewModel<ObservationWeather>(
+                    "Weather",
+                    ObservationWeather.NotRecorded,
+                    (ObservationWeather) => { });
+
+            this.HabitatSelector =
+                new EnumSelectorCompoundViewModel<ObservationHabitat>(
+                    "Habitats",
+                    (ObservationHabitat) => { });
         }
 
         /// <summary>
@@ -59,5 +87,10 @@
         /// Gets the weather selector.
         /// </summary>
         public IEnumSelectorViewModel<ObservationWeather> WeatherSelector { get; }
+
+        /// <summary>
+        /// Gets the habitats selector.
+        /// </summary>
+        public IEnumSelectorCompoundViewModel<ObservationHabitat> HabitatSelector { get; }
     }
 }

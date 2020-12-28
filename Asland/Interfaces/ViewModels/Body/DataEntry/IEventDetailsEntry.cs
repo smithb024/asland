@@ -50,5 +50,10 @@
         /// Gets the weather selector.
         /// </summary>
         IEnumSelectorViewModel<ObservationWeather> WeatherSelector { get; }
+
+        /// <summary>
+        /// Gets the habitats selector.
+        /// </summary>
+        IEnumSelectorCompoundViewModel<ObservationHabitat> HabitatSelector { get; }
     }
 }
