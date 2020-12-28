@@ -16,11 +16,6 @@
         object CurrentWorkspace { get; }
 
         /// <summary>
-        /// Gets a test selector.
-        /// </summary>
-        IEnumSelectorViewModel<ObservationIntensity> TestSelector { get; }
-
-        /// <summary>
         /// Command used to save the current event.
         /// </summary>
         ICommand SaveCommand { get; }

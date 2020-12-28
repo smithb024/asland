@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Asland.Views.Body.DataEntry.EventDetailsEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Body.DataEntry"
+             xmlns:common="clr-namespace:Asland.Views.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{Binding Path=Location}"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <DatePicker SelectedDate="{Binding Date}"/>
+                    <CheckBox 
+                        Content="Seen"
+                        IsChecked="{Binding IsSeen}"/>
+                    <TextBox 
+                        Text="{Binding Path=Notes}"
+                        TextWrapping="Wrap"/>
+
+                    <common:EnumerationSelector DataContext="{Binding LengthSelector}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <common:EnumerationSelector DataContext="{Binding TimeOfDaySelector}"/>
+                    <common:EnumerationSelector DataContext="{Binding IntensitySelector}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <common:EnumerationSelector DataContext="{Binding WeatherSelector}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <common:EnumerationSelector DataContext="{Binding HabitatSelector}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
