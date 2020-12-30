@@ -52,32 +52,14 @@
 
             this.CurrentWorkspace = this.detailsViewModel;
 
-            this.PageSelector = new List<IIndexCommand<string>>();
+            this.PopulatePageSelector(EventDetails);
 
-            IIndexCommand<string> showEventDetails =
-                new IndexCommand<string>(
-                    EventDetails,
-                    this.NewPage);
+            List<string> beastiePages = model.GetDataEntryPageNames();
 
-            this.PageSelector.Add(showEventDetails);
-
-            IIndexCommand<string> testCommand1 = new IndexCommand<string>("1", this.NewPage);
-            IIndexCommand<string> testCommand2 = new IndexCommand<string>("2", this.NewPage);
-            IIndexCommand<string> testCommand3 = new IndexCommand<string>("3", this.NewPage);
-            IIndexCommand<string> testCommand4 = new IndexCommand<string>("4", this.NewPage);
-            IIndexCommand<string> testCommand5 = new IndexCommand<string>("5", this.NewPage);
-            IIndexCommand<string> testCommand6 = new IndexCommand<string>("6", this.NewPage);
-            IIndexCommand<string> testCommand7 = new IndexCommand<string>("7", this.NewPage);
-            IIndexCommand<string> testCommand8 = new IndexCommand<string>("8", this.NewPage);
-
-            this.PageSelector.Add(testCommand1);
-            this.PageSelector.Add(testCommand2);
-            this.PageSelector.Add(testCommand3);
-            this.PageSelector.Add(testCommand4);
-            this.PageSelector.Add(testCommand5);
-            this.PageSelector.Add(testCommand6);
-            this.PageSelector.Add(testCommand7);
-            this.PageSelector.Add(testCommand8);
+            foreach (string pageName in beastiePages)
+            {
+                this.PopulatePageSelector(pageName);
+            }
 
             this.SaveCommand =
                 new CommonCommand(
@@ -95,7 +77,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        public List<IIndexCommand<string>> PageSelector { get; }
+        public List<IIndexCommand<string>> PageSelector { get; private set; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -123,6 +105,12 @@
             this.model.Load();
         }
 
+        /// <summary>
+        /// Select a new page for the view.
+        /// </summary>
+        /// <param name="newPageName">
+        /// Name of the page to display.
+        /// </param>
         private void NewPage(string newPageName)
         {
             if (StringCompare.SimpleCompare(newPageName, EventDetails))
@@ -135,6 +123,27 @@
             }
 
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
+
+        /// <summary>
+        /// Add a new command to the collection of page selector commands.
+        /// </summary>
+        /// <param name="pageName">
+        /// Name of the page the new command represents.
+        /// </param>
+        private void PopulatePageSelector(string pageName)
+        {
+            if (this.PageSelector == null)
+            {
+                this.PageSelector = new List<IIndexCommand<string>>();
+            }
+
+            IIndexCommand<string> showEventDetails =
+                new IndexCommand<string>(
+                    pageName,
+                    this.NewPage);
+
+            this.PageSelector.Add(showEventDetails);
         }
     }
 }
