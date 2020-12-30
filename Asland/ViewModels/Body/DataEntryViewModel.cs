@@ -1,15 +1,13 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using System.Collections.Generic;
     using System.Windows.Input;
-    using Asland.Common.Enums;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
-    using Interfaces.ViewModels.Common;
     using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
-    using Asland.ViewModels.Common;
 
     /// <summary>
     /// View model which suports the data entry view.
@@ -47,6 +45,14 @@
 
             this.CurrentWorkspace = this.detailsViewModel;
 
+            this.PageSelector = new List<IIndexCommand<string>>();
+
+            IIndexCommand<string> testCommand1 = new IndexCommand<string>("1", this.NewPage);
+            IIndexCommand<string> testCommand2 = new IndexCommand<string>("2", this.NewPage);
+
+            this.PageSelector.Add(testCommand1);
+            this.PageSelector.Add(testCommand2);
+
             this.SaveCommand =
                 new CommonCommand(
                     this.Save);
@@ -59,6 +65,11 @@
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         public object CurrentWorkspace { get; private set; }
+
+        /// <summary>
+        /// Gets a selection of commands which are used to choose a page to display.
+        /// </summary>
+        public List<IIndexCommand<string>> PageSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -84,6 +95,11 @@
         private void Load()
         {
             this.model.Load();
+        }
+
+        private void NewPage(string newPageName)
+        {
+
         }
     }
 }
