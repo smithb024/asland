@@ -49,9 +49,21 @@
 
             IIndexCommand<string> testCommand1 = new IndexCommand<string>("1", this.NewPage);
             IIndexCommand<string> testCommand2 = new IndexCommand<string>("2", this.NewPage);
+            IIndexCommand<string> testCommand3 = new IndexCommand<string>("3", this.NewPage);
+            IIndexCommand<string> testCommand4 = new IndexCommand<string>("4", this.NewPage);
+            IIndexCommand<string> testCommand5 = new IndexCommand<string>("5", this.NewPage);
+            IIndexCommand<string> testCommand6 = new IndexCommand<string>("6", this.NewPage);
+            IIndexCommand<string> testCommand7 = new IndexCommand<string>("7", this.NewPage);
+            IIndexCommand<string> testCommand8 = new IndexCommand<string>("8", this.NewPage);
 
             this.PageSelector.Add(testCommand1);
             this.PageSelector.Add(testCommand2);
+            this.PageSelector.Add(testCommand3);
+            this.PageSelector.Add(testCommand4);
+            this.PageSelector.Add(testCommand5);
+            this.PageSelector.Add(testCommand6);
+            this.PageSelector.Add(testCommand7);
+            this.PageSelector.Add(testCommand8);
 
             this.SaveCommand =
                 new CommonCommand(
@@ -99,7 +111,7 @@
 
         private void NewPage(string newPageName)
         {
-
+            string temp = newPageName;
         }
     }
 }
