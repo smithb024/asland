@@ -119,7 +119,19 @@
             }
             else
             {
+                this.beastieEntryViewModel.Clear();
+
+                List<string> beasties =
+                    this.model.GetBeastiesOnAPage(
+                        newPageName);
+
+                foreach(string beastie in beasties)
+                {
+                    this.beastieEntryViewModel.Add(beastie);
+                }
+
                 this.CurrentWorkspace = this.beastieEntryViewModel;
+                this.beastieEntryViewModel.Refresh();
             }
 
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
