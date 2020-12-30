@@ -7,6 +7,7 @@
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using NynaeveLib.Commands;
+    using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
 
     /// <summary>
@@ -15,6 +16,12 @@
     /// </summary>
     public class DataEntryViewModel : ViewModelBase, IDataEntryViewModel
     {
+        /// <summary>
+        /// String used for the event details button. This button is used to select the page where
+        /// the user enters the general information about the event.
+        /// </summary>
+        private const string EventDetails = "Event Details";
+
         /// <summary>
         /// Associated model.
         /// </summary>
@@ -46,6 +53,13 @@
             this.CurrentWorkspace = this.detailsViewModel;
 
             this.PageSelector = new List<IIndexCommand<string>>();
+
+            IIndexCommand<string> showEventDetails =
+                new IndexCommand<string>(
+                    EventDetails,
+                    this.NewPage);
+
+            this.PageSelector.Add(showEventDetails);
 
             IIndexCommand<string> testCommand1 = new IndexCommand<string>("1", this.NewPage);
             IIndexCommand<string> testCommand2 = new IndexCommand<string>("2", this.NewPage);
@@ -111,7 +125,16 @@
 
         private void NewPage(string newPageName)
         {
-            string temp = newPageName;
+            if (StringCompare.SimpleCompare(newPageName, EventDetails))
+            {
+                this.CurrentWorkspace = this.detailsViewModel;
+            }
+            else
+            {
+                this.CurrentWorkspace = this.beastieEntryViewModel;
+            }
+
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
     }
 }
