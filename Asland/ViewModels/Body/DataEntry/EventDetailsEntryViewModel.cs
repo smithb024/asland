@@ -15,10 +15,12 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="EventDetailsEntryViewModel"/> class.
         /// </summary>
-        public EventDetailsEntryViewModel()
+        /// <param name="isSeen">Indicates whether the observations are seen or heard</param>
+        public EventDetailsEntryViewModel(
+            bool isSeen)
         {
             this.Date = DateTime.Now;
-            this.IsSeen = true;
+            this.IsSeen = isSeen;
 
             this.LengthSelector =
                 new EnumSelectorViewModel<ObservationLength>(

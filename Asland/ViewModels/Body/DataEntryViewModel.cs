@@ -46,9 +46,15 @@
         public DataEntryViewModel(
             IEventEntry model)
         {
+            bool isSeen = true;
             this.model = model;
-            this.beastieEntryViewModel = new BeastieEntryViewModel();
-            this.detailsViewModel = new EventDetailsEntryViewModel();
+            this.beastieEntryViewModel =
+                new BeastieEntryViewModel(
+                    model.Observations.SetBeastie,
+                    isSeen);
+            this.detailsViewModel = 
+                new EventDetailsEntryViewModel(
+                    isSeen);
 
             this.CurrentWorkspace = this.detailsViewModel;
 

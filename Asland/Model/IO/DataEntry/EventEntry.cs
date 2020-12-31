@@ -10,11 +10,6 @@
     public class EventEntry : IEventEntry
     {
         /// <summary>
-        /// The current event.
-        /// </summary>
-        private RawObservations observations;
-
-        /// <summary>
         /// The filename for the current event.
         /// </summary>
         private string filename;
@@ -29,11 +24,16 @@
         /// </summary>
         public EventEntry()
         {
-            this.observations = new RawObservations();
+            this.Observations = new ObservationManager();
             this.rawPageData =
                 XmlFileIo.ReadXml<BeastiePages>(
                     $"{DataPath.BasePath}\\TestDataEntry.xml");
         }
+
+        /// <summary>
+        /// Gets the manager class for the current observations.
+        /// </summary>
+        public IObservationManager Observations { get; }
 
         /// <summary>
         /// Save the current model.
@@ -42,7 +42,7 @@
         {
             // TODO - Flesh out management of filename.
             XmlFileIo.WriteXml(
-                this.observations,
+                this.Observations.GetObservations(),
                 this.filename);
         }
 

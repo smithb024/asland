@@ -28,5 +28,11 @@
         /// Refresh the page.
         /// </summary>
         void Refresh();
+
+        /// <summary>
+        /// Set a value which indicates whether the view model is managing seen or heard observations.
+        /// </summary>
+        /// <param name="isSeen">is seen flag</param>
+        void SetIsSeen(bool isSeen);
     }
 }

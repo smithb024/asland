@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.DataEntry
 {
+    using System;
     using System.Collections.ObjectModel;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using GalaSoft.MvvmLight;
@@ -10,11 +11,29 @@
     public class BeastieEntryViewModel : ViewModelBase, IBeastieEntry
     {
         /// <summary>
+        /// Set the beastie as observed in the model.
+        /// </summary>
+        private Action<string, bool, bool> setObservation;
+
+        /// <summary>
+        /// Indicates whether the view model is managing seen or heard observations.
+        /// </summary>
+        private bool isSeen;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="BeastieEntryViewModel"/> class.
         /// </summary>
-        public BeastieEntryViewModel()
+        /// <param name="setObservation">
+        /// Action used to set an observation in the model.
+        /// </param>
+        /// <param name="isSeen">Indicates whether the observations are seen or heard</param>
+        public BeastieEntryViewModel(
+            Action<string, bool, bool> setObservation,
+            bool isSeen)
         {
             this.Beasties = new ObservableCollection<IBeastieViewModel>();
+            this.setObservation = setObservation;
+            this.isSeen = isSeen;
         }
 
         /// <summary>
@@ -40,7 +59,9 @@
                 new BeastieViewModel(
                     beastie,
                     "TBC",
-                    $"{DataPath.BasePath}\\Sample.png");
+                    $"{DataPath.BasePath}\\Sample.png",
+                    this.setObservation,
+                    this.isSeen);
 
             this.Beasties.Add(newBeastie);
         }
@@ -51,6 +72,15 @@
         public void Refresh()
         {
             this.RaisePropertyChanged(nameof(this.Beasties));
+        }
+
+        /// <summary>
+        /// Set a value which indicates whether the view model is managing seen or heard observations.
+        /// </summary>
+        /// <param name="isSeen">is seen flag</param>
+        public void SetIsSeen(bool isSeen)
+        {
+            this.isSeen = isSeen;
         }
     }
 }
