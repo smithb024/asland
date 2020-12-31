@@ -25,7 +25,12 @@
         /// <summary>
         /// Associated model.
         /// </summary>
-        public IEventEntry model;
+        private IEventEntry model;
+
+        /// <summary>
+        /// Manager which handles observation data entry/interrogation.
+        /// </summary>
+        private IObservationManager observations;
 
         /// <summary>
         /// View model for the beastie entry view.
@@ -48,9 +53,10 @@
         {
             bool isSeen = true;
             this.model = model;
+            this.observations = model.Observations;
             this.beastieEntryViewModel =
                 new BeastieEntryViewModel(
-                    model.Observations.SetBeastie,
+                    this.observations.SetBeastie,
                     isSeen);
             this.detailsViewModel = 
                 new EventDetailsEntryViewModel(
@@ -133,7 +139,13 @@
 
                 foreach(string beastie in beasties)
                 {
-                    this.beastieEntryViewModel.Add(beastie);
+                    bool isIncluded =
+                        this.observations.GetIncluded(
+                            beastie,
+                            this.detailsViewModel.IsSeen);
+                    this.beastieEntryViewModel.Add(
+                        beastie,
+                        isIncluded);
                 }
 
                 this.CurrentWorkspace = this.beastieEntryViewModel;

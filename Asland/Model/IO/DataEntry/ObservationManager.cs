@@ -1,6 +1,7 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
     using Asland.Interfaces.Model.IO.DataEntry;
+    using NynaeveLib.Utils;
 
     /// <summary>
     /// Manages the observations made in a single event.
@@ -71,5 +72,27 @@
             }
         }
 
+        /// <summary>
+        /// Gets a value which indicates whether the <paramref name="name"/> is present in the model
+        /// when searching the list indicated by <paramref name="isSeen"/>.
+        /// </summary>
+        /// <param name="name">Name of the beastie</param>
+        /// <param name="isSeen">
+        /// Indicates whether the beastie is seen or heard.
+        /// </param>
+        /// <returns>
+        /// Indicates whether the beastie is currently present.
+        /// </returns>
+        public bool GetIncluded(
+            string name,
+            bool isSeen)
+        {
+            if (isSeen)
+            {
+                return this.observations.Species.Kind.Find(k => StringCompare.SimpleCompare(k, name)) != null;
+            }
+
+            return this.observations.Heard.Kind.Find(k => StringCompare.SimpleCompare(k, name)) != null; ;
+        }
     }
 }

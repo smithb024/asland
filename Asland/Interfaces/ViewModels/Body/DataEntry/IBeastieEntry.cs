@@ -22,7 +22,12 @@
         /// Add a new beastie to the view model.
         /// </summary>
         /// <param name="beastie">beastie common name</param>
-        void Add(string beastie);
+        /// <param name="isSelected">
+        /// Indicates whether the new beastie is present in the model.
+        /// </param>
+        void Add(
+            string beastie,
+            bool isSelected);
 
         /// <summary>
         /// Refresh the page.

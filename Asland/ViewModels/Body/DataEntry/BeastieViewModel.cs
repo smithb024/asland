@@ -32,6 +32,9 @@
         /// <param name="imagePath">
         /// Path to an image of this beastie.
         /// </param>
+        /// <param name="isSelected">
+        /// Indicates whether this beastie is present in the model.
+        /// </param>
         /// <param name="setObservation">
         /// Action used to set an observation in the model.
         /// </param>
@@ -42,13 +45,14 @@
             string commonName,
             string latinName,
             string imagePath,
+            bool isSelected,
             Action<string, bool, bool> setObservation,
             bool isSeen)
         {
             this.CommonName = commonName;
             this.LatinName = latinName;
             this.ImagePath = imagePath;
-            this.isSelected = false;
+            this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
         }
