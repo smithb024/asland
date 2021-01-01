@@ -1,5 +1,6 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
+    using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using NynaeveLib.Utils;
 
@@ -71,6 +72,51 @@
                 observations.Kind.Remove(name);
             }
         }
+
+        /// <summary>
+        /// Set a new length in the model.
+        /// </summary>
+        /// <param name="newLength">new length</param>
+        public void SetLength(ObservationLength newLength)
+        {
+            this.observations.Length = newLength;
+        }
+
+        /// <summary>
+        /// Set a new intensity in the model.
+        /// </summary>
+        /// <param name="newIntensity">new intensity</param>
+        public void SetIntensity(ObservationIntensity newIntensity)
+        {
+            this.observations.Intensity = newIntensity;
+        }
+
+        /// <summary>
+        /// Set a new time of day in the model.
+        /// </summary>
+        /// <param name="newTimeOfDay">new time of day</param>
+        public void SetTimeOfDay(ObservationTimeOfDay newTimeOfDay)
+        {
+            this.observations.TimeOfDay = newTimeOfDay;
+        }
+
+        /// <summary>
+        /// Set a new weather in the model.
+        /// </summary>
+        /// <param name="newWeather">new weather</param>
+        public void SetWeather(ObservationWeather newWeather)
+        {
+            this.observations.Weather = newWeather;
+        }
+
+        ///// <summary>
+        ///// Set a new habitat in the model.
+        ///// </summary>
+        ///// <param name="newHabitat">new habitat</param>
+        //public void SetHabitat(ObservationHabitat newHabitat)
+        //{
+        //    this.observations.Habitats = newHabitat;
+        //}
 
         /// <summary>
         /// Gets a value which indicates whether the <paramref name="name"/> is present in the model

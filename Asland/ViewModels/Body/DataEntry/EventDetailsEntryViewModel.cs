@@ -2,6 +2,7 @@
 {
     using System;
     using Asland.Common.Enums;
+    using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.ViewModels.Common;
     using Interfaces.ViewModels.Common;
@@ -13,12 +14,22 @@
     public class EventDetailsEntryViewModel : ViewModelBase, IEventDetailsEntry
     {
         /// <summary>
+        /// Manager which handles observation data entry/interrogation.
+        /// </summary>
+        private IObservationManager observations;
+        
+        /// <summary>
         /// Initialises a new instance of the <see cref="EventDetailsEntryViewModel"/> class.
         /// </summary>
+        /// <param name="observations">
+        /// The observations model object.
+        /// </param>
         /// <param name="isSeen">Indicates whether the observations are seen or heard</param>
         public EventDetailsEntryViewModel(
+            IObservationManager observations,
             bool isSeen)
         {
+            this.observations = observations;
             this.Date = DateTime.Now;
             this.IsSeen = isSeen;
 
@@ -26,25 +37,25 @@
                 new EnumSelectorViewModel<ObservationLength>(
                     "Length",
                     ObservationLength.Unspecified,
-                    (ObservationLength) => { });
+                    this.NewObservationLength);
 
             this.IntensitySelector =
                 new EnumSelectorViewModel<ObservationIntensity>(
                     "Intensity",
                     ObservationIntensity.NotRecorded,
-                    (ObservationIntensity) => { });
+                    this.NewObservationIntensity);
 
             this.TimeOfDaySelector =
                 new EnumSelectorViewModel<ObservationTimeOfDay>(
                     "Time Of Day",
                     ObservationTimeOfDay.NotRecorded,
-                    (ObservationTimeOfDay) => { });
+                    this.NewObservationTimeOfDay);
 
             this.WeatherSelector =
                 new EnumSelectorViewModel<ObservationWeather>(
                     "Weather",
                     ObservationWeather.NotRecorded,
-                    (ObservationWeather) => { });
+                    this.NewObservationWeather);
 
             this.HabitatSelector =
                 new EnumSelectorCompoundViewModel<ObservationHabitat>(
@@ -97,5 +108,41 @@
         /// Gets the habitats selector.
         /// </summary>
         public IEnumSelectorCompoundViewModel<ObservationHabitat> HabitatSelector { get; }
+
+        /// <summary>
+        /// Set the new observation length
+        /// </summary>
+        /// <param name="newLength">new length</param>
+        private void NewObservationLength(ObservationLength newLength)
+        {
+            this.observations.SetLength(newLength);
+        }
+
+        /// <summary>
+        /// Set the new observation intensity
+        /// </summary>
+        /// <param name="newIntensity">new length</param>
+        private void NewObservationIntensity(ObservationIntensity newIntensity)
+        {
+            this.observations.SetIntensity(newIntensity);
+        }
+
+        /// <summary>
+        /// Set the new observation time of day.
+        /// </summary>
+        /// <param name="newTimeOfDay">new time of day</param>
+        private void NewObservationTimeOfDay(ObservationTimeOfDay newTimeOfDay)
+        {
+            this.observations.SetTimeOfDay(newTimeOfDay);
+        }
+
+        /// <summary>
+        /// Set the new observation weather.
+        /// </summary>
+        /// <param name="newWeather">new weather</param>
+        private void NewObservationWeather(ObservationWeather newWeather)
+        {
+            this.observations.SetWeather(newWeather);
+        }
     }
 }
