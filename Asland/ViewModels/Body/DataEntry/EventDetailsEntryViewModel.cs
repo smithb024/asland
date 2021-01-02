@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body.DataEntry
 {
     using System;
+    using System.Collections.Generic;
     using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
@@ -206,6 +207,15 @@
         private void NewObservationWeather(ObservationWeather newWeather)
         {
             this.observations.SetWeather(newWeather);
+        }
+
+        /// <summary>
+        /// Set the new collection of observation habitats.
+        /// </summary>
+        /// <param name="newHabitats">new collection of habitats</param>
+        private void NewObservationWeather(List<ObservationHabitat> newHabitats)
+        {
+            this.observations.SetHabitats(newHabitats);
         }
     }
 }

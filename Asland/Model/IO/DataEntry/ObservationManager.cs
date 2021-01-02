@@ -1,6 +1,7 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
     using System;
+    using System.Collections.Generic;
     using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using NynaeveLib.Utils;
@@ -128,14 +129,14 @@
             this.observations.Weather = newWeather;
         }
 
-        ///// <summary>
-        ///// Set a new habitat in the model.
-        ///// </summary>
-        ///// <param name="newHabitat">new habitat</param>
-        //public void SetHabitat(ObservationHabitat newHabitat)
-        //{
-        //    this.observations.Habitats = newHabitat;
-        //}
+        /// <summary>
+        /// Set a new collection of habitats in the model.
+        /// </summary>
+        /// <param name="newHabitats">new habitats</param>
+        public void SetHabitats(List<ObservationHabitat> newHabitats)
+        {
+            this.observations.Habitats.Habitats = newHabitats;
+        }
 
         /// <summary>
         /// Gets a value which indicates whether the <paramref name="name"/> is present in the model
