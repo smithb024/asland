@@ -1,6 +1,7 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
     using System.Collections.Generic;
+    using System.IO;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Factories.IO;
 
@@ -40,10 +41,22 @@
         /// </summary>
         public void Save()
         {
-            // TODO - Flesh out management of filename.
+            if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
+            {
+                // TODO Handle Faults.
+                return;
+            }
+
+            string path = $"{DataPath.BasePath}\\{this.Observations.Year}";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             XmlFileIo.WriteXml(
                 this.Observations.GetObservations(),
-                this.filename);
+                $"{path}\\{this.Observations.Filename}");
         }
 
         /// <summary>

@@ -12,15 +12,40 @@
     public class ObservationManager : IObservationManager
     {
         /// <summary>
+        /// Indicates whether the filename can be changed.
+        /// </summary>
+        private bool lockName;
+
+        /// <summary>
         /// The current event.
         /// </summary>
         private RawObservations observations;
 
+        /// <summary>
+        /// Portion of the filename based on the date.
+        /// </summary>
+        private string filenameDate;
 
+        /// <summary>
+        /// Initialises a new instance of the <see cref="ObservationManager"/> class.
+        /// </summary>
         public ObservationManager()
         {
             this.observations = new RawObservations();
+            this.Filename = string.Empty;
+            this.Filename = string.Empty;
+            this.lockName = false;
         }
+
+        /// <summary>
+        /// Gets the file name used for this event.
+        /// </summary>
+        public string Filename { get; private set; }
+
+        /// <summary>
+        /// Gets the year of this event.
+        /// </summary>
+        public string Year { get; private set; }
 
         /// <summary>
         /// Return the observations.
@@ -29,6 +54,15 @@
         public RawObservations GetObservations()
         {
             return this.observations;
+        }
+
+        /// <summary>
+        /// Get the location of the current entry
+        /// </summary>
+        /// <returns>current location</returns>
+        public string GetLocation()
+        {
+            return this.observations.Location;
         }
 
         /// <summary>
@@ -76,12 +110,30 @@
         }
 
         /// <summary>
+        /// Set a new location in the model.
+        /// </summary>
+        /// <param name="newLocation">new location</param>
+        public void SetLocation(string newLocation)
+        {
+            this.observations.Location = newLocation;
+            this.SetFilename();
+        }
+
+        /// <summary>
         /// Set a new date in the model.
         /// </summary>
         /// <param name="newDate">new date</param>
         public void SetDate(DateTime newDate)
         {
             this.observations.Date = newDate.ToString("dd/MM/yyyy");
+
+            if (!this.lockName)
+            {
+                this.filenameDate = newDate.ToString("yyMMdd") + "_" + DateTime.Now.ToString("HHmm");
+                this.Year = newDate.Year.ToString();
+            }
+
+            this.SetFilename();
         }
 
         /// <summary>
@@ -159,6 +211,17 @@
             }
 
             return this.observations.Heard.Kind.Find(k => StringCompare.SimpleCompare(k, name)) != null; ;
+        }
+
+        /// <summary>
+        /// Set the filename if it has not been locked.
+        /// </summary>
+        private void SetFilename()
+        {
+            if (!this.lockName)
+            {
+                this.Filename = $"{filenameDate}_{this.GetLocation()}.xml";
+            }
         }
     }
 }

@@ -11,10 +11,26 @@
     public interface IObservationManager
     {
         /// <summary>
+        /// Gets the file name used for this event.
+        /// </summary>
+        string Filename { get; }
+
+        /// <summary>
+        /// Gets the year of this event.
+        /// </summary>
+        string Year { get; }
+
+        /// <summary>
         /// Return the observations.
         /// </summary>
         /// <returns>raw observations</returns>
         RawObservations GetObservations();
+
+        /// <summary>
+        /// Get the location of the current entry
+        /// </summary>
+        /// <returns>current location</returns>
+        string GetLocation();
 
         /// <summary>
         /// Add or remove a beastie from the observations.
@@ -30,6 +46,12 @@
             string name,
             bool isIncluded,
             bool isSeen);
+
+        /// <summary>
+        /// Set a new location in the model.
+        /// </summary>
+        /// <param name="newLocation">new location</param>
+        void SetLocation(string newLocation);
 
         /// <summary>
         /// Set a new date in the model.

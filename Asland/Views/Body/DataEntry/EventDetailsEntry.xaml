@@ -15,7 +15,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding Path=Location}"/>
+            <TextBox Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

@@ -15,17 +15,22 @@
     public class EventDetailsEntryViewModel : ViewModelBase, IEventDetailsEntry
     {
         /// <summary>
-        /// Gets or sets the date of the event.
+        /// The location of the current event.
+        /// </summary>
+        private string location;
+
+        /// <summary>
+        /// The date of the event.
         /// </summary>
         private DateTime date;
 
         /// <summary>
-        /// Gets or sets any notes pertaining to the event.
+        /// Any notes pertaining to the event.
         /// </summary>
         private string notes;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the observations currently being marked have 
+        /// A value indicating whether the observations currently being marked have 
         /// been seen.
         /// </summary>
         private bool isSeen;
@@ -55,6 +60,7 @@
             bool isSeen,
             Action<bool> setIsSeen)
         {
+            this.location = string.Empty;
             this.observations = observations;
             this.date = DateTime.Now;
             this.notes = string.Empty;
@@ -88,13 +94,25 @@
             this.HabitatSelector =
                 new EnumSelectorCompoundViewModel<ObservationHabitat>(
                     "Habitats",
-                    (ObservationHabitat) => { });
+                    this.NewObservationHabitats);
         }
 
         /// <summary>
         /// Gets or sets the location of the event.
         /// </summary>
-        public string Location { get; set; }
+        public string Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.Set(ref this.location, value);
+                this.observations.SetLocation(this.location);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the date of the event.
@@ -213,7 +231,7 @@
         /// Set the new collection of observation habitats.
         /// </summary>
         /// <param name="newHabitats">new collection of habitats</param>
-        private void NewObservationWeather(List<ObservationHabitat> newHabitats)
+        private void NewObservationHabitats(List<ObservationHabitat> newHabitats)
         {
             this.observations.SetHabitats(newHabitats);
         }
