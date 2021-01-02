@@ -61,7 +61,8 @@
             this.detailsViewModel = 
                 new EventDetailsEntryViewModel(
                     this.observations,
-                    isSeen);
+                    isSeen,
+                    this.beastieEntryViewModel.SetIsSeen);
 
             this.CurrentWorkspace = this.detailsViewModel;
 

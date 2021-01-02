@@ -30,6 +30,11 @@
         private bool isSeen;
 
         /// <summary>
+        /// Method to invoke to indicate to interested parties the new <see cref="IsSeen"/> value.
+        /// </summary>
+        private Action<bool> setIsSeen;
+
+        /// <summary>
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
         private IObservationManager observations;
@@ -41,14 +46,19 @@
         /// The observations model object.
         /// </param>
         /// <param name="isSeen">Indicates whether the observations are seen or heard</param>
+        /// <param name="setIsSeen">
+        /// Method to invoke to indicate to interested parties the new <see cref="IsSeen"/> value.
+        /// </param>
         public EventDetailsEntryViewModel(
             IObservationManager observations,
-            bool isSeen)
+            bool isSeen,
+            Action<bool> setIsSeen)
         {
             this.observations = observations;
             this.date = DateTime.Now;
             this.notes = string.Empty;
             this.isSeen = isSeen;
+            this.setIsSeen = setIsSeen;
 
             this.LengthSelector =
                 new EnumSelectorViewModel<ObservationLength>(
@@ -133,6 +143,7 @@
             set
             {
                 this.Set(ref this.isSeen, value);
+                this.setIsSeen.Invoke(this.isSeen);
             }
         }
 
