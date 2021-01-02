@@ -1,15 +1,14 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using System.Collections.Generic;
     using System.Windows.Input;
-    using Asland.Common.Enums;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
-    using Interfaces.ViewModels.Common;
     using NynaeveLib.Commands;
+    using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
-    using Asland.ViewModels.Common;
 
     /// <summary>
     /// View model which suports the data entry view.
@@ -18,9 +17,20 @@
     public class DataEntryViewModel : ViewModelBase, IDataEntryViewModel
     {
         /// <summary>
+        /// String used for the event details button. This button is used to select the page where
+        /// the user enters the general information about the event.
+        /// </summary>
+        private const string EventDetails = "Event Details";
+
+        /// <summary>
         /// Associated model.
         /// </summary>
-        public IEventEntry model;
+        private IEventEntry model;
+
+        /// <summary>
+        /// Manager which handles observation data entry/interrogation.
+        /// </summary>
+        private IObservationManager observations;
 
         /// <summary>
         /// View model for the beastie entry view.
@@ -41,11 +51,29 @@
         public DataEntryViewModel(
             IEventEntry model)
         {
+            bool isSeen = true;
             this.model = model;
-            this.beastieEntryViewModel = new BeastieEntryViewModel();
-            this.detailsViewModel = new EventDetailsEntryViewModel();
+            this.observations = model.Observations;
+            this.beastieEntryViewModel =
+                new BeastieEntryViewModel(
+                    this.observations.SetBeastie,
+                    isSeen);
+            this.detailsViewModel = 
+                new EventDetailsEntryViewModel(
+                    this.observations,
+                    isSeen,
+                    this.beastieEntryViewModel.SetIsSeen);
 
             this.CurrentWorkspace = this.detailsViewModel;
+
+            this.PopulatePageSelector(EventDetails);
+
+            List<string> beastiePages = model.GetDataEntryPageNames();
+
+            foreach (string pageName in beastiePages)
+            {
+                this.PopulatePageSelector(pageName);
+            }
 
             this.SaveCommand =
                 new CommonCommand(
@@ -59,6 +87,11 @@
         /// Gets the view model for the workspace which is displayed.
         /// </summary>
         public object CurrentWorkspace { get; private set; }
+
+        /// <summary>
+        /// Gets a selection of commands which are used to choose a page to display.
+        /// </summary>
+        public List<IIndexCommand<string>> PageSelector { get; private set; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -75,7 +108,12 @@
         /// </summary>
         private void Save()
         {
-            this.model.Save();
+            bool success = this.model.Save();
+
+            if (success)
+            {
+                this.Reset();
+            }
         }
 
         /// <summary>
@@ -84,6 +122,86 @@
         private void Load()
         {
             this.model.Load();
+        }
+
+        /// <summary>
+        /// Select a new page for the view.
+        /// </summary>
+        /// <param name="newPageName">
+        /// Name of the page to display.
+        /// </param>
+        private void NewPage(string newPageName)
+        {
+            if (StringCompare.SimpleCompare(newPageName, EventDetails))
+            {
+                this.CurrentWorkspace = this.detailsViewModel;
+            }
+            else
+            {
+                this.beastieEntryViewModel.Clear();
+
+                List<string> beasties =
+                    this.model.GetBeastiesOnAPage(
+                        newPageName);
+
+                foreach(string beastie in beasties)
+                {
+                    bool isIncluded =
+                        this.observations.GetIncluded(
+                            beastie,
+                            this.detailsViewModel.IsSeen);
+                    this.beastieEntryViewModel.Add(
+                        beastie,
+                        isIncluded);
+                }
+
+                this.CurrentWorkspace = this.beastieEntryViewModel;
+                this.beastieEntryViewModel.Refresh();
+            }
+
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
+
+        /// <summary>
+        /// Add a new command to the collection of page selector commands.
+        /// </summary>
+        /// <param name="pageName">
+        /// Name of the page the new command represents.
+        /// </param>
+        private void PopulatePageSelector(string pageName)
+        {
+            if (this.PageSelector == null)
+            {
+                this.PageSelector = new List<IIndexCommand<string>>();
+            }
+
+            IIndexCommand<string> showEventDetails =
+                new IndexCommand<string>(
+                    pageName,
+                    this.NewPage);
+
+            this.PageSelector.Add(showEventDetails);
+        }
+
+        /// <summary>
+        /// Reset the view models.
+        /// </summary>
+        private void Reset()
+        {
+            bool isSeen = true;
+            this.observations = model.Observations;
+            this.beastieEntryViewModel =
+                new BeastieEntryViewModel(
+                    this.observations.SetBeastie,
+                    isSeen);
+            this.detailsViewModel =
+                new EventDetailsEntryViewModel(
+                    this.observations,
+                    isSeen,
+                    this.beastieEntryViewModel.SetIsSeen);
+
+            this.CurrentWorkspace = this.detailsViewModel;
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
     }
 }

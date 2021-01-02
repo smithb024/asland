@@ -8,9 +8,15 @@
     public interface IEventEntry
     {
         /// <summary>
+        /// Gets the manager class for the current observations.
+        /// </summary>
+        IObservationManager Observations { get; }
+
+        /// <summary>
         /// Save the current model.
         /// </summary>
-        void Save();
+        /// <returns>success flag</returns>
+        bool Save();
 
         /// <summary>
         /// Load a model to edit.

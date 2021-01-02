@@ -16,7 +16,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:Beastie/>
+                    <local:Beastie Margin="1"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

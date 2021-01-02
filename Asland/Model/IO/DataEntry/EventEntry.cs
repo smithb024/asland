@@ -1,6 +1,7 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
     using System.Collections.Generic;
+    using System.IO;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Factories.IO;
 
@@ -9,11 +10,6 @@
     /// </summary>
     public class EventEntry : IEventEntry
     {
-        /// <summary>
-        /// The current event.
-        /// </summary>
-        private RawObservations observations;
-
         /// <summary>
         /// The filename for the current event.
         /// </summary>
@@ -29,21 +25,43 @@
         /// </summary>
         public EventEntry()
         {
-            this.observations = new RawObservations();
+            this.Observations = new ObservationManager();
             this.rawPageData =
                 XmlFileIo.ReadXml<BeastiePages>(
                     $"{DataPath.BasePath}\\TestDataEntry.xml");
         }
 
         /// <summary>
+        /// Gets the manager class for the current observations.
+        /// </summary>
+        public IObservationManager Observations { get; }
+
+        /// <summary>
         /// Save the current model.
         /// </summary>
-        public void Save()
+        /// <returns>success flag</returns>
+        public bool Save()
         {
-            // TODO - Flesh out management of filename.
+            if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
+            {
+                // TODO Handle Faults.
+                return false;
+            }
+
+            string path = $"{DataPath.BasePath}\\{this.Observations.Year}";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             XmlFileIo.WriteXml(
-                this.observations,
-                this.filename);
+                this.Observations.GetObservations(),
+                $"{path}\\{this.Observations.Filename}");
+
+            this.Observations.Reset();
+
+            return true;
         }
 
         /// <summary>

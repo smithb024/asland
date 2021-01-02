@@ -83,6 +83,7 @@
     <Compile Include="DataPath.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
+    <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IEventDetailsEntry.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Interfaces\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Ribbon\IRibbonViewModel.cs" />
     <Compile Include="Model\IO\DataEntry\EventEntry.cs" />
+    <Compile Include="Model\IO\DataEntry\ObservationManager.cs" />
     <Compile Include="Model\IO\DataEntry\Page.cs" />
     <Compile Include="Model\IO\DataEntry\BeastiePages.cs" />
     <Compile Include="Model\IO\Data\Beastie.cs" />

@@ -26,6 +26,25 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <ItemsControl
+            Grid.Row="0"
+            ItemsSource="{Binding Path=PageSelector}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button 
+                        Content="{Binding Path=Name}"
+                        Command="{Binding Path=Command}"
+                        Height="20"
+                        Margin="1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
         <ContentControl 
             Grid.Row="1"
             Content="{Binding CurrentWorkspace}" />

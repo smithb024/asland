@@ -15,7 +15,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding Path=Location}"/>
+            <TextBox Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
                         Content="Seen"
                         IsChecked="{Binding IsSeen}"/>
                     <TextBox 
-                        Text="{Binding Path=Notes}"
+                        Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap"/>
 
                     <common:EnumerationSelector DataContext="{Binding LengthSelector}"/>
