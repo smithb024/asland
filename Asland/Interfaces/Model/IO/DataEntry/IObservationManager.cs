@@ -109,5 +109,10 @@
         bool GetIncluded(
             string name,
             bool isSeen);
+
+        /// <summary>
+        /// Reset the model.
+        /// </summary>
+        void Reset();
     }
 }

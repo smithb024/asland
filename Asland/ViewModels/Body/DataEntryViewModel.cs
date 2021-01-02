@@ -108,7 +108,12 @@
         /// </summary>
         private void Save()
         {
-            this.model.Save();
+            bool success = this.model.Save();
+
+            if (success)
+            {
+                this.Reset();
+            }
         }
 
         /// <summary>
@@ -176,6 +181,27 @@
                     this.NewPage);
 
             this.PageSelector.Add(showEventDetails);
+        }
+
+        /// <summary>
+        /// Reset the view models.
+        /// </summary>
+        private void Reset()
+        {
+            bool isSeen = true;
+            this.observations = model.Observations;
+            this.beastieEntryViewModel =
+                new BeastieEntryViewModel(
+                    this.observations.SetBeastie,
+                    isSeen);
+            this.detailsViewModel =
+                new EventDetailsEntryViewModel(
+                    this.observations,
+                    isSeen,
+                    this.beastieEntryViewModel.SetIsSeen);
+
+            this.CurrentWorkspace = this.detailsViewModel;
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
     }
 }

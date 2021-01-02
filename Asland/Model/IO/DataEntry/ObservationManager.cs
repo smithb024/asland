@@ -31,10 +31,7 @@
         /// </summary>
         public ObservationManager()
         {
-            this.observations = new RawObservations();
-            this.Filename = string.Empty;
-            this.Filename = string.Empty;
-            this.lockName = false;
+            this.Reset();
         }
 
         /// <summary>
@@ -211,6 +208,17 @@
             }
 
             return this.observations.Heard.Kind.Find(k => StringCompare.SimpleCompare(k, name)) != null; ;
+        }
+
+        /// <summary>
+        /// Reset the model.
+        /// </summary>
+        public void Reset()
+        {
+            this.observations = new RawObservations();
+            this.Filename = string.Empty;
+            this.Year = string.Empty;
+            this.lockName = false;
         }
 
         /// <summary>

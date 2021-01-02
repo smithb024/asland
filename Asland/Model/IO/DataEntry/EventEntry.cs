@@ -39,12 +39,13 @@
         /// <summary>
         /// Save the current model.
         /// </summary>
-        public void Save()
+        /// <returns>success flag</returns>
+        public bool Save()
         {
             if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
             {
                 // TODO Handle Faults.
-                return;
+                return false;
             }
 
             string path = $"{DataPath.BasePath}\\{this.Observations.Year}";
@@ -57,6 +58,10 @@
             XmlFileIo.WriteXml(
                 this.Observations.GetObservations(),
                 $"{path}\\{this.Observations.Filename}");
+
+            this.Observations.Reset();
+
+            return true;
         }
 
         /// <summary>
