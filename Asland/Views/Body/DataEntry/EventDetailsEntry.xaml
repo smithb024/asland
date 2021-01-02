@@ -31,7 +31,7 @@
                         Content="Seen"
                         IsChecked="{Binding IsSeen}"/>
                     <TextBox 
-                        Text="{Binding Path=Notes}"
+                        Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap"/>
 
                     <common:EnumerationSelector DataContext="{Binding LengthSelector}"/>

@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.Model.IO.DataEntry
 {
+    using System;
     using Asland.Common.Enums;
     using Asland.Model.IO;
 
@@ -28,6 +29,18 @@
             string name,
             bool isIncluded,
             bool isSeen);
+
+        /// <summary>
+        /// Set a new date in the model.
+        /// </summary>
+        /// <param name="newDate">new date</param>
+        void SetDate(DateTime newDate);
+
+        /// <summary>
+        /// Update the notes in the model.
+        /// </summary>
+        /// <param name="newNotes">new notes</param>
+        void SetNotes(string newNotes);
 
         /// <summary>
         /// Set a new length in the model.

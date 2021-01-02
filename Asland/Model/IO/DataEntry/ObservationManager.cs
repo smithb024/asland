@@ -1,5 +1,6 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
+    using System;
     using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using NynaeveLib.Utils;
@@ -71,6 +72,24 @@
             {
                 observations.Kind.Remove(name);
             }
+        }
+
+        /// <summary>
+        /// Set a new date in the model.
+        /// </summary>
+        /// <param name="newDate">new date</param>
+        public void SetDate(DateTime newDate)
+        {
+            this.observations.Date = newDate.ToString("dd/MM/yyyy");
+        }
+
+        /// <summary>
+        /// Update the notes in the model.
+        /// </summary>
+        /// <param name="newNotes">new notes</param>
+        public void SetNotes(string newNotes)
+        {
+            this.observations.Notes = newNotes;
         }
 
         /// <summary>

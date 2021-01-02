@@ -6,13 +6,29 @@
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.ViewModels.Common;
     using Interfaces.ViewModels.Common;
-    using NynaeveLib.ViewModel;
+    using GalaSoft.MvvmLight;
 
     /// <summary>
     /// View model which supports a view reposible for the entry of the event details.
     /// </summary>
     public class EventDetailsEntryViewModel : ViewModelBase, IEventDetailsEntry
     {
+        /// <summary>
+        /// Gets or sets the date of the event.
+        /// </summary>
+        private DateTime date;
+
+        /// <summary>
+        /// Gets or sets any notes pertaining to the event.
+        /// </summary>
+        private string notes;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the observations currently being marked have 
+        /// been seen.
+        /// </summary>
+        private bool isSeen;
+
         /// <summary>
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
@@ -30,8 +46,9 @@
             bool isSeen)
         {
             this.observations = observations;
-            this.Date = DateTime.Now;
-            this.IsSeen = isSeen;
+            this.date = DateTime.Now;
+            this.notes = string.Empty;
+            this.isSeen = isSeen;
 
             this.LengthSelector =
                 new EnumSelectorViewModel<ObservationLength>(
@@ -71,18 +88,53 @@
         /// <summary>
         /// Gets or sets the date of the event.
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime Date
+        {
+            get
+            {
+                return this.date;
+            }
+
+            set
+            {
+                this.Set(ref this.date, value);
+                this.observations.SetDate(this.date);
+            }
+        }
 
         /// <summary>
         /// Gets or sets any notes pertaining to the event.
         /// </summary>
-        public string Notes { get; set; }
+        public string Notes
+        {
+            get
+            {
+                return this.notes;
+            }
+
+            set
+            {
+                this.Set(ref this.notes, value);
+                this.observations.SetNotes(this.notes);
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether the observations currently being marked have 
         /// been seen.
         /// </summary>
-        public bool IsSeen { get; set; }
+        public bool IsSeen
+        {
+            get
+            {
+                return this.isSeen;
+            }
+
+            set
+            {
+                this.Set(ref this.isSeen, value);
+            }
+        }
 
         /// <summary>
         /// Gets the length selector.
