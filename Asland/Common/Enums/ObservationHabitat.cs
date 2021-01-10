@@ -83,7 +83,7 @@
         /// <summary>
         /// coastal mudflats
         /// </summary>
-        Mudlflats,
+        Mudflats,
 
         /// <summary>
         /// Managed landscape used for leisure.

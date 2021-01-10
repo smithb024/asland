@@ -28,7 +28,7 @@
         /// <summary>
         /// The weather was overcast.
         /// </summary>
-        Cloudy,
+        Overcast,
 
         /// <summary>
         /// There was light rain.
@@ -54,6 +54,11 @@
         /// There was a gale.
         /// </summary>
         Gale,
+
+        /// <summary>
+        /// It was foggy.
+        /// </summary>
+        Fog,
 
         /// <summary>
         /// The weather conditions were mixed.
