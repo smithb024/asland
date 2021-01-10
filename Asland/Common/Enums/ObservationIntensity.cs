@@ -18,18 +18,18 @@
         /// <summary>
         /// Low intensity birding, no bins.
         /// </summary>
-        Low,
+        L,
 
         /// <summary>
         /// Medium intensity birding, bins but not paying too much attention, or paying attention
         /// with no bins.
         /// </summary>
-        Medium,
+        M,
 
         /// <summary>
         /// High intensity.
         /// </summary>
-        High,
+        H,
 
         /// <summary>
         /// Part of the commute to work.
@@ -44,7 +44,7 @@
         /// <summary>
         /// Cycling
         /// </summary>
-        Cycle,
+        Cycling,
 
         /// <summary>
         /// Walking
