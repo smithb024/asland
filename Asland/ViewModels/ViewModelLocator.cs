@@ -1,9 +1,11 @@
 namespace Asland.ViewModels
 {
+    using Interfaces.Model.IO.Data;
     using Interfaces.Model.IO.DataEntry;
     using Interfaces.ViewModels;
     using Interfaces.ViewModels.Body;
     using Interfaces.ViewModels.Ribbon;
+    using Model.IO.Data;
     using Model.IO.DataEntry;
     using CommonServiceLocator;
     using GalaSoft.MvvmLight.Ioc;
@@ -37,7 +39,9 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IBodyViewModel>();
 
             SimpleIoc.Default.Unregister<IEventEntry>();
+            SimpleIoc.Default.Unregister<IDataManager>();
 
+            SimpleIoc.Default.Register<IDataManager, DataManager>();
             SimpleIoc.Default.Register<IEventEntry, EventEntry>();
 
             SimpleIoc.Default.Register<IMainWindowViewModel, MainWindowViewModel>();

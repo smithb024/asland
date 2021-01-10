@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
     using System.IO;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.Model.IO.DataEntry;
+    using Factories;
     using Factories.IO;
 
     /// <summary>
@@ -23,12 +25,25 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="EventEntry"/> class.
         /// </summary>
-        public EventEntry()
+        /// <param name="dataManager">Data IO Manager</param>
+        public EventEntry(
+            IDataManager dataManager)
         {
             this.Observations = new ObservationManager();
             this.rawPageData =
                 XmlFileIo.ReadXml<BeastiePages>(
                     $"{DataPath.BasePath}\\TestDataEntry.xml");
+
+            // Ensure that all data files exist.
+            List<string> beastieNames = new List<string>();
+            foreach(Page page in this.rawPageData.Pages)
+            {
+                beastieNames.AddRange(page.Beasties);
+            }
+
+            BeastieDataFileFactory.CheckFiles(
+                beastieNames,
+                dataManager);
         }
 
         /// <summary>
