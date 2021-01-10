@@ -44,7 +44,7 @@
         {
             if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
             {
-                // TODO Handle Faults.
+                // TODO #27 Handle Faults.
                 return false;
             }
 

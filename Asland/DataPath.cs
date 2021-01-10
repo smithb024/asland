@@ -12,5 +12,10 @@
         /// Gets the location of all raw data files.
         /// </summary>
         public static string BasePath => "C:\\birding";
+
+        /// <summary>
+        /// Gest the location of all beastie data files.
+        /// </summary>
+        public static string BeastieDataPath => $"{BasePath}\\beasties";
     }
 }
