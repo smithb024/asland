@@ -21,7 +21,7 @@
         /// </summary>
         public ConsistencyViewModel()
         {
-            string basePath = DataPath.BasePath;
+            string basePath = DataPath.RawDataPath;
 
             this.LocationCollection = new ComponentCounterCollectionViewModel("Locations");
             this.LengthCollection = new ComponentCounterCollectionViewModel("Length");

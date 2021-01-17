@@ -150,7 +150,7 @@
         /// <summary>
         /// Gets or sets the path to an image of the beastie.
         /// </summary>
-        [XmlElement("page")]
+        [XmlElement("image")]
         public string Image
         {
             get
@@ -184,7 +184,7 @@
         /// <summary>
         /// Gets or sets the presence.
         /// </summary>
-        [XmlElement("latinName")]
+        [XmlElement("presence")]
         public Presence Presence
         {
             get
@@ -223,12 +223,12 @@
         {
             get
             {
-                return this.genus;
+                return this.genusLatin;
             }
 
             set
             {
-                this.genus = value;
+                this.genusLatin = value;
             }
         }
 

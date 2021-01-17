@@ -76,9 +76,17 @@
                 Directory.CreateDirectory(path);
             }
 
-            XmlFileIo.WriteXml(
-                beastieFile,
-                $"{path}\\{beastieFile.Name}.xml");
+            try
+            {
+                XmlFileIo.WriteXml(
+                    beastieFile,
+                    $"{path}\\{beastieFile.Name}.xml");
+            }
+            catch (Exception ex)
+            {
+                // TODO #27 Error saving file - Need to note this.
+                string error = ex.ToString();
+            }
         }
     }
 }

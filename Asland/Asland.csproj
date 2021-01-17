@@ -82,6 +82,7 @@
     <Compile Include="Common\Enums\Presence.cs" />
     <Compile Include="Common\Messages\MainViewMessage.cs" />
     <Compile Include="DataPath.cs" />
+    <Compile Include="Factories\BeastieDataFileFactory.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />

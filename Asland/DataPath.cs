@@ -17,5 +17,10 @@
         /// Gest the location of all beastie data files.
         /// </summary>
         public static string BeastieDataPath => $"{BasePath}\\beasties";
+
+        /// <summary>
+        /// Gest the location of all raw data files.
+        /// </summary>
+        public static string RawDataPath => $"{BasePath}\\raw";
     }
 }
