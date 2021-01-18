@@ -11,16 +11,6 @@
     public class RawObservations
     {
         /// <summary>
-        /// Default string for unknown data.
-        /// </summary>
-        const string UnknownString = "Unknown";
-
-        /// <summary>
-        /// Detault date.
-        /// </summary>
-        const string DefaultDateString = "01/01/1970";
-
-        /// <summary>
         /// Version of the input file.
         /// </summary>
         private int version;
@@ -81,8 +71,8 @@
         public RawObservations()
         {
             this.version = 3;
-            this.location = UnknownString;
-            this.date = DefaultDateString;
+            this.location = string.Empty;
+            this.date = string.Empty;
             this.notes = string.Empty;
             this.length = ObservationLength.Unspecified;
             this.intensity = ObservationIntensity.NotRecorded;
@@ -122,14 +112,7 @@
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    this.location = value;
-                }
-                else
-                {
-                    this.location = UnknownString;
-                }
+                this.location = value;
             }
         }
 
@@ -145,14 +128,7 @@
             }
             set
             {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    this.date = value;
-                }
-                else
-                {
-                    this.date = DefaultDateString;
-                }
+                this.date = value;
             }
         }
 

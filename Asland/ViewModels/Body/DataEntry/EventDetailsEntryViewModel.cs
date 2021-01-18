@@ -95,6 +95,8 @@
                 new EnumSelectorCompoundViewModel<ObservationHabitat>(
                     "Habitats",
                     this.NewObservationHabitats);
+
+            this.observations.SetDate(this.date);
         }
 
         /// <summary>
