@@ -81,8 +81,8 @@
         public RawObservations()
         {
             this.version = 3;
-            this.location = UnknownString;
-            this.date = DefaultDateString;
+            this.location = string.Empty;
+            this.date = string.Empty;
             this.notes = string.Empty;
             this.length = ObservationLength.Unspecified;
             this.intensity = ObservationIntensity.NotRecorded;

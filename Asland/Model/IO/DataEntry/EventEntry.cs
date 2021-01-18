@@ -1,5 +1,6 @@
 ﻿namespace Asland.Model.IO.DataEntry
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using Asland.Interfaces.Model.IO.Data;
@@ -59,20 +60,28 @@
         {
             if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
             {
-                // TODO #27 Handle Faults.
+                // TODO #26 Handle Faults.
                 return false;
             }
 
-            string path = $"{DataPath.BasePath}\\{this.Observations.Year}";
+            string path = $"{DataPath.RawDataPath}\\{this.Observations.Year}";
 
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            XmlFileIo.WriteXml(
-                this.Observations.GetObservations(),
-                $"{path}\\{this.Observations.Filename}");
+            try
+            {
+                XmlFileIo.WriteXml(
+                    this.Observations.GetObservations(),
+                    $"{path}\\{this.Observations.Filename}");
+            }
+            catch (Exception ex)
+            {
+                // TODO #26 Error saving file - Need to note this.
+                string error = ex.ToString();
+            }
 
             this.Observations.Reset();
 

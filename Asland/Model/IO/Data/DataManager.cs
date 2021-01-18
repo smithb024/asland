@@ -65,7 +65,7 @@
         {
             if (string.IsNullOrWhiteSpace(beastieFile.Name))
             {
-                // TODO #27 Error saving file - Need to note this.
+                // TODO #26 Error saving file - Need to note this.
                 return;
             }
 
@@ -84,7 +84,7 @@
             }
             catch (Exception ex)
             {
-                // TODO #27 Error saving file - Need to note this.
+                // TODO #26 Error saving file - Need to note this.
                 string error = ex.ToString();
             }
         }
