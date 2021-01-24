@@ -6,6 +6,11 @@
     public enum ObservationTimeOfDay
     {
         /// <summary>
+        /// Dawn
+        /// </summary>
+        Dawn,
+
+        /// <summary>
         /// Morning
         /// </summary>
         Morning,
