@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using System.Collections.Generic;
+    using System.Windows.Forms;
     using System.Windows.Input;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.Model.IO.DataEntry;
@@ -121,7 +122,16 @@
         /// </summary>
         private void Load()
         {
-            this.model.Load();
+            OpenFileDialog dialog = new OpenFileDialog();
+
+
+            dialog.InitialDirectory = DataPath.RawDataPath;
+            dialog.Filter = "xml files (*.xml)|*.xml";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.model.Load(dialog.FileName);
+            }
         }
 
         /// <summary>

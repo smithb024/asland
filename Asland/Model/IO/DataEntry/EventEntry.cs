@@ -91,7 +91,8 @@
         /// <summary>
         /// Load a model to edit.
         /// </summary>
-        public void Load()
+        /// <param name="path">path of the file to load</param>
+        public void Load(string path)
         {
         }
 
