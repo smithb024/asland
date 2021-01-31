@@ -97,6 +97,8 @@
                     this.NewObservationHabitats);
 
             this.observations.SetDate(this.date);
+
+            this.observations.Loaded += ObservationsLoaded;
         }
 
         /// <summary>
@@ -236,6 +238,22 @@
         private void NewObservationHabitats(List<ObservationHabitat> newHabitats)
         {
             this.observations.SetHabitats(newHabitats);
+        }
+
+        /// <summary>
+        /// a new model has been loaded, update the view model.
+        /// </summary>
+        private void ObservationsLoaded()
+        {
+            this.location = this.observations.GetLocation();
+            this.date = this.observations.GetDate();
+            this.notes = this.observations.GetNotes();
+            this.isSeen = true;
+
+            this.LengthSelector.Set(this.observations.GetLength());
+            this.IntensitySelector.Set(this.observations.GetIntensity());
+            this.WeatherSelector.Set(this.observations.GetWeather());
+            this.TimeOfDaySelector.Set(this.observations.GetTimeOfDay());
         }
     }
 }

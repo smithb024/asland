@@ -35,6 +35,11 @@
         }
 
         /// <summary>
+        /// Model loaded event.
+        /// </summary>
+        public event Action Loaded;
+
+        /// <summary>
         /// Gets the file name used for this event.
         /// </summary>
         public string Filename { get; private set; }
@@ -60,6 +65,88 @@
         public string GetLocation()
         {
             return this.observations.Location;
+        }
+
+        /// <summary>
+        /// Get a new date in the model.
+        /// </summary>
+        /// <returns>model date</returns>
+        public DateTime GetDate()
+        {
+            return this.observations.Date;
+        }
+
+        /// <summary>
+        /// Get the notes in the model.
+        /// </summary>
+        /// <returns>model notes</returns>
+        public string GetNotes()
+        {
+            return this.observations.Notes;
+        }
+
+        /// <summary>
+        /// Get a new length in the model.
+        /// </summary>
+        /// <returns>model length</returns>
+        public ObservationLength GetLength()
+        {
+            return this.observations.Length;
+        }
+
+        /// <summary>
+        /// Get a new intensity in the model.
+        /// </summary>
+        /// <returns>model intensity</returns>
+        public ObservationIntensity GetIntensity()
+        {
+            return this.observations.Intensity;
+        }
+
+        /// <summary>
+        /// Get a new time of day in the model.
+        /// </summary>
+        /// <returns>model time of day</returns>
+        public ObservationTimeOfDay GetTimeOfDay()
+        {
+            return this.observations.TimeOfDay;
+        }
+
+        /// <summary>
+        /// Get a new weather in the model.
+        /// </summary>
+        /// <returns>model weather</returns>
+        public ObservationWeather GetWeather()
+        {
+            return this.observations.Weather;
+        }
+
+        /// <summary>
+        /// Get a new collection of habitats in the model.
+        /// </summary>
+        /// <returns>model habitats</returns>
+        public List<ObservationHabitat> GetHabitats()
+        {
+            return this.observations.Habitats.Habitats;
+        }
+
+        /// <summary>
+        /// Load a new set of observations from a file.
+        /// </summary>
+        /// <param name="newData">new observation data</param>
+        /// <param name="filename">name of the file which has been loaded</param>
+        /// <param name="year">year of the file which has been loaded</param>
+        public void LoadObservations(
+            RawObservations newData,
+            string filename,
+            string year)
+        {
+            this.observations = newData;
+            this.Filename = filename;
+            this.Year = year;
+            this.lockName = true;
+
+            this.Loaded?.Invoke();
         }
 
         /// <summary>
