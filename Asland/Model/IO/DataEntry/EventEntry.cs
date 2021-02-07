@@ -112,7 +112,7 @@
             }
             catch (Exception ex)
             {
-                // TODO #26 Error saving file - Need to note this.
+                // TODO #26 Error loading file - Need to note this.
                 string error = ex.ToString();
             }
         }

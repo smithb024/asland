@@ -38,5 +38,17 @@
         /// Gets the command presented to the user to allow them to select this component value.
         /// </summary>
         ICommand SelectStateCommand { get; }
+
+        /// <summary>
+        /// Set a new value for this <see cref="IEnumComponentCompoundViewModel{TEnum}"/> object.
+        /// </summary>
+        /// <remarks>
+        /// This method sets this object, but does not trigger any actions other than redraw. It
+        /// is assumed that the setting object already knows the value.
+        /// </remarks>
+        /// <param name="isSelected">
+        /// Indicates whether the object is selected or not.
+        /// </param>
+        void Set(bool isSelected);
     }
 }

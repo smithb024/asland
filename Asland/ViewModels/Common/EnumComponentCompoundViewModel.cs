@@ -86,6 +86,22 @@
         public ICommand SelectStateCommand { get; }
 
         /// <summary>
+        /// Set a new value for this <see cref="IEnumComponentCompoundViewModel{TEnum}"/> object.
+        /// </summary>
+        /// <remarks>
+        /// This method sets this object, but does not trigger any actions other than redraw. It
+        /// is assumed that the setting object already knows the value.
+        /// </remarks>
+        /// <param name="isSelected">
+        /// Indicates whether the object is selected or not.
+        /// </param>
+        public void Set(bool isSelected)
+        {
+            this.isSelected = isSelected;
+            this.RaisePropertyChangedEvent(nameof(this.isSelected));
+        }
+
+        /// <summary>
         /// Select this <see cref="RepresentativeValue"/> as the current value within the 
         /// enumeration selector.
         /// </summary>

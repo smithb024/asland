@@ -98,7 +98,7 @@
 
             this.observations.SetDate(this.date);
 
-            this.observations.Loaded += ObservationsLoaded;
+            this.observations.Loaded += this.ObservationsLoaded;
         }
 
         /// <summary>
@@ -245,15 +245,17 @@
         /// </summary>
         private void ObservationsLoaded()
         {
-            this.location = this.observations.GetLocation();
-            this.date = this.observations.GetDate();
-            this.notes = this.observations.GetNotes();
-            this.isSeen = true;
+            this.Location = this.observations.GetLocation();
+            this.Date = this.observations.GetDate();
+            this.Notes = this.observations.GetNotes();
+            this.IsSeen = true;
 
             this.LengthSelector.Set(this.observations.GetLength());
             this.IntensitySelector.Set(this.observations.GetIntensity());
             this.WeatherSelector.Set(this.observations.GetWeather());
             this.TimeOfDaySelector.Set(this.observations.GetTimeOfDay());
+
+            this.HabitatSelector.Set(this.observations.GetHabitats());
         }
     }
 }

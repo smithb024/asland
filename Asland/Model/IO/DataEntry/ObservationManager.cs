@@ -73,7 +73,51 @@
         /// <returns>model date</returns>
         public DateTime GetDate()
         {
-            return this.observations.Date;
+            bool conversionIsFaulty = false;
+            int day = 0;
+            int month = 0;
+            int year = 0;
+            DateTime returnDate;
+
+            string[] dateArray = this.observations.Date.Split('/');
+
+            if (dateArray.Length != 3)
+            {
+                conversionIsFaulty = true;
+            }
+            else
+            {
+                if (!int.TryParse(dateArray[0], out day))
+                {
+                    conversionIsFaulty = true;
+                }
+
+                if (!int.TryParse(dateArray[1], out month))
+                {
+                    conversionIsFaulty = true;
+                }
+
+                if (!int.TryParse(dateArray[2], out year))
+                {
+                    conversionIsFaulty = true;
+                }
+            }
+
+            if (conversionIsFaulty)
+            {
+                // TODO #26 Error converting date - Need to note this.
+                returnDate = DateTime.Now;
+            }
+            else
+            {
+                returnDate =
+                    new DateTime(
+                        year,
+                        month,
+                        day);
+            }
+
+            return returnDate;
         }
 
         /// <summary>
