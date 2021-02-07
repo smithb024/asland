@@ -132,6 +132,8 @@
             {
                 this.model.Load(dialog.FileName);
             }
+
+            this.NewPage(DataEntryViewModel.EventDetails);
         }
 
         /// <summary>
