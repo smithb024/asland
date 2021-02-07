@@ -29,6 +29,11 @@
         private IEventEntry model;
 
         /// <summary>
+        /// Is the current model being edited.
+        /// </summary>
+        private bool isEditing;
+
+        /// <summary>
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
         private IObservationManager observations;
@@ -53,6 +58,7 @@
             IEventEntry model)
         {
             bool isSeen = true;
+            bool isEditing = false;
             this.model = model;
             this.observations = model.Observations;
             this.beastieEntryViewModel =
@@ -105,6 +111,32 @@
         public ICommand LoadCommand { get; }
 
         /// <summary>
+        /// Gets a value which indicates whether the current event is being edited.
+        /// </summary>
+        public bool IsEditing
+        {
+            get
+            {
+                return this.isEditing;
+            }
+
+            set
+            {
+                if (this.isEditing != value)
+                {
+                    this.isEditing = value;
+                    this.RaisePropertyChangedEvent(nameof(this.IsEditing));
+                    this.RaisePropertyChangedEvent(nameof(this.EditingText));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets a string which describes the editing status.
+        /// </summary>
+        public string EditingText => isEditing ? "Editing" : string.Empty;
+
+        /// <summary>
         /// Save the current event.
         /// </summary>
         private void Save()
@@ -134,6 +166,7 @@
             }
 
             this.NewPage(DataEntryViewModel.EventDetails);
+            this.IsEditing = true;
         }
 
         /// <summary>
@@ -216,6 +249,7 @@
                     this.beastieEntryViewModel.SetIsSeen);
 
             this.CurrentWorkspace = this.detailsViewModel;
+            this.IsEditing = false;
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
     }

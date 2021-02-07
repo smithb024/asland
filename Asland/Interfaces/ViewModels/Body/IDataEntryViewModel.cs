@@ -29,5 +29,15 @@
         /// Command used to load an existing event.
         /// </summary>
         ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Gets a value which indicates whether the current event is being edited.
+        /// </summary>
+        bool IsEditing { get; }
+
+        /// <summary>
+        /// Gets a string which describes the editing status.
+        /// </summary>
+        string EditingText { get; }
     }
 }
