@@ -44,7 +44,12 @@
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
         private IObservationManager observations;
-        
+
+        /// <summary>
+        /// Manages dispose.
+        /// </summary>
+        private bool disposedValue;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="EventDetailsEntryViewModel"/> class.
         /// </summary>
@@ -60,6 +65,7 @@
             bool isSeen,
             Action<bool> setIsSeen)
         {
+            this.disposedValue = false;
             this.location = string.Empty;
             this.observations = observations;
             this.date = DateTime.Now;
@@ -194,6 +200,34 @@
         /// Gets the habitats selector.
         /// </summary>
         public IEnumSelectorCompoundViewModel<ObservationHabitat> HabitatSelector { get; }
+
+        /// <summary>
+        /// Dispose this class
+        /// </summary>
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose this calss
+        /// </summary>
+        /// <param name="disposing">indicates whether this is being disposed</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    this.observations.Loaded -= this.ObservationsLoaded;
+                }
+
+                disposedValue = true;
+            }
+        }
+
 
         /// <summary>
         /// Set the new observation length

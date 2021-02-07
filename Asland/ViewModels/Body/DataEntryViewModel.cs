@@ -206,7 +206,9 @@
                 new BeastieEntryViewModel(
                     this.observations.SetBeastie,
                     isSeen);
-            Memory leak?
+
+            this.detailsViewModel?.Dispose();
+
             this.detailsViewModel =
                 new EventDetailsEntryViewModel(
                     this.observations,
