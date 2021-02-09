@@ -27,10 +27,68 @@
         RawObservations GetObservations();
 
         /// <summary>
+        /// Model loaded event.
+        /// </summary>
+        event Action Loaded;
+
+        /// <summary>
+        /// Load a new set of observations from a file.
+        /// </summary>
+        /// <param name="newData">new observation data</param>
+        /// <param name="filename">name of the file which has been loaded</param>
+        /// <param name="year">year of the file which has been loaded</param>
+        void LoadObservations(
+            RawObservations newData,
+            string filename,
+            string year);
+
+        /// <summary>
         /// Get the location of the current entry
         /// </summary>
         /// <returns>current location</returns>
         string GetLocation();
+
+        /// <summary>
+        /// Get a new date in the model.
+        /// </summary>
+        /// <returns>model date</returns>
+        DateTime GetDate();
+
+        /// <summary>
+        /// Get the notes in the model.
+        /// </summary>
+        /// <returns>model notes</returns>
+        string GetNotes();
+
+        /// <summary>
+        /// Get a new length in the model.
+        /// </summary>
+        /// <returns>model length</returns>
+        ObservationLength GetLength();
+
+        /// <summary>
+        /// Get a new intensity in the model.
+        /// </summary>
+        /// <returns>model intensity</returns>
+        ObservationIntensity GetIntensity();
+
+        /// <summary>
+        /// Get a new time of day in the model.
+        /// </summary>
+        /// <returns>model time of day</returns>
+        ObservationTimeOfDay GetTimeOfDay();
+
+        /// <summary>
+        /// Get a new weather in the model.
+        /// </summary>
+        /// <returns>model weather</returns>
+        ObservationWeather GetWeather();
+
+        /// <summary>
+        /// Get a new collection of habitats in the model.
+        /// </summary>
+        /// <returns>model habitats</returns>
+        List<ObservationHabitat> GetHabitats();
 
         /// <summary>
         /// Add or remove a beastie from the observations.

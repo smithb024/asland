@@ -52,6 +52,8 @@
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
+                <TextBlock
+                    Text="{Binding EditingText}"/>
                 <Button
                     Margin="5"
                     Width="100"

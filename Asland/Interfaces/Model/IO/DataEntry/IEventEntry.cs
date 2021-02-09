@@ -21,7 +21,8 @@
         /// <summary>
         /// Load a model to edit.
         /// </summary>
-        void Load();
+        /// <param name="path">path of the file to load</param>
+        void Load(string path);
 
         /// <summary>
         /// Clear the existing model and reset to default.

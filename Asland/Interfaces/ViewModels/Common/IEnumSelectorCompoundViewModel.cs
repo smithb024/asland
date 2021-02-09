@@ -24,5 +24,15 @@
         /// Gets the action to invoke when a new enumerate has been selected.
         /// </summary>
         Action<List<TEnum>> Action { get; }
+
+        /// <summary>
+        /// Set a new collection of values.
+        /// </summary>
+        /// <remarks>
+        /// This just sets the values, it doesn't inform any other interested parties that it
+        /// has done this.
+        /// </remarks>
+        /// <param name="newValues">The new values</param>
+        void Set(List<TEnum> newValues);
     }
 }

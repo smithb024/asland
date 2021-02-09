@@ -8,7 +8,7 @@
     /// Interface for a view model which supports a view reposible for the entry of the event 
     /// details.
     /// </summary>
-    public interface IEventDetailsEntry
+    public interface IEventDetailsEntry : IDisposable
     {
         /// <summary>
         /// Gets or sets the location of the event.

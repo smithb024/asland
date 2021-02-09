@@ -44,7 +44,12 @@
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
         private IObservationManager observations;
-        
+
+        /// <summary>
+        /// Manages dispose.
+        /// </summary>
+        private bool disposedValue;
+
         /// <summary>
         /// Initialises a new instance of the <see cref="EventDetailsEntryViewModel"/> class.
         /// </summary>
@@ -60,6 +65,7 @@
             bool isSeen,
             Action<bool> setIsSeen)
         {
+            this.disposedValue = false;
             this.location = string.Empty;
             this.observations = observations;
             this.date = DateTime.Now;
@@ -97,6 +103,8 @@
                     this.NewObservationHabitats);
 
             this.observations.SetDate(this.date);
+
+            this.observations.Loaded += this.ObservationsLoaded;
         }
 
         /// <summary>
@@ -194,6 +202,34 @@
         public IEnumSelectorCompoundViewModel<ObservationHabitat> HabitatSelector { get; }
 
         /// <summary>
+        /// Dispose this class
+        /// </summary>
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Dispose this calss
+        /// </summary>
+        /// <param name="disposing">indicates whether this is being disposed</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    this.observations.Loaded -= this.ObservationsLoaded;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+
+        /// <summary>
         /// Set the new observation length
         /// </summary>
         /// <param name="newLength">new length</param>
@@ -236,6 +272,24 @@
         private void NewObservationHabitats(List<ObservationHabitat> newHabitats)
         {
             this.observations.SetHabitats(newHabitats);
+        }
+
+        /// <summary>
+        /// a new model has been loaded, update the view model.
+        /// </summary>
+        private void ObservationsLoaded()
+        {
+            this.Location = this.observations.GetLocation();
+            this.Date = this.observations.GetDate();
+            this.Notes = this.observations.GetNotes();
+            this.IsSeen = true;
+
+            this.LengthSelector.Set(this.observations.GetLength());
+            this.IntensitySelector.Set(this.observations.GetIntensity());
+            this.WeatherSelector.Set(this.observations.GetWeather());
+            this.TimeOfDaySelector.Set(this.observations.GetTimeOfDay());
+
+            this.HabitatSelector.Set(this.observations.GetHabitats());
         }
     }
 }

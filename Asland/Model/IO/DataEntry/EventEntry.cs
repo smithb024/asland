@@ -91,8 +91,30 @@
         /// <summary>
         /// Load a model to edit.
         /// </summary>
-        public void Load()
+        /// <param name="path">path of the file to load</param>
+        public void Load(string path)
         {
+            this.Observations.Reset();
+
+            try
+            {
+                string filename = Path.GetFileName(path);
+                string year = Path.GetFileName(Path.GetDirectoryName(path));
+
+                RawObservations observations =
+                    XmlFileIo.ReadXml<RawObservations>(
+                        path);
+
+                this.Observations.LoadObservations(
+                    observations,
+                    filename,
+                    year);
+            }
+            catch (Exception ex)
+            {
+                // TODO #26 Error loading file - Need to note this.
+                string error = ex.ToString();
+            }
         }
 
         /// <summary>

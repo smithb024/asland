@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using System.Collections.Generic;
+    using System.Windows.Forms;
     using System.Windows.Input;
     using Asland.ViewModels.Body.DataEntry;
     using Asland.Interfaces.Model.IO.DataEntry;
@@ -28,6 +29,11 @@
         private IEventEntry model;
 
         /// <summary>
+        /// Is the current model being edited.
+        /// </summary>
+        private bool isEditing;
+
+        /// <summary>
         /// Manager which handles observation data entry/interrogation.
         /// </summary>
         private IObservationManager observations;
@@ -52,6 +58,7 @@
             IEventEntry model)
         {
             bool isSeen = true;
+            bool isEditing = false;
             this.model = model;
             this.observations = model.Observations;
             this.beastieEntryViewModel =
@@ -104,6 +111,32 @@
         public ICommand LoadCommand { get; }
 
         /// <summary>
+        /// Gets a value which indicates whether the current event is being edited.
+        /// </summary>
+        public bool IsEditing
+        {
+            get
+            {
+                return this.isEditing;
+            }
+
+            set
+            {
+                if (this.isEditing != value)
+                {
+                    this.isEditing = value;
+                    this.RaisePropertyChangedEvent(nameof(this.IsEditing));
+                    this.RaisePropertyChangedEvent(nameof(this.EditingText));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets a string which describes the editing status.
+        /// </summary>
+        public string EditingText => isEditing ? "Editing" : string.Empty;
+
+        /// <summary>
         /// Save the current event.
         /// </summary>
         private void Save()
@@ -121,7 +154,19 @@
         /// </summary>
         private void Load()
         {
-            this.model.Load();
+            OpenFileDialog dialog = new OpenFileDialog();
+
+
+            dialog.InitialDirectory = DataPath.RawDataPath;
+            dialog.Filter = "xml files (*.xml)|*.xml";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.model.Load(dialog.FileName);
+            }
+
+            this.NewPage(DataEntryViewModel.EventDetails);
+            this.IsEditing = true;
         }
 
         /// <summary>
@@ -194,6 +239,9 @@
                 new BeastieEntryViewModel(
                     this.observations.SetBeastie,
                     isSeen);
+
+            this.detailsViewModel?.Dispose();
+
             this.detailsViewModel =
                 new EventDetailsEntryViewModel(
                     this.observations,
@@ -201,6 +249,7 @@
                     this.beastieEntryViewModel.SetIsSeen);
 
             this.CurrentWorkspace = this.detailsViewModel;
+            this.IsEditing = false;
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
     }

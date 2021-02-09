@@ -65,6 +65,38 @@
         public Action<List<TEnum>> Action { get; }
 
         /// <summary>
+        /// Set a new collection of values.
+        /// </summary>
+        /// <remarks>
+        /// This just sets the values, it doesn't inform any other interested parties that it
+        /// has done this.
+        /// </remarks>
+        /// <param name="newValues">The new values</param>
+        public void Set(List<TEnum> newValues)
+        {
+            // Clear the local values.
+            foreach (TEnum enumerate in Enum.GetValues(typeof(TEnum)))
+            {
+                this.current.Remove(enumerate);
+            }
+
+            // Clear the view controls
+            foreach (IEnumComponentCompoundViewModel<TEnum> control in this.Controls)
+            {
+                control.Set(false);
+            }
+
+            // Set up the new values.
+            foreach (TEnum newValue in newValues)
+            {
+                IEnumComponentCompoundViewModel<TEnum> control =
+                    this.Controls.Find(c => c.RepresentativeValue.Equals(newValue));
+                control.Set(true);
+                this.current.Add(newValue);
+            }
+        }
+
+        /// <summary>
         /// Set a new current value.
         /// </summary>
         /// <param name="newValue">The new value</param>
