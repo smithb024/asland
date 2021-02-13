@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.Model.IO.Data
 {
+    using System.Collections.Generic;
     using Asland.Model.IO.Data;
 
     /// <summary>
@@ -7,6 +8,11 @@
     /// </summary>
     public interface IDataManager
     {
+        /// <summary>
+        /// Gets all the beasties in the system.
+        /// </summary>
+        List<Beastie> Beasties { get; }
+
         /// <summary>
         /// Add a beastie to the collection.
         /// </summary>

@@ -1,9 +1,6 @@
 ﻿namespace Asland.Model.IO.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.IO;
-    using Factories.IO;
     using Interfaces.Model.IO.Data;
 
     /// <summary>
@@ -23,6 +20,11 @@
         {
             this.beasties = new List<Beastie>();
         }
+
+        /// <summary>
+        /// Gets all the beasties in the system.
+        /// </summary>
+        public List<Beastie> Beasties => this.beasties;
 
         /// <summary>
         /// Add a beastie to the collection.
