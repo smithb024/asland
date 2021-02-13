@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Asland.Interfaces.Model.IO.Data;
-    using Asland.Interfaces.Model.IO.DataEntry;
+    using Interfaces.Factories;
+    using Interfaces.Model.IO.DataEntry;
     using Factories;
     using Factories.IO;
 
@@ -26,9 +26,9 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="EventEntry"/> class.
         /// </summary>
-        /// <param name="dataManager">Data IO Manager</param>
+        /// <param name="dataFileFactory">Data file factory</param>
         public EventEntry(
-            IDataManager dataManager)
+            IBeastieDataFileFactory dataFileFactory)
         {
             this.Observations = new ObservationManager();
             this.rawPageData =
@@ -42,9 +42,8 @@
                 beastieNames.AddRange(page.Beasties);
             }
 
-            BeastieDataFileFactory.CheckFiles(
-                beastieNames,
-                dataManager);
+            dataFileFactory.CheckFiles(
+                beastieNames);
         }
 
         /// <summary>

@@ -85,6 +85,7 @@
     <Compile Include="DataPath.cs" />
     <Compile Include="Factories\BeastieDataFileFactory.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
+    <Compile Include="Interfaces\Factories\IBeastieDataFileFactory.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />

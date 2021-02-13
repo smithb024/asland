@@ -1,6 +1,7 @@
 ﻿namespace Asland.Model.IO.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using Factories.IO;
     using Interfaces.Model.IO.Data;
@@ -11,82 +12,16 @@
     public class DataManager : IDataManager
     {
         /// <summary>
-        /// Create an empty beastie file with the given name.
+        /// Collection of all know beasties.
         /// </summary>
-        /// <param name="name">name of the beastie</param>
-        public void CreateEmptyBeastieFile(string name)
-        {
-            Beastie newFile =
-                new Beastie()
-                {
-                    Name = name,
-                    DisplayName = name,
-                    LatinName = string.Empty,
-                    Image = string.Empty,
-                    Size = 0,
-                    Classification = string.Empty,
-                    ClassLatin = string.Empty,
-                    Order = string.Empty,
-                    OrderLatin = string.Empty,
-                    Family = string.Empty,
-                    FamilyLatin = string.Empty,
-                    SubFamily = "N/A",
-                    SubFamilyLatin = "N/A",
-                    Genus = string.Empty,
-                    GenusLatin = string.Empty
-                };
-
-            this.Save(newFile);
-        }
+        private List<Beastie> beasties;
 
         /// <summary>
-        /// Indicates whether there is a data file corresponding to the name.
+        /// Initialises a new instance of the <see cref="DataManager"/> class.
         /// </summary>
-        /// <param name="name">name to check</param>
-        /// <returns>value indicating whether the file exists</returns>
-        public bool FileExists(string name)
+        public DataManager()
         {
-            try
-            {
-                return File.Exists($"{DataPath.BeastieDataPath}\\{name}.xml");
-            }
-            catch (Exception ex)
-            {
-                // TODO #26
-                return false;
-            }
-        }
 
-        /// <summary>
-        /// Save the beastie file.
-        /// </summary>
-        /// <param name="beastieFile">serialisable object to save</param>
-        public void Save(Beastie beastieFile)
-        {
-            if (string.IsNullOrWhiteSpace(beastieFile.Name))
-            {
-                // TODO #26 Error saving file - Need to note this.
-                return;
-            }
-
-            string path = $"{DataPath.BeastieDataPath}";
-
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            try
-            {
-                XmlFileIo.WriteXml(
-                    beastieFile,
-                    $"{path}\\{beastieFile.Name}.xml");
-            }
-            catch (Exception ex)
-            {
-                // TODO #26 Error saving file - Need to note this.
-                string error = ex.ToString();
-            }
         }
     }
 }
