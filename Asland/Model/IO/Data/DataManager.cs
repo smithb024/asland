@@ -21,7 +21,27 @@
         /// </summary>
         public DataManager()
         {
+            this.beasties = new List<Beastie>();
+        }
 
+        /// <summary>
+        /// Add a beastie to the collection.
+        /// </summary>
+        /// <param name="newBeastie">beastie to add</param>
+        public void AddBeastie(Beastie newBeastie)
+        {
+            if (this.beasties.Find(b => string.Equals(b.Name, newBeastie.Name)) == null)
+            {
+                this.beasties.Add(newBeastie);
+            }
+        }
+
+        /// <summary>
+        /// Reset the data in the data manager.
+        /// </summary>
+        public void Reset()
+        {
+            this.beasties = new List<Beastie>();
         }
     }
 }

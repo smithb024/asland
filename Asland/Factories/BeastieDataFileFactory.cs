@@ -26,6 +26,7 @@
             IDataManager dataManager)
         {
             this.dataManager = dataManager;
+            this.LoadAll();
         }
 
         /// <summary>
@@ -73,7 +74,7 @@
                 };
 
             this.Save(newFile);
-
+            this.dataManager.AddBeastie(newFile);
         }
 
         /// <summary>
@@ -122,6 +123,48 @@
             catch (Exception ex)
             {
                 // TODO #26 Error saving file - Need to note this.
+                string error = ex.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Load all beasties.
+        /// </summary>
+        private void LoadAll()
+        {
+            string path = $"{DataPath.BeastieDataPath}";
+
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+
+            string[] xmlFiles =
+                Directory.GetFiles("*.xml");
+
+            foreach(string file in xmlFiles)
+            {
+                this.LoadFile(file);
+            }
+        }
+
+        /// <summary>
+        /// Load a file and store it in the Data Manager
+        /// </summary>
+        /// <param name="path">path of the file to load</param>
+        private void LoadFile(string path)
+        {
+            try
+            {
+                Beastie beastie =
+                    XmlFileIo.ReadXml<Beastie>(
+                        path);
+
+                this.dataManager.AddBeastie(beastie);
+            }
+            catch (Exception ex)
+            {
+                // TODO #26 Error loading file - Need to note this.
                 string error = ex.ToString();
             }
         }

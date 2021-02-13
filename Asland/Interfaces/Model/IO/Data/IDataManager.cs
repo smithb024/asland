@@ -7,5 +7,15 @@
     /// </summary>
     public interface IDataManager
     {
+        /// <summary>
+        /// Add a beastie to the collection.
+        /// </summary>
+        /// <param name="newBeastie">beastie to add</param>
+        void AddBeastie(Beastie newBeastie);
+
+        /// <summary>
+        /// Reset the data in the data manager.
+        /// </summary>
+        void Reset();
     }
 }
