@@ -30,6 +30,11 @@
         private string image;
 
         /// <summary>
+        /// The path to a smaller image of the beastie.
+        /// </summary>
+        private string thumbnailImage;
+
+        /// <summary>
         /// This size in centimeters
         /// </summary>
         private int size;
@@ -161,6 +166,23 @@
             set
             {
                 this.image = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the path to a smaller image of the beastie.
+        /// </summary>
+        [XmlElement("thumb")]
+        public string ThumbnailImage
+        {
+            get
+            {
+                return this.thumbnailImage;
+            }
+
+            set
+            {
+                this.thumbnailImage = value;
             }
         }
 

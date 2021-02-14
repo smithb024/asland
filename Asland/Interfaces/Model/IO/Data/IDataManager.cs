@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.Model.IO.Data
 {
+    using System.Collections.Generic;
     using Asland.Model.IO.Data;
 
     /// <summary>
@@ -8,22 +9,19 @@
     public interface IDataManager
     {
         /// <summary>
-        /// Create an empty beastie file with the given name.
+        /// Gets all the beasties in the system.
         /// </summary>
-        /// <param name="name">name of the beastie</param>
-        void CreateEmptyBeastieFile(string name);
+        List<Beastie> Beasties { get; }
 
         /// <summary>
-        /// Indicates whether there is a data file corresponding to the name.
+        /// Add a beastie to the collection.
         /// </summary>
-        /// <param name="name">name to check</param>
-        /// <returns>value indicating whether the file exists</returns>
-        bool FileExists(string name);
+        /// <param name="newBeastie">beastie to add</param>
+        void AddBeastie(Beastie newBeastie);
 
         /// <summary>
-        /// Save the beastie file.
+        /// Reset the data in the data manager.
         /// </summary>
-        /// <param name="beastieFile">serialisable object to save</param>
-        void Save(Beastie beastieFile);
+        void Reset();
     }
 }
