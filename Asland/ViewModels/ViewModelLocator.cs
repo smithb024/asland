@@ -42,9 +42,11 @@ namespace Asland.ViewModels
 
             SimpleIoc.Default.Unregister<IEventEntry>();
             SimpleIoc.Default.Unregister<IBeastieDataFileFactory>();
+            SimpleIoc.Default.Unregister<IBeastieSearchFactory>();
             SimpleIoc.Default.Unregister<IDataManager>();
 
             SimpleIoc.Default.Register<IDataManager, DataManager>();
+            SimpleIoc.Default.Register<IBeastieSearchFactory, BeastieSearchFactory>();
             SimpleIoc.Default.Register<IBeastieDataFileFactory, BeastieDataFileFactory>();
             SimpleIoc.Default.Register<IEventEntry, EventEntry>();
 
