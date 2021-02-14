@@ -60,6 +60,7 @@
                     DisplayName = name,
                     LatinName = string.Empty,
                     Image = string.Empty,
+                    ThumbnailImage = string.Empty,
                     Size = 0,
                     Classification = string.Empty,
                     ClassLatin = string.Empty,
