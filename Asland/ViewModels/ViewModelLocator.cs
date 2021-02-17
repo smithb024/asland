@@ -1,6 +1,7 @@
 namespace Asland.ViewModels
 {
     using Factories;
+    using Interfaces;
     using Interfaces.Factories;
     using Interfaces.Model.IO.Data;
     using Interfaces.Model.IO.DataEntry;
@@ -44,6 +45,10 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IBeastieDataFileFactory>();
             SimpleIoc.Default.Unregister<IBeastieSearchFactory>();
             SimpleIoc.Default.Unregister<IDataManager>();
+
+            SimpleIoc.Default.Unregister<IAsLogger>();
+
+            SimpleIoc.Default.Register<IAsLogger, AsLogger>();
 
             SimpleIoc.Default.Register<IDataManager, DataManager>();
             SimpleIoc.Default.Register<IBeastieSearchFactory, BeastieSearchFactory>();
