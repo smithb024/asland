@@ -134,14 +134,26 @@
         private void LoadAll()
         {
             string path = $"{DataPath.BeastieDataPath}";
+            string[] xmlFiles;
 
             if (!Directory.Exists(path))
             {
                 return;
             }
 
-            string[] xmlFiles =
-                Directory.GetFiles("*.xml");
+            try
+            {
+                xmlFiles =
+                    Directory.GetFiles(
+                        path,
+                        "*.xml");
+            }
+            catch (Exception ex)
+            {
+                xmlFiles = new string[0];
+                // TODO #26 Error reading file - Need to note this.
+                string error = ex.ToString();
+            }
 
             foreach(string file in xmlFiles)
             {
