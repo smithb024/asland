@@ -21,6 +21,7 @@
         /// </summary>
         public AsLogger()
         {
+            Logger.SetInitialInstance("Asland");
             this.logger = Logger.Instance;
         }
 
