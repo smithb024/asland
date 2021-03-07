@@ -5,6 +5,7 @@
     using System.IO;
     using Asland.Model.IO.Data;
     using Factories.IO;
+    using Interfaces;
     using Interfaces.Factories;
     using Interfaces.Model.IO.Data;
 
@@ -13,6 +14,11 @@
     /// </summary>
     public class BeastieDataFileFactory : IBeastieDataFileFactory
     {
+        /// <summary>
+        /// Logger object.
+        /// </summary>
+        private IAsLogger logger;
+
         /// <summary>
         ///  The data manager.
         /// </summary>
@@ -23,8 +29,10 @@
         /// </summary>
         /// <param name="dataManager">The data manager</param>
         public BeastieDataFileFactory(
+            IAsLogger logger,
             IDataManager dataManager)
         {
+            this.logger = logger;
             this.dataManager = dataManager;
             this.LoadAll();
         }
@@ -91,7 +99,8 @@
             }
             catch (Exception ex)
             {
-                // TODO #26
+                this.logger.WriteLine(
+                    $"Error finding {name}: {ex}");
                 return false;
             }
         }
@@ -104,7 +113,8 @@
         {
             if (string.IsNullOrWhiteSpace(beastieFile.Name))
             {
-                // TODO #26 Error saving file - Need to note this.
+                this.logger.WriteLine(
+                    $"Error saving beastie file, filename is null or empty");
                 return;
             }
 
@@ -123,8 +133,8 @@
             }
             catch (Exception ex)
             {
-                // TODO #26 Error saving file - Need to note this.
-                string error = ex.ToString();
+                this.logger.WriteLine(
+                    $"Error saving {beastieFile.Name}: {ex}");
             }
         }
 
@@ -134,16 +144,29 @@
         private void LoadAll()
         {
             string path = $"{DataPath.BeastieDataPath}";
+            string[] xmlFiles;
 
             if (!Directory.Exists(path))
             {
                 return;
             }
 
-            string[] xmlFiles =
-                Directory.GetFiles("*.xml");
+            try
+            {
+                xmlFiles =
+                    Directory.GetFiles(
+                        path,
+                        "*.xml");
+            }
+            catch (Exception ex)
+            {
+                xmlFiles = new string[0];
 
-            foreach(string file in xmlFiles)
+                this.logger.WriteLine(
+                    $"Error loading all beastie files: {ex}");
+            }
+
+            foreach (string file in xmlFiles)
             {
                 this.LoadFile(file);
             }
@@ -165,8 +188,8 @@
             }
             catch (Exception ex)
             {
-                // TODO #26 Error loading file - Need to note this.
-                string error = ex.ToString();
+                this.logger.WriteLine(
+                    $"Error loading {path}: {ex}");
             }
         }
     }
