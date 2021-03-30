@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Asland" xmlns:ribbon="clr-namespace:Asland.Views.Ribbon" xmlns:body="clr-namespace:Asland.Views.Body"
+        xmlns:local="clr-namespace:Asland" xmlns:ribbon="clr-namespace:Asland.Views.Ribbon" 
+        xmlns:body="clr-namespace:Asland.Views.Body"
+        xmlns:status="clr-namespace:Asland.Views.Status"
         DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}"
        mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -13,6 +15,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <ribbon:Ribbon
@@ -22,6 +25,7 @@
             Text="{Binding TestString}"/>
         <body:BodyView 
             Grid.Row="2"/>
-
+        <status:StatusBar
+            Grid.Row="3"/>
     </Grid>
 </Window>
