@@ -36,7 +36,7 @@
 
             private set
             {
-                this.Set(() => this.Status, ref this.status, value);
+                this.Set(ref this.status, value);
             }
         }
 

@@ -3,10 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Asland.Common.Messages;
+    using Asland.Interfaces;
     using Interfaces.Factories;
     using Interfaces.Model.IO.DataEntry;
-    using Factories;
     using Factories.IO;
+    using GalaSoft.MvvmLight.Messaging;
 
     /// <summary>
     /// Top class for the model which manages the entry of the events.
@@ -24,13 +26,21 @@
         private BeastiePages rawPageData;
 
         /// <summary>
+        /// The logger.
+        /// </summary>
+        private IAsLogger logger;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="EventEntry"/> class.
         /// </summary>
         /// <param name="dataFileFactory">Data file factory</param>
+        /// <param name="logger">the logger</param>
         public EventEntry(
-            IBeastieDataFileFactory dataFileFactory)
+            IBeastieDataFileFactory dataFileFactory,
+            IAsLogger logger)
         {
             this.Observations = new ObservationManager();
+            this.logger = logger;
             this.rawPageData =
                 XmlFileIo.ReadXml<BeastiePages>(
                     $"{DataPath.BasePath}\\TestDataEntry.xml");
@@ -59,7 +69,15 @@
         {
             if (string.IsNullOrWhiteSpace(this.Observations.GetLocation()))
             {
-                // TODO #26 Handle Faults.
+                string faultString = "Can't save, no location provided.";
+
+                logger.WriteLine($"Event Entry Save: {faultString}");
+
+                AppStatusMessage message =
+                    new AppStatusMessage(
+                        faultString);
+                Messenger.Default.Send(message);
+
                 return false;
             }
 
@@ -78,8 +96,14 @@
             }
             catch (Exception ex)
             {
-                // TODO #26 Error saving file - Need to note this.
-                string error = ex.ToString();
+                string errorDescription = $"Error saving {this.Observations.Filename}";
+                AppStatusMessage message =
+                    new AppStatusMessage(
+                        errorDescription);
+                Messenger.Default.Send(message);
+
+                this.logger.WriteLine(
+                    $"Event Entry Save : {errorDescription}: {ex}");
             }
 
             this.Observations.Reset();
@@ -111,7 +135,15 @@
             }
             catch (Exception ex)
             {
-                // TODO #26 Error loading file - Need to note this.
+                string errorDescription = $"Error loading {this.Observations.Filename}";
+                AppStatusMessage message =
+                    new AppStatusMessage(
+                        errorDescription);
+                Messenger.Default.Send(message);
+
+                this.logger.WriteLine(
+                    $"Event Entry Save : {errorDescription}: {ex}");
+
                 string error = ex.ToString();
             }
         }
