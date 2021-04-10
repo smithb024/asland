@@ -40,6 +40,7 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IMainWindowViewModel>();
             SimpleIoc.Default.Unregister<IRibbonViewModel>();
             SimpleIoc.Default.Unregister<IBodyViewModel>();
+            SimpleIoc.Default.Unregister<IStatusBarViewModel>();
 
             SimpleIoc.Default.Unregister<IEventEntry>();
             SimpleIoc.Default.Unregister<IBeastieDataFileFactory>();
@@ -58,6 +59,7 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Register<IMainWindowViewModel, MainWindowViewModel>();
             SimpleIoc.Default.Register<IRibbonViewModel, RibbonViewModel>();
             SimpleIoc.Default.Register<IBodyViewModel, BodyViewModel>();
+            SimpleIoc.Default.Register<IStatusBarViewModel, StatusBarViewModel>();
         }
 
         /// <summary>
@@ -77,6 +79,12 @@ namespace Asland.ViewModels
         /// </summary>
         public IBodyViewModel Body =>
             SimpleIoc.Default.GetInstance<IBodyViewModel>();
+
+        /// <summary>
+        /// Body pane view model
+        /// </summary>
+        public IStatusBarViewModel StatusBar =>
+            SimpleIoc.Default.GetInstance<IStatusBarViewModel>();
 
         public static void Cleanup()
         {

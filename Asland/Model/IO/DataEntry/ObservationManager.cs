@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using Asland.Common.Enums;
+    using Asland.Common.Messages;
     using Asland.Interfaces.Model.IO.DataEntry;
+    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.Utils;
 
     /// <summary>
@@ -105,7 +107,10 @@
 
             if (conversionIsFaulty)
             {
-                // TODO #26 Error converting date - Need to note this.
+                AppStatusMessage message =
+                    new AppStatusMessage(
+                        $"Date {this.observations.Date} is invalid. Using Now.");
+                Messenger.Default.Send(message);
                 returnDate = DateTime.Now;
             }
             else
