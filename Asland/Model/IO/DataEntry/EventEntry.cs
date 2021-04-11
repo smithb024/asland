@@ -143,8 +143,6 @@
 
                 this.logger.WriteLine(
                     $"Event Entry Save : {errorDescription}: {ex}");
-
-                string error = ex.ToString();
             }
         }
 

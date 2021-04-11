@@ -39,6 +39,16 @@
         }
 
         /// <summary>
+        /// Find a specific <see cref="Beastie"/>.
+        /// </summary>
+        /// <param name="name">name of the beastie</param>
+        /// <returns>found beastie</returns>
+        public Beastie FindBeastie(string name)
+        {
+            return this.Beasties.Find(b => b.Name == name);
+        }
+
+        /// <summary>
         /// Reset the data in the data manager.
         /// </summary>
         public void Reset()
