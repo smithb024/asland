@@ -3,6 +3,7 @@ namespace Asland.ViewModels.Body
 {
     using Asland.Common.Enums;
     using Asland.Common.Messages;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using GalaSoft.MvvmLight.Messaging;
@@ -39,14 +40,19 @@ namespace Asland.ViewModels.Body
         /// <param name="dataEntryModel">
         ///  The model object associated with the data entry process.
         /// </param>
+        /// <param name="dataModel">
+        /// The model object containing data set. 
+        /// </param>
         public BodyViewModel(
-            IEventEntry dataEntryModel)
+            IEventEntry dataEntryModel,
+            IDataManager dataModel)
         {
             this.configurationViewModel = new ConfigurationViewModel();
             this.consistencyViewModel = new ConsistencyViewModel();
             this.dataEntryViewModel = 
                 new DataEntryViewModel(
-                    dataEntryModel);
+                    dataEntryModel,
+                    dataModel.FindBeastie);
 
             this.currentView = this.configurationViewModel;
 

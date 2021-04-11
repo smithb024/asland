@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows.Forms;
     using System.Windows.Input;
@@ -7,6 +8,7 @@
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Model.IO.Data;
     using NynaeveLib.Commands;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
@@ -24,9 +26,14 @@
         private const string EventDetails = "Event Details";
 
         /// <summary>
-        /// Associated model.
+        /// Function used to retrieve a specific beastie from the model.
         /// </summary>
-        private IEventEntry model;
+        private readonly Func<string, Beastie> getBeastie;
+
+        /// <summary>
+        /// Associated data entry model.
+        /// </summary>
+        private IEventEntry dataEntryModel;
 
         /// <summary>
         /// Is the current model being edited.
@@ -54,12 +61,17 @@
         /// <param name="model">
         ///  The associated model object.
         /// </param>
+        /// <param name="getBeastie">
+        /// The function used to return a specific beastie from the data model.
+        /// </param>
         public DataEntryViewModel(
-            IEventEntry model)
+            IEventEntry model,
+            Func<string, Beastie> getBeastie)
         {
             bool isSeen = true;
             bool isEditing = false;
-            this.model = model;
+            this.dataEntryModel = model;
+            this.getBeastie = getBeastie;
             this.observations = model.Observations;
             this.beastieEntryViewModel =
                 new BeastieEntryViewModel(
@@ -141,7 +153,7 @@
         /// </summary>
         private void Save()
         {
-            bool success = this.model.Save();
+            bool success = this.dataEntryModel.Save();
 
             if (success)
             {
@@ -162,7 +174,7 @@
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                this.model.Load(dialog.FileName);
+                this.dataEntryModel.Load(dialog.FileName);
             }
 
             this.NewPage(DataEntryViewModel.EventDetails);
@@ -186,7 +198,7 @@
                 this.beastieEntryViewModel.Clear();
 
                 List<string> beasties =
-                    this.model.GetBeastiesOnAPage(
+                    this.dataEntryModel.GetBeastiesOnAPage(
                         newPageName);
 
                 foreach(string beastie in beasties)
@@ -195,8 +207,13 @@
                         this.observations.GetIncluded(
                             beastie,
                             this.detailsViewModel.IsSeen);
+
+                    Beastie modelBeastie = this.getBeastie(beastie);
+
                     this.beastieEntryViewModel.Add(
                         beastie,
+                        modelBeastie?.LatinName ?? string.Empty,
+                        modelBeastie?.Image ?? string.Empty,
                         isIncluded);
                 }
 
@@ -234,7 +251,7 @@
         private void Reset()
         {
             bool isSeen = true;
-            this.observations = model.Observations;
+            this.observations = dataEntryModel.Observations;
             this.beastieEntryViewModel =
                 new BeastieEntryViewModel(
                     this.observations.SetBeastie,

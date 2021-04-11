@@ -20,6 +20,13 @@
         void AddBeastie(Beastie newBeastie);
 
         /// <summary>
+        /// Find a specific <see cref="Beastie"/>.
+        /// </summary>
+        /// <param name="name">name of the beastie</param>
+        /// <returns>found beastie</returns>
+        Beastie FindBeastie(string name);
+
+        /// <summary>
         /// Reset the data in the data manager.
         /// </summary>
         void Reset();

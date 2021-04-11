@@ -51,10 +51,18 @@
         {
             this.CommonName = commonName;
             this.LatinName = latinName;
-            this.ImagePath = imagePath;
             this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
+
+            if (string.IsNullOrEmpty(imagePath))
+            {
+                this.ImagePath = $"{DataPath.BasePath}\\Sample.png";
+            }
+            else
+            {
+                this.ImagePath = $"{DataPath.ImageDataPath}\\{imagePath}";
+            }
         }
 
         /// <summary>

@@ -22,11 +22,15 @@
         /// Add a new beastie to the view model.
         /// </summary>
         /// <param name="beastie">beastie common name</param>
+        /// <param name="latin">beastie latin name</param>
+        /// <param name="imagePath">path to image representing the beastie</param>
         /// <param name="isSelected">
         /// Indicates whether the new beastie is present in the model.
         /// </param>
         void Add(
             string beastie,
+            string latin,
+            string imagePath,
             bool isSelected);
 
         /// <summary>

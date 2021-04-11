@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Asland.Common.Messages;
     using Asland.Model.IO.Data;
     using Factories.IO;
+    using GalaSoft.MvvmLight.Messaging;
     using Interfaces;
     using Interfaces.Factories;
     using Interfaces.Model.IO.Data;
@@ -188,6 +190,11 @@
             }
             catch (Exception ex)
             {
+                AppStatusMessage message =
+                    new AppStatusMessage(
+                        $"Error loading {path}");
+                Messenger.Default.Send(message);
+                
                 this.logger.WriteLine(
                     $"Error loading {path}: {ex}");
             }

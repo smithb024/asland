@@ -53,18 +53,22 @@
         /// Add a new beastie to the view model.
         /// </summary>
         /// <param name="beastie">beastie common name</param>
+        /// <param name="latin">beastie latin name</param>
+        /// <param name="imagePath">path to image representing the beastie</param>
         /// <param name="isSelected">
         /// Indicates whether the new beastie is present in the model.
         /// </param>
         public void Add(
             string beastie,
+            string latin,
+            string imagePath,
             bool isSelected)
         {
             IBeastieViewModel newBeastie =
                 new BeastieViewModel(
                     beastie,
-                    "TBC",
-                    $"{DataPath.BasePath}\\Sample.png",
+                    latin,
+                    imagePath,
                     isSelected,
                     this.setObservation,
                     this.isSeen);
