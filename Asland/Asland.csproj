@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AsLogger.cs" />
+    <Compile Include="Common\Converters\PresenceToBrushConverter.cs" />
     <Compile Include="Common\Enums\MainViews.cs" />
     <Compile Include="Common\Enums\ObservationHabitat.cs" />
     <Compile Include="Common\Enums\ObservationWeather.cs" />

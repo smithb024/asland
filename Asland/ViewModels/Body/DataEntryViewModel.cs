@@ -4,11 +4,12 @@
     using System.Collections.Generic;
     using System.Windows.Forms;
     using System.Windows.Input;
-    using Asland.ViewModels.Body.DataEntry;
+    using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.Model.IO.Data;
+    using Asland.ViewModels.Body.DataEntry;
     using NynaeveLib.Commands;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
@@ -214,6 +215,7 @@
                         beastie,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,
+                        modelBeastie?.Presence ?? (Presence)(-1),
                         isIncluded);
                 }
 
