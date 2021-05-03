@@ -3,10 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:Asland.ViewModels.Body.Configuration"
+             xmlns:dataEntry="clr-namespace:Asland.Views.Body.Configuration"
              xmlns:local="clr-namespace:Asland.Views.Body"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="50" Height="50" Background="HotPink">
-            
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:BeastieConfigurationViewModel}">
+            <dataEntry:BeastieConfiguration/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl
+            Grid.Row="0"
+            ItemsSource="{Binding Path=PageSelector}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button 
+                        Content="{Binding Path=Name}"
+                        Command="{Binding Path=Command}"
+                        Height="20"
+                        Margin="1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ContentControl 
+            Grid.Row="1"
+            Content="{Binding CurrentWorkspace}" />
     </Grid>
 </UserControl>
