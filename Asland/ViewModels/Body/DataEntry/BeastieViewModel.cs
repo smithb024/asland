@@ -2,6 +2,7 @@
 {
     using System;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Common.Enums;
     using NynaeveLib.ViewModel;
 
     /// <summary>
@@ -32,6 +33,9 @@
         /// <param name="imagePath">
         /// Path to an image of this beastie.
         /// </param>
+        /// <param name="presence">
+        /// Residency of this beastie.
+        /// </param>
         /// <param name="isSelected">
         /// Indicates whether this beastie is present in the model.
         /// </param>
@@ -45,12 +49,14 @@
             string commonName,
             string latinName,
             string imagePath,
+            Presence presence,
             bool isSelected,
             Action<string, bool, bool> setObservation,
             bool isSeen)
         {
             this.CommonName = commonName;
             this.LatinName = latinName;
+            this.Presence = presence;
             this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
@@ -79,6 +85,11 @@
         /// Gets the path to an image of the beastie.
         /// </summary>
         public string ImagePath { get; }
+
+        /// <summary>
+        /// Gets a value which indicates the residential status of the beastie.
+        /// </summary>
+        public Presence Presence { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the beastie has been selected.

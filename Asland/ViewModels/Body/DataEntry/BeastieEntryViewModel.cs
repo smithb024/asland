@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using GalaSoft.MvvmLight;
 
@@ -55,6 +56,7 @@
         /// <param name="beastie">beastie common name</param>
         /// <param name="latin">beastie latin name</param>
         /// <param name="imagePath">path to image representing the beastie</param>
+        /// <param name="presence">Residency of this beastie.</param>
         /// <param name="isSelected">
         /// Indicates whether the new beastie is present in the model.
         /// </param>
@@ -62,6 +64,7 @@
             string beastie,
             string latin,
             string imagePath,
+            Presence presence,
             bool isSelected)
         {
             IBeastieViewModel newBeastie =
@@ -69,6 +72,7 @@
                     beastie,
                     latin,
                     imagePath,
+                    presence,
                     isSelected,
                     this.setObservation,
                     this.isSeen);
