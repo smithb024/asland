@@ -1,6 +1,7 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Configuration
 {
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using Asland.Common.Enums;
 
     /// <summary>
@@ -8,6 +9,11 @@
     /// </summary>
     public interface IBeastieConfigurationViewModel
     {
+        /// <summary>
+        /// Gets a collection of the names of all the beasties in the daat collection.
+        /// </summary>
+        ObservableCollection<string> Beasties { get; }
+
         /// <summary>
         /// Gets or sets the name of the beastie
         /// </summary>
@@ -97,5 +103,32 @@
         /// Gets or sets the Class of the beastie in latin.
         /// </summary>
         string ClassLatin { get; set; }
+
+        /// <summary>
+        /// Command used to save a beastie.
+        /// </summary>
+        ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Command used to load a beastie.
+        /// </summary>
+        ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Command used to discard results.
+        /// </summary>
+        ICommand DiscardCommand { get; }
+
+        /// <summary>
+        /// Indicates whether a beastie can be loaded.
+        /// </summary>
+        /// <returns>can load flag</returns>
+        bool CanLoad();
+
+        /// <summary>
+        /// Indicates whether a beastie can be saved.
+        /// </summary>
+        /// <returns></returns>
+        bool CanSave();
     }
 }

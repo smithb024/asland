@@ -4,12 +4,22 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Windows.Input;
     using Asland.Common.Enums;
+    using Asland.Interfaces.Factories;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Configuration;
+    using Asland.Model.IO.Data;
     using GalaSoft.MvvmLight;
+    using NynaeveLib.Commands;
 
     public class BeastieConfigurationViewModel : ViewModelBase, IBeastieConfigurationViewModel
     {
+        /// <summary>
+        /// Indicates whether a file is being edited or not.
+        /// </summary>
+        private bool isEditMode;
+
         /// <summary>
         /// The name of the beastie
         /// </summary>
@@ -91,10 +101,27 @@
         private string classLatin;
 
         /// <summary>
+        /// The data manager class.
+        /// </summary>
+        private IDataManager dataManager;
+
+        /// <summary>
+        /// Factory class used to save 
+        /// </summary>
+        private IBeastieDataFileFactory fileFactory;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="BeastieConfigurationViewModel"/> class.
         /// </summary>
-        public BeastieConfigurationViewModel()
+        /// <param name="dataManager">data manager</param>
+        /// <param name="fileFactory">beastie file factory</param>
+        public BeastieConfigurationViewModel(
+            IDataManager dataManager,
+            IBeastieDataFileFactory fileFactory)
         {
+            this.isEditMode = false;
+            this.dataManager = dataManager;
+            this.fileFactory = fileFactory;
             this.BeastieImageList = new ObservableCollection<string>();
             this.PresenceList = new ObservableCollection<Presence>();
 
@@ -114,7 +141,31 @@
             {
                 this.PresenceList.Add(presence);
             }
+
+            this.Beasties = new ObservableCollection<string>();
+            foreach(Beastie beastie in dataManager.Beasties)
+            {
+                Beasties.Add(beastie.Name);
+            }
+
+            this.SaveCommand =
+                new CommonCommand(
+                    this.Save,
+                    this.CanSave);
+            this.LoadCommand =
+                new CommonCommand(
+                    this.Load,
+                    this.CanLoad);
+            this.DiscardCommand =
+                new CommonCommand(
+                    this.Discard,
+                    this.CanSave);
         }
+
+        /// <summary>
+        /// Gets a collection of the names of all the beasties in the data collection.
+        /// </summary>
+        public ObservableCollection<string> Beasties { get; }
 
         /// <summary>
         /// Gets or sets the name of the beastie
@@ -359,6 +410,63 @@
             {
                 this.Set(ref this.classLatin, value);
             }
+        }
+
+        /// <summary>
+        /// Command used to save a beastie.
+        /// </summary>
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Command used to load a beastie.
+        /// </summary>
+        public ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Command used to discard results.
+        /// </summary>
+        public ICommand DiscardCommand { get; }
+
+        /// <summary>
+        /// Indicates whether a beastie can be loaded.
+        /// </summary>
+        /// <returns>can load flag</returns>
+        public bool CanLoad()
+        {
+            return !this.isEditMode;
+        }
+
+        /// <summary>
+        /// Indicates whether a beastie can be saved.
+        /// </summary>
+        /// <returns></returns>
+        public bool CanSave()
+        {
+            return this.isEditMode;
+        }
+
+        /// <summary>
+        /// Load a beastie from a file.
+        /// </summary>
+        private void Load()
+        {
+            
+        }
+
+        /// <summary>
+        /// Save the beastie back to the file.
+        /// </summary>
+        private void Save()
+        {
+
+        }
+
+        /// <summary>
+        /// Discard any updates.
+        /// </summary>
+        private void Discard()
+        {
+
         }
     }
 }

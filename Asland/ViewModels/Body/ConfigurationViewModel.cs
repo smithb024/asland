@@ -1,6 +1,8 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using System.Collections.Generic;
+    using Asland.Interfaces.Factories;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.ViewModels.Body.Configuration;
     using NynaeveLib.Commands;
@@ -20,12 +22,31 @@
         private const string ConfigureBeastie = "Configure Beastie";
 
         /// <summary>
+        /// The data manager.
+        /// </summary>
+        private readonly IDataManager dataManager;
+
+        /// <summary>
+        /// The beastie data file factory.
+        /// </summary>
+        private readonly IBeastieDataFileFactory fileFactory;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="ConfigurationViewModel"/> class.
         /// </summary>
-        public ConfigurationViewModel()
+        /// <param name="dataManager">data manager</param>
+        /// <param name="fileFactory">beastie file factory</param>
+        public ConfigurationViewModel(
+            IDataManager dataManager,
+            IBeastieDataFileFactory fileFactory)
         {
+            this.dataManager = dataManager;
+            this.fileFactory = fileFactory;
+
             this.CurrentWorkspace =
-                new BeastieConfigurationViewModel();
+                new BeastieConfigurationViewModel(
+                    dataManager,
+                    fileFactory);
 
             this.PopulatePageSelector(ConfigureBeastie);
         }
@@ -74,7 +95,10 @@
                 if (this.CurrentWorkspace.GetType() != typeof(BeastieConfigurationViewModel))
                 {
 
-                    this.CurrentWorkspace = new BeastieConfigurationViewModel();
+                    this.CurrentWorkspace = 
+                        new BeastieConfigurationViewModel(
+                            this.dataManager,
+                            this.fileFactory);
                     this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
                 }
             }
