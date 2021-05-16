@@ -10,7 +10,7 @@
     public interface IBeastieConfigurationViewModel
     {
         /// <summary>
-        /// Gets a collection of the names of all the beasties in the daat collection.
+        /// Gets a collection of the names of all the beasties in the data collection.
         /// </summary>
         ObservableCollection<string> Beasties { get; }
 
