@@ -95,6 +95,7 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Configuration\IBeastieConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IEventDetailsEntry.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Model\IO\TypeString.cs" />
     <Compile Include="ViewModels\Body\BodyViewModel.cs" />
     <Compile Include="ViewModels\Body\ConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\Body\Configuration\BeastieConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\ConsistencyViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntryViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
@@ -144,6 +146,9 @@
     </Compile>
     <Compile Include="Views\Body\ConfigurationView.xaml.cs">
       <DependentUpon>ConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Configuration\BeastieConfiguration.xaml.cs">
+      <DependentUpon>BeastieConfiguration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\ConsistencyCheck\ConsistencyCollection.xaml.cs">
       <DependentUpon>ConsistencyCollection.xaml</DependentUpon>
@@ -192,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\ConfigurationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Configuration\BeastieConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -89,29 +89,10 @@
         }
 
         /// <summary>
-        /// Indicates whether there is a data file corresponding to the name.
-        /// </summary>
-        /// <param name="name">name to check</param>
-        /// <returns>value indicating whether the file exists</returns>
-        private bool FileExists(string name)
-        {
-            try
-            {
-                return File.Exists($"{DataPath.BeastieDataPath}\\{name}.xml");
-            }
-            catch (Exception ex)
-            {
-                this.logger.WriteLine(
-                    $"Error finding {name}: {ex}");
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Save the beastie file.
         /// </summary>
         /// <param name="beastieFile">serialisable object to save</param>
-        private void Save(Beastie beastieFile)
+        public void Save(Beastie beastieFile)
         {
             if (string.IsNullOrWhiteSpace(beastieFile.Name))
             {
@@ -137,6 +118,25 @@
             {
                 this.logger.WriteLine(
                     $"Error saving {beastieFile.Name}: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether there is a data file corresponding to the name.
+        /// </summary>
+        /// <param name="name">name to check</param>
+        /// <returns>value indicating whether the file exists</returns>
+        private bool FileExists(string name)
+        {
+            try
+            {
+                return File.Exists($"{DataPath.BeastieDataPath}\\{name}.xml");
+            }
+            catch (Exception ex)
+            {
+                this.logger.WriteLine(
+                    $"Error finding {name}: {ex}");
+                return false;
             }
         }
 
