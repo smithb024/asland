@@ -524,7 +524,36 @@
         /// </summary>
         private void Save()
         {
+            if (!this.IsValid())
+            {
+                return;
+            }
 
+            Beastie currentBeastie =
+                this.dataManager.Beasties.Find(b => string.Compare(b.Name, this.Beasties[this.BeastieIndex]) == 0);
+
+            if (currentBeastie == null)
+            {
+                return;
+            }
+
+            currentBeastie.DisplayName = this.DisplayName;
+            currentBeastie.LatinName = this.NameLatin;
+            currentBeastie.Genus = this.Genus;
+            currentBeastie.SubFamily = this.SubFamily;
+            currentBeastie.Family = this.Family;
+            currentBeastie.Order = this.Order;
+            currentBeastie.Classification = this.Class;
+            currentBeastie.GenusLatin = this.GenusLatin;
+            currentBeastie.SubFamilyLatin = this.SubFamilyLatin;
+            currentBeastie.FamilyLatin = this.FamilyLatin;
+            currentBeastie.OrderLatin = this.OrderLatin;
+            currentBeastie.ClassLatin = this.ClassLatin;
+            currentBeastie.Size = this.Size;
+            currentBeastie.Image = this.BeastieImageList[this.BeastieImageListIndex];
+            currentBeastie.Presence = this.PresenceList[this.PresenceListIndex];
+
+            this.fileFactory.Save(currentBeastie);
         }
 
         /// <summary>
