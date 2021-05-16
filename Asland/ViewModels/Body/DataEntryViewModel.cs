@@ -70,7 +70,6 @@
             Func<string, Beastie> getBeastie)
         {
             bool isSeen = true;
-            bool isEditing = false;
             this.dataEntryModel = model;
             this.getBeastie = getBeastie;
             this.observations = model.Observations;

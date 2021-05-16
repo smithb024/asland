@@ -16,19 +16,14 @@
     public class EventEntry : IEventEntry
     {
         /// <summary>
-        /// The filename for the current event.
-        /// </summary>
-        private string filename;
-
-        /// <summary>
         /// The page data from the configuration file.
         /// </summary>
-        private BeastiePages rawPageData;
+        private readonly BeastiePages rawPageData;
 
         /// <summary>
         /// The logger.
         /// </summary>
-        private IAsLogger logger;
+        private readonly IAsLogger logger;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="EventEntry"/> class.

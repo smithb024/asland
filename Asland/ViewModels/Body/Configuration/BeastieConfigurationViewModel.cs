@@ -16,9 +16,14 @@
     public class BeastieConfigurationViewModel : ViewModelBase, IBeastieConfigurationViewModel
     {
         /// <summary>
-        /// Indicates whether a file is being edited or not.
+        /// The data manager class.
         /// </summary>
-        private bool isEditMode;
+        private readonly IDataManager dataManager;
+
+        /// <summary>
+        /// Factory class used to save 
+        /// </summary>
+        private readonly IBeastieDataFileFactory fileFactory;
 
         /// <summary>
         /// The index of the currently selected index.
@@ -39,11 +44,6 @@
         /// The index for the list of beastie image lists.
         /// </summary>
         private int beastieImageListIndex;
-
-        /// <summary>
-        /// The path to the selected image.
-        /// </summary>
-        private string imagePath;
 
         /// <summary>
         /// The beastie's size.
@@ -106,16 +106,6 @@
         private string classLatin;
 
         /// <summary>
-        /// The data manager class.
-        /// </summary>
-        private IDataManager dataManager;
-
-        /// <summary>
-        /// Factory class used to save 
-        /// </summary>
-        private IBeastieDataFileFactory fileFactory;
-
-        /// <summary>
         /// Initialises a new instance of the <see cref="BeastieConfigurationViewModel"/> class.
         /// </summary>
         /// <param name="dataManager">data manager</param>
@@ -124,7 +114,6 @@
             IDataManager dataManager,
             IBeastieDataFileFactory fileFactory)
         {
-            this.isEditMode = false;
             this.beastieIndex = -1;
             this.beastieImageListIndex = -1;
             this.dataManager = dataManager;
@@ -441,23 +430,9 @@
         public ICommand SaveCommand { get; }
 
         /// <summary>
-        /// Command used to load a beastie.
-        /// </summary>
-        public ICommand LoadCommand { get; }
-
-        /// <summary>
         /// Command used to discard results.
         /// </summary>
         public ICommand DiscardCommand { get; }
-
-        /// <summary>
-        /// Indicates whether a beastie can be loaded.
-        /// </summary>
-        /// <returns>can load flag</returns>
-        public bool CanLoad()
-        {
-            return !this.isEditMode;
-        }
 
         /// <summary>
         /// Indicates whether a beastie can be saved.

@@ -115,20 +115,9 @@
         ICommand SaveCommand { get; }
 
         /// <summary>
-        /// Command used to load a beastie.
-        /// </summary>
-        ICommand LoadCommand { get; }
-
-        /// <summary>
         /// Command used to discard results.
         /// </summary>
         ICommand DiscardCommand { get; }
-
-        /// <summary>
-        /// Indicates whether a beastie can be loaded.
-        /// </summary>
-        /// <returns>can load flag</returns>
-        bool CanLoad();
 
         /// <summary>
         /// Indicates whether a beastie can be saved.
