@@ -15,9 +15,14 @@
         ObservableCollection<string> Beasties { get; }
 
         /// <summary>
+        /// Gets or sets the index of the currently selected beastie.
+        /// </summary>
+        int BeastieIndex { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the beastie
         /// </summary>
-        string Name { get; set; }
+        string DisplayName { get; set; }
 
         /// <summary>
         /// Gets or sets the latin name of the beastie.

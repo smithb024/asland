@@ -17,6 +17,7 @@
         <ListBox 
             Grid.Column="0"
             ItemsSource="{Binding Beasties}"
+            SelectedIndex="{Binding BeastieIndex}"
             HorizontalContentAlignment="Stretch"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
             VerticalAlignment="Top"
@@ -44,14 +45,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBlock Text="Display Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBlock Text="Genus" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBlock Text="Sub Family" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBlock Text="Family" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBlock Text="Order" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
             <TextBlock Text="Class" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
 
-            <TextBox Text="{Binding Name}" Grid.Row="0" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding DisplayName}" Grid.Row="0" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Genus}" Grid.Row="1" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding SubFamily}" Grid.Row="2" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Family}" Grid.Row="3" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
@@ -80,7 +81,8 @@
             <Image 
                 Grid.Column="0"
                 Source="{Binding Path=ImagePath}"
-                Width="100"/>
+                Width="100"
+                Height="80"/>
 
             <ComboBox 
                 Grid.Row="1"

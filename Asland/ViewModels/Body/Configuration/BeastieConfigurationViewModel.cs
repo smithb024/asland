@@ -21,6 +21,11 @@
         private bool isEditMode;
 
         /// <summary>
+        /// The index of the currently selected index.
+        /// </summary>
+        private int beastieIndex;
+
+        /// <summary>
         /// The name of the beastie
         /// </summary>
         private string name;
@@ -120,6 +125,8 @@
             IBeastieDataFileFactory fileFactory)
         {
             this.isEditMode = false;
+            this.beastieIndex = -1;
+            this.beastieImageListIndex = -1;
             this.dataManager = dataManager;
             this.fileFactory = fileFactory;
             this.BeastieImageList = new ObservableCollection<string>();
@@ -152,10 +159,6 @@
                 new CommonCommand(
                     this.Save,
                     this.CanSave);
-            this.LoadCommand =
-                new CommonCommand(
-                    this.Load,
-                    this.CanLoad);
             this.DiscardCommand =
                 new CommonCommand(
                     this.Discard,
@@ -168,9 +171,29 @@
         public ObservableCollection<string> Beasties { get; }
 
         /// <summary>
+        /// Gets or sets the index of the currently selected beastie.
+        /// </summary>
+        public int BeastieIndex
+        {
+            get
+            {
+                return this.beastieIndex;
+            }
+            set
+            {
+                if (this.beastieIndex != value)
+                {
+                    this.beastieIndex = value;
+                    this.RaisePropertyChanged(nameof(this.BeastieIndex));
+                    this.Load();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the beastie
         /// </summary>
-        public string Name
+        public string DisplayName
         {
             get
             {
@@ -442,7 +465,7 @@
         /// <returns></returns>
         public bool CanSave()
         {
-            return this.isEditMode;
+            return this.IsValid();
         }
 
         /// <summary>
@@ -450,7 +473,50 @@
         /// </summary>
         private void Load()
         {
-            
+            if (!this.IsValid())
+            {
+                return;
+            }
+
+            Beastie currentBeastie =
+                this.dataManager.Beasties.Find(b => string.Compare(b.Name, this.Beasties[this.BeastieIndex]) == 0);
+
+            if (currentBeastie == null)
+            {
+                return;
+            }
+
+            this.DisplayName = currentBeastie.DisplayName;
+            this.NameLatin = currentBeastie.LatinName;
+            this.Genus = currentBeastie.Genus;
+            this.SubFamily = currentBeastie.SubFamily;
+            this.Family = currentBeastie.Family;
+            this.Order = currentBeastie.Order;
+            this.Class = currentBeastie.Classification;
+            this.GenusLatin = currentBeastie.GenusLatin;
+            this.SubFamilyLatin = currentBeastie.SubFamilyLatin;
+            this.FamilyLatin = currentBeastie.FamilyLatin;
+            this.OrderLatin = currentBeastie.OrderLatin;
+            this.ClassLatin = currentBeastie.ClassLatin;
+            this.Size = currentBeastie.Size;
+
+            for (int index = 0; index < this.BeastieImageList.Count; ++index)
+            {
+                if (string.Compare(this.BeastieImageList[index], currentBeastie.Image) == 0)
+                {
+                    this.BeastieImageListIndex = index;
+                    break;
+                }
+            }
+
+            for (int index = 0; index < this.PresenceList.Count; ++index)
+            {
+                if (this.PresenceList[index] == currentBeastie.Presence)
+                {
+                    this.PresenceListIndex = index;
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -466,7 +532,16 @@
         /// </summary>
         private void Discard()
         {
+            this.Load();
+        }
 
+        /// <summary>
+        /// Indicates whether the current selection is a valid beastie;
+        /// </summary>
+        /// <returns></returns>
+        private bool IsValid()
+        {
+            return this.BeastieIndex >= 0 && this.BeastieIndex < this.Beasties.Count;
         }
     }
 }
