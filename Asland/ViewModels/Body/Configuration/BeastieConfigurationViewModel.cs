@@ -546,6 +546,7 @@
             currentBeastie.OrderLatin = this.OrderLatin;
             currentBeastie.ClassLatin = this.ClassLatin;
             currentBeastie.Size = this.Size;
+            currentBeastie.Wingspan = this.Wingspan;
             currentBeastie.Image = this.BeastieImageList[this.BeastieImageListIndex];
             currentBeastie.Presence = this.PresenceList[this.PresenceListIndex];
 
