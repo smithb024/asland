@@ -50,6 +50,11 @@
         int Size { get; set; }
 
         /// <summary>
+        /// Gets or sets the beastie's Wingspan.
+        /// </summary>
+        int Wingspan { get; set; }
+
+        /// <summary>
         /// Gets the list of possible residency states.
         /// </summary>
         ObservableCollection<Presence> PresenceList { get; }

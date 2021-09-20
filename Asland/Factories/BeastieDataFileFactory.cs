@@ -72,6 +72,7 @@
                     Image = string.Empty,
                     ThumbnailImage = string.Empty,
                     Size = 0,
+                    Wingspan = 0,
                     Classification = string.Empty,
                     ClassLatin = string.Empty,
                     Order = string.Empty,
