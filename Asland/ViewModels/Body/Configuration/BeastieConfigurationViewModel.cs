@@ -51,6 +51,11 @@
         private int size;
 
         /// <summary>
+        /// The beastie's wingspan.
+        /// </summary>
+        private int wingspan;
+
+        /// <summary>
         /// The index for the presence of a beastie.
         /// </summary>
         private int presenceListIndex;
@@ -251,6 +256,21 @@
             set
             {
                 this.Set(ref this.size, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the beastie's wingspan.
+        /// </summary>
+        public int Wingspan
+        {
+            get
+            {
+                return this.wingspan;
+            }
+            set
+            {
+                this.Set(ref this.wingspan, value);
             }
         }
 
@@ -474,6 +494,7 @@
             this.OrderLatin = currentBeastie.OrderLatin;
             this.ClassLatin = currentBeastie.ClassLatin;
             this.Size = currentBeastie.Size;
+            this.Wingspan = currentBeastie.Wingspan;
 
             for (int index = 0; index < this.BeastieImageList.Count; ++index)
             {
@@ -525,6 +546,7 @@
             currentBeastie.OrderLatin = this.OrderLatin;
             currentBeastie.ClassLatin = this.ClassLatin;
             currentBeastie.Size = this.Size;
+            currentBeastie.Wingspan = this.Wingspan;
             currentBeastie.Image = this.BeastieImageList[this.BeastieImageListIndex];
             currentBeastie.Presence = this.PresenceList[this.PresenceListIndex];
 

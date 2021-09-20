@@ -35,9 +35,14 @@
         private string thumbnailImage;
 
         /// <summary>
-        /// This size in centimeters
+        /// The size in centimeters
         /// </summary>
         private int size;
+
+        /// <summary>
+        /// The wingspan in centimeters.
+        /// </summary>
+        private int wingspan;
 
         /// <summary>
         /// Indicates when the beastie is present.
@@ -200,6 +205,23 @@
             set
             {
                 this.size = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the wingspan in centimeters.
+        /// </summary>
+        [XmlElement("wingspanCm")]
+        public int Wingspan
+        {
+            get
+            {
+                return this.wingspan;
+            }
+
+            set
+            {
+                this.wingspan = value;
             }
         }
 
