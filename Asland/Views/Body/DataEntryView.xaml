@@ -40,7 +40,8 @@
                         Content="{Binding Path=Name}"
                         Command="{Binding Path=Command}"
                         Height="20"
-                        Margin="1"/>
+                        Margin="1"
+                        Style="{StaticResource SelectableButtonStyle}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
