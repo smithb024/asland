@@ -113,6 +113,7 @@
                 Height="25"
                 Margin="0,5,0,5"
                 Command="{Binding SaveCommand}"
+                Style="{StaticResource ButtonStyle}"
                 Content="Save"/>
 
             <Button
@@ -120,6 +121,7 @@
                 Height="25"
                 Margin="0,5,0,5"
                 Command="{Binding DiscardCommand}"
+                Style="{StaticResource ButtonStyle}"
                 Content="Discard"/>
         </StackPanel>
     </Grid>

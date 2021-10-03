@@ -40,8 +40,7 @@
                         Content="{Binding Path=Name}"
                         Command="{Binding Path=Command}"
                         Height="20"
-                        Margin="1"
-                        Style="{StaticResource SelectableButtonStyle}"/>
+                        Margin="1"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -60,12 +59,14 @@
                     Width="100"
                     Height="25"
                     Command="{Binding LoadCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Load"/>
                 <Button 
                     Margin="5"
                     Width="100"
                     Height="25"
                     Command="{Binding SaveCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Save"/>
             </StackPanel>
         </Grid>

@@ -11,10 +11,13 @@
         <StackPanel Orientation="Horizontal">
 
             <Button Command="{Binding DisplayConsistencyViewCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Consistency"/>
             <Button Command="{Binding DisplayConfigurationViewCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Configuration"/>
             <Button Command="{Binding DisplayDataEntryViewCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Data Entry"/>
             
         </StackPanel>
