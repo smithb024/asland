@@ -36,9 +36,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button 
-                        Content="{Binding Path=Name}"
-                        Command="{Binding Path=Command}"
+                    <dataEntry:PageSelector 
                         Height="20"
                         Margin="1"/>
                 </DataTemplate>

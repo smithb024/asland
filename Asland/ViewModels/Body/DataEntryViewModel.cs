@@ -110,7 +110,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        public List<ISelectableIndexCommand<string>> PageSelector { get; private set; }
+        public List<IPageSelector> PageSelector { get; private set; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -237,11 +237,11 @@
         {
             if (this.PageSelector == null)
             {
-                this.PageSelector = new List<ISelectableIndexCommand<string>>();
+                this.PageSelector = new List<IPageSelector>();
             }
 
-            ISelectableIndexCommand<string> showEventDetails =
-                new SelectableIndexCommand<string>(
+            IPageSelector showEventDetails =
+                new PageSelector(
                     pageName,
                     this.NewPage);
 
@@ -280,9 +280,9 @@
         /// <param name="pageName">page name</param>
         private void ResetSelectedPage(string pageName)
         {
-            foreach(ISelectableIndexCommand<string> page in this.PageSelector)
+            foreach(IPageSelector pageSelector in this.PageSelector)
             {
-                page.SelectedButton(pageName);
+                pageSelector.SelectedButton(pageName);
             }
         }
     }

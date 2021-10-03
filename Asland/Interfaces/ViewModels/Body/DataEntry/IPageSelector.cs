@@ -1,18 +1,26 @@
-﻿namespace Asland.Interfaces.ViewModels.Body
+﻿namespace Asland.Interfaces.ViewModels.Body.DataEntry
 {
-    using NynaeveLib.Commands;
+    using System.Windows.Input;
 
     /// <summary>
-    /// Extension of the <see cref="IIndexCommand{T}"/> interface to allow support of a button 
-    /// which can indicate when it is selected.
+    /// Interface for a view model which supports the data entry page selection.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface ISelectableIndexCommand<T> : IIndexCommand<T>
+    public interface IPageSelector
     {
+        /// <summary>
+        /// Gets the name of this value which is displayed to the user.
+        /// </summary>
+        string Name { get; }
+
         /// <summary>
         /// Gets a value indicating whether the button is selected.
         /// </summary>
         bool IsSelected { get; }
+
+        /// <summary>
+        /// Gets the command used to select a new data entry page.
+        /// </summary>
+        ICommand SelectNewPage { get; }
 
         /// <summary>
         /// The the name of the button which is selected. 

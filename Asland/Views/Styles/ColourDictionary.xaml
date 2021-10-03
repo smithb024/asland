@@ -15,7 +15,9 @@
 
     <SolidColorBrush x:Key="ButtonControlBorder" Color="Honeydew"/>
     <Color x:Key="ButtonPressedBackground">Gold</Color>
+    <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="{StaticResource ButtonPressedBackground}"/>
     <Color x:Key="ButtonHoverBackground">Khaki</Color>
+    <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="{StaticResource ButtonHoverBackground}"/>
     <Color x:Key="HeaderEventSelected">Red</Color>
     <Color x:Key="ButtonIsSelectedColour">DarkGoldenrod</Color>
 </ResourceDictionary>

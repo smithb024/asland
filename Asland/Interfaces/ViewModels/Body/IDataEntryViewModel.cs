@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Windows.Input;
-    using NynaeveLib.Commands;
+    using DataEntry;
 
     /// <summary>
     /// Interface for a view model which supports the data entry view. This is the top level view
@@ -18,7 +18,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        List<ISelectableIndexCommand<string>> PageSelector { get; }
+        List<IPageSelector> PageSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.
