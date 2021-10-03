@@ -103,6 +103,7 @@
     <Compile Include="Interfaces\ViewModels\Body\IConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConsistencyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IDataEntryViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\ISelectableIndexCommand.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterCollectionViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IEnumComponentCompoundViewModel.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
+    <Compile Include="ViewModels\Body\SelectableIndexCommand.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterCollectionViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterViewModel.cs" />
     <Compile Include="ViewModels\Common\EnumComponentCompoundViewModel.cs" />

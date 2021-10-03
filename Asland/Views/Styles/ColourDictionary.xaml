@@ -8,7 +8,8 @@
     <!--Button Colours-->
     <Color x:Key="DisabledButtonBackgroundColour">DarkSeaGreen</Color>
 
-    <SolidColorBrush x:Key="ButtonBackground" Color="#FF636363"/>
+    <Color x:Key="ButtonBackgroundColour">#FF636363</Color>
+    <SolidColorBrush x:Key="ButtonBackground" Color="{StaticResource ButtonBackgroundColour}"/>
     <SolidColorBrush x:Key="DisabledButtonBackgroundBrush" Color="{StaticResource DisabledButtonBackgroundColour}"/>
     <SolidColorBrush x:Key="ButtonBackgroundHighlighted" Color="Olive"/>
 

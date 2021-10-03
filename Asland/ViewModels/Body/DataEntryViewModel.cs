@@ -110,7 +110,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        public List<IIndexCommand<string>> PageSelector { get; private set; }
+        public List<ISelectableIndexCommand<string>> PageSelector { get; private set; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -222,6 +222,8 @@
                 this.beastieEntryViewModel.Refresh();
             }
 
+            this.ResetSelectedPage(newPageName);
+
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
 
@@ -235,11 +237,11 @@
         {
             if (this.PageSelector == null)
             {
-                this.PageSelector = new List<IIndexCommand<string>>();
+                this.PageSelector = new List<ISelectableIndexCommand<string>>();
             }
 
-            IIndexCommand<string> showEventDetails =
-                new IndexCommand<string>(
+            ISelectableIndexCommand<string> showEventDetails =
+                new SelectableIndexCommand<string>(
                     pageName,
                     this.NewPage);
 
@@ -269,6 +271,19 @@
             this.CurrentWorkspace = this.detailsViewModel;
             this.IsEditing = false;
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
+
+        /// <summary>
+        /// Inform each of the components in the page selector collection of the name of the 
+        /// currently selected page.
+        /// </summary>
+        /// <param name="pageName">page name</param>
+        private void ResetSelectedPage(string pageName)
+        {
+            foreach(ISelectableIndexCommand<string> page in this.PageSelector)
+            {
+                page.SelectedButton(pageName);
+            }
         }
     }
 }

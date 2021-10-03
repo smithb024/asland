@@ -18,7 +18,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        List<IIndexCommand<string>> PageSelector { get; }
+        List<ISelectableIndexCommand<string>> PageSelector { get; }
 
         /// <summary>
         /// Command used to save the current event.
