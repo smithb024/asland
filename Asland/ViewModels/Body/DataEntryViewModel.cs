@@ -85,7 +85,7 @@
 
             this.CurrentWorkspace = this.detailsViewModel;
 
-            this.PopulatePageSelector(EventDetails);
+            this.PopulatePageSelector(DataEntryViewModel.EventDetails);
 
             List<string> beastiePages = model.GetDataEntryPageNames();
 
@@ -100,6 +100,8 @@
             this.LoadCommand =
                 new CommonCommand(
                     this.Load);
+
+            this.NewPage(DataEntryViewModel.EventDetails);
         }
 
         /// <summary>
