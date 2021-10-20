@@ -21,7 +21,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="Yellow">
+    <Grid>
         <ContentControl Content="{Binding CurrentView}" />
     </Grid>
 </UserControl>

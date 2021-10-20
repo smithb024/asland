@@ -19,7 +19,7 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <Grid>
+    <Grid Background="{StaticResource StdBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

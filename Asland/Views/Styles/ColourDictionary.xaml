@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="StdBackgroundColour">#FF202020</Color>
+    <Color x:Key="StdBackgroundColour">#FF454545</Color>
+    <Color x:Key="DataEntryBackgroundColour">#FF202020</Color>
     <SolidColorBrush x:Key="StdBackground" Color="{StaticResource StdBackgroundColour}"/>
+    <SolidColorBrush x:Key="StdDataEntryBackgroundColour" Color="{StaticResource DataEntryBackgroundColour}"/>
     <SolidColorBrush x:Key="StdForeground" Color="White"/>
 
     <!--Button Colours-->

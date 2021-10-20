@@ -50,7 +50,7 @@
         /// </summary>
         private void DisplayConsistencyView()
         {
-            this.SemdMessage(
+            this.SendMessage(
                     MainViews.Consistency);
         }
 
@@ -59,7 +59,7 @@
         /// </summary>
         private void DisplayConfigurationView()
         {
-            this.SemdMessage(
+            this.SendMessage(
                     MainViews.Configuration);
         }
 
@@ -68,7 +68,7 @@
         /// </summary>
         private void DisplayDataEntryView()
         {
-            this.SemdMessage(
+            this.SendMessage(
                     MainViews.DataEntry);
         }
 
@@ -76,7 +76,7 @@
         /// Send a message to display a new view.
         /// </summary>
         /// <param name="view">view to display</param>
-        private void SemdMessage(MainViews view)
+        private void SendMessage(MainViews view)
         {
             MainViewMessage message =
                 new MainViewMessage(
