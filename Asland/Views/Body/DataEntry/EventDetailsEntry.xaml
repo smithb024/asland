@@ -29,25 +29,36 @@
                     <DatePicker SelectedDate="{Binding Date}"/>
                     <CheckBox 
                         Content="Seen"
+                        Foreground="White"
                         IsChecked="{Binding IsSeen}"/>
                     <TextBox 
                         Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"
                         TextWrapping="Wrap"/>
 
-                    <common:EnumerationSelector DataContext="{Binding LengthSelector}"/>
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding LengthSelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <common:EnumerationSelector DataContext="{Binding TimeOfDaySelector}"/>
-                    <common:EnumerationSelector DataContext="{Binding IntensitySelector}"/>
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding TimeOfDaySelector}"/>
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding IntensitySelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <common:EnumerationSelector DataContext="{Binding WeatherSelector}"/>
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding WeatherSelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="3">
-                    <common:EnumerationSelector DataContext="{Binding HabitatSelector}"/>
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding HabitatSelector}"/>
                 </StackPanel>
             </Grid>
         </Grid>
