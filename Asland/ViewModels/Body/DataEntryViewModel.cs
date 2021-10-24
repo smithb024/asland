@@ -85,7 +85,7 @@
 
             this.CurrentWorkspace = this.detailsViewModel;
 
-            this.PopulatePageSelector(EventDetails);
+            this.PopulatePageSelector(DataEntryViewModel.EventDetails);
 
             List<string> beastiePages = model.GetDataEntryPageNames();
 
@@ -100,6 +100,8 @@
             this.LoadCommand =
                 new CommonCommand(
                     this.Load);
+
+            this.NewPage(DataEntryViewModel.EventDetails);
         }
 
         /// <summary>
@@ -110,7 +112,7 @@
         /// <summary>
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        public List<IIndexCommand<string>> PageSelector { get; private set; }
+        public List<IPageSelector> PageSelector { get; private set; }
 
         /// <summary>
         /// Command used to save the current event.
@@ -222,6 +224,8 @@
                 this.beastieEntryViewModel.Refresh();
             }
 
+            this.ResetSelectedPage(newPageName);
+
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
 
@@ -235,11 +239,11 @@
         {
             if (this.PageSelector == null)
             {
-                this.PageSelector = new List<IIndexCommand<string>>();
+                this.PageSelector = new List<IPageSelector>();
             }
 
-            IIndexCommand<string> showEventDetails =
-                new IndexCommand<string>(
+            IPageSelector showEventDetails =
+                new PageSelector(
                     pageName,
                     this.NewPage);
 
@@ -269,6 +273,19 @@
             this.CurrentWorkspace = this.detailsViewModel;
             this.IsEditing = false;
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
+
+        /// <summary>
+        /// Inform each of the components in the page selector collection of the name of the 
+        /// currently selected page.
+        /// </summary>
+        /// <param name="pageName">page name</param>
+        private void ResetSelectedPage(string pageName)
+        {
+            foreach(IPageSelector pageSelector in this.PageSelector)
+            {
+                pageSelector.SelectedButton(pageName);
+            }
         }
     }
 }

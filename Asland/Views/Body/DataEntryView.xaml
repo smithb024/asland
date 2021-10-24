@@ -19,7 +19,7 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <Grid>
+    <Grid Background="{StaticResource StdBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -36,9 +36,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button 
-                        Content="{Binding Path=Name}"
-                        Command="{Binding Path=Command}"
+                    <dataEntry:PageSelector 
                         Height="20"
                         Margin="1"/>
                 </DataTemplate>
@@ -59,12 +57,14 @@
                     Width="100"
                     Height="25"
                     Command="{Binding LoadCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Load"/>
                 <Button 
                     Margin="5"
                     Width="100"
                     Height="25"
                     Command="{Binding SaveCommand}"
+                    Style="{StaticResource ButtonStyle}"
                     Content="Save"/>
             </StackPanel>
         </Grid>

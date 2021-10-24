@@ -9,6 +9,15 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
     <Application.Resources>
-        <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/ColourDictionary.xaml">
+                </ResourceDictionary>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/ButtonStyles.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+            <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
