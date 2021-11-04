@@ -15,9 +15,11 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Path=Name}"
-                   Grid.Row="0"/>
+                   Grid.Row="0"
+                   Foreground="{StaticResource StdForeground}"/>
         <TextBlock Text="{Binding Path=Count}"
-                   Grid.Row="1"/>
+                   Grid.Row="1"
+                   Foreground="{StaticResource StdForeground}"/>
 
         <Grid Grid.Row="2" x:Name="CountersRow">
 
