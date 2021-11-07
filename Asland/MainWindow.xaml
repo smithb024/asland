@@ -7,7 +7,7 @@
         xmlns:body="clr-namespace:Asland.Views.Body"
         xmlns:status="clr-namespace:Asland.Views.Status"
         DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}"
-       mc:Ignorable="d"
+        mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
