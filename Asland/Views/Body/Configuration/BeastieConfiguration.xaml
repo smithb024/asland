@@ -6,16 +6,22 @@
              xmlns:local="clr-namespace:Asland.Views.Body.Configuration"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    <Grid>
+
+    <Grid Background="{StaticResource StdDataEntryBackgroundColour}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
         <ListBox 
+            Margin="5"
             Grid.Column="0"
+            Grid.Row="0"
             ItemsSource="{Binding Beasties}"
             SelectedIndex="{Binding BeastieIndex}"
             HorizontalContentAlignment="Stretch"
@@ -30,7 +36,10 @@
         </ListBox>
 
         <Grid 
-            Grid.Column="1">
+            Margin="5"
+            Grid.Column="1"
+            Grid.Row="0"
+            Background="{StaticResource StdDataEntryBackgroundColour}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -45,12 +54,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Display Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Genus" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Sub Family" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Family" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Order" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
-            <TextBlock Text="Class" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBlock Text="Display Name" Grid.Row="0" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Genus" Grid.Row="1" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Sub Family" Grid.Row="2" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Family" Grid.Row="3" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Order" Grid.Row="4" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock Text="Class" Grid.Row="5" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
 
             <TextBox Text="{Binding DisplayName}" Grid.Row="0" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             <TextBox Text="{Binding Genus}" Grid.Row="1" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
@@ -68,7 +77,10 @@
         </Grid>
 
         <StackPanel 
-            Grid.Column="2">
+            Margin="5"
+            Grid.Column="2"
+            Grid.Row="0"
+            Background="{StaticResource StdDataEntryBackgroundColour}">
 
             <Image
                 Margin="0,5,0,5"
@@ -82,13 +94,13 @@
                 ItemsSource="{Binding BeastieImageList}"
                 SelectedIndex="{Binding BeastieImageListIndex}"/>
 
-            <Grid                 
+            <Grid
                 Margin="0,5,0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Size" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="Size" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Size}" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             </Grid>
 
@@ -98,7 +110,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Wingspan" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="Wingspan" Grid.Column="0" Foreground="White" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Wingspan}" Grid.Column="1" Height="25" VerticalContentAlignment="Center"/>
             </Grid>
 
@@ -108,21 +120,32 @@
                 ItemsSource="{Binding PresenceList}"
                 SelectedIndex="{Binding PresenceListIndex}"/>
 
+        </StackPanel>
+
+        <DockPanel 
+            Background="{StaticResource StdBackground}"
+            LastChildFill="False"
+            Margin="5"
+            Grid.Column="0"
+            Grid.Row="1"
+            Grid.ColumnSpan="3">
             <Button
                 Width="100"
                 Height="25"
-                Margin="0,5,0,5"
-                Command="{Binding SaveCommand}"
+                Margin="5"
+                DockPanel.Dock="Right"
+                Command="{Binding DiscardCommand}"
                 Style="{StaticResource ButtonStyle}"
-                Content="Save"/>
+                Content="Discard"/>
 
             <Button
                 Width="100"
                 Height="25"
                 Margin="0,5,0,5"
-                Command="{Binding DiscardCommand}"
+                DockPanel.Dock="Right"
+                Command="{Binding SaveCommand}"
                 Style="{StaticResource ButtonStyle}"
-                Content="Discard"/>
-        </StackPanel>
+                Content="Save"/>
+        </DockPanel>
     </Grid>
 </UserControl>
