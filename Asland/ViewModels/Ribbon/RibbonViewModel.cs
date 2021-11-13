@@ -1,8 +1,11 @@
 ﻿namespace Asland.ViewModels.Ribbon
 {
+    using System.Collections.Generic;
     using Asland.Common.Enums;
     using Asland.Common.Messages;
+    using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.Interfaces.ViewModels.Ribbon;
+    using Asland.ViewModels.Body.DataEntry;
     using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
@@ -19,57 +22,68 @@
         /// </summary>
         public RibbonViewModel()
         {
-            this.DisplayConsistencyViewCommand =
-                new CommonCommand(
-                    this.DisplayConsistencyView);
-            this.DisplayConfigurationViewCommand =
-                new CommonCommand(
-                    this.DisplayConfigurationView);
-            this.DisplayDataEntryViewCommand =
-                new CommonCommand(
-                    this.DisplayDataEntryView);
+            this.PageSelector = new List<IPageSelector>();
+
+            IPageSelector dataEntry =
+                new PageSelector(
+                  "Data Entry",
+                  this.DisplayDataEntryView);
+            IPageSelector configurationEntry =
+                new PageSelector(
+                  "Configuration",
+                  this.DisplayConfigurationView);
+            IPageSelector consistencyEntry =
+                new PageSelector(
+                  "Consistency",
+                  this.DisplayConsistencyView);
+
+            this.PageSelector.Add(dataEntry);
+            this.PageSelector.Add(configurationEntry);
+            this.PageSelector.Add(consistencyEntry);
         }
 
         /// <summary>
-        /// Command used to display the consistency checker view.
+        /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        public ICommand DisplayConsistencyViewCommand { get; }
-
-        /// <summary>
-        /// Command used to display the configuration view.
-        /// </summary>
-        public ICommand DisplayConfigurationViewCommand { get; }
-
-        /// <summary>
-        /// Command used to display the data entry view.
-        /// </summary>
-        public ICommand DisplayDataEntryViewCommand { get; }
+        public List<IPageSelector> PageSelector { get; }
 
         /// <summary>
         /// Request that the Consistency Checker view is displayed.
         /// </summary>
-        private void DisplayConsistencyView()
+        /// <param name="newTabName">
+        /// Name of the tab to display.
+        /// </param>
+        private void DisplayConsistencyView(string newTabName)
         {
             this.SendMessage(
                     MainViews.Consistency);
+            this.NewTabDisplayed(newTabName);
         }
 
         /// <summary>
         /// Request that the Configuration view is displayed.
         /// </summary>
-        private void DisplayConfigurationView()
+        /// <param name="newTabName">
+        /// Name of the tab to display.
+        /// </param>
+        private void DisplayConfigurationView(string newTabName)
         {
             this.SendMessage(
                     MainViews.Configuration);
+            this.NewTabDisplayed(newTabName);
         }
 
         /// <summary>
         /// Request that the Data Entry view is displayed.
         /// </summary>
-        private void DisplayDataEntryView()
+        /// <param name="newTabName">
+        /// Name of the tab to display.
+        /// </param>
+        private void DisplayDataEntryView(string newTabName)
         {
             this.SendMessage(
                     MainViews.DataEntry);
+            this.NewTabDisplayed(newTabName);
         }
 
         /// <summary>
@@ -83,6 +97,18 @@
                     view);
 
             Messenger.Default.Send<MainViewMessage>(message);
+        }
+
+        /// <summary>
+        /// Update the selected icons on the tabs.
+        /// </summary>
+        /// <param name="newTabName"></param>
+        private void NewTabDisplayed(string newTabName)
+        {
+            foreach (IPageSelector selector in this.PageSelector)
+            {
+                selector.SelectedButton(newTabName);
+            }
         }
     }
 }

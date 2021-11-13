@@ -27,9 +27,11 @@
                     </RadialGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>
-            <TextBlock Text="{Binding Path=Name}"
-                   HorizontalAlignment="Center"
-                   Foreground="{StaticResource StdForeground}"/>
+            <TextBlock 
+                Text="{Binding Path=Name}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{StaticResource StdForeground}"/>
         </Grid>
         <Border.Style>
             <Style TargetType="{x:Type Border}">

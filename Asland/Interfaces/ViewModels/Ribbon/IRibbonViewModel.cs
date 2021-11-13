@@ -1,6 +1,8 @@
 ﻿namespace Asland.Interfaces.ViewModels.Ribbon
 {
+    using System.Collections.Generic;
     using System.Windows.Input;
+    using Asland.Interfaces.ViewModels.Body.DataEntry;
 
     /// <summary>
     /// Interface which describes the ribbon view model.
@@ -8,18 +10,8 @@
     public interface IRibbonViewModel
     {
         /// <summary>
-        /// Command used to display the consistency checker view.
+        /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
-        ICommand DisplayConsistencyViewCommand { get; }
-
-        /// <summary>
-        /// Command used to display the configuration view.
-        /// </summary>
-        ICommand DisplayConfigurationViewCommand { get; }
-
-        /// <summary>
-        /// Command used to display the data entry view.
-        /// </summary>
-        ICommand DisplayDataEntryViewCommand { get; }
+        List<IPageSelector> PageSelector { get; }
     }
 }

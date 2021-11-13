@@ -4,11 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asland.Views.Ribbon"
-         DataContext="{Binding Ribbon, Source={StaticResource ViewModelLocator}}"
+             xmlns:dataEntry="clr-namespace:Asland.Views.Body.DataEntry"
+             DataContext="{Binding Ribbon, Source={StaticResource ViewModelLocator}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid MinHeight="50" Background="HotPink">
-        <StackPanel Orientation="Horizontal">
+
+        <ItemsControl
+            Grid.Row="0"
+            ItemsSource="{Binding Path=PageSelector}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="6"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <dataEntry:PageSelector 
+                        Margin="1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--<StackPanel Orientation="Horizontal">
 
             <Button Command="{Binding DisplayConsistencyViewCommand}"
                     Style="{StaticResource ButtonStyle}"
@@ -20,6 +37,6 @@
                     Style="{StaticResource ButtonStyle}"
                     Content="Data Entry"/>
             
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>
