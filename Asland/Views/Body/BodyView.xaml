@@ -19,6 +19,9 @@
         <DataTemplate DataType="{x:Type viewModels:DataEntryViewModel}">
             <local:DataEntryView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ReportsViewModel}">
+            <local:ReportsView/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>

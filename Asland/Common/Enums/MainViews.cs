@@ -11,6 +11,11 @@
         DataEntry,
 
         /// <summary>
+        /// The reports view.
+        /// </summary>
+        Reports,
+
+        /// <summary>
         /// The consistency checker view.
         /// </summary>
         Consistency,

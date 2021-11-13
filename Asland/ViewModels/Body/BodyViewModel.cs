@@ -31,6 +31,11 @@ namespace Asland.ViewModels.Body
         private IDataEntryViewModel dataEntryViewModel;
 
         /// <summary>
+        /// The reports view model.
+        /// </summary>
+        private IReportsViewModel reportsViewModel;
+
+        /// <summary>
         /// The current view.
         /// </summary>
         private object currentView;
@@ -55,12 +60,13 @@ namespace Asland.ViewModels.Body
                     dataModel,
                     fileFactory);
             this.consistencyViewModel = new ConsistencyViewModel();
-            this.dataEntryViewModel = 
+            this.reportsViewModel = new ReportsViewModel();
+            this.dataEntryViewModel =
                 new DataEntryViewModel(
                     dataEntryModel,
                     dataModel.FindBeastie);
 
-            this.currentView = this.configurationViewModel;
+            this.currentView = this.dataEntryViewModel;
 
             Messenger.Default.Register<MainViewMessage>(this, this.ChangeView);
         }
@@ -105,8 +111,12 @@ namespace Asland.ViewModels.Body
                     this.CurrentView = this.dataEntryViewModel;
                     break;
 
+                case MainViews.Reports:
+                    this.CurrentView = this.reportsViewModel;
+                    break;
+
                 default:
-                    this.CurrentView = this.configurationViewModel;
+                    this.CurrentView = this.dataEntryViewModel;
                     break;
             } 
         }

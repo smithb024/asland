@@ -3,11 +3,11 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for BodyView.xaml
+    /// Interaction logic for ReportsView.xaml
     /// </summary>
-    public partial class BodyView : UserControl
+    public partial class ReportsView : UserControl
     {
-        public BodyView()
+        public ReportsView()
         {
             InitializeComponent();
         }

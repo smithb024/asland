@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Asland.Views.Body.DataEntry.PageSelector"
+﻿<UserControl x:Class="Asland.Views.Common.PageSelector"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,9 +27,11 @@
                     </RadialGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>
-            <TextBlock Text="{Binding Path=Name}"
-                   HorizontalAlignment="Center"
-                   Foreground="{StaticResource StdForeground}"/>
+            <TextBlock 
+                Text="{Binding Path=Name}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{StaticResource StdForeground}"/>
         </Grid>
         <Border.Style>
             <Style TargetType="{x:Type Border}">
