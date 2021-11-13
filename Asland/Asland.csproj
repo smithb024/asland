@@ -106,7 +106,7 @@
     <Compile Include="Interfaces\ViewModels\Body\IConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConsistencyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IDataEntryViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\Body\DataEntry\IPageSelector.cs" />
+    <Compile Include="Interfaces\ViewModels\Common\IPageSelector.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterCollectionViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IComponentCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IEnumComponentCompoundViewModel.cs" />
@@ -135,7 +135,7 @@
     <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
-    <Compile Include="ViewModels\Body\DataEntry\PageSelector.cs" />
+    <Compile Include="ViewModels\Common\PageSelector.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterCollectionViewModel.cs" />
     <Compile Include="ViewModels\Common\ComponentCounterViewModel.cs" />
     <Compile Include="ViewModels\Common\EnumComponentCompoundViewModel.cs" />
@@ -176,7 +176,7 @@
     <Compile Include="Views\Body\DataEntry\EventDetailsEntry.xaml.cs">
       <DependentUpon>EventDetailsEntry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Body\DataEntry\PageSelector.xaml.cs">
+    <Compile Include="Views\Common\PageSelector.xaml.cs">
       <DependentUpon>PageSelector.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\EnumerationSelector.xaml.cs">
@@ -240,7 +240,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Body\DataEntry\PageSelector.xaml">
+    <Page Include="Views\Common\PageSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

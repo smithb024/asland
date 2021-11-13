@@ -1,8 +1,8 @@
-﻿namespace Asland.ViewModels.Body.DataEntry
+﻿namespace Asland.ViewModels.Common
 {
     using System;
     using System.Windows.Input;
-    using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.ViewModels.Common;
     using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
 

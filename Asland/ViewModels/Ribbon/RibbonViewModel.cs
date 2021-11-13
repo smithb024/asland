@@ -3,14 +3,11 @@
     using System.Collections.Generic;
     using Asland.Common.Enums;
     using Asland.Common.Messages;
-    using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.ViewModels.Common;
     using Asland.Interfaces.ViewModels.Ribbon;
-    using Asland.ViewModels.Body.DataEntry;
+    using Asland.ViewModels.Common;
     using GalaSoft.MvvmLight.Messaging;
-    using NynaeveLib.Commands;
     using NynaeveLib.ViewModel;
-    using System;
-    using System.Windows.Input;
 
     /// <summary>
     /// View model describing the ribbon view.

@@ -1,8 +1,7 @@
 ﻿namespace Asland.Interfaces.ViewModels.Ribbon
 {
     using System.Collections.Generic;
-    using System.Windows.Input;
-    using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.ViewModels.Common;
 
     /// <summary>
     /// Interface which describes the ribbon view model.

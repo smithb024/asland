@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Asland.Views.Body"
              xmlns:common="clr-namespace:Asland.Views.Common"
              xmlns:viewModels="clr-namespace:Asland.ViewModels.Body.DataEntry"
              xmlns:dataEntry="clr-namespace:Asland.Views.Body.DataEntry"
@@ -36,7 +35,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <dataEntry:PageSelector 
+                    <common:PageSelector 
                         Height="20"
                         Margin="1"/>
                 </DataTemplate>

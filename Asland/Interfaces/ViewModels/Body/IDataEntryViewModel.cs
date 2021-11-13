@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Windows.Input;
-    using DataEntry;
+    using Asland.Interfaces.ViewModels.Common;
 
     /// <summary>
     /// Interface for a view model which supports the data entry view. This is the top level view

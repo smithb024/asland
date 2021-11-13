@@ -1,4 +1,4 @@
-﻿namespace Asland.Interfaces.ViewModels.Body.DataEntry
+﻿namespace Asland.Interfaces.ViewModels.Common
 {
     using System.Windows.Input;
 

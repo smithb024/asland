@@ -8,8 +8,10 @@
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.ViewModels.Common;
     using Asland.Model.IO.Data;
     using Asland.ViewModels.Body.DataEntry;
+    using Asland.ViewModels.Common;
     using NynaeveLib.Commands;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
