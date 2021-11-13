@@ -25,6 +25,10 @@
                 new PageSelector(
                   "Data Entry",
                   this.DisplayDataEntryView);
+            IPageSelector reports =
+                new PageSelector(
+                  "Reports",
+                  this.DisplayReportsView);
             IPageSelector configurationEntry =
                 new PageSelector(
                   "Configuration",
@@ -35,6 +39,7 @@
                   this.DisplayConsistencyView);
 
             this.PageSelector.Add(dataEntry);
+            this.PageSelector.Add(reports);
             this.PageSelector.Add(configurationEntry);
             this.PageSelector.Add(consistencyEntry);
 
@@ -82,6 +87,19 @@
         {
             this.SendMessage(
                     MainViews.DataEntry);
+            this.NewTabDisplayed(newTabName);
+        }
+
+        /// <summary>
+        /// Request that the Reports view is displayed.
+        /// </summary>
+        /// <param name="newTabName">
+        /// Name of the tab to display.
+        /// </param>
+        private void DisplayReportsView(string newTabName)
+        {
+            this.SendMessage(
+                    MainViews.Reports);
             this.NewTabDisplayed(newTabName);
         }
 
