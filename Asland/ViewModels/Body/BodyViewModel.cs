@@ -60,7 +60,7 @@ namespace Asland.ViewModels.Body
                     dataEntryModel,
                     dataModel.FindBeastie);
 
-            this.currentView = this.configurationViewModel;
+            this.currentView = this.dataEntryViewModel;
 
             Messenger.Default.Register<MainViewMessage>(this, this.ChangeView);
         }

@@ -40,6 +40,8 @@
             this.PageSelector.Add(dataEntry);
             this.PageSelector.Add(configurationEntry);
             this.PageSelector.Add(consistencyEntry);
+
+            this.DisplayDataEntryView(dataEntry.Name);
         }
 
         /// <summary>
