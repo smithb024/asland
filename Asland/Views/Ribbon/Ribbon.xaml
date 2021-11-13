@@ -7,10 +7,13 @@
              DataContext="{Binding Ribbon, Source={StaticResource ViewModelLocator}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid MinHeight="50" Background="HotPink">
+    
+    <Grid MinHeight="50" 
+          Background="{StaticResource StdBackground}">
 
         <ItemsControl
             Grid.Row="0"
+            Margin="1"
             ItemsSource="{Binding Path=PageSelector}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -24,18 +27,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <!--<StackPanel Orientation="Horizontal">
-
-            <Button Command="{Binding DisplayConsistencyViewCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="Consistency"/>
-            <Button Command="{Binding DisplayConfigurationViewCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="Configuration"/>
-            <Button Command="{Binding DisplayDataEntryViewCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Content="Data Entry"/>
-            
-        </StackPanel>-->
     </Grid>
 </UserControl>

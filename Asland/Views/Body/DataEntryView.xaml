@@ -27,6 +27,7 @@
 
         <ItemsControl
             Grid.Row="0"
+            Margin="1"
             ItemsSource="{Binding Path=PageSelector}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
