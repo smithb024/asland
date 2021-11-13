@@ -19,25 +19,5 @@
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
         List<IPageSelector> PageSelector { get; }
-
-        /// <summary>
-        /// Command used to save the current event.
-        /// </summary>
-        ICommand SaveCommand { get; }
-
-        /// <summary>
-        /// Command used to load an existing event.
-        /// </summary>
-        ICommand LoadCommand { get; }
-
-        /// <summary>
-        /// Gets a value which indicates whether the current event is being edited.
-        /// </summary>
-        bool IsEditing { get; }
-
-        /// <summary>
-        /// Gets a string which describes the editing status.
-        /// </summary>
-        string EditingText { get; }
     }
 }

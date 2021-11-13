@@ -7,10 +7,10 @@
     using Asland.Common.Enums;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
-    using Asland.Interfaces.ViewModels.Body.DataEntry;
+    using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
     using Asland.Model.IO.Data;
-    using Asland.ViewModels.Body.DataEntry;
+    using Asland.ViewModels.Body.Reports;
     using Asland.ViewModels.Common;
     using NynaeveLib.Commands;
     using NynaeveLib.Utils;
@@ -23,40 +23,24 @@
     public class ReportsViewModel : ViewModelBase, IReportsViewModel
     {
         /// <summary>
-        /// String used for the event details button. This button is used to select the page where
-        /// the user enters the general information about the event.
+        /// String used for the calendar button.
         /// </summary>
-        private const string EventDetails = "Event Details";
+        private const string CalendarSelector = "Calendar";
 
         /// <summary>
-        /// Function used to retrieve a specific beastie from the model.
+        /// String used for the calendar button.
         /// </summary>
-        private readonly Func<string, Beastie> getBeastie;
+        private const string EventSelector = "Event";
 
         /// <summary>
-        /// Associated data entry model.
+        /// View model for the calendar.
         /// </summary>
-        private IEventEntry dataEntryModel;
+        private ICalendarViewModel calendarViewModel;
 
         /// <summary>
-        /// Is the current model being edited.
+        /// View model for the event report.
         /// </summary>
-        private bool isEditing;
-
-        /// <summary>
-        /// Manager which handles observation data entry/interrogation.
-        /// </summary>
-        private IObservationManager observations;
-
-        /// <summary>
-        /// View model for the beastie entry view.
-        /// </summary>
-        private IBeastieEntry beastieEntryViewModel;
-
-        /// <summary>
-        /// View model for the event details entry view.
-        /// </summary>
-        private IEventDetailsEntry detailsViewModel;
+        private IEventReportViewModel eventReportViewModel;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="DataEntryViewModel"/> class.
@@ -67,43 +51,27 @@
         /// <param name="getBeastie">
         /// The function used to return a specific beastie from the data model.
         /// </param>
-        public ReportsViewModel(
-            IEventEntry model,
-            Func<string, Beastie> getBeastie)
+        public ReportsViewModel()
         {
-            bool isSeen = true;
-            this.dataEntryModel = model;
-            this.getBeastie = getBeastie;
-            this.observations = model.Observations;
-            this.beastieEntryViewModel =
-                new BeastieEntryViewModel(
-                    this.observations.SetBeastie,
-                    isSeen);
-            this.detailsViewModel = 
-                new EventDetailsEntryViewModel(
-                    this.observations,
-                    isSeen,
-                    this.beastieEntryViewModel.SetIsSeen);
+            this.PageSelector = new List<IPageSelector>();
+            this.calendarViewModel = new CalendarViewModel();
+            this.eventReportViewModel = new EventReportViewModel();
 
-            this.CurrentWorkspace = this.detailsViewModel;
+            this.CurrentWorkspace = this.calendarViewModel;
 
-            this.PopulatePageSelector(ReportsViewModel.EventDetails);
+            IPageSelector calendarSelector =
+                new PageSelector(
+                    ReportsViewModel.CalendarSelector,
+                    this.NewPage);
+            IPageSelector eventSelector =
+                new PageSelector(
+                    ReportsViewModel.EventSelector,
+                    this.NewPage);
 
-            List<string> beastiePages = model.GetDataEntryPageNames();
+            this.PageSelector.Add(calendarSelector);
+            this.PageSelector.Add(eventSelector);
 
-            foreach (string pageName in beastiePages)
-            {
-                this.PopulatePageSelector(pageName);
-            }
-
-            this.SaveCommand =
-                new CommonCommand(
-                    this.Save);
-            this.LoadCommand =
-                new CommonCommand(
-                    this.Load);
-
-            this.NewPage(ReportsViewModel.EventDetails);
+            this.NewPage(ReportsViewModel.CalendarSelector);
         }
 
         /// <summary>
@@ -117,75 +85,6 @@
         public List<IPageSelector> PageSelector { get; private set; }
 
         /// <summary>
-        /// Command used to save the current event.
-        /// </summary>
-        public ICommand SaveCommand { get; }
-
-        /// <summary>
-        /// Command used to load an existing event.
-        /// </summary>
-        public ICommand LoadCommand { get; }
-
-        /// <summary>
-        /// Gets a value which indicates whether the current event is being edited.
-        /// </summary>
-        public bool IsEditing
-        {
-            get
-            {
-                return this.isEditing;
-            }
-
-            set
-            {
-                if (this.isEditing != value)
-                {
-                    this.isEditing = value;
-                    this.RaisePropertyChangedEvent(nameof(this.IsEditing));
-                    this.RaisePropertyChangedEvent(nameof(this.EditingText));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets a string which describes the editing status.
-        /// </summary>
-        public string EditingText => isEditing ? "Editing" : string.Empty;
-
-        /// <summary>
-        /// Save the current event.
-        /// </summary>
-        private void Save()
-        {
-            bool success = this.dataEntryModel.Save();
-
-            if (success)
-            {
-                this.Reset();
-            }
-        }
-
-        /// <summary>
-        /// Load a new event to edit.
-        /// </summary>
-        private void Load()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-
-
-            dialog.InitialDirectory = DataPath.RawDataPath;
-            dialog.Filter = "xml files (*.xml)|*.xml";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                this.dataEntryModel.Load(dialog.FileName);
-            }
-
-            this.NewPage(ReportsViewModel.EventDetails);
-            this.IsEditing = true;
-        }
-
-        /// <summary>
         /// Select a new page for the view.
         /// </summary>
         /// <param name="newPageName">
@@ -193,87 +92,17 @@
         /// </param>
         private void NewPage(string newPageName)
         {
-            if (StringCompare.SimpleCompare(newPageName, EventDetails))
+            if (StringCompare.SimpleCompare(newPageName, ReportsViewModel.CalendarSelector))
             {
-                this.CurrentWorkspace = this.detailsViewModel;
+                this.CurrentWorkspace = this.calendarViewModel;
             }
-            else
+            else if (StringCompare.SimpleCompare(newPageName, ReportsViewModel.EventSelector))
             {
-                this.beastieEntryViewModel.Clear();
-
-                List<string> beasties =
-                    this.dataEntryModel.GetBeastiesOnAPage(
-                        newPageName);
-
-                foreach(string beastie in beasties)
-                {
-                    bool isIncluded =
-                        this.observations.GetIncluded(
-                            beastie,
-                            this.detailsViewModel.IsSeen);
-
-                    Beastie modelBeastie = this.getBeastie(beastie);
-
-                    this.beastieEntryViewModel.Add(
-                        beastie,
-                        modelBeastie?.LatinName ?? string.Empty,
-                        modelBeastie?.Image ?? string.Empty,
-                        modelBeastie?.Presence ?? (Presence)(-1),
-                        isIncluded);
-                }
-
-                this.CurrentWorkspace = this.beastieEntryViewModel;
-                this.beastieEntryViewModel.Refresh();
+                this.CurrentWorkspace = this.eventReportViewModel;
             }
 
             this.ResetSelectedPage(newPageName);
 
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
-        }
-
-        /// <summary>
-        /// Add a new command to the collection of page selector commands.
-        /// </summary>
-        /// <param name="pageName">
-        /// Name of the page the new command represents.
-        /// </param>
-        private void PopulatePageSelector(string pageName)
-        {
-            if (this.PageSelector == null)
-            {
-                this.PageSelector = new List<IPageSelector>();
-            }
-
-            IPageSelector showEventDetails =
-                new PageSelector(
-                    pageName,
-                    this.NewPage);
-
-            this.PageSelector.Add(showEventDetails);
-        }
-
-        /// <summary>
-        /// Reset the view models.
-        /// </summary>
-        private void Reset()
-        {
-            bool isSeen = true;
-            this.observations = dataEntryModel.Observations;
-            this.beastieEntryViewModel =
-                new BeastieEntryViewModel(
-                    this.observations.SetBeastie,
-                    isSeen);
-
-            this.detailsViewModel?.Dispose();
-
-            this.detailsViewModel =
-                new EventDetailsEntryViewModel(
-                    this.observations,
-                    isSeen,
-                    this.beastieEntryViewModel.SetIsSeen);
-
-            this.CurrentWorkspace = this.detailsViewModel;
-            this.IsEditing = false;
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
 
