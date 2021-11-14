@@ -107,6 +107,7 @@
     <Compile Include="Interfaces\ViewModels\Body\IConsistencyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IReportsViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IDataEntryViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Reports\ICalendarItem.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Reports\ICalendarViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Reports\IEventReportViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IPageSelector.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="ViewModels\Body\DataEntry\BeastieEntryViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\DataEntry\EventDetailsEntryViewModel.cs" />
+    <Compile Include="ViewModels\Body\Reports\CalendarItem.cs" />
     <Compile Include="ViewModels\Body\Reports\CalendarViewModel.cs" />
     <Compile Include="ViewModels\Body\Reports\EventReportViewModel.cs" />
     <Compile Include="ViewModels\Common\PageSelector.cs" />
@@ -187,6 +189,9 @@
     </Compile>
     <Compile Include="Views\Body\Reports\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Reports\CalendarItem.xaml.cs">
+      <DependentUpon>CalendarItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Reports\EventReport.xaml.cs">
       <DependentUpon>EventReport.xaml</DependentUpon>
@@ -260,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Reports\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Reports\CalendarItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
