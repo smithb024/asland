@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Reports
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Asland.Common.Utils;
@@ -48,6 +49,9 @@
 
                 this.MonthSelector.Add(selector);
             }
+
+            int currentMonth = DateTime.Now.Month;
+            this.SetMonth(months[currentMonth - 1]);
         }
 
         /// <summary>
@@ -114,6 +118,19 @@
             //this.ResetSelectedPage(newPageName);
 
             //this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
+
+        /// <summary>
+        /// Inform each of the components in the month selector collection of the name of the 
+        /// currently selected month.
+        /// </summary>
+        /// <param name="pageName">page name</param>
+        private void SetMonth(string monthName)
+        {
+            foreach (IPageSelector monthSelector in this.MonthSelector)
+            {
+                monthSelector.SelectedButton(monthName);
+            }
         }
     }
 }
