@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using Asland.Common.Utils;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
     using Asland.ViewModels.Common;
@@ -17,7 +18,7 @@
         /// </summary>
         public CalendarViewModel()
         {
-            this.Years = new ObservableCollection<string>();
+            this.Years = YearSearcher.FindRawYears();
             this.MonthSelector = new ObservableCollection<IPageSelector>();
             this.Events = new ObservableCollection<ICalendarItem>();
 

@@ -6,10 +6,8 @@
     using Asland.Model.IO;
     using Asland.ViewModels.Common;
     using NynaeveLib.ViewModel;
-    using Model.IO.DataEntry;
     using System;
     using System.IO;
-    using System.Collections.Generic;
 
     /// <summary>
     /// The view model which supports the main consistency check view.
