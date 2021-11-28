@@ -107,6 +107,8 @@
                 {
                     this.yearsIndex = value;
                     this.RaisePropertyChangedEvent(nameof(this.YearsIndex));
+
+                    this.NewPage(this.currentMonth);
                 }
             }
         }
