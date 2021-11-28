@@ -1,18 +1,12 @@
 ﻿namespace Asland.ViewModels.Body
 {
-    using System;
     using System.Collections.Generic;
-    using System.Windows.Forms;
-    using System.Windows.Input;
-    using Asland.Common.Enums;
-    using Asland.Interfaces.Model.IO.DataEntry;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
-    using Asland.Model.IO.Data;
     using Asland.ViewModels.Body.Reports;
     using Asland.ViewModels.Common;
-    using NynaeveLib.Commands;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
 
@@ -43,18 +37,14 @@
         private IEventReportViewModel eventReportViewModel;
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="DataEntryViewModel"/> class.
+        /// Initialises a new instance of the <see cref="ReportsViewModel"/> class.
         /// </summary>
-        /// <param name="model">
-        ///  The associated model object.
-        /// </param>
-        /// <param name="getBeastie">
-        /// The function used to return a specific beastie from the data model.
-        /// </param>
-        public ReportsViewModel()
+        /// <param name="logger">the logger</param>
+        public ReportsViewModel(
+            IAsLogger logger)
         {
             this.PageSelector = new List<IPageSelector>();
-            this.calendarViewModel = new CalendarViewModel();
+            this.calendarViewModel = new CalendarViewModel(logger);
             this.eventReportViewModel = new EventReportViewModel();
 
             this.CurrentWorkspace = this.calendarViewModel;

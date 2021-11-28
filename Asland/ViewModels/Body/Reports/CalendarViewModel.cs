@@ -3,10 +3,16 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
+    using Asland.Common.Messages;
     using Asland.Common.Utils;
+    using Asland.Factories.IO;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
+    using Asland.Model.IO;
     using Asland.ViewModels.Common;
+    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.ViewModel;
 
     /// <summary>
@@ -15,43 +21,69 @@
     public class CalendarViewModel : ViewModelBase, ICalendarViewModel
     {
         /// <summary>
+        /// The index of the currently selected year.
+        /// </summary>
+        private int yearsIndex;
+
+        /// <summary>
+        /// The last selected month.
+        /// </summary>
+        private string currentMonth;
+
+        /// <summary>
+        /// Lookup to get the name to month integer.
+        /// </summary>
+        private Dictionary<string, int> monthDictionary = new Dictionary<string, int>();
+
+        /// <summary>
+        /// The logger.
+        /// </summary>
+        private readonly IAsLogger logger;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="CalendarViewModel"/> class.
         /// </summary>
-        public CalendarViewModel()
+        /// <param name="logger">the logger</param>
+        public CalendarViewModel(
+            IAsLogger logger)
         {
+            this.logger = logger;
             this.Years = YearSearcher.FindRawYears();
             this.MonthSelector = new ObservableCollection<IPageSelector>();
             this.Events = new ObservableCollection<ICalendarItem>();
 
-            List<string> months =
-                new List<string>()
+            this.monthDictionary =
+                new Dictionary<string, int>()
                 {
-                    "Jan",
-                    "Feb",
-                    "Mar",
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sept",
-                    "Oct",
-                    "Nov",
-                    "Dec",
+                    { "Jan", 1 },
+                    { "Feb", 2 },
+                    { "Mar", 3 },
+                    { "Apr", 4 },
+                    { "May", 5 },
+                    { "Jun", 6 },
+                    { "Jul", 7 },
+                    { "Aug", 8 },
+                    { "Sept", 9 },
+                    { "Oct", 10 },
+                    { "Nov", 11 },
+                    { "Dev", 12 },
                 };
 
-            foreach (string month in months)
+            foreach (KeyValuePair<string, int> month in this.monthDictionary)
             {
                 IPageSelector selector =
                     new PageSelector(
-                        month,
+                        month.Key,
                         this.NewPage);
 
                 this.MonthSelector.Add(selector);
             }
 
-            int currentMonth = DateTime.Now.Month;
-            this.SetMonth(months[currentMonth - 1]);
+            this.yearsIndex = this.Years.Count - 1;
+
+            string monthName =
+                this.monthDictionary.FirstOrDefault(x => x.Value == DateTime.Now.Month).Key;
+            this.NewPage(monthName);
         }
 
         /// <summary>
@@ -62,7 +94,22 @@
         /// <summary>
         /// Gets or sets the index for <see cref="Years"/> collection.
         /// </summary>
-        public int YearsIndex { get; set; }
+        public int YearsIndex
+        {
+            get
+            {
+                return this.yearsIndex;
+            }
+
+            set
+            {
+                if (this.yearsIndex != value)
+                {
+                    this.yearsIndex = value;
+                    this.RaisePropertyChangedEvent(nameof(this.YearsIndex));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets a selection of commands which are used to choose a month to display.
@@ -82,42 +129,42 @@
         /// </param>
         private void NewPage(string newPageName)
         {
-            //if (StringCompare.SimpleCompare(newPageName, EventDetails))
-            //{
-            //    this.CurrentWorkspace = this.detailsViewModel;
-            //}
-            //else
-            //{
-            //    this.beastieEntryViewModel.Clear();
+            this.SetMonth(newPageName);
 
-            //    List<string> beasties =
-            //        this.dataEntryModel.GetBeastiesOnAPage(
-            //            newPageName);
+            List<string> eventPaths = this.FindEventPaths();
 
-            //    foreach (string beastie in beasties)
-            //    {
-            //        bool isIncluded =
-            //            this.observations.GetIncluded(
-            //                beastie,
-            //                this.detailsViewModel.IsSeen);
+            this.Events.Clear();
 
-            //        Beastie modelBeastie = this.getBeastie(beastie);
+            foreach (string eventPath in eventPaths)
+            {
+                try
+                {
+                    RawObservations observations =
+                        XmlFileIo.ReadXml<RawObservations>(
+                            eventPath);
 
-            //        this.beastieEntryViewModel.Add(
-            //            beastie,
-            //            modelBeastie?.LatinName ?? string.Empty,
-            //            modelBeastie?.Image ?? string.Empty,
-            //            modelBeastie?.Presence ?? (Presence)(-1),
-            //            isIncluded);
-            //    }
+                    ICalendarItem calendarItem =
+                        new CalendarItem(
+                            observations.Date.Substring(0, 2),
+                            observations.Location,
+                            observations.Intensity);
 
-            //    this.CurrentWorkspace = this.beastieEntryViewModel;
-            //    this.beastieEntryViewModel.Refresh();
-            //}
+                    this.Events.Add(calendarItem);
+                }
+                catch (Exception ex)
+                {
+                    string errorDescription = $"Error loading {eventPath}";
+                    AppStatusMessage message =
+                        new AppStatusMessage(
+                            errorDescription);
+                    Messenger.Default.Send(message);
 
-            //this.ResetSelectedPage(newPageName);
+                    this.logger.WriteLine(
+                        $"Calendar view model : {errorDescription}: {ex}");
+                }
+            }
 
-            //this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.RaisePropertyChangedEvent(nameof(this.Events));
         }
 
         /// <summary>
@@ -127,10 +174,25 @@
         /// <param name="pageName">page name</param>
         private void SetMonth(string monthName)
         {
+            this.currentMonth = monthName;
             foreach (IPageSelector monthSelector in this.MonthSelector)
             {
                 monthSelector.SelectedButton(monthName);
             }
+        }
+
+        /// <summary>
+        /// Find and return the paths to all events in the currently selected month.
+        /// </summary>
+        /// <returns>collection of paths</returns>
+        private List<string> FindEventPaths()
+        {
+            List<string> paths =
+                YearSearcher.FindAllRawObservationsInAMonth(
+                    this.Years[this.YearsIndex],
+                    this.monthDictionary[this.currentMonth]);
+
+            return paths;
         }
     }
 }
