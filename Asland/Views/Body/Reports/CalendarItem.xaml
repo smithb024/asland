@@ -34,6 +34,7 @@
             Text="{Binding Path=Name}"
             Foreground="White"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Center"
+            TextWrapping="Wrap"/>
     </Grid>
 </UserControl>
