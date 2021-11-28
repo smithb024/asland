@@ -3,6 +3,7 @@ namespace Asland.ViewModels.Body
 {
     using Asland.Common.Enums;
     using Asland.Common.Messages;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.Model.IO.DataEntry;
@@ -50,17 +51,19 @@ namespace Asland.ViewModels.Body
         /// The model object containing data set. 
         /// </param>
         /// <param name="fileFactory">beastie file factory</param>
+        /// <param name="logger">the logger</param>
         public BodyViewModel(
             IEventEntry dataEntryModel,
             IDataManager dataModel,
-            IBeastieDataFileFactory fileFactory)
+            IBeastieDataFileFactory fileFactory,
+            IAsLogger logger)
         {
             this.configurationViewModel = 
                 new ConfigurationViewModel(
                     dataModel,
                     fileFactory);
             this.consistencyViewModel = new ConsistencyViewModel();
-            this.reportsViewModel = new ReportsViewModel();
+            this.reportsViewModel = new ReportsViewModel(logger);
             this.dataEntryViewModel =
                 new DataEntryViewModel(
                     dataEntryModel,
