@@ -41,13 +41,23 @@
         private readonly IAsLogger logger;
 
         /// <summary>
+        /// Command used to open a new event.
+        /// </summary>
+        private readonly Action<string> openEventCommand;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="CalendarViewModel"/> class.
         /// </summary>
         /// <param name="logger">the logger</param>
+        /// <param name="openEventCommand">
+        /// Command used to open an event.
+        /// </param>
         public CalendarViewModel(
-            IAsLogger logger)
+            IAsLogger logger,
+            Action<string> openEventCommand)
         {
             this.logger = logger;
+            this.openEventCommand = openEventCommand;
             this.Years = YearSearcher.FindRawYears();
             this.MonthSelector = new ObservableCollection<IPageSelector>();
             this.Events = new ObservableCollection<ICalendarItem>();
@@ -149,7 +159,9 @@
                         new CalendarItem(
                             observations.Date.Substring(0, 2),
                             observations.Location,
-                            observations.Intensity);
+                            observations.Intensity,
+                            eventPath,
+                            this.openEventCommand);
 
                     this.Events.Add(calendarItem);
                 }

@@ -44,7 +44,10 @@
             IAsLogger logger)
         {
             this.PageSelector = new List<IPageSelector>();
-            this.calendarViewModel = new CalendarViewModel(logger);
+            this.calendarViewModel = 
+                new CalendarViewModel(
+                    logger,
+                    this.OpenEvent);
             this.eventReportViewModel = new EventReportViewModel();
 
             this.CurrentWorkspace = this.calendarViewModel;
@@ -73,6 +76,14 @@
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
         public List<IPageSelector> PageSelector { get; private set; }
+
+        /// <summary>
+        /// Display the event page and open a new event.
+        /// </summary>
+        /// <param name="eventPath">path to the event raw data</param>
+        private void OpenEvent(string eventPath)
+        {
+        }
 
         /// <summary>
         /// Select a new page for the view.

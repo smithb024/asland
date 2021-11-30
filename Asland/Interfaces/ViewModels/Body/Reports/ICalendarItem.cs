@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Reports
 {
+    using System.Windows.Input;
     using Asland.Common.Enums;
 
     /// <summary>
@@ -21,5 +22,10 @@
         /// Gets the intensity of the event.
         /// </summary>
         ObservationIntensity Intensity { get; }
+
+        /// <summary>
+        /// Gets the command used to select a new event.
+        /// </summary>
+        ICommand SelectNewEvent { get; }
     }
 }
