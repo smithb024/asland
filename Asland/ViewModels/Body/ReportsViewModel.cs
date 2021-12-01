@@ -83,6 +83,11 @@
         /// <param name="eventPath">path to the event raw data</param>
         private void OpenEvent(string eventPath)
         {
+            this.CurrentWorkspace = this.eventReportViewModel;
+
+            this.ResetSelectedPage(ReportsViewModel.EventSelector);
+
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>
