@@ -85,6 +85,8 @@
         {
             this.CurrentWorkspace = this.eventReportViewModel;
 
+            this.eventReportViewModel.OpenEvent(eventPath);
+
             this.ResetSelectedPage(ReportsViewModel.EventSelector);
 
             this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
