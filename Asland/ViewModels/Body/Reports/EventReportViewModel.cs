@@ -26,6 +26,17 @@
             this.TimeOfDay = string.Empty;
             this.Weather = string.Empty;
             this.Habitats = new ObservableCollection<string>();
+
+            this.Beasties = new ObservableCollection<IBeastieReportIconViewModel>()
+            {
+                new BeastieReportIconViewModel("Robin", "Latin Robin", $"{DataPath.BasePath}\\Sample.png", Presence.Resident),
+                new BeastieReportIconViewModel("Blackbird", "Latin Blackbird", $"{DataPath.BasePath}\\Sample.png", Presence.Resident),
+                new BeastieReportIconViewModel("Puffin", "Latin Puffin", $"{DataPath.BasePath}\\Sample.png", Presence.Breeding),
+                new BeastieReportIconViewModel("Kittiwake", "Latin Kittiwake", $"{DataPath.BasePath}\\Sample.png", Presence.Hibernates),
+                new BeastieReportIconViewModel("Eagle", "Latin Eagle", $"{DataPath.BasePath}\\Sample.png", Presence.Vagrant),
+                new BeastieReportIconViewModel("Blackcap", "Latin Blackcap", $"{DataPath.BasePath}\\Sample.png", Presence.Breeding),
+                new BeastieReportIconViewModel("Kingfisher", "Latin Kingfisher", $"{DataPath.BasePath}\\Sample.png", Presence.Passing),
+            };
         }
 
         /// <summary>
@@ -67,6 +78,11 @@
         /// Gets the habitats present in the event.
         /// </summary>
         public ObservableCollection<string> Habitats { get; private set; }
+
+        /// <summary>
+        /// Gets the beasties present in the event.
+        /// </summary>
+        public ObservableCollection<IBeastieReportIconViewModel> Beasties { get; }
 
         /// <summary>
         /// Open the event specified by the path.

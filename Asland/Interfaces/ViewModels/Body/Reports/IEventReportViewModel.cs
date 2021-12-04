@@ -50,6 +50,11 @@
         ObservableCollection<string> Habitats { get; }
 
         /// <summary>
+        /// Gets the beasties present in the event.
+        /// </summary>
+        ObservableCollection<IBeastieReportIconViewModel> Beasties { get; }
+
+        /// <summary>
         /// Open the event specified by the path.
         /// </summary>
         /// <param name="path">
