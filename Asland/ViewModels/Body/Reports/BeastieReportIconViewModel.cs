@@ -24,8 +24,16 @@
         {
             this.CommonName = commonName;
             this.LatinName = latinName;
-            this.ImagePath = imagePath;
             this.Presence = presence;
+
+            if (string.IsNullOrEmpty(imagePath))
+            {
+                this.ImagePath = $"{DataPath.BasePath}\\Sample.png";
+            }
+            else
+            {
+                this.ImagePath = $"{DataPath.ImageDataPath}\\{imagePath}";
+            }
         }
 
         /// <summary>

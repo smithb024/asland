@@ -6,6 +6,7 @@
     using Asland.Factories.IO;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Model.IO;
+    using Asland.Model.IO.Data;
     using NynaeveLib.ViewModel;
 
     /// <summary>
@@ -14,10 +15,21 @@
     public class EventReportViewModel : ViewModelBase, IEventReportViewModel
     {
         /// <summary>
+        /// Function used to retrieve a specific beastie from the model.
+        /// </summary>
+        private readonly Func<string, Beastie> getBeastie;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="EventReportViewModel"/> class.
         /// </summary>
-        public EventReportViewModel()
+        /// <param name="getBeastie">
+        /// The function used to return a specific beastie from the data model.
+        /// </param>
+        public EventReportViewModel(
+            Func<string, Beastie> getBeastie)
         {
+            this.getBeastie = getBeastie;
+
             this.Location = string.Empty;
             this.Date = string.Empty;
             this.Notes = string.Empty;
@@ -27,16 +39,7 @@
             this.Weather = string.Empty;
             this.Habitats = new ObservableCollection<string>();
 
-            this.Beasties = new ObservableCollection<IBeastieReportIconViewModel>()
-            {
-                new BeastieReportIconViewModel("Robin", "Latin Robin", $"{DataPath.BasePath}\\Sample.png", Presence.Resident),
-                new BeastieReportIconViewModel("Blackbird", "Latin Blackbird", $"{DataPath.BasePath}\\Sample.png", Presence.Resident),
-                new BeastieReportIconViewModel("Puffin", "Latin Puffin", $"{DataPath.BasePath}\\Sample.png", Presence.Breeding),
-                new BeastieReportIconViewModel("Kittiwake", "Latin Kittiwake", $"{DataPath.BasePath}\\Sample.png", Presence.Hibernates),
-                new BeastieReportIconViewModel("Eagle", "Latin Eagle", $"{DataPath.BasePath}\\Sample.png", Presence.Vagrant),
-                new BeastieReportIconViewModel("Blackcap", "Latin Blackcap", $"{DataPath.BasePath}\\Sample.png", Presence.Breeding),
-                new BeastieReportIconViewModel("Kingfisher", "Latin Kingfisher", $"{DataPath.BasePath}\\Sample.png", Presence.Passing),
-            };
+            this.Beasties = new ObservableCollection<IBeastieReportIconViewModel>();
         }
 
         /// <summary>
@@ -116,6 +119,36 @@
                 this.Habitats.Add(habitat.ToString());
             }
 
+            this.Beasties.Clear();
+
+            foreach (string beastie in observations.Species.Kind)
+            {
+                Beastie modelBeastie = this.getBeastie(beastie);
+
+                IBeastieReportIconViewModel beastieIcon =
+                    new BeastieReportIconViewModel(
+                        modelBeastie.DisplayName,
+                        modelBeastie?.LatinName ?? string.Empty,
+                        modelBeastie?.Image ?? string.Empty,
+                        modelBeastie?.Presence ?? (Presence)(-1));
+
+                this.Beasties.Add(beastieIcon);
+            }
+
+            foreach (string beastie in observations.Heard.Kind)
+            {
+                Beastie modelBeastie = this.getBeastie(beastie);
+
+                IBeastieReportIconViewModel beastieIcon =
+                    new BeastieReportIconViewModel(
+                        modelBeastie.DisplayName,
+                        modelBeastie?.LatinName ?? string.Empty,
+                        modelBeastie?.Image ?? string.Empty,
+                        modelBeastie?.Presence ?? (Presence)(-1));
+
+                this.Beasties.Add(beastieIcon);
+            }
+
             this.RaisePropertyChangedEvent(nameof(this.Location));
             this.RaisePropertyChangedEvent(nameof(this.Date));
             this.RaisePropertyChangedEvent(nameof(this.Notes));
@@ -124,6 +157,7 @@
             this.RaisePropertyChangedEvent(nameof(this.TimeOfDay));
             this.RaisePropertyChangedEvent(nameof(this.Weather));
             this.RaisePropertyChangedEvent(nameof(this.Habitats));
+            this.RaisePropertyChangedEvent(nameof(this.Beasties));
         }
     }
 }

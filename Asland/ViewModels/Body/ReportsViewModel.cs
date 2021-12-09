@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Asland.Interfaces;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
@@ -39,8 +40,12 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ReportsViewModel"/> class.
         /// </summary>
+        /// <param name="dataModel">
+        /// The model object containing data set. 
+        /// </param>
         /// <param name="logger">the logger</param>
         public ReportsViewModel(
+            IDataManager dataModel,
             IAsLogger logger)
         {
             this.PageSelector = new List<IPageSelector>();
@@ -48,7 +53,9 @@
                 new CalendarViewModel(
                     logger,
                     this.OpenEvent);
-            this.eventReportViewModel = new EventReportViewModel();
+            this.eventReportViewModel =
+                new EventReportViewModel(
+                    dataModel.FindBeastie);
 
             this.CurrentWorkspace = this.calendarViewModel;
 
