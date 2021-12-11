@@ -8,7 +8,9 @@
         xmlns:status="clr-namespace:Asland.Views.Status"
         DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="900" 
+        Width="1065">
 
     <Grid>
         <Grid.RowDefinitions>

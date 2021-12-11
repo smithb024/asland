@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Asland.Interfaces;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
@@ -39,13 +40,22 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ReportsViewModel"/> class.
         /// </summary>
+        /// <param name="dataModel">
+        /// The model object containing data set. 
+        /// </param>
         /// <param name="logger">the logger</param>
         public ReportsViewModel(
+            IDataManager dataModel,
             IAsLogger logger)
         {
             this.PageSelector = new List<IPageSelector>();
-            this.calendarViewModel = new CalendarViewModel(logger);
-            this.eventReportViewModel = new EventReportViewModel();
+            this.calendarViewModel = 
+                new CalendarViewModel(
+                    logger,
+                    this.OpenEvent);
+            this.eventReportViewModel =
+                new EventReportViewModel(
+                    dataModel.FindBeastie);
 
             this.CurrentWorkspace = this.calendarViewModel;
 
@@ -73,6 +83,21 @@
         /// Gets a selection of commands which are used to choose a page to display.
         /// </summary>
         public List<IPageSelector> PageSelector { get; private set; }
+
+        /// <summary>
+        /// Display the event page and open a new event.
+        /// </summary>
+        /// <param name="eventPath">path to the event raw data</param>
+        private void OpenEvent(string eventPath)
+        {
+            this.CurrentWorkspace = this.eventReportViewModel;
+
+            this.eventReportViewModel.OpenEvent(eventPath);
+
+            this.ResetSelectedPage(ReportsViewModel.EventSelector);
+
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+        }
 
         /// <summary>
         /// Select a new page for the view.

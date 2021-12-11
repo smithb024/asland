@@ -63,7 +63,10 @@ namespace Asland.ViewModels.Body
                     dataModel,
                     fileFactory);
             this.consistencyViewModel = new ConsistencyViewModel();
-            this.reportsViewModel = new ReportsViewModel(logger);
+            this.reportsViewModel =
+                new ReportsViewModel(
+                    dataModel,
+                    logger);
             this.dataEntryViewModel =
                 new DataEntryViewModel(
                     dataEntryModel,
