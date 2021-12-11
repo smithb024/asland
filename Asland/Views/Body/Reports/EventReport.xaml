@@ -11,8 +11,8 @@
         Background="{StaticResource StdDataEntryBackgroundColour}">
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
