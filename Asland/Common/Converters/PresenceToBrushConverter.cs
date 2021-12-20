@@ -42,11 +42,11 @@
                 switch (convertedState)
                 {
                     case Presence.Breeding:
-                        convertedColour = Colors.ForestGreen;
+                        convertedColour = Colors.Tomato;
                         break;
 
                     case Presence.Hibernates:
-                        convertedColour = Colors.Orange;
+                        convertedColour = Colors.PowderBlue;
                         break;
 
                     case Presence.NonBreeding:
@@ -58,7 +58,7 @@
                         break;
 
                     case Presence.Resident:
-                        convertedColour = Colors.DarkViolet;
+                        convertedColour = Colors.ForestGreen;
                         break;
 
                     case Presence.Vagrant:
