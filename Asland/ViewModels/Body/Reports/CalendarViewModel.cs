@@ -76,7 +76,7 @@
                     { "Sept", 9 },
                     { "Oct", 10 },
                     { "Nov", 11 },
-                    { "Dev", 12 },
+                    { "Dec", 12 },
                 };
 
             foreach (KeyValuePair<string, int> month in this.monthDictionary)
