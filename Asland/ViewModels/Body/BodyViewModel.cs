@@ -37,6 +37,11 @@ namespace Asland.ViewModels.Body
         private IReportsViewModel reportsViewModel;
 
         /// <summary>
+        /// The analysis view model.
+        /// </summary>
+        private IAnalysisViewModel analysisViewModel;
+
+        /// <summary>
         /// The current view.
         /// </summary>
         private object currentView;
@@ -71,6 +76,9 @@ namespace Asland.ViewModels.Body
                 new DataEntryViewModel(
                     dataEntryModel,
                     dataModel.FindBeastie);
+            this.analysisViewModel =
+                new AnalysisViewModel(
+                    );
 
             this.currentView = this.dataEntryViewModel;
 
@@ -119,6 +127,10 @@ namespace Asland.ViewModels.Body
 
                 case MainViews.Reports:
                     this.CurrentView = this.reportsViewModel;
+                    break;
+
+                case MainViews.Analysis:
+                    this.CurrentView = this.analysisViewModel;
                     break;
 
                 default:

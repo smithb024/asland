@@ -16,6 +16,11 @@
         Reports,
 
         /// <summary>
+        /// The analysis view.
+        /// </summary>
+        Analysis,
+
+        /// <summary>
         /// The consistency checker view.
         /// </summary>
         Consistency,
