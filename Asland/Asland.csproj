@@ -104,6 +104,7 @@
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IEventDetailsEntry.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\IAnalysisViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IBodyViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\IConsistencyViewModel.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Model\IO\RawObservations.cs" />
     <Compile Include="Model\IO\RawObservationsString.cs" />
     <Compile Include="Model\IO\TypeString.cs" />
+    <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\BodyViewModel.cs" />
     <Compile Include="ViewModels\Body\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\Configuration\BeastieConfigurationViewModel.cs" />
@@ -158,6 +160,9 @@
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\StatusBarViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\Body\AnalysisView.xaml.cs">
+      <DependentUpon>AnalysisView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Body\BodyView.xaml.cs">
       <DependentUpon>BodyView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +232,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Body\AnalysisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Body\BodyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

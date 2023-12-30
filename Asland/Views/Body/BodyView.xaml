@@ -22,6 +22,9 @@
         <DataTemplate DataType="{x:Type viewModels:ReportsViewModel}">
             <local:ReportsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:AnalysisViewModel}">
+            <local:AnalysisView/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>

@@ -1,14 +1,13 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body
 {
-    using System.Collections.Generic;
-    using System.Windows.Input;
     using Asland.Interfaces.ViewModels.Common;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface for a view model which supports the report view. This is the top level view
     /// for reports and should also support switching between the different sub views.
     /// </summary>
-    public interface IReportsViewModel
+    public interface IAnalysisViewModel
     {
         /// <summary>
         /// Gets the view model for the workspace which is displayed.
