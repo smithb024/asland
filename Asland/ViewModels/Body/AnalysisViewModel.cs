@@ -1,13 +1,13 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using Asland.Interfaces.ViewModels.Body;
+    using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Common;
+    using Asland.ViewModels.Body.Analysis;
     using Common;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
-    using System;
     using System.Collections.Generic;
-    using System.Data;
 
     /// <summary>
     /// View model which suports the analysis view.
@@ -16,20 +16,51 @@
     public class AnalysisViewModel : ViewModelBase, IAnalysisViewModel
     {
         /// <summary>
+        /// String used for the Beastie button.
+        /// </summary>
+        private const string BeastieSelector = "Beastie";
+
+        /// <summary>
+        /// String used for the Location button.
+        /// </summary>
+        private const string LocationSelector = "Location";
+
+        /// <summary>
+        /// View model for the beasties.
+        /// </summary>
+        private IBeastieViewModel beastieViewModel;
+
+        /// <summary>
+        /// View model for the locations.
+        /// </summary>
+        private ILocationViewModel locationViewModel;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="AnalysisViewModel"/> class.
         /// </summary>
         public AnalysisViewModel()
         {
             this.PageSelector = new List<IPageSelector>();
+            this.beastieViewModel =
+                new BeastieViewModel(
+                    );
+            this.locationViewModel =
+                new LocationViewModel(
+                    );
 
-            IPageSelector eventSelector =
+            IPageSelector beastieSelector =
                 new PageSelector(
-                    "To Fill In",
+                    AnalysisViewModel.BeastieSelector,
+                    this.NewPage);
+            IPageSelector locationSelector =
+                new PageSelector(
+                    AnalysisViewModel.LocationSelector,
                     this.NewPage);
 
-            this.PageSelector.Add(eventSelector);
+            this.PageSelector.Add(beastieSelector);
+            this.PageSelector.Add(locationSelector);
 
-            this.CurrentWorkspace = null;
+            this.NewPage(AnalysisViewModel.BeastieSelector);
         }
 
         /// <summary>
@@ -50,14 +81,18 @@
         /// </param>
         private void NewPage(string newPageName)
         {
-            //if (StringCompare.SimpleCompare(newPageName, "To Fill In"))
-            //{
-            //    this.CurrentWorkspace = null;
-            //}
+            if (StringCompare.SimpleCompare(newPageName, AnalysisViewModel.BeastieSelector))
+            {
+                this.CurrentWorkspace = this.beastieViewModel;
+            }
+            else if (StringCompare.SimpleCompare(newPageName, AnalysisViewModel.LocationSelector))
+            {
+                this.CurrentWorkspace = this.locationViewModel;
+            }
 
-            //this.ResetSelectedPage(newPageName);
+            this.ResetSelectedPage(newPageName);
 
-            //this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>

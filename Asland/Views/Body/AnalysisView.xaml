@@ -5,10 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asland.Views.Body"
              xmlns:common="clr-namespace:Asland.Views.Common"
+             xmlns:viewModels="clr-namespace:Asland.ViewModels.Body.Analysis"
+             xmlns:analysis="clr-namespace:Asland.Views.Body.Analysis"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:BeastieViewModel}">
+            <analysis:Beastie/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LocationViewModel}">
+            <analysis:Location/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid Background="{StaticResource StdBackground}">
