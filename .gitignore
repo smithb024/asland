@@ -54,5 +54,6 @@ dkms.conf
 # Folders
 bin
 obj
+log
 packages
 .vs
