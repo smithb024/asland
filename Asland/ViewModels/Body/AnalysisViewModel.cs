@@ -26,6 +26,11 @@
         private const string LocationSelector = "Location";
 
         /// <summary>
+        /// String used for the Year button.
+        /// </summary>
+        private const string YearSelector = "Year";
+
+        /// <summary>
         /// View model for the beasties.
         /// </summary>
         private IBeastieViewModel beastieViewModel;
@@ -34,6 +39,11 @@
         /// View model for the locations.
         /// </summary>
         private ILocationViewModel locationViewModel;
+
+        /// <summary>
+        /// View model for the years.
+        /// </summary>
+        private IYearViewModel yearViewModel;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="AnalysisViewModel"/> class.
@@ -47,6 +57,9 @@
             this.locationViewModel =
                 new LocationViewModel(
                     );
+            this.yearViewModel =
+                new YearViewModel(
+                    );
 
             IPageSelector beastieSelector =
                 new PageSelector(
@@ -56,9 +69,14 @@
                 new PageSelector(
                     AnalysisViewModel.LocationSelector,
                     this.NewPage);
+            IPageSelector yearSelector =
+                new PageSelector(
+                    AnalysisViewModel.YearSelector,
+                    this.NewPage);
 
             this.PageSelector.Add(beastieSelector);
             this.PageSelector.Add(locationSelector);
+            this.PageSelector.Add(yearSelector);
 
             this.NewPage(AnalysisViewModel.BeastieSelector);
         }
@@ -88,6 +106,10 @@
             else if (StringCompare.SimpleCompare(newPageName, AnalysisViewModel.LocationSelector))
             {
                 this.CurrentWorkspace = this.locationViewModel;
+            }
+            else if (StringCompare.SimpleCompare(newPageName, AnalysisViewModel.YearSelector))
+            {
+                this.CurrentWorkspace = this.yearViewModel;
             }
 
             this.ResetSelectedPage(newPageName);
