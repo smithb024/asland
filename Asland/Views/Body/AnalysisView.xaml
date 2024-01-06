@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type viewModels:LocationViewModel}">
             <analysis:Location/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:YearViewModel}">
+            <analysis:Year/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid Background="{StaticResource StdBackground}">
