@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.IO;
+    using System.Linq;
 
     /// <summary>
     /// View Model which supports the location view on the analysis tab.
@@ -64,6 +65,8 @@
 
             try
             {
+                List<string> rawLocations = new List<string>();
+
                 foreach (string directory in subdirectoryEntries)
                 {
                     string[] files = Directory.GetFiles(directory);
@@ -72,11 +75,18 @@
                     {
                         RawObservationsString raw = XmlFileIo.ReadXml<RawObservationsString>(file);
 
-                        if (!this.locations.Contains(raw.Location))
+                        if (!rawLocations.Contains(raw.Location))
                         {
-                            this.locations.Add(raw.Location);
+                            rawLocations.Add(raw.Location);
                         }
                     }
+                }
+
+                rawLocations = rawLocations.OrderBy(x => x).ToList();
+
+                foreach(string rawLocation in rawLocations)
+                {
+                    this.locations.Add(rawLocation);
                 }
             }
             catch (Exception ex)

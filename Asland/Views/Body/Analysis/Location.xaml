@@ -6,7 +6,56 @@
              xmlns:local="clr-namespace:Asland.Views.Body.Analysis"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="100" Height="100" Background="YellowGreen">
-            
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel 
+            Orientation="Horizontal"
+            Grid.Row="0">
+
+            <ComboBox 
+                Height="25"
+                Width="350"
+                Margin="0,5,0,5"
+                Grid.Column="0"
+                ItemsSource="{Binding Path=Locations}"
+                SelectedIndex="{Binding Path=LocationIndex}"/>
+
+            <CheckBox 
+                Margin="5,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="NT"
+                IsChecked="{Binding Path=IsNt}"/>
+
+            <CheckBox 
+                Margin="5,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="WT"
+                IsChecked="{Binding Path=IsWt}"/>
+
+            <CheckBox 
+                Margin="5,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="WWT"
+                IsChecked="{Binding Path=IsWwt}"/>
+
+            <CheckBox 
+                Margin="5,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Content="RSPB"
+                IsChecked="{Binding Path=IsRspb}"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="1" Width="100" Height="100" Background="YellowGreen"/>
+
+
     </Grid>
 </UserControl>
