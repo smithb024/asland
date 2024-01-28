@@ -29,6 +29,7 @@
                 Margin="5,0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Foreground="White"
                 Content="NT"
                 IsChecked="{Binding Path=IsNt}"/>
 
@@ -36,6 +37,7 @@
                 Margin="5,0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Foreground="White"
                 Content="WT"
                 IsChecked="{Binding Path=IsWt}"/>
 
@@ -43,6 +45,7 @@
                 Margin="5,0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Foreground="White"
                 Content="WWT"
                 IsChecked="{Binding Path=IsWwt}"/>
 
@@ -50,6 +53,7 @@
                 Margin="5,0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
+                Foreground="White"
                 Content="RSPB"
                 IsChecked="{Binding Path=IsRspb}"/>
         </StackPanel>
