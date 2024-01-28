@@ -54,8 +54,6 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="LocationViewModel"/> class.
         /// </summary>
-        /// Thrown if there is a problem 
-        /// </exception>
         public LocationViewModel()
         {
             this.locations = new ObservableCollection<string>();
@@ -149,6 +147,7 @@
                 }
 
                 this.RaisePropertyChangedEvent(nameof(this.IsNt));
+                this.ResetLocationsCollection();
             }
         }
 
@@ -179,6 +178,7 @@
                 }
 
                 this.RaisePropertyChangedEvent(nameof(this.IsWt));
+                this.ResetLocationsCollection();
             }
         }
 
@@ -209,6 +209,7 @@
                 }
 
                 this.RaisePropertyChangedEvent(nameof(this.IsWwt));
+                this.ResetLocationsCollection();
             }
         }
 
@@ -239,7 +240,59 @@
                 }
 
                 this.RaisePropertyChangedEvent(nameof(this.IsRspb));
+                this.ResetLocationsCollection();
             }
+        }
+
+        /// <summary>
+        /// Reset the locations list using the filters if required.
+        /// </summary>
+        private void ResetLocationsCollection()
+        {
+            ObservableCollection<string> filteredLocations =
+                new ObservableCollection<string>();
+
+            foreach(string location in this.locations)
+            {
+                if (this.IsNt)
+                {
+                    if (location.StartsWith("NT"))
+                    {
+                        filteredLocations.Add(location);
+                    }
+                }
+                else if (this.IsRspb)
+                {
+                    if (location.StartsWith("RSPB"))
+                    {
+                        filteredLocations.Add(location);
+                    }
+                }
+                else if (this.IsWt)
+                {
+                    if (location.StartsWith("WT"))
+                    {
+                        filteredLocations.Add(location);
+                    }
+                }
+                else if (this.IsWwt)
+                {
+                    if (location.StartsWith("WWT"))
+                    {
+                        filteredLocations.Add(location);
+                    }
+                }
+                else
+                {
+                    filteredLocations.Add(location);
+                }
+            }
+
+            this.displayedLocations = filteredLocations;
+            this.selectedLocationIndex = -1;
+
+            this.RaisePropertyChangedEvent(nameof(this.Locations));
+            this.RaisePropertyChangedEvent(nameof(this.LocationIndex));
         }
     }
 }
