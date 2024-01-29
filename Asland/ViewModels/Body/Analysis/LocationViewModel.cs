@@ -252,35 +252,39 @@
             ObservableCollection<string> filteredLocations =
                 new ObservableCollection<string>();
 
-            foreach(string location in this.locations)
+            foreach (string location in this.locations)
             {
-                if (this.IsNt)
+                if (this.CheckFilter(
+                    this.isNt,
+                    "NT",
+                    location,
+                    ref filteredLocations))
                 {
-                    if (location.StartsWith("NT"))
-                    {
-                        filteredLocations.Add(location);
-                    }
+                    continue;
                 }
-                else if (this.IsRspb)
+                else if (this.CheckFilter(
+                    this.IsRspb,
+                    "RSPB",
+                    location,
+                    ref filteredLocations))
                 {
-                    if (location.StartsWith("RSPB"))
-                    {
-                        filteredLocations.Add(location);
-                    }
+                    continue;
                 }
-                else if (this.IsWt)
+                else if (this.CheckFilter(
+                    this.isWt,
+                    "WT",
+                    location,
+                    ref filteredLocations))
                 {
-                    if (location.StartsWith("WT"))
-                    {
-                        filteredLocations.Add(location);
-                    }
+                    continue;
                 }
-                else if (this.IsWwt)
+                else if (this.CheckFilter(
+                    this.isWwt,
+                    "WWT",
+                    location,
+                    ref filteredLocations))
                 {
-                    if (location.StartsWith("WWT"))
-                    {
-                        filteredLocations.Add(location);
-                    }
+                    continue;
                 }
                 else
                 {
@@ -293,6 +297,41 @@
 
             this.RaisePropertyChangedEvent(nameof(this.Locations));
             this.RaisePropertyChangedEvent(nameof(this.LocationIndex));
+        }
+
+        /// <summary>
+        /// Check to see if the <paramref name="isFilterSet"/> filter is set. If it is, check to 
+        /// see if the <paramref name="location"/> matches the <paramref name="filterString"/>.
+        /// Always check the start of the <paramref name="location"/> string.
+        /// If it passes, add it to the <paramref name="filteredLocations"/>.
+        /// </summary>
+        /// <param name="isFilterSet">The filter set flag</param>
+        /// <param name="filterString">
+        /// The string to filter the <paramref name="location"/> on.
+        /// </param>
+        /// <param name="location">The location to check.</param>
+        /// <param name="filteredLocations">
+        /// The collection of locations which have passed the filter so far.
+        /// </param>
+        /// <returns>
+        /// Return true if the filter is in play.
+        /// </returns>
+        private bool CheckFilter(
+            bool isFilterSet,
+            string filterString,
+            string location,
+            ref ObservableCollection<string> filteredLocations)
+        {
+            if (isFilterSet)
+            {
+                if (location.StartsWith(filterString))
+                {
+                    filteredLocations.Add(location);
+                }
+                return true;
+            }
+
+            return false;
         }
     }
 }
