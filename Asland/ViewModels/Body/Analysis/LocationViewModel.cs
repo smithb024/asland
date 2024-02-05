@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
     using Asland.Factories.IO;
+    using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Model.IO;
     using NynaeveLib.Logger;
@@ -54,7 +55,9 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="LocationViewModel"/> class.
         /// </summary>
-        public LocationViewModel()
+        /// <param name="search">The search factory.</param>
+        public LocationViewModel(
+            ILocationSearchFactory search)
         {
             this.locations = new ObservableCollection<string>();
 

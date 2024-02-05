@@ -57,11 +57,13 @@ namespace Asland.ViewModels.Body
         /// </param>
         /// <param name="fileFactory">beastie file factory</param>
         /// <param name="logger">the logger</param>
+        /// <param name="locationSearch">the location search factory</param>
         public BodyViewModel(
             IEventEntry dataEntryModel,
             IDataManager dataModel,
             IBeastieDataFileFactory fileFactory,
-            IAsLogger logger)
+            IAsLogger logger,
+            ILocationSearchFactory locationSearch)
         {
             this.configurationViewModel = 
                 new ConfigurationViewModel(
@@ -78,7 +80,7 @@ namespace Asland.ViewModels.Body
                     dataModel.FindBeastie);
             this.analysisViewModel =
                 new AnalysisViewModel(
-                    );
+                    locationSearch);
 
             this.currentView = this.dataEntryViewModel;
 
