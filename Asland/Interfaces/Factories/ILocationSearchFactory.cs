@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.Factories
 {
+    using Asland.Model.IO;
     using System;
 
     /// <summary>
@@ -15,7 +16,7 @@
         /// </param>
         /// <param name="name">name to search for</param>
         void Find(
-            Action<string> locationAction,
+            Action<RawObservationsString> locationAction,
             string name);
     }
 }

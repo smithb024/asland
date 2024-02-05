@@ -1,17 +1,17 @@
-﻿using Asland.Factories.IO;
-using Asland.Model.IO;
-using NynaeveLib.Logger;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Asland.Factories
+﻿namespace Asland.Factories
 {
+    using Asland.Factories.IO;
+    using Asland.Interfaces.Factories;
+    using Asland.Model.IO;
+    using NynaeveLib.Logger;
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Factory which is used to search for location data.
     /// </summary>
-    public class LocationSearchFactory
+    public class LocationSearchFactory : ILocationSearchFactory
     {
         /// <summary>
         /// Find and return data for a specific location.
@@ -21,7 +21,7 @@ namespace Asland.Factories
         /// </param>
         /// <param name="name">name to search for</param>
         public void Find(
-            Action<string> locationAction,
+            Action<RawObservationsString> locationAction,
             string name)
         {
             Task.Run(() =>
@@ -54,7 +54,7 @@ namespace Asland.Factories
                             App.Current.Dispatcher.Invoke(
                                 new Action(() =>
                                 {
-                                    locationAction.Invoke(raw.Location);
+                                    locationAction.Invoke(raw);
                                 }));
                         }
                     }
