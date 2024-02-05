@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Common;
@@ -48,7 +49,9 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="AnalysisViewModel"/> class.
         /// </summary>
-        public AnalysisViewModel()
+        /// <param name="locationSearch">The location search factory</param>
+        public AnalysisViewModel(
+            ILocationSearchFactory locationSearch)
         {
             this.PageSelector = new List<IPageSelector>();
             this.beastieViewModel =
@@ -56,7 +59,7 @@
                     );
             this.locationViewModel =
                 new LocationViewModel(
-                    );
+                    locationSearch);
             this.yearViewModel =
                 new YearViewModel(
                     );
