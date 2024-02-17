@@ -3,7 +3,9 @@
     using Asland.Factories.IO;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis;
+    using Asland.Interfaces.ViewModels.Body.Analysis.Location;
     using Asland.Model.IO;
+    using Asland.ViewModels.Body.Analysis.Location;
     using NynaeveLib.Logger;
     using NynaeveLib.ViewModel;
     using System;
@@ -96,6 +98,7 @@
                 Console.WriteLine(ex.ToString());
             }
 
+            this.Summary = new LocSummaryViewModel(search);
             this.displayedLocations = this.locations;
             this.selectedLocationIndex = -1;
         }
@@ -120,6 +123,8 @@
 
                 this.selectedLocationIndex = value;
                 this.RaisePropertyChangedEvent(nameof(this.LocationIndex));
+                this.Summary.SetNewLocation(
+                    this.Locations[this.LocationIndex]);
             }
         }
 
@@ -246,6 +251,11 @@
                 this.ResetLocationsCollection();
             }
         }
+
+        /// <summary>
+        /// Gets the summary for the selected location.
+        /// </summary>
+        public ILocSummaryViewModel Summary { get; }
 
         /// <summary>
         /// Reset the locations list using the filters if required.
