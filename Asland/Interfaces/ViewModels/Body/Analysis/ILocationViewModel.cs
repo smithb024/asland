@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis
 {
+    using Asland.Interfaces.ViewModels.Body.Analysis.Location;
     using System.Collections.ObjectModel;
 
     /// <summary>
@@ -36,5 +37,10 @@
         /// Gets or sets a value indicating whether to just show RSPB locations.
         /// </summary>
         bool IsRspb { get; set; }
+
+        /// <summary>
+        /// Gets the summary for the selected location.
+        /// </summary>
+        ILocSummaryViewModel Summary { get; }
     }
 }

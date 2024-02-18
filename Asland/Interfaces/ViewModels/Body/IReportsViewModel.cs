@@ -1,7 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body
 {
     using System.Collections.Generic;
-    using System.Windows.Input;
     using Asland.Interfaces.ViewModels.Common;
 
     /// <summary>
