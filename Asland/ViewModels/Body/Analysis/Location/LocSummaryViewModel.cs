@@ -2,7 +2,10 @@
 {
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
+    using Asland.Model.IO;
+    using NynaeveLib.Logger;
     using NynaeveLib.ViewModel;
+    using System.Threading;
 
     /// <summary>
     /// View model which supports the summary view on the location analysis.
@@ -79,6 +82,21 @@
         public void SetNewLocation(string name)
         {
             this.Name = name;
+            this.Count = 0;
+            this.locationSearchFactory.Find(
+                this.ActionUpdate,
+                this.Name);
+        }
+
+        /// <summary>
+        /// Receive the contents of the next valid file.
+        /// </summary>
+        /// <param name="observation">
+        /// The raw observations to be added to the view.
+        /// </param>
+        private void ActionUpdate(RawObservationsString observation)
+        {
+            ++this.Count;
         }
     }
 }
