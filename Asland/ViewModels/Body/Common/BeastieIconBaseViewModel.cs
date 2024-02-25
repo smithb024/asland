@@ -2,7 +2,7 @@
 {
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Common;
-    using GalaSoft.MvvmLight;
+    using NynaeveLib.ViewModel;
 
     /// <summary>
     /// This class serves as the base for a beastie icon. There are different flavours of icon, but
