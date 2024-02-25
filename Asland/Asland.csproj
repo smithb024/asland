@@ -148,6 +148,7 @@
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\LocationViewModel.cs" />
     <Compile Include="ViewModels\Body\BodyViewModel.cs" />
+    <Compile Include="ViewModels\Body\Common\BeastieIconBaseViewModel.cs" />
     <Compile Include="ViewModels\Body\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\Configuration\BeastieConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\ConsistencyViewModel.cs" />

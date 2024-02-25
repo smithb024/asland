@@ -1,11 +1,11 @@
 ﻿namespace Asland.ViewModels.Body
 {
+    using Asland.ViewModels.Common;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Common;
     using Asland.ViewModels.Body.Analysis;
-    using Common;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
     using System.Collections.Generic;
