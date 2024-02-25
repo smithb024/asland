@@ -106,6 +106,7 @@
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IYearViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\ILocationViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Common\IBeastieIconBaseViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Configuration\IBeastieConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
