@@ -102,6 +102,7 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IYearViewModel.cs" />
