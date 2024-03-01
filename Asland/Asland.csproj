@@ -145,6 +145,7 @@
     <Compile Include="Model\IO\TypeString.cs" />
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Location\LocSummaryViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\LocationViewModel.cs" />
