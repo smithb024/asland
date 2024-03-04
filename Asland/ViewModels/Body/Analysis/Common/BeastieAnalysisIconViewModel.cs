@@ -1,12 +1,12 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Common
 {
-    using System;
-    using System.Security.AccessControl;
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.ViewModels.Body.Common;
-    using NynaeveLib.ViewModel;
 
+    /// <summary>
+    /// A view model to describe a single beastie on the analysis view.
+    /// </summary>
     public class BeastieAnalysisIconViewModel : BeastieIconBaseViewModel, IBeastieAnalysisIconViewModel
     {
         /// <summary>
@@ -34,12 +34,12 @@
         /// <summary>
         /// Gets the total number of times this beastie has been counted.
         /// </summary>
-        public int Count { get; }
+        public int Count { get; private set; }
 
         /// <summary>
         /// Gets the total number of times this beastie has been assessed.
         /// </summary>
-        public int Total { get; }
+        public int Total { get; private set; }
 
         /// <summary>
         /// Gets the totla number of times this beastie has been counted as a percentage of the
@@ -68,7 +68,10 @@
         /// </summary>
         public void CountBeastie()
         {
-
+            ++this.Count;
+            this.RaisePropertyChangedEvent(nameof(this.Count));
+            this.RaisePropertyChangedEvent(nameof(this.Percentage));
+            this.RaisePropertyChangedEvent(nameof(this.PercentageString));
         }
 
         /// <summary>
@@ -77,7 +80,10 @@
         /// </summary>
         public void AssessBeastie()
         {
-
+            ++this.Total;
+            this.RaisePropertyChangedEvent(nameof(this.Total));
+            this.RaisePropertyChangedEvent(nameof(this.Percentage));
+            this.RaisePropertyChangedEvent(nameof(this.PercentageString));
         }
     }
 }
