@@ -45,23 +45,12 @@
         /// Gets the totla number of times this beastie has been counted as a percentage of the
         /// number of times it has been assessed. 
         /// </summary>
-        public double Percentage
-        {
-            get
-            {
-                if (this.Total == 0)
-                {
-                    return 0;
-                }
-
-                return this.Count / this.Total;
-            }
-        }
+        public double Percentage { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="Percentage"/> as a string.
         /// </summary>
-        public string PercentageString => string.Format("{0:0.00}", this.Percentage);
+        public string PercentageString { get; private set; }
 
         /// <summary>
         /// Count the beastie.
@@ -70,8 +59,7 @@
         {
             ++this.Count;
             this.RaisePropertyChangedEvent(nameof(this.Count));
-            this.RaisePropertyChangedEvent(nameof(this.Percentage));
-            this.RaisePropertyChangedEvent(nameof(this.PercentageString));
+            this.CalculatePercentage();
         }
 
         /// <summary>
@@ -82,6 +70,25 @@
         {
             ++this.Total;
             this.RaisePropertyChangedEvent(nameof(this.Total));
+            this.CalculatePercentage();
+        }
+
+        /// <summary>
+        /// Calculate the percentage properties.
+        /// </summary>
+        private void CalculatePercentage()
+        {
+            if (this.Total == 0)
+            {
+                this.Percentage = 0;
+            }
+            else
+            {
+                this.Percentage = (double)this.Count / (double)this.Total * (double)100;
+            }
+
+            this.PercentageString = string.Format("{0:0.00}", this.Percentage);
+
             this.RaisePropertyChangedEvent(nameof(this.Percentage));
             this.RaisePropertyChangedEvent(nameof(this.PercentageString));
         }

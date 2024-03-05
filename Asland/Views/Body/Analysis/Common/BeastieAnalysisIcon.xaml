@@ -10,6 +10,7 @@
 
     <UserControl.Resources>
         <converters:PresenceToBrushConverter x:Key="PresenceConverter"/>
+        <converters:PercentageConverter x:Key="PercentageConverter"/>
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
@@ -49,8 +50,11 @@
                  BorderBrush="{StaticResource StdDataEntryBackgroundColour}"
                  BorderThickness="1">
 
-            <Grid Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
+            <Grid
+                x:Name="CounterGrid"
+                Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
@@ -60,6 +64,17 @@
                     HorizontalAlignment="Center"
                     Text="{Binding Path=Count}"/>
 
+                <Rectangle 
+                    Grid.Row="1"
+                    Fill="HotPink"
+                    Height="20">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentageConverter}">
+                            <Binding Path="Percentage"/>
+                            <Binding ElementName="CounterGrid" Path="ActualWidth"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
             </Grid>
         </Border>
     </StackPanel>
