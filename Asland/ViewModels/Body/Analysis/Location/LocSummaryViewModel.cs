@@ -65,6 +65,7 @@
             beastie2.AssessBeastie();
             beastie2.AssessBeastie();
             beastie2.CountBeastie();
+            beastie2.AssessBeastie();
             beastie3.AssessBeastie();
             beastie3.CountBeastie();
 

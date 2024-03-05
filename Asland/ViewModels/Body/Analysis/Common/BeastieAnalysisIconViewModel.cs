@@ -29,6 +29,7 @@
         {
             this.Count = 0;
             this.Total = 0;
+            this.PercentageString = "0.00%";
         }
 
         /// <summary>
@@ -81,13 +82,14 @@
             if (this.Total == 0)
             {
                 this.Percentage = 0;
+                this.PercentageString = "0.00%";
             }
             else
             {
                 this.Percentage = (double)this.Count / (double)this.Total * (double)100;
+                this.PercentageString = $"{string.Format("{0:0.00}", this.Percentage)}%";
             }
 
-            this.PercentageString = string.Format("{0:0.00}", this.Percentage);
 
             this.RaisePropertyChangedEvent(nameof(this.Percentage));
             this.RaisePropertyChangedEvent(nameof(this.PercentageString));
