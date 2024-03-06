@@ -58,7 +58,7 @@
             IBeastieAnalysisIconViewModel beastie3 =
                 new BeastieAnalysisIconViewModel(
                     "Beastie3",
-                    "BeastieI4",
+                    "BeastieI3",
                     "",
                     Asland.Common.Enums.Presence.NonBreeding);
 

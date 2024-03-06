@@ -53,32 +53,13 @@
             <Grid
                 x:Name="CounterGrid"
                 Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock 
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    FontWeight="Bold"
-                    HorizontalAlignment="Center"
-                    Text="{Binding Path=Count}"/>
-
-                <TextBlock 
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    FontWeight="Bold"
-                    HorizontalAlignment="Center"
-                    Text="{Binding Path=PercentageString}"/>
-
                 <Rectangle 
                     HorizontalAlignment="Left"
-                    Grid.Row="1"
                     Fill="HotPink"
                     Height="20"
                     Grid.ColumnSpan="2">
@@ -89,6 +70,18 @@
                         </MultiBinding>
                     </Rectangle.Width>
                 </Rectangle>
+
+                <TextBlock 
+                    Grid.Column="0"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Path=Count}"/>
+
+                <TextBlock 
+                    Grid.Column="1"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Path=PercentageString}"/>
             </Grid>
         </Border>
     </StackPanel>
