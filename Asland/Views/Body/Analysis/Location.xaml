@@ -61,7 +61,7 @@
         
         <location:LocSummary 
             Grid.Row="1" 
-            Background="YellowGreen"
+            Background="{StaticResource StdBackground}"
             DataContext="{Binding Path=Summary}"/>
     </Grid>
 </UserControl>

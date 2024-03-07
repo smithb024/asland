@@ -52,7 +52,7 @@
 
             <Grid
                 x:Name="CounterGrid"
-                Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
+                Background="{StaticResource LightBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -60,7 +60,7 @@
 
                 <Rectangle 
                     HorizontalAlignment="Left"
-                    Fill="HotPink"
+                    Fill="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}"
                     Height="20"
                     Grid.ColumnSpan="2">
                     <Rectangle.Width>
