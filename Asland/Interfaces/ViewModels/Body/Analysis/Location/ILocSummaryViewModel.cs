@@ -1,5 +1,9 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Location
 {
+    using Asland.Interfaces.ViewModels.Body.Analysis.Common;
+    using Asland.Interfaces.ViewModels.Body.Reports;
+    using System.Collections.ObjectModel;
+
     /// <summary>
     /// Interface which supports the summary view on the location analysis page.
     /// </summary>
@@ -14,6 +18,11 @@
         /// Gets the number of times the location has been visited.
         /// </summary>
         int Count { get; }
+
+        /// <summary>
+        /// Gets the beasties present in the analysis.
+        /// </summary>
+        ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
 
         /// <summary>
         /// Sets a new location for which to display a new set of summary data.

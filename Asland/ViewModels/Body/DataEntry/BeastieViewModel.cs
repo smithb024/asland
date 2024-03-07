@@ -3,12 +3,12 @@
     using System;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.Common.Enums;
-    using NynaeveLib.ViewModel;
+    using Asland.ViewModels.Body.Common;
 
     /// <summary>
     /// View model used to describe a single beastie for display on the raw data entry view.
     /// </summary>
-    public class BeastieViewModel : ViewModelBase, IBeastieViewModel
+    public class BeastieViewModel : BeastieIconBaseViewModel, IBeastieViewModel
     {
         /// <summary>
         /// Set the beastie as observed in the model.
@@ -53,43 +53,16 @@
             bool isSelected,
             Action<string, bool, bool> setObservation,
             bool isSeen)
+            : base(
+                  commonName,
+                  latinName,
+                  imagePath,
+                  presence)
         {
-            this.CommonName = commonName;
-            this.LatinName = latinName;
-            this.Presence = presence;
             this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
-
-            if (string.IsNullOrEmpty(imagePath))
-            {
-                this.ImagePath = $"{DataPath.BasePath}\\Sample.png";
-            }
-            else
-            {
-                this.ImagePath = $"{DataPath.ImageDataPath}\\{imagePath}";
-            }
         }
-
-        /// <summary>
-        /// Gets the name of the beastie.
-        /// </summary>
-        public string CommonName { get; }
-
-        /// <summary>
-        /// Gets the (latin) name of the beastie.
-        /// </summary>
-        public string LatinName { get; }
-
-        /// <summary>
-        /// Gets the path to an image of the beastie.
-        /// </summary>
-        public string ImagePath { get; }
-
-        /// <summary>
-        /// Gets a value which indicates the residential status of the beastie.
-        /// </summary>
-        public Presence Presence { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the beastie has been selected.

@@ -1,10 +1,15 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Location
 {
     using Asland.Interfaces.Factories;
+    using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
+    using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Model.IO;
+    using Asland.ViewModels.Body.Analysis.Common;
+    using Asland.ViewModels.Body.Reports;
     using NynaeveLib.Logger;
     using NynaeveLib.ViewModel;
+    using System.Collections.ObjectModel;
     using System.Threading;
 
     /// <summary>
@@ -37,6 +42,41 @@
             this.locationSearchFactory = search;
             this.name = string.Empty;
             this.count = 0;
+
+            IBeastieAnalysisIconViewModel beastie1 =
+                new BeastieAnalysisIconViewModel(
+                    "Beastie1",
+                    "BeastieI1",
+                    "",
+                    Asland.Common.Enums.Presence.Breeding);
+            IBeastieAnalysisIconViewModel beastie2 =
+                new BeastieAnalysisIconViewModel(
+                    "Beastie2",
+                    "BeastieI2",
+                    "",
+                    Asland.Common.Enums.Presence.Hibernates);
+            IBeastieAnalysisIconViewModel beastie3 =
+                new BeastieAnalysisIconViewModel(
+                    "Beastie3",
+                    "BeastieI3",
+                    "",
+                    Asland.Common.Enums.Presence.NonBreeding);
+
+            beastie2.AssessBeastie();
+            beastie2.AssessBeastie();
+            beastie2.CountBeastie();
+            beastie2.AssessBeastie();
+            beastie2.CountBeastie();
+            beastie3.AssessBeastie();
+            beastie3.CountBeastie();
+
+            this.Beasties =
+                new ObservableCollection<IBeastieAnalysisIconViewModel>
+                {
+                    beastie1,
+                    beastie2,
+                    beastie3
+                };
         }
 
         /// <summary>
@@ -74,6 +114,12 @@
                 this.RaisePropertyChangedEvent(nameof(this.Count));
             }
         }
+
+        /// <summary>
+        /// Gets the beasties present in the analysis.
+        /// </summary>
+        public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
+
 
         /// <summary>
         /// Sets a new location for which to display a new set of summary data.

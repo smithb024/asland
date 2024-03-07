@@ -79,6 +79,7 @@
     </ApplicationDefinition>
     <Compile Include="AsLogger.cs" />
     <Compile Include="Common\Converters\IntensityToBrushConverter.cs" />
+    <Compile Include="Common\Converters\PercentageConverter.cs" />
     <Compile Include="Common\Converters\PresenceToBrushConverter.cs" />
     <Compile Include="Common\Enums\MainViews.cs" />
     <Compile Include="Common\Enums\ObservationHabitat.cs" />
@@ -102,10 +103,12 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IYearViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\ILocationViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Common\IBeastieIconBaseViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Configuration\IBeastieConfigurationViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieEntry.cs" />
     <Compile Include="Interfaces\ViewModels\Body\DataEntry\IBeastieViewModel.cs" />
@@ -143,10 +146,12 @@
     <Compile Include="Model\IO\TypeString.cs" />
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Location\LocSummaryViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\LocationViewModel.cs" />
     <Compile Include="ViewModels\Body\BodyViewModel.cs" />
+    <Compile Include="ViewModels\Body\Common\BeastieIconBaseViewModel.cs" />
     <Compile Include="ViewModels\Body\ConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\Configuration\BeastieConfigurationViewModel.cs" />
     <Compile Include="ViewModels\Body\ConsistencyViewModel.cs" />
@@ -175,6 +180,9 @@
     </Compile>
     <Compile Include="Views\Body\Analysis\Beastie.xaml.cs">
       <DependentUpon>Beastie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
+      <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Analysis\Location.xaml.cs">
       <DependentUpon>Location.xaml</DependentUpon>
@@ -259,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Beastie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
