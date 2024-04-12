@@ -25,6 +25,11 @@
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
 
         /// <summary>
+        /// Gets the dates of visits to the location.
+        /// </summary>
+        ObservableCollection<string> Dates { get; }
+
+        /// <summary>
         /// Sets a new location for which to display a new set of summary data.
         /// </summary>
         /// <param name="name">The name of the new location</param>

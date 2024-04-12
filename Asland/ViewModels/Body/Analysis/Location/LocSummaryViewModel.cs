@@ -42,6 +42,7 @@
             this.locationSearchFactory = search;
             this.name = string.Empty;
             this.count = 0;
+            this.Dates = new ObservableCollection<string>();
 
             IBeastieAnalysisIconViewModel beastie1 =
                 new BeastieAnalysisIconViewModel(
@@ -120,6 +121,10 @@
         /// </summary>
         public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
 
+        /// <summary>
+        /// Gets the dates of visits to the location.
+        /// </summary>
+        public ObservableCollection<string> Dates { get; }
 
         /// <summary>
         /// Sets a new location for which to display a new set of summary data.
@@ -129,6 +134,7 @@
         {
             this.Name = name;
             this.Count = 0;
+            this.Dates.Clear();
             this.locationSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
@@ -143,6 +149,7 @@
         private void ActionUpdate(RawObservationsString observation)
         {
             ++this.Count;
+            this.Dates.Add(observation.Date);
         }
     }
 }
