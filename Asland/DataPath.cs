@@ -4,7 +4,7 @@
     /// Holds the global base path location.
     /// </summary>
     /// <remarks>
-    /// Temporary file: this data should be configurable. This will be done later.
+    /// Temporary file: this data should be configurable. #58.
     /// </remarks>
     public static class DataPath
     {
