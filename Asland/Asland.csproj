@@ -144,6 +144,7 @@
     <Compile Include="Model\IO\RawObservations.cs" />
     <Compile Include="Model\IO\RawObservationsString.cs" />
     <Compile Include="Model\IO\TypeString.cs" />
+    <Compile Include="PathManager.cs" />
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
