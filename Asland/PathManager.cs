@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Asland
+﻿namespace Asland
 {
-    public class PathManager
+    using Asland.Interfaces;
+
+    /// <summary>
+    /// The Manager class which manages the path data.
+    /// </summary>
+    public class PathManager : IPathManager
     {
+        public PathManager()
+        {
+        }
     }
 }

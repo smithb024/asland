@@ -47,9 +47,11 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IBeastieSearchFactory>();
             SimpleIoc.Default.Unregister<IDataManager>();
 
+            SimpleIoc.Default.Unregister<IPathManager>();
             SimpleIoc.Default.Unregister<IAsLogger>();
 
             SimpleIoc.Default.Register<IAsLogger, AsLogger>();
+            SimpleIoc.Default.Register<IPathManager, PathManager>();
             SimpleIoc.Default.Register<ILocationSearchFactory, LocationSearchFactory>();
 
             SimpleIoc.Default.Register<IDataManager, DataManager>();

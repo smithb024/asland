@@ -100,6 +100,7 @@
     <Compile Include="Interfaces\Factories\IBeastieSearchFactory.cs" />
     <Compile Include="Interfaces\Factories\ILocationSearchFactory.cs" />
     <Compile Include="Interfaces\IAsLogger.cs" />
+    <Compile Include="Interfaces\IPathManager.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
