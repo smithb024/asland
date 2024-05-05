@@ -13,7 +13,12 @@
         /// <summary>
         /// The name of the file which contains the data's base path.
         /// </summary>
-        private string pathFileName = ".\\aslandPath.txt";
+        private const string pathFileName = ".\\aslandPath.txt";
+
+        /// <summary>
+        /// The location of all raw data files.
+        /// </summary>
+        private string basePath;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="PathManager"/> class.
@@ -30,7 +35,9 @@
                 {
                     using (StreamReader reader = new StreamReader(pathFileName))
                     {
-                        string currentLine = reader.ReadLine();
+                        this.basePath = reader.ReadLine();
+                        logger.WriteLine(
+                            string.Format($"Base path read: {this.basePath}"));
                     }
                 }
 
@@ -38,8 +45,23 @@
             catch (Exception ex)
             {
                 logger.WriteLine(
-                    string.Format("Error, failed to read {0}: {1}", pathFileName, ex.ToString()));
+                    string.Format($"Error, failed to read {pathFileName}: {ex}"));
             }
         }
+
+        /// <summary>
+        /// Gets the location of all beastie data files.
+        /// </summary>
+        public string BeastieDataPath => $"{this.basePath}\\beasties";
+
+        /// <summary>
+        /// Gets the location of all raw data files.
+        /// </summary>
+        public string RawDataPath => $"{this.basePath}\\raw";
+
+        /// <summary>
+        /// Gets the location of all image files.
+        /// </summary>
+        public string ImageDataPath => $"{this.basePath}\\images";
     }
 }
