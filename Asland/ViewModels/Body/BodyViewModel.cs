@@ -3,6 +3,7 @@
     using Asland.Common.Enums;
     using Asland.Common.Messages;
     using Asland.Interfaces;
+    using Asland.Interfaces.Common.Utils;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.Model.IO.DataEntry;
@@ -58,13 +59,15 @@
         /// <param name="logger">the logger</param>
         /// <param name="locationSearch">the location search factory</param>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="yearSearcher">the year searcher</param>
         public BodyViewModel(
             IEventEntry dataEntryModel,
             IDataManager dataModel,
             IBeastieDataFileFactory fileFactory,
             IAsLogger logger,
             ILocationSearchFactory locationSearch,
-            IPathManager pathManager)
+            IPathManager pathManager,
+            IYearSearcher yearSearcher)
         {
             this.configurationViewModel = 
                 new ConfigurationViewModel(
@@ -77,6 +80,7 @@
             this.reportsViewModel =
                 new ReportsViewModel(
                     pathManager,
+                    yearSearcher,
                     dataModel,
                     logger);
             this.dataEntryViewModel =

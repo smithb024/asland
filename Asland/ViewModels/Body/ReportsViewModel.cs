@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Asland.Interfaces;
+    using Asland.Interfaces.Common.Utils;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.Reports;
@@ -41,12 +42,14 @@
         /// Initialises a new instance of the <see cref="ReportsViewModel"/> class.
         /// </summary>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="yearSearcher">the year searcher</param>
         /// <param name="dataModel">
         /// The model object containing data set. 
         /// </param>
         /// <param name="logger">the logger</param>
         public ReportsViewModel(
             IPathManager pathManager,
+            IYearSearcher yearSearcher,
             IDataManager dataModel,
             IAsLogger logger)
         {
@@ -54,6 +57,7 @@
             this.calendarViewModel = 
                 new CalendarViewModel(
                     logger,
+                    yearSearcher,
                     this.OpenEvent);
             this.eventReportViewModel =
                 new EventReportViewModel(
