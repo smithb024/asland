@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using System.Collections.Generic;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body;
@@ -32,21 +33,30 @@
         private readonly IBeastieDataFileFactory fileFactory;
 
         /// <summary>
+        /// The path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="ConfigurationViewModel"/> class.
         /// </summary>
         /// <param name="dataManager">data manager</param>
         /// <param name="fileFactory">beastie file factory</param>
+        /// <param name="pathManager">the path manager</param>
         public ConfigurationViewModel(
             IDataManager dataManager,
-            IBeastieDataFileFactory fileFactory)
+            IBeastieDataFileFactory fileFactory,
+            IPathManager pathManager)
         {
             this.dataManager = dataManager;
             this.fileFactory = fileFactory;
+            this.pathManager = pathManager;
 
             this.CurrentWorkspace =
                 new BeastieConfigurationViewModel(
                     dataManager,
-                    fileFactory);
+                    fileFactory,
+                    this.pathManager);
 
             this.PopulatePageSelector(ConfigureBeastie);
         }
@@ -98,7 +108,8 @@
                     this.CurrentWorkspace = 
                         new BeastieConfigurationViewModel(
                             this.dataManager,
-                            this.fileFactory);
+                            this.fileFactory,
+                            this.pathManager);
                     this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
                 }
             }

@@ -1,5 +1,4 @@
-﻿
-namespace Asland.ViewModels.Body
+﻿namespace Asland.ViewModels.Body
 {
     using Asland.Common.Enums;
     using Asland.Common.Messages;
@@ -58,29 +57,37 @@ namespace Asland.ViewModels.Body
         /// <param name="fileFactory">beastie file factory</param>
         /// <param name="logger">the logger</param>
         /// <param name="locationSearch">the location search factory</param>
+        /// <param name="pathManager">the path manager</param>
         public BodyViewModel(
             IEventEntry dataEntryModel,
             IDataManager dataModel,
             IBeastieDataFileFactory fileFactory,
             IAsLogger logger,
-            ILocationSearchFactory locationSearch)
+            ILocationSearchFactory locationSearch,
+            IPathManager pathManager)
         {
             this.configurationViewModel = 
                 new ConfigurationViewModel(
                     dataModel,
-                    fileFactory);
-            this.consistencyViewModel = new ConsistencyViewModel();
+                    fileFactory,
+                    pathManager);
+            this.consistencyViewModel = 
+                new ConsistencyViewModel(
+                    pathManager);
             this.reportsViewModel =
                 new ReportsViewModel(
+                    pathManager,
                     dataModel,
                     logger);
             this.dataEntryViewModel =
                 new DataEntryViewModel(
+                    pathManager,
                     dataEntryModel,
                     dataModel.FindBeastie);
             this.analysisViewModel =
                 new AnalysisViewModel(
-                    locationSearch);
+                    locationSearch,
+                    pathManager);
 
             this.currentView = this.dataEntryViewModel;
 

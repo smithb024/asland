@@ -50,6 +50,11 @@
         }
 
         /// <summary>
+        /// Gets the base path.
+        /// </summary>
+        public string BasePath => $"{this.basePath}";
+
+        /// <summary>
         /// Gets the location of all beastie data files.
         /// </summary>
         public string BeastieDataPath => $"{this.basePath}\\beasties";

@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Windows.Input;
     using Asland.Common.Enums;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Configuration;
@@ -24,6 +25,11 @@
         /// Factory class used to save 
         /// </summary>
         private readonly IBeastieDataFileFactory fileFactory;
+
+        /// <summary>
+        /// The path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
 
         /// <summary>
         /// The index of the currently selected index.
@@ -115,20 +121,23 @@
         /// </summary>
         /// <param name="dataManager">data manager</param>
         /// <param name="fileFactory">beastie file factory</param>
+        /// <param name="pathManager">the path manager</param>
         public BeastieConfigurationViewModel(
             IDataManager dataManager,
-            IBeastieDataFileFactory fileFactory)
+            IBeastieDataFileFactory fileFactory,
+            IPathManager pathManager)
         {
             this.beastieIndex = -1;
             this.beastieImageListIndex = -1;
             this.dataManager = dataManager;
             this.fileFactory = fileFactory;
+            this.pathManager = pathManager;
             this.BeastieImageList = new ObservableCollection<string>();
             this.PresenceList = new ObservableCollection<Presence>();
 
             string[] imageFileNamesRaw =
                 System.IO.Directory.GetFiles(
-                    DataPath.ImageDataPath);
+                    this.pathManager.ImageDataPath);
 
             foreach (string file in imageFileNamesRaw)
             {
@@ -242,7 +251,7 @@
         /// <summary>
         /// Gets the path to the selected image.
         /// </summary>
-        public string ImagePath => $"{DataPath.ImageDataPath}\\{this.BeastieImageList[this.BeastieImageListIndex]}";
+        public string ImagePath => $"{this.pathManager.ImageDataPath}\\{this.BeastieImageList[this.BeastieImageListIndex]}";
 
         /// <summary>
         /// Gets or sets the beastie's size.

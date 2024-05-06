@@ -27,15 +27,24 @@
         private IDataManager dataManager;
 
         /// <summary>
+        /// The path manager.
+        /// </summary>
+        private IPathManager pathManager;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="BeastieDataFileFactory"/> class.
         /// </summary>
+        /// <param name="logger">The program logger</param>
         /// <param name="dataManager">The data manager</param>
+        /// <param name="pathManager">The path manager</param>
         public BeastieDataFileFactory(
             IAsLogger logger,
-            IDataManager dataManager)
+            IDataManager dataManager,
+            IPathManager pathManager)
         {
             this.logger = logger;
             this.dataManager = dataManager;
+            this.pathManager = pathManager;
             this.LoadAll();
         }
 
@@ -102,7 +111,7 @@
                 return;
             }
 
-            string path = $"{DataPath.BeastieDataPath}";
+            string path = $"{this.pathManager.BeastieDataPath}";
 
             if (!Directory.Exists(path))
             {
@@ -131,7 +140,7 @@
         {
             try
             {
-                return File.Exists($"{DataPath.BeastieDataPath}\\{name}.xml");
+                return File.Exists($"{this.pathManager.BeastieDataPath}\\{name}.xml");
             }
             catch (Exception ex)
             {
@@ -146,7 +155,7 @@
         /// </summary>
         private void LoadAll()
         {
-            string path = $"{DataPath.BeastieDataPath}";
+            string path = $"{this.pathManager.BeastieDataPath}";
             string[] xmlFiles;
 
             if (!Directory.Exists(path))

@@ -40,11 +40,13 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ReportsViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">
         /// The model object containing data set. 
         /// </param>
         /// <param name="logger">the logger</param>
         public ReportsViewModel(
+            IPathManager pathManager,
             IDataManager dataModel,
             IAsLogger logger)
         {
@@ -55,6 +57,7 @@
                     this.OpenEvent);
             this.eventReportViewModel =
                 new EventReportViewModel(
+                    pathManager,
                     dataModel.FindBeastie);
 
             this.CurrentWorkspace = this.calendarViewModel;

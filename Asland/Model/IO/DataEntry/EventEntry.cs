@@ -16,6 +16,11 @@
     public class EventEntry : IEventEntry
     {
         /// <summary>
+        /// The path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// The page data from the configuration file.
         /// </summary>
         private readonly BeastiePages rawPageData;
@@ -30,15 +35,18 @@
         /// </summary>
         /// <param name="dataFileFactory">Data file factory</param>
         /// <param name="logger">the logger</param>
+        /// <param name="pathManager">the path manager</param>
         public EventEntry(
             IBeastieDataFileFactory dataFileFactory,
-            IAsLogger logger)
+            IAsLogger logger,
+            IPathManager pathManager)
         {
             this.Observations = new ObservationManager();
             this.logger = logger;
+            this.pathManager = pathManager;
             this.rawPageData =
                 XmlFileIo.ReadXml<BeastiePages>(
-                    $"{DataPath.BasePath}\\TestDataEntry.xml");
+                    $"{this.pathManager.IndexPath}");
 
             // Ensure that all data files exist.
             List<string> beastieNames = new List<string>();
@@ -76,7 +84,7 @@
                 return false;
             }
 
-            string path = $"{DataPath.RawDataPath}\\{this.Observations.Year}";
+            string path = $"{this.pathManager.RawDataPath}\\{this.Observations.Year}";
 
             if (!Directory.Exists(path))
             {
