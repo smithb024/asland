@@ -63,5 +63,10 @@
         /// Gets the location of all image files.
         /// </summary>
         public string ImageDataPath => $"{this.basePath}\\images";
+
+        /// <summary>
+        /// Gets the location of the index file.
+        /// </summary>
+        public string IndexPath => $"{this.basePath}\\TestDataEntry.xml";
     }
 }
