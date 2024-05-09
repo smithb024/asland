@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body
 {
     using Asland.Factories.IO;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Common;
     using Asland.Model.IO;
@@ -17,9 +18,11 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="ConsistencyViewModel"/> class.
         /// </summary>
-        public ConsistencyViewModel()
+        /// <param name="pathManager">the path manager</param>
+        public ConsistencyViewModel(
+            IPathManager pathManager)
         {
-            string basePath = DataPath.RawDataPath;
+            string basePath = pathManager.RawDataPath;
 
             this.LocationCollection = new ComponentCounterCollectionViewModel("Locations");
             this.LengthCollection = new ComponentCounterCollectionViewModel("Length");

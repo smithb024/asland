@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Location
 {
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
@@ -36,8 +37,10 @@
         /// Initialises a new instance of the <see cref="LocSummaryViewModel"/> class.
         /// </summary>
         /// <param name="search">the search factory</param>
+        /// <param name="pathManager">the path manager</param>
         public LocSummaryViewModel(
-            ILocationSearchFactory search)
+            ILocationSearchFactory search,
+            IPathManager pathManager)
         {
             this.locationSearchFactory = search;
             this.name = string.Empty;
@@ -46,18 +49,21 @@
 
             IBeastieAnalysisIconViewModel beastie1 =
                 new BeastieAnalysisIconViewModel(
+                    pathManager,
                     "Beastie1",
                     "BeastieI1",
                     "",
                     Asland.Common.Enums.Presence.Breeding);
             IBeastieAnalysisIconViewModel beastie2 =
                 new BeastieAnalysisIconViewModel(
+                    pathManager,
                     "Beastie2",
                     "BeastieI2",
                     "",
                     Asland.Common.Enums.Presence.Hibernates);
             IBeastieAnalysisIconViewModel beastie3 =
                 new BeastieAnalysisIconViewModel(
+                    pathManager,
                     "Beastie3",
                     "BeastieI3",
                     "",

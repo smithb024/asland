@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
     using Asland.Factories.IO;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
@@ -58,12 +59,14 @@
         /// Initialises a new instance of the <see cref="LocationViewModel"/> class.
         /// </summary>
         /// <param name="search">The search factory.</param>
+        /// <param name="pathManager">the path manager</param>
         public LocationViewModel(
-            ILocationSearchFactory search)
+            ILocationSearchFactory search,
+            IPathManager pathManager)
         {
             this.locations = new ObservableCollection<string>();
 
-            string basePath = DataPath.RawDataPath;
+            string basePath = pathManager.RawDataPath;
             string[] subdirectoryEntries = Directory.GetDirectories(basePath);
 
             try
@@ -98,7 +101,10 @@
                 Console.WriteLine(ex.ToString());
             }
 
-            this.Summary = new LocSummaryViewModel(search);
+            this.Summary = 
+                new LocSummaryViewModel(
+                    search,
+                    pathManager);
             this.displayedLocations = this.locations;
             this.selectedLocationIndex = -1;
         }

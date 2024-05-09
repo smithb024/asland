@@ -4,6 +4,7 @@
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.Common.Enums;
     using Asland.ViewModels.Body.Common;
+    using Asland.Interfaces;
 
     /// <summary>
     /// View model used to describe a single beastie for display on the raw data entry view.
@@ -28,6 +29,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="commonName">common name</param>
         /// <param name="latinName">latin name</param>
         /// <param name="imagePath">
@@ -46,6 +48,7 @@
         /// Indicates whether this observation is seen or heard.
         /// </param>
         public BeastieViewModel(
+            IPathManager pathManager,
             string commonName,
             string latinName,
             string imagePath,
@@ -54,6 +57,7 @@
             Action<string, bool, bool> setObservation,
             bool isSeen)
             : base(
+                  pathManager,
                   commonName,
                   latinName,
                   imagePath,

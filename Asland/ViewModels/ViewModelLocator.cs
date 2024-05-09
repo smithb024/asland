@@ -14,6 +14,8 @@ namespace Asland.ViewModels
     using GalaSoft.MvvmLight.Ioc;
     using ViewModels.Body;
     using ViewModels.Ribbon;
+    using Asland.Interfaces.Common.Utils;
+    using Asland.Common.Utils;
 
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -47,9 +49,13 @@ namespace Asland.ViewModels
             SimpleIoc.Default.Unregister<IBeastieSearchFactory>();
             SimpleIoc.Default.Unregister<IDataManager>();
 
+            SimpleIoc.Default.Unregister<IPathManager>();
+            SimpleIoc.Default.Unregister<IYearSearcher>();
             SimpleIoc.Default.Unregister<IAsLogger>();
 
             SimpleIoc.Default.Register<IAsLogger, AsLogger>();
+            SimpleIoc.Default.Register<IYearSearcher, YearSearcher>();
+            SimpleIoc.Default.Register<IPathManager, PathManager>();
             SimpleIoc.Default.Register<ILocationSearchFactory, LocationSearchFactory>();
 
             SimpleIoc.Default.Register<IDataManager, DataManager>();

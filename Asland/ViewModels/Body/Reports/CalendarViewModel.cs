@@ -5,9 +5,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using Asland.Common.Messages;
-    using Asland.Common.Utils;
     using Asland.Factories.IO;
     using Asland.Interfaces;
+    using Asland.Interfaces.Common.Utils;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Common;
     using Asland.Model.IO;
@@ -20,6 +20,21 @@
     /// </summary>
     public class CalendarViewModel : ViewModelBase, ICalendarViewModel
     {
+        /// <summary>
+        /// The logger.
+        /// </summary>
+        private readonly IAsLogger logger;
+
+        /// <summary>
+        /// The year searcher.
+        /// </summary>
+        private readonly IYearSearcher yearSearcher;
+
+        /// <summary>
+        /// Command used to open a new event.
+        /// </summary>
+        private readonly Action<string> openEventCommand;
+
         /// <summary>
         /// The index of the currently selected year.
         /// </summary>
@@ -36,29 +51,22 @@
         private Dictionary<string, int> monthDictionary = new Dictionary<string, int>();
 
         /// <summary>
-        /// The logger.
-        /// </summary>
-        private readonly IAsLogger logger;
-
-        /// <summary>
-        /// Command used to open a new event.
-        /// </summary>
-        private readonly Action<string> openEventCommand;
-
-        /// <summary>
         /// Initialises a new instance of the <see cref="CalendarViewModel"/> class.
         /// </summary>
         /// <param name="logger">the logger</param>
+        /// <param name="yearSearcher">the year searcher</param>
         /// <param name="openEventCommand">
         /// Command used to open an event.
         /// </param>
         public CalendarViewModel(
             IAsLogger logger,
+            IYearSearcher yearSearcher,
             Action<string> openEventCommand)
         {
             this.logger = logger;
+            this.yearSearcher = yearSearcher;
             this.openEventCommand = openEventCommand;
-            this.Years = YearSearcher.FindRawYears();
+            this.Years = this.yearSearcher.FindRawYears();
             this.MonthSelector = new ObservableCollection<IPageSelector>();
             this.Events = new ObservableCollection<ICalendarItem>();
 
@@ -202,7 +210,7 @@
         private List<string> FindEventPaths()
         {
             List<string> paths =
-                YearSearcher.FindAllRawObservationsInAMonth(
+                this.yearSearcher.FindAllRawObservationsInAMonth(
                     this.Years[this.YearsIndex],
                     this.monthDictionary[this.currentMonth]);
 

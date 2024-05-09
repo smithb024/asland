@@ -5,6 +5,7 @@
     using System.Windows.Forms;
     using System.Windows.Input;
     using Asland.Common.Enums;
+    using Asland.Interfaces;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
@@ -34,6 +35,11 @@
         private readonly Func<string, Beastie> getBeastie;
 
         /// <summary>
+        /// The path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// Associated data entry model.
         /// </summary>
         private IEventEntry dataEntryModel;
@@ -61,6 +67,7 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="DataEntryViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="model">
         ///  The associated model object.
         /// </param>
@@ -68,15 +75,18 @@
         /// The function used to return a specific beastie from the data model.
         /// </param>
         public DataEntryViewModel(
+            IPathManager pathManager,
             IEventEntry model,
             Func<string, Beastie> getBeastie)
         {
             bool isSeen = true;
+            this.pathManager = pathManager;
             this.dataEntryModel = model;
             this.getBeastie = getBeastie;
             this.observations = model.Observations;
             this.beastieEntryViewModel =
                 new BeastieEntryViewModel(
+                    this.pathManager,
                     this.observations.SetBeastie,
                     isSeen);
             this.detailsViewModel = 
@@ -173,7 +183,7 @@
             OpenFileDialog dialog = new OpenFileDialog();
 
 
-            dialog.InitialDirectory = DataPath.RawDataPath;
+            dialog.InitialDirectory = this.pathManager.RawDataPath;
             dialog.Filter = "xml files (*.xml)|*.xml";
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -261,6 +271,7 @@
             this.observations = dataEntryModel.Observations;
             this.beastieEntryViewModel =
                 new BeastieEntryViewModel(
+                    this.pathManager,
                     this.observations.SetBeastie,
                     isSeen);
 

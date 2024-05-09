@@ -3,6 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
     using Asland.Common.Enums;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using GalaSoft.MvvmLight;
 
@@ -11,6 +12,11 @@
     /// </summary>
     public class BeastieEntryViewModel : ViewModelBase, IBeastieEntry
     {
+        /// <summary>
+        /// The path manager
+        /// </summary>
+        private readonly IPathManager pathManager;
+
         /// <summary>
         /// Set the beastie as observed in the model.
         /// </summary>
@@ -24,14 +30,17 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieEntryViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="setObservation">
         /// Action used to set an observation in the model.
         /// </param>
         /// <param name="isSeen">Indicates whether the observations are seen or heard</param>
         public BeastieEntryViewModel(
+            IPathManager pathManager,
             Action<string, bool, bool> setObservation,
             bool isSeen)
         {
+            this.pathManager = pathManager;
             this.Beasties = new ObservableCollection<IBeastieViewModel>();
             this.setObservation = setObservation;
             this.isSeen = isSeen;
@@ -69,6 +78,7 @@
         {
             IBeastieViewModel newBeastie =
                 new BeastieViewModel(
+                    this.pathManager,
                     beastie,
                     latin,
                     imagePath,

@@ -1,12 +1,12 @@
 ﻿namespace Asland.Factories
 {
     using Asland.Factories.IO;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Model.IO;
     using NynaeveLib.Logger;
     using System;
     using System.IO;
-    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -14,6 +14,20 @@
     /// </summary>
     public class LocationSearchFactory : ILocationSearchFactory
     {
+        /// <summary>
+        /// The path Manager.
+        /// </summary>
+        private IPathManager pathManager;
+
+        /// <summary>
+        /// Initialises a new instance of the <see cref="IPathManager"/> class.
+        /// </summary>
+        /// <param name="pathManager">The path manager</param>
+        public LocationSearchFactory(IPathManager pathManager) 
+        {
+            this.pathManager = pathManager;
+        }
+
         /// <summary>
         /// Find and return data for a specific location.
         /// </summary>
@@ -30,7 +44,7 @@
                 // Get the collection of all files.
                 string[] subdirectoryEntries =
                     Directory.GetDirectories(
-                        DataPath.RawDataPath);
+                        this.pathManager.RawDataPath);
 
                 try
                 {

@@ -1,6 +1,7 @@
 ﻿namespace Asland.ViewModels.Body.Common
 {
     using Asland.Common.Enums;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.Common;
     using NynaeveLib.ViewModel;
 
@@ -13,11 +14,13 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieReportIconViewModel"/> class
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="commonName">the name of the beastie</param>
         /// <param name="latinName">the latin name of the beastie</param>
         /// <param name="imagePath">the path to the beastie's image</param>
         /// <param name="presence">the presence of the beastie in the locality</param>
         public BeastieIconBaseViewModel(
+            IPathManager pathManager,
             string commonName,
             string latinName,
             string imagePath,
@@ -29,11 +32,11 @@
 
             if (string.IsNullOrEmpty(imagePath))
             {
-                this.ImagePath = $"{DataPath.BasePath}\\Sample.png";
+                this.ImagePath = $"{pathManager.BasePath}\\Sample.png";
             }
             else
             {
-                this.ImagePath = $"{DataPath.ImageDataPath}\\{imagePath}";
+                this.ImagePath = $"{pathManager.ImageDataPath}\\{imagePath}";
             }
         }
 

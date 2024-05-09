@@ -9,6 +9,7 @@
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
     using System.Collections.Generic;
+    using Asland.Interfaces;
 
     /// <summary>
     /// View model which suports the analysis view.
@@ -50,8 +51,10 @@
         /// Initialises a new instance of the <see cref="AnalysisViewModel"/> class.
         /// </summary>
         /// <param name="locationSearch">The location search factory</param>
+        /// <param name="pathManager">the path manager</param>
         public AnalysisViewModel(
-            ILocationSearchFactory locationSearch)
+            ILocationSearchFactory locationSearch,
+            IPathManager pathManager)
         {
             this.PageSelector = new List<IPageSelector>();
             this.beastieViewModel =
@@ -59,7 +62,8 @@
                     );
             this.locationViewModel =
                 new LocationViewModel(
-                    locationSearch);
+                    locationSearch,
+                    pathManager);
             this.yearViewModel =
                 new YearViewModel(
                     );

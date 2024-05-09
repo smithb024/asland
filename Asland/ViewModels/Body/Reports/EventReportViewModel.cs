@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using Asland.Common.Enums;
     using Asland.Factories.IO;
+    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Model.IO;
     using Asland.Model.IO.Data;
@@ -15,6 +16,11 @@
     public class EventReportViewModel : ViewModelBase, IEventReportViewModel
     {
         /// <summary>
+        /// The path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// Function used to retrieve a specific beastie from the model.
         /// </summary>
         private readonly Func<string, Beastie> getBeastie;
@@ -22,12 +28,15 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="EventReportViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">the path manager</param>
         /// <param name="getBeastie">
         /// The function used to return a specific beastie from the data model.
         /// </param>
         public EventReportViewModel(
+            IPathManager pathManager,
             Func<string, Beastie> getBeastie)
         {
+            this.pathManager = pathManager;
             this.getBeastie = getBeastie;
 
             this.Location = string.Empty;
@@ -127,6 +136,7 @@
 
                 IBeastieReportIconViewModel beastieIcon =
                     new BeastieReportIconViewModel(
+                        this.pathManager,
                         modelBeastie.DisplayName,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,
@@ -141,6 +151,7 @@
 
                 IBeastieReportIconViewModel beastieIcon =
                     new BeastieReportIconViewModel(
+                        this.pathManager,
                         modelBeastie.DisplayName,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,
