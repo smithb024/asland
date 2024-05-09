@@ -13,7 +13,7 @@
         /// <summary>
         /// The name of the file which contains the data's base path.
         /// </summary>
-        private const string pathFileName = ".\\aslandPath.txt";
+        private const string PathFileName = ".\\aslandPath.txt";
 
         /// <summary>
         /// The location of all raw data files.
@@ -31,9 +31,9 @@
             {
                 List<string> fileContents = new List<string>();
 
-                if (File.Exists(pathFileName))
+                if (File.Exists(PathFileName))
                 {
-                    using (StreamReader reader = new StreamReader(pathFileName))
+                    using (StreamReader reader = new StreamReader(PathFileName))
                     {
                         this.basePath = reader.ReadLine();
                         logger.WriteLine(
@@ -45,7 +45,7 @@
             catch (Exception ex)
             {
                 logger.WriteLine(
-                    string.Format($"Error, failed to read {pathFileName}: {ex}"));
+                    string.Format($"Error, failed to read {PathFileName}: {ex}"));
             }
         }
 
