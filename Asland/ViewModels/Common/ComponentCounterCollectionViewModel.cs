@@ -27,6 +27,9 @@
         /// </summary>
         public ObservableCollection<IComponentCounterViewModel> Counters { get; private set; }
 
+        /// <summary>
+        /// Gets the number of counters.
+        /// </summary>
         public int Count => this.Counters.Count;
 
         /// <summary>
