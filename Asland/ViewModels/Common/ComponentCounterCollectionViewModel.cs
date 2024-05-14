@@ -11,6 +11,10 @@
     /// </summary>
     public class ComponentCounterCollectionViewModel : ViewModelBase, IComponentCounterCollectionViewModel
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="ComponentCounterCollectionViewModel"/> class.
+        /// </summary>
+        /// <param name="collectionName">collection name</param>
         public ComponentCounterCollectionViewModel(string collectionName)
         {
             this.Name = collectionName;
