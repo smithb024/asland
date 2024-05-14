@@ -11,6 +11,10 @@
     /// </summary>
     public class ComponentCounterCollectionViewModel : ViewModelBase, IComponentCounterCollectionViewModel
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="ComponentCounterCollectionViewModel"/> class.
+        /// </summary>
+        /// <param name="collectionName">collection name</param>
         public ComponentCounterCollectionViewModel(string collectionName)
         {
             this.Name = collectionName;
@@ -27,6 +31,9 @@
         /// </summary>
         public ObservableCollection<IComponentCounterViewModel> Counters { get; private set; }
 
+        /// <summary>
+        /// Gets the number of counters.
+        /// </summary>
         public int Count => this.Counters.Count;
 
         /// <summary>
