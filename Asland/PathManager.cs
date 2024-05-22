@@ -72,6 +72,6 @@
         /// <summary>
         /// Gets the location of the index file.
         /// </summary>
-        public string IndexPath => $"{this.basePath}\\TestDataEntry.xml";
+        public string IndexPath => $"{this.basePath}\\Index.xml";
     }
 }
