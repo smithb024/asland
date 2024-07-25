@@ -134,6 +134,9 @@
 
         /// <summary>
         /// Sets a new location for which to display a new set of summary data.
+        /// Request that the location search factory goes through and returns the contents of all
+        /// relevant locations files. These are returned one at a time via the 
+        /// <see cref="ActionUpdate(RawObservationsString)"/> method.
         /// </summary>
         /// <param name="name">The name of the new location</param>
         public void SetNewLocation(string name)
