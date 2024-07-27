@@ -47,43 +47,45 @@
             this.count = 0;
             this.Dates = new ObservableCollection<string>();
 
-            IBeastieAnalysisIconViewModel beastie1 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie1",
-                    "BeastieI1",
-                    "",
-                    Asland.Common.Enums.Presence.Breeding);
-            IBeastieAnalysisIconViewModel beastie2 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie2",
-                    "BeastieI2",
-                    "",
-                    Asland.Common.Enums.Presence.Hibernates);
-            IBeastieAnalysisIconViewModel beastie3 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie3",
-                    "BeastieI3",
-                    "",
-                    Asland.Common.Enums.Presence.NonBreeding);
+            //IBeastieAnalysisIconViewModel beastie1 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie1",
+            //        "BeastieI1",
+            //        "",
+            //        Asland.Common.Enums.Presence.Breeding);
+            //IBeastieAnalysisIconViewModel beastie2 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie2",
+            //        "BeastieI2",
+            //        "",
+            //        Asland.Common.Enums.Presence.Hibernates);
+            //IBeastieAnalysisIconViewModel beastie3 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie3",
+            //        "BeastieI3",
+            //        "",
+            //        Asland.Common.Enums.Presence.NonBreeding);
 
-            beastie2.AssessBeastie();
-            beastie2.AssessBeastie();
-            beastie2.CountBeastie();
-            beastie2.AssessBeastie();
-            beastie2.CountBeastie();
-            beastie3.AssessBeastie();
-            beastie3.CountBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.CountBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.CountBeastie();
+            //beastie3.AssessBeastie();
+            //beastie3.CountBeastie();
 
-            this.Beasties =
-                new ObservableCollection<IBeastieAnalysisIconViewModel>
-                {
-                    beastie1,
-                    beastie2,
-                    beastie3
-                };
+            //this.Beasties =
+            //    new ObservableCollection<IBeastieAnalysisIconViewModel>
+            //    {
+            //        beastie1,
+            //        beastie2,
+            //        beastie3
+            //    };
+
+            this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
         }
 
         /// <summary>
@@ -144,6 +146,7 @@
             this.Name = name;
             this.Count = 0;
             this.Dates.Clear();
+            this.Beasties.Clear();
             this.locationSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
