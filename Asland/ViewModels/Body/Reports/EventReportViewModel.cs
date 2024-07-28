@@ -137,6 +137,7 @@
                 IBeastieReportIconViewModel beastieIcon =
                     new BeastieReportIconViewModel(
                         this.pathManager,
+                        modelBeastie.Name,
                         modelBeastie.DisplayName,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,
@@ -152,6 +153,7 @@
                 IBeastieReportIconViewModel beastieIcon =
                     new BeastieReportIconViewModel(
                         this.pathManager,
+                        modelBeastie.Name,
                         modelBeastie.DisplayName,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,

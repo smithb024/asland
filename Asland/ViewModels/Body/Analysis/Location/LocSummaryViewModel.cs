@@ -4,14 +4,12 @@
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
-    using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Model.IO;
+    using Asland.Model.IO.Data;
     using Asland.ViewModels.Body.Analysis.Common;
-    using Asland.ViewModels.Body.Reports;
-    using NynaeveLib.Logger;
     using NynaeveLib.ViewModel;
+    using System;
     using System.Collections.ObjectModel;
-    using System.Threading;
 
     /// <summary>
     /// View model which supports the summary view on the location analysis.
@@ -19,9 +17,19 @@
     public class LocSummaryViewModel : ViewModelBase, ILocSummaryViewModel
     {
         /// <summary>
+        /// The instance of the <see cref="IPathManager"/>.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// The location search factory.
         /// </summary>
-        private ILocationSearchFactory locationSearchFactory;
+        private readonly ILocationSearchFactory locationSearchFactory;
+
+        /// <summary>
+        /// Function used to retrieve a specific beastie from the model.
+        /// </summary>
+        private readonly Func<string, Beastie> getBeastie;
 
         /// <summary>
         /// The name of the current location.
@@ -40,50 +48,55 @@
         /// <param name="pathManager">the path manager</param>
         public LocSummaryViewModel(
             ILocationSearchFactory search,
-            IPathManager pathManager)
+            IPathManager pathManager,
+            Func<string, Beastie> getBeastie)
         {
             this.locationSearchFactory = search;
+            this.pathManager = pathManager;
+            this.getBeastie = getBeastie;
             this.name = string.Empty;
             this.count = 0;
             this.Dates = new ObservableCollection<string>();
 
-            IBeastieAnalysisIconViewModel beastie1 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie1",
-                    "BeastieI1",
-                    "",
-                    Asland.Common.Enums.Presence.Breeding);
-            IBeastieAnalysisIconViewModel beastie2 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie2",
-                    "BeastieI2",
-                    "",
-                    Asland.Common.Enums.Presence.Hibernates);
-            IBeastieAnalysisIconViewModel beastie3 =
-                new BeastieAnalysisIconViewModel(
-                    pathManager,
-                    "Beastie3",
-                    "BeastieI3",
-                    "",
-                    Asland.Common.Enums.Presence.NonBreeding);
+            //IBeastieAnalysisIconViewModel beastie1 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie1",
+            //        "BeastieI1",
+            //        "",
+            //        Asland.Common.Enums.Presence.Breeding);
+            //IBeastieAnalysisIconViewModel beastie2 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie2",
+            //        "BeastieI2",
+            //        "",
+            //        Asland.Common.Enums.Presence.Hibernates);
+            //IBeastieAnalysisIconViewModel beastie3 =
+            //    new BeastieAnalysisIconViewModel(
+            //        pathManager,
+            //        "Beastie3",
+            //        "BeastieI3",
+            //        "",
+            //        Asland.Common.Enums.Presence.NonBreeding);
 
-            beastie2.AssessBeastie();
-            beastie2.AssessBeastie();
-            beastie2.CountBeastie();
-            beastie2.AssessBeastie();
-            beastie2.CountBeastie();
-            beastie3.AssessBeastie();
-            beastie3.CountBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.CountBeastie();
+            //beastie2.AssessBeastie();
+            //beastie2.CountBeastie();
+            //beastie3.AssessBeastie();
+            //beastie3.CountBeastie();
 
-            this.Beasties =
-                new ObservableCollection<IBeastieAnalysisIconViewModel>
-                {
-                    beastie1,
-                    beastie2,
-                    beastie3
-                };
+            //this.Beasties =
+            //    new ObservableCollection<IBeastieAnalysisIconViewModel>
+            //    {
+            //        beastie1,
+            //        beastie2,
+            //        beastie3
+            //    };
+
+            this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
         }
 
         /// <summary>
@@ -144,6 +157,7 @@
             this.Name = name;
             this.Count = 0;
             this.Dates.Clear();
+            this.Beasties.Clear();
             this.locationSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
@@ -159,6 +173,75 @@
         {
             ++this.Count;
             this.Dates.Add(observation.Date);
+            this.AssessAllBeasties();
+
+            foreach (string name in observation.Species.Kind)
+            {
+                IBeastieAnalysisIconViewModel icon = this.Find(name);
+
+                if (icon != null)
+                {
+                    icon.CountBeastie();
+                    continue;
+                }
+
+                this.CreateNewBeastie(name);
+            }
+        }
+
+        /// <summary>
+        /// Call assess on all of the current set of beasties.
+        /// </summary>
+        private void AssessAllBeasties()
+        {
+            foreach (IBeastieAnalysisIconViewModel icon in this.Beasties)
+            {
+                icon.AssessBeastie();
+            }
+        }
+
+        /// <summary>
+        /// Create a new beastie icon and bring the assessment count up to be consistent with the
+        /// existing icons.
+        /// </summary>
+        /// <param name="name">The name of the beastie</param>
+        private void CreateNewBeastie(string name)
+        {
+            Beastie beastie = this.getBeastie(name);
+            IBeastieAnalysisIconViewModel beastieIcon =
+                new BeastieAnalysisIconViewModel(
+                    this.pathManager,
+                    beastie.Name,
+                    beastie.DisplayName,
+                    beastie.LatinName,
+                    beastie.ThumbnailImage,
+                    beastie.Presence);
+
+            for (int i = 0; i < this.Count; ++i)
+            {
+                beastieIcon.AssessBeastie();
+            }
+
+            beastieIcon.CountBeastie();
+            this.Beasties.Add(beastieIcon);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private IBeastieAnalysisIconViewModel Find(string name)
+        {
+            foreach (IBeastieAnalysisIconViewModel beastie in this.Beasties)
+            {
+                if (beastie.Name.Equals(name))
+                {
+                    return beastie;
+                }
+            }
+
+            return null;
         }
     }
 }

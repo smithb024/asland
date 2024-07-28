@@ -62,7 +62,8 @@
         /// <summary>
         /// Add a new beastie to the view model.
         /// </summary>
-        /// <param name="beastie">beastie common name</param>
+        /// <param name="name">beast name</param>
+        /// <param name="displayName">beastie display name</param>
         /// <param name="latin">beastie latin name</param>
         /// <param name="imagePath">path to image representing the beastie</param>
         /// <param name="presence">Residency of this beastie.</param>
@@ -70,7 +71,8 @@
         /// Indicates whether the new beastie is present in the model.
         /// </param>
         public void Add(
-            string beastie,
+            string name,
+            string displayName,
             string latin,
             string imagePath,
             Presence presence,
@@ -79,7 +81,8 @@
             IBeastieViewModel newBeastie =
                 new BeastieViewModel(
                     this.pathManager,
-                    beastie,
+                    name,
+                    displayName,
                     latin,
                     imagePath,
                     presence,

@@ -9,7 +9,12 @@
     public interface IBeastieIconBaseViewModel
     {
         /// <summary>
-        /// Gets the name of the beastie.
+        /// Gets the name (ID) of the beastie.
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// Gets the display name of the beastie.
         /// </summary>
         string CommonName { get; }
 

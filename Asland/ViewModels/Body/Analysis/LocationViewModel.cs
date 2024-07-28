@@ -3,6 +3,7 @@
     using Asland.Factories.IO;
     using Asland.Interfaces;
     using Asland.Interfaces.Factories;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
     using Asland.Model.IO;
@@ -60,9 +61,11 @@
         /// </summary>
         /// <param name="search">The search factory.</param>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="dataModel">The data model</param>
         public LocationViewModel(
             ILocationSearchFactory search,
-            IPathManager pathManager)
+            IPathManager pathManager,
+            IDataManager dataModel)
         {
             this.locations = new ObservableCollection<string>();
 
@@ -104,7 +107,8 @@
             this.Summary = 
                 new LocSummaryViewModel(
                     search,
-                    pathManager);
+                    pathManager,
+                    dataModel.FindBeastie);
             this.displayedLocations = this.locations;
             this.selectedLocationIndex = -1;
         }

@@ -91,7 +91,8 @@
             this.analysisViewModel =
                 new AnalysisViewModel(
                     locationSearch,
-                    pathManager);
+                    pathManager,
+                    dataModel);
 
             this.currentView = this.dataEntryViewModel;
 

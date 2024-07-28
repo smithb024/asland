@@ -15,17 +15,20 @@
         /// Initialises a new instance of the <see cref="BeastieReportIconViewModel"/> class
         /// </summary>
         /// <param name="pathManager">the path manager</param>
-        /// <param name="commonName">the name of the beastie</param>
+        /// <param name="name">the name of the beastie</param>
+        /// <param name="commonName">the display name of the beastie</param>
         /// <param name="latinName">the latin name of the beastie</param>
         /// <param name="imagePath">the path to the beastie's image</param>
         /// <param name="presence">the presence of the beastie in the locality</param>
         public BeastieIconBaseViewModel(
             IPathManager pathManager,
+            string name,
             string commonName,
             string latinName,
             string imagePath,
             Presence presence)
         {
+            this.Name = name;
             this.CommonName = commonName;
             this.LatinName = latinName;
             this.Presence = presence;
@@ -41,7 +44,12 @@
         }
 
         /// <summary>
-        /// Gets the name of the beastie.
+        /// Gets the name (ID) of the beastie.
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// Gets the display name of the beastie.
         /// </summary>
         public string CommonName { get; }
 
