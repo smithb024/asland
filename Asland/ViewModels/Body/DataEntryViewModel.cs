@@ -226,6 +226,7 @@
 
                     this.beastieEntryViewModel.Add(
                         beastie,
+                        modelBeastie?.Name ?? string.Empty,
                         modelBeastie?.LatinName ?? string.Empty,
                         modelBeastie?.Image ?? string.Empty,
                         modelBeastie?.Presence ?? (Presence)(-1),

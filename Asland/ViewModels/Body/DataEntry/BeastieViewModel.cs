@@ -30,6 +30,7 @@
         /// Initialises a new instance of the <see cref="BeastieViewModel"/> class.
         /// </summary>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="name">beastie name</param>
         /// <param name="commonName">common name</param>
         /// <param name="latinName">latin name</param>
         /// <param name="imagePath">
@@ -49,6 +50,7 @@
         /// </param>
         public BeastieViewModel(
             IPathManager pathManager,
+            string name,
             string commonName,
             string latinName,
             string imagePath,
@@ -58,6 +60,7 @@
             bool isSeen)
             : base(
                   pathManager,
+                  name,
                   commonName,
                   latinName,
                   imagePath,

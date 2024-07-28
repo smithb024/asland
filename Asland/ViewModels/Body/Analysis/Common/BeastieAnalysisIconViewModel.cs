@@ -14,18 +14,21 @@
         /// Initialises a new instance of the <see cref="BeastieAnalysisIconViewModel"/> class.
         /// </summary>
         /// <param name="pathManager">the path manager</param>
-        /// <param name="commonName">the name of the beastie</param>
+        /// <param name="name">the name of the beastie</param>
+        /// <param name="commonName">the display name of the beastie</param>
         /// <param name="latinName">the latin name of the beastie</param>
         /// <param name="imagePath">the path to the beastie's image</param>
         /// <param name="presence">the presence of the beastie in the locality</param>
         public BeastieAnalysisIconViewModel(
             IPathManager pathManager,
+            string name,
             string commonName,
             string latinName,
             string imagePath,
             Presence presence)
             : base(
                   pathManager,
+                  name,
                   commonName,
                   latinName,
                   imagePath,

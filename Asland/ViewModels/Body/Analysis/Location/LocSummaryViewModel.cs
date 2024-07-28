@@ -175,15 +175,17 @@
             this.Dates.Add(observation.Date);
             this.AssessAllBeasties();
 
-            foreach (string kind in observation.Species.Kind)
+            foreach (string name in observation.Species.Kind)
             {
-                IBeastieAnalysisIconViewModel icon = this.Find(kind);
+                IBeastieAnalysisIconViewModel icon = this.Find(name);
 
                 if (icon != null)
                 {
                     icon.CountBeastie();
                     continue;
                 }
+
+                this.CreateNewBeastie(name);
             }
         }
 
@@ -198,16 +200,29 @@
             }
         }
 
-        
-        private void CreateNewBeastie()
+        /// <summary>
+        /// Create a new beastie icon and bring the assessment count up to be consistent with the
+        /// existing icons.
+        /// </summary>
+        /// <param name="name">The name of the beastie</param>
+        private void CreateNewBeastie(string name)
         {
-            IBeastieAnalysisIconViewModel beastie1 =
+            Beastie beastie = this.getBeastie(name);
+            IBeastieAnalysisIconViewModel beastieIcon =
                 new BeastieAnalysisIconViewModel(
                     this.pathManager,
-                    ,
-                    "BeastieI1",
-                    "",
-                    Asland.Common.Enums.Presence.Breeding);
+                    beastie.Name,
+                    beastie.DisplayName,
+                    beastie.LatinName,
+                    beastie.ThumbnailImage,
+                    beastie.Presence);
+
+            for (int i = 0; i < this.Count; ++i)
+            {
+                beastieIcon.AssessBeastie();
+            }
+
+            this.Beasties.Add(beastieIcon);
         }
 
         /// <summary>
@@ -219,7 +234,7 @@
         {
             foreach (IBeastieAnalysisIconViewModel beastie in this.Beasties)
             {
-                if (beastie.CommonName.Equals(name))
+                if (beastie.Name.Equals(name))
                 {
                     return beastie;
                 }
