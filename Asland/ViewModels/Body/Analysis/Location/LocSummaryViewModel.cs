@@ -4,14 +4,12 @@
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Interfaces.ViewModels.Body.Analysis.Location;
-    using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Model.IO;
+    using Asland.Model.IO.Data;
     using Asland.ViewModels.Body.Analysis.Common;
-    using Asland.ViewModels.Body.Reports;
-    using NynaeveLib.Logger;
     using NynaeveLib.ViewModel;
+    using System;
     using System.Collections.ObjectModel;
-    using System.Threading;
 
     /// <summary>
     /// View model which supports the summary view on the location analysis.
@@ -19,9 +17,19 @@
     public class LocSummaryViewModel : ViewModelBase, ILocSummaryViewModel
     {
         /// <summary>
+        /// The instance of the <see cref="IPathManager"/>.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// The location search factory.
         /// </summary>
-        private ILocationSearchFactory locationSearchFactory;
+        private readonly ILocationSearchFactory locationSearchFactory;
+
+        /// <summary>
+        /// Function used to retrieve a specific beastie from the model.
+        /// </summary>
+        private readonly Func<string, Beastie> getBeastie;
 
         /// <summary>
         /// The name of the current location.
@@ -40,9 +48,12 @@
         /// <param name="pathManager">the path manager</param>
         public LocSummaryViewModel(
             ILocationSearchFactory search,
-            IPathManager pathManager)
+            IPathManager pathManager,
+            Func<string, Beastie> getBeastie)
         {
             this.locationSearchFactory = search;
+            this.pathManager = pathManager;
+            this.getBeastie = getBeastie;
             this.name = string.Empty;
             this.count = 0;
             this.Dates = new ObservableCollection<string>();
@@ -162,6 +173,59 @@
         {
             ++this.Count;
             this.Dates.Add(observation.Date);
+            this.AssessAllBeasties();
+
+            foreach (string kind in observation.Species.Kind)
+            {
+                IBeastieAnalysisIconViewModel icon = this.Find(kind);
+
+                if (icon != null)
+                {
+                    icon.CountBeastie();
+                    continue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Call assess on all of the current set of beasties.
+        /// </summary>
+        private void AssessAllBeasties()
+        {
+            foreach (IBeastieAnalysisIconViewModel icon in this.Beasties)
+            {
+                icon.AssessBeastie();
+            }
+        }
+
+        
+        private void CreateNewBeastie()
+        {
+            IBeastieAnalysisIconViewModel beastie1 =
+                new BeastieAnalysisIconViewModel(
+                    this.pathManager,
+                    ,
+                    "BeastieI1",
+                    "",
+                    Asland.Common.Enums.Presence.Breeding);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private IBeastieAnalysisIconViewModel Find(string name)
+        {
+            foreach (IBeastieAnalysisIconViewModel beastie in this.Beasties)
+            {
+                if (beastie.CommonName.Equals(name))
+                {
+                    return beastie;
+                }
+            }
+
+            return null;
         }
     }
 }
