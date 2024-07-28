@@ -222,6 +222,7 @@
                 beastieIcon.AssessBeastie();
             }
 
+            beastieIcon.CountBeastie();
             this.Beasties.Add(beastieIcon);
         }
 
