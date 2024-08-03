@@ -9,7 +9,9 @@
     using Asland.ViewModels.Body.Analysis.Common;
     using NynaeveLib.ViewModel;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
 
     /// <summary>
     /// View model which supports the summary view on the location analysis.
@@ -100,7 +102,7 @@
         /// <summary>
         /// Gets the beasties present in the analysis.
         /// </summary>
-        public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
+        public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; private set; }
 
         /// <summary>
         /// Gets the dates of visits to the location.
@@ -149,6 +151,17 @@
 
                 this.CreateNewBeastie(name);
             }
+
+            // Sort the beasties icons by percentage.
+            List<IBeastieAnalysisIconViewModel> sortableList = new List<IBeastieAnalysisIconViewModel>(this.Beasties);
+            sortableList = sortableList.OrderByDescending(a => a.Percentage).ToList();
+
+            for (int i = 0; i < sortableList.Count; i++)
+            {
+                this.Beasties.Move(this.Beasties.IndexOf(sortableList[i]), i);
+            }
+
+            this.RaisePropertyChangedEvent(nameof (this.Beasties));
         }
 
         /// <summary>
