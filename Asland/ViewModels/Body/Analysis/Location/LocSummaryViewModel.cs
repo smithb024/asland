@@ -189,7 +189,7 @@
                     beastie.Name,
                     beastie.DisplayName,
                     beastie.LatinName,
-                    beastie.ThumbnailImage,
+                    beastie.Image,
                     beastie.Presence);
 
             for (int i = 0; i < this.Count; ++i)
