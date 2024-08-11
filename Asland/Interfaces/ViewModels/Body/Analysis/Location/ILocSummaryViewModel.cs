@@ -25,6 +25,11 @@
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
 
         /// <summary>
+        /// Gets the intensities present in the analysis.
+        /// </summary>
+        ObservableCollection<IIntensityCounterViewModel> Intensities { get; }
+
+        /// <summary>
         /// Gets the dates of visits to the location.
         /// </summary>
         ObservableCollection<string> Dates { get; }

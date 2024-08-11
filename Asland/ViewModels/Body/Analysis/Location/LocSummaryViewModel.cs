@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Location
 {
+    using Asland.Common.Enums;
     using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
@@ -61,6 +62,7 @@
             this.Dates = new ObservableCollection<string>();
 
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
+            this.Intensities = new ObservableCollection<IIntensityCounterViewModel>();
         }
 
         /// <summary>
@@ -105,6 +107,11 @@
         public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; private set; }
 
         /// <summary>
+        /// Gets the intensities present in the analysis.
+        /// </summary>
+        public ObservableCollection<IIntensityCounterViewModel> Intensities { get; private set; }
+
+        /// <summary>
         /// Gets the dates of visits to the location.
         /// </summary>
         public ObservableCollection<string> Dates { get; }
@@ -122,6 +129,7 @@
             this.Count = 0;
             this.Dates.Clear();
             this.Beasties.Clear();
+            this.Intensities.Clear();
             this.locationSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
@@ -137,6 +145,8 @@
         {
             ++this.Count;
             this.Dates.Add(observation.Date);
+
+            // Handle beasties.
             this.AssessAllBeasties();
 
             foreach (string name in observation.Species.Kind)
@@ -162,6 +172,38 @@
             }
 
             this.RaisePropertyChangedEvent(nameof (this.Beasties));
+
+            // Handle Intensities
+            ObservationIntensity intensity;
+            bool success = Enum.TryParse(observation.Intensity, out intensity);
+
+            if (success)
+            {
+                IIntensityCounterViewModel intensityViewModel = this.Find(intensity);
+
+                if (intensityViewModel == null)
+                {
+                    intensityViewModel = 
+                        new IntensityCounterViewModel(
+                            intensity);
+                    this.Intensities.Add(intensityViewModel);
+
+                    // Sort the intensity icons.
+                    List<IIntensityCounterViewModel> intensitySortable = new List<IIntensityCounterViewModel>(this.Intensities);
+                    intensitySortable = intensitySortable.OrderBy(a => a.Name).ToList();
+
+                    for (int i = 0; i < intensitySortable.Count; i++)
+                    {
+                        this.Intensities.Move(this.Intensities.IndexOf(intensitySortable[i]), i);
+                    }
+
+                    this.RaisePropertyChangedEvent(nameof(this.Intensities));
+                }
+                else
+                {
+                    intensityViewModel.CountIntensity();
+                }
+            }
         }
 
         /// <summary>
@@ -215,6 +257,26 @@
                 if (beastie.Name.Equals(name))
                 {
                     return beastie;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Find the view model for the intensity called <paramref name="observation"/>.
+        /// </summary>
+        /// <param name="name">The intensity to find</param>
+        /// <returns>
+        /// The found intensity. Null if one can't be found.
+        /// </returns>
+        private IIntensityCounterViewModel Find(ObservationIntensity observation)
+        {
+            foreach (IIntensityCounterViewModel intensity in this.Intensities)
+            {
+                if (observation == intensity.Name)
+                {
+                    return intensity;
                 }
             }
 
