@@ -105,6 +105,7 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IIntensityCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IYearViewModel.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\IntensityCounterViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Location\LocSummaryViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\LocationViewModel.cs" />
@@ -185,6 +187,9 @@
     </Compile>
     <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
       <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml.cs">
+      <DependentUpon>IntensityAnalysisIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Analysis\Location.xaml.cs">
       <DependentUpon>Location.xaml</DependentUpon>
@@ -273,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
