@@ -105,6 +105,7 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IHabitatCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IIntensityCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\HabitatCounterViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\IntensityCounterViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Location\LocSummaryViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
