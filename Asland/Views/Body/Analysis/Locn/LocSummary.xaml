@@ -76,6 +76,29 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
+
+            <TextBlock Text="Habitats" 
+                Foreground="{StaticResource StdForeground}"
+                FontSize="16"
+                Margin="5,10,5,5"
+                HorizontalAlignment="Center"/>
+            <ScrollViewer Background="Transparent"
+                          Margin="5"
+                          MaxHeight="150"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Path=Habitats}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <common:HabitatAnalysisIcon/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </StackPanel>
 
         <ScrollViewer Background="Transparent"

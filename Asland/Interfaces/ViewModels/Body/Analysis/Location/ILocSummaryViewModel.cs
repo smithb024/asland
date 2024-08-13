@@ -30,6 +30,11 @@
         ObservableCollection<IIntensityCounterViewModel> Intensities { get; }
 
         /// <summary>
+        /// Gets the habitats present in the analysis.
+        /// </summary>
+        ObservableCollection<IHabitatCounterViewModel> Habitats { get; }
+
+        /// <summary>
         /// Gets the dates of visits to the location.
         /// </summary>
         ObservableCollection<string> Dates { get; }

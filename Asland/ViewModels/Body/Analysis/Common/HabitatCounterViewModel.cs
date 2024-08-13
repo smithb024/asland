@@ -5,25 +5,25 @@
     using NynaeveLib.ViewModel;
 
     /// <summary>
-    /// View model which counts a single instensity.
+    /// View model which counts a single habitat.
     /// </summary>
-    public class IntensityCounterViewModel : ViewModelBase, IIntensityCounterViewModel
+    public class HabitatCounterViewModel : ViewModelBase, IHabitatCounterViewModel
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="IntensityCounterViewModel"/> class.
+        /// Initialises a new instance of the <see cref="HabitatCounterViewModel"/> class.
         /// </summary>
-        /// <param name="name">The name of the intensity</param>
-        public IntensityCounterViewModel(
-            ObservationIntensity name) 
+        /// <param name="name">The name of the habitat</param>
+        public HabitatCounterViewModel(
+            ObservationHabitat name) 
         { 
             this.Name = name;
             this.Count = 1;
         }
 
         /// <summary>
-        /// Gets the <see cref="ObservationIntensity"/> which is the subject of this view model.
+        /// Gets the <see cref="ObservationHabitat"/> which is the subject of this view model.
         /// </summary>
-        public ObservationIntensity Name { get; }
+        public ObservationHabitat Name { get; }
 
         /// <summary>
         /// Gets the <see cref="Name"/> as a string.
@@ -38,7 +38,7 @@
         /// <summary>
         /// Add one to the <see cref="Count"/>.
         /// </summary>
-        public void CountIntensity()
+        public void CountHabitat()
         {
             ++this.Count;
             this.RaisePropertyChangedEvent(nameof(this.Count));
