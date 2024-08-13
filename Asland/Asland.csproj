@@ -190,6 +190,9 @@
     <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
       <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml.cs">
+      <DependentUpon>HabitatAnalysisIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml.cs">
       <DependentUpon>IntensityAnalysisIcon.xaml</DependentUpon>
     </Compile>
@@ -280,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
