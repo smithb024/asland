@@ -10,8 +10,6 @@ namespace Asland.ViewModels
     using Interfaces.ViewModels.Ribbon;
     using Model.IO.Data;
     using Model.IO.DataEntry;
-    using CommonServiceLocator;
-    using GalaSoft.MvvmLight.Ioc;
     using ViewModels.Body;
     using ViewModels.Ribbon;
     using Asland.Interfaces.Common.Utils;

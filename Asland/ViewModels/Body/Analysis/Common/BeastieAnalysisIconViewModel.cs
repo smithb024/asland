@@ -66,7 +66,7 @@
         public void CountBeastie()
         {
             ++this.Count;
-            this.RaisePropertyChangedEvent(nameof(this.Count));
+            this.OnPropertyChanged(nameof(this.Count));
             this.CalculatePercentage();
         }
 
@@ -77,7 +77,7 @@
         public void AssessBeastie()
         {
             ++this.Total;
-            this.RaisePropertyChangedEvent(nameof(this.Total));
+            this.OnPropertyChanged(nameof(this.Total));
             this.CalculatePercentage();
         }
 
@@ -98,8 +98,8 @@
             }
 
 
-            this.RaisePropertyChangedEvent(nameof(this.Percentage));
-            this.RaisePropertyChangedEvent(nameof(this.PercentageString));
+            this.OnPropertyChanged(nameof(this.Percentage));
+            this.OnPropertyChanged(nameof(this.PercentageString));
         }
     }
 }

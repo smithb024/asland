@@ -46,7 +46,7 @@
                 if (this.counter != value)
                 {
                     this.counter = value;
-                    this.RaisePropertyChangedEvent(nameof(this.Count));
+                    this.OnPropertyChanged(nameof(this.Count));
                 }
             }
         }

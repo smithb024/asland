@@ -80,7 +80,7 @@
                 }
 
                 this.name = value;
-                this.RaisePropertyChangedEvent(nameof(this.Name));
+                this.OnPropertyChanged(nameof(this.Name));
             }
         }
 
@@ -98,7 +98,7 @@
                 }
 
                 this.count = value;
-                this.RaisePropertyChangedEvent(nameof(this.Count));
+                this.OnPropertyChanged(nameof(this.Count));
             }
         }
 
@@ -178,7 +178,7 @@
                 this.Beasties.Move(this.Beasties.IndexOf(sortableList[i]), i);
             }
 
-            this.RaisePropertyChangedEvent(nameof (this.Beasties));
+            this.OnPropertyChanged(nameof (this.Beasties));
 
             // Handle Intensities
             ObservationIntensity intensity;
@@ -204,7 +204,7 @@
                         this.Intensities.Move(this.Intensities.IndexOf(intensitySortable[i]), i);
                     }
 
-                    this.RaisePropertyChangedEvent(nameof(this.Intensities));
+                    this.OnPropertyChanged(nameof(this.Intensities));
                 }
                 else
                 {
@@ -238,7 +238,7 @@
                             this.Habitats.Move(this.Habitats.IndexOf(habitatSortable[i]), i);
                         }
 
-                        this.RaisePropertyChangedEvent(nameof(this.Habitats));
+                        this.OnPropertyChanged(nameof(this.Habitats));
                     }
                     else
                     {

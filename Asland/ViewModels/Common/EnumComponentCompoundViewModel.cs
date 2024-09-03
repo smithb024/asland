@@ -98,7 +98,7 @@
         public void Set(bool isSelected)
         {
             this.isSelected = isSelected;
-            this.RaisePropertyChangedEvent(nameof(this.isSelected));
+            this.OnPropertyChanged(nameof(this.isSelected));
         }
 
         /// <summary>
@@ -118,7 +118,7 @@
                 this.unsetAction.Invoke(this.RepresentativeValue);
             }
 
-            this.RaisePropertyChangedEvent(nameof(this.isSelected));
+            this.OnPropertyChanged(nameof(this.isSelected));
         }
     }
 }

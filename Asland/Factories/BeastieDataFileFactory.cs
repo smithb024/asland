@@ -6,10 +6,10 @@
     using Asland.Common.Messages;
     using Asland.Model.IO.Data;
     using Factories.IO;
-    using GalaSoft.MvvmLight.Messaging;
     using Interfaces;
     using Interfaces.Factories;
     using Interfaces.Model.IO.Data;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// Factory class which manages the Beastie Data Files.
@@ -203,7 +203,7 @@
                 AppStatusMessage message =
                     new AppStatusMessage(
                         $"Error loading {path}");
-                Messenger.Default.Send(message);
+                CommonMessenger.Default.Send(message);
                 
                 this.logger.WriteLine(
                     $"Error loading {path}: {ex}");

@@ -125,7 +125,7 @@
 
             this.ResetSelectedPage(newPageName);
 
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.OnPropertyChanged(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>

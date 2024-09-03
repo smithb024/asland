@@ -132,7 +132,7 @@
                 }
 
                 this.selectedLocationIndex = value;
-                this.RaisePropertyChangedEvent(nameof(this.LocationIndex));
+                this.OnPropertyChanged(nameof(this.LocationIndex));
                 this.Summary.SetNewLocation(
                     this.Locations[this.LocationIndex]);
             }
@@ -159,12 +159,12 @@
                     this.isWwt = false;
                     this.isRspb = false;
 
-                    this.RaisePropertyChangedEvent(nameof(this.IsWt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsWwt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsWt));
+                    this.OnPropertyChanged(nameof(this.IsWwt));
+                    this.OnPropertyChanged(nameof(this.IsRspb));
                 }
 
-                this.RaisePropertyChangedEvent(nameof(this.IsNt));
+                this.OnPropertyChanged(nameof(this.IsNt));
                 this.ResetLocationsCollection();
             }
         }
@@ -190,12 +190,12 @@
                     this.isWwt = false;
                     this.isRspb = false;
 
-                    this.RaisePropertyChangedEvent(nameof(this.IsNt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsWwt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsNt));
+                    this.OnPropertyChanged(nameof(this.IsWwt));
+                    this.OnPropertyChanged(nameof(this.IsRspb));
                 }
 
-                this.RaisePropertyChangedEvent(nameof(this.IsWt));
+                this.OnPropertyChanged(nameof(this.IsWt));
                 this.ResetLocationsCollection();
             }
         }
@@ -221,12 +221,12 @@
                     this.isNt = false;
                     this.isRspb = false;
 
-                    this.RaisePropertyChangedEvent(nameof(this.IsWt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsNt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsWt));
+                    this.OnPropertyChanged(nameof(this.IsNt));
+                    this.OnPropertyChanged(nameof(this.IsRspb));
                 }
 
-                this.RaisePropertyChangedEvent(nameof(this.IsWwt));
+                this.OnPropertyChanged(nameof(this.IsWwt));
                 this.ResetLocationsCollection();
             }
         }
@@ -252,12 +252,12 @@
                     this.isWwt = false;
                     this.isNt = false;
 
-                    this.RaisePropertyChangedEvent(nameof(this.IsWt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsWwt));
-                    this.RaisePropertyChangedEvent(nameof(this.IsNt));
+                    this.OnPropertyChanged(nameof(this.IsWt));
+                    this.OnPropertyChanged(nameof(this.IsWwt));
+                    this.OnPropertyChanged(nameof(this.IsNt));
                 }
 
-                this.RaisePropertyChangedEvent(nameof(this.IsRspb));
+                this.OnPropertyChanged(nameof(this.IsRspb));
                 this.ResetLocationsCollection();
             }
         }
@@ -318,8 +318,8 @@
             this.displayedLocations = filteredLocations;
             this.selectedLocationIndex = -1;
 
-            this.RaisePropertyChangedEvent(nameof(this.Locations));
-            this.RaisePropertyChangedEvent(nameof(this.LocationIndex));
+            this.OnPropertyChanged(nameof(this.Locations));
+            this.OnPropertyChanged(nameof(this.LocationIndex));
         }
 
         /// <summary>

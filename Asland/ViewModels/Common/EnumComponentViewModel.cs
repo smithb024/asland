@@ -98,7 +98,7 @@
         public void SetCurrent(TEnum newValue)
         {
             this.currentValue = newValue;
-            this.RaisePropertyChangedEvent(nameof(this.IsSelected));
+            this.OnPropertyChanged(nameof(this.IsSelected));
         }
 
         /// <summary>

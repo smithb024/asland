@@ -2,8 +2,8 @@
 {
     using Asland.Common.Messages;
     using Asland.Interfaces.ViewModels;
-    using GalaSoft.MvvmLight;
-    using GalaSoft.MvvmLight.Messaging;
+    using NynaeveLib.ViewModel;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// View model which describes the application status bar.
@@ -21,7 +21,7 @@
         public StatusBarViewModel()
         {
             this.status = string.Empty;
-            Messenger.Default.Register<AppStatusMessage>(this, this.NewStatus);
+            CommonMessenger.Default.Register<AppStatusMessage>(this, this.NewStatus);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@
 
             private set
             {
-                this.Set(ref this.status, value);
+                this.SetProperty(ref this.status, value);
             }
         }
 

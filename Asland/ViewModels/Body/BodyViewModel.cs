@@ -8,8 +8,8 @@
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
-    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.ViewModel;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// View model which describes the main pane.
@@ -96,7 +96,7 @@
 
             this.currentView = this.dataEntryViewModel;
 
-            Messenger.Default.Register<MainViewMessage>(this, this.ChangeView);
+            CommonMessenger.Default.Register<MainViewMessage>(this, this.ChangeView);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@
                 if (this.currentView != value)
                 {
                     this.currentView = value;
-                    this.RaisePropertyChangedEvent(nameof(this.CurrentView));
+                    this.OnPropertyChanged(nameof(this.CurrentView));
                 }
             }
         }

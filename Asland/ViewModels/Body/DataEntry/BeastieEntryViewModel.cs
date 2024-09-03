@@ -5,7 +5,7 @@
     using Asland.Common.Enums;
     using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.DataEntry;
-    using GalaSoft.MvvmLight;
+    using NynaeveLib.ViewModel;
 
     /// <summary>
     /// View model which supports a view responisble for entry of the beasties in an event.
@@ -98,7 +98,7 @@
         /// </summary>
         public void Refresh()
         {
-            this.RaisePropertyChanged(nameof(this.Beasties));
+            this.OnPropertyChanged(nameof(this.Beasties));
         }
 
         /// <summary>

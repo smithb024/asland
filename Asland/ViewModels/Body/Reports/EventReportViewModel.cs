@@ -162,15 +162,15 @@
                 this.Beasties.Add(beastieIcon);
             }
 
-            this.RaisePropertyChangedEvent(nameof(this.Location));
-            this.RaisePropertyChangedEvent(nameof(this.Date));
-            this.RaisePropertyChangedEvent(nameof(this.Notes));
-            this.RaisePropertyChangedEvent(nameof(this.Length));
-            this.RaisePropertyChangedEvent(nameof(this.Intensity));
-            this.RaisePropertyChangedEvent(nameof(this.TimeOfDay));
-            this.RaisePropertyChangedEvent(nameof(this.Weather));
-            this.RaisePropertyChangedEvent(nameof(this.Habitats));
-            this.RaisePropertyChangedEvent(nameof(this.Beasties));
+            this.OnPropertyChanged(nameof(this.Location));
+            this.OnPropertyChanged(nameof(this.Date));
+            this.OnPropertyChanged(nameof(this.Notes));
+            this.OnPropertyChanged(nameof(this.Length));
+            this.OnPropertyChanged(nameof(this.Intensity));
+            this.OnPropertyChanged(nameof(this.TimeOfDay));
+            this.OnPropertyChanged(nameof(this.Weather));
+            this.OnPropertyChanged(nameof(this.Habitats));
+            this.OnPropertyChanged(nameof(this.Beasties));
         }
     }
 }

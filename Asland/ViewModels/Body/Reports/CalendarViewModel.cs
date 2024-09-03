@@ -12,8 +12,8 @@
     using Asland.Interfaces.ViewModels.Common;
     using Asland.Model.IO;
     using Asland.ViewModels.Common;
-    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.ViewModel;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// The calendar view model for the reports tab.
@@ -124,7 +124,7 @@
                 if (this.yearsIndex != value)
                 {
                     this.yearsIndex = value;
-                    this.RaisePropertyChangedEvent(nameof(this.YearsIndex));
+                    this.OnPropertyChanged(nameof(this.YearsIndex));
 
                     this.NewPage(this.currentMonth);
                 }
@@ -179,14 +179,14 @@
                     AppStatusMessage message =
                         new AppStatusMessage(
                             errorDescription);
-                    Messenger.Default.Send(message);
+                    CommonMessenger.Default.Send(message);
 
                     this.logger.WriteLine(
                         $"Calendar view model : {errorDescription}: {ex}");
                 }
             }
 
-            this.RaisePropertyChangedEvent(nameof(this.Events));
+            this.OnPropertyChanged(nameof(this.Events));
         }
 
         /// <summary>

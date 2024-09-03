@@ -60,7 +60,7 @@
                 if (this.isSelected != value)
                 {
                     this.isSelected = value;
-                    this.RaisePropertyChangedEvent(nameof(this.IsSelected));
+                    this.OnPropertyChanged(nameof(this.IsSelected));
                 }
             }
         }

@@ -103,7 +103,7 @@
 
             this.ResetSelectedPage(ReportsViewModel.EventSelector);
 
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.OnPropertyChanged(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>
@@ -125,7 +125,7 @@
 
             this.ResetSelectedPage(newPageName);
 
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.OnPropertyChanged(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>
