@@ -68,7 +68,7 @@
                         this.Counters.OrderBy(c => c.Name));
             }
 
-            this.RaisePropertyChangedEvent(nameof(this.Count));
+            this.OnPropertyChanged(nameof(this.Count));
         }
     }
 }

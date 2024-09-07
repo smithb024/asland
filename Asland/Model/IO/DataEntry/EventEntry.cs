@@ -8,7 +8,7 @@
     using Interfaces.Factories;
     using Interfaces.Model.IO.DataEntry;
     using Factories.IO;
-    using GalaSoft.MvvmLight.Messaging;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// Top class for the model which manages the entry of the events.
@@ -79,7 +79,7 @@
                 AppStatusMessage message =
                     new AppStatusMessage(
                         faultString);
-                Messenger.Default.Send(message);
+                CommonMessenger.Default.Send(message);
 
                 return false;
             }
@@ -103,7 +103,7 @@
                 AppStatusMessage message =
                     new AppStatusMessage(
                         errorDescription);
-                Messenger.Default.Send(message);
+                CommonMessenger.Default.Send(message);
 
                 this.logger.WriteLine(
                     $"Event Entry Save : {errorDescription}: {ex}");
@@ -142,7 +142,7 @@
                 AppStatusMessage message =
                     new AppStatusMessage(
                         errorDescription);
-                Messenger.Default.Send(message);
+                CommonMessenger.Default.Send(message);
 
                 this.logger.WriteLine(
                     $"Event Entry Save : {errorDescription}: {ex}");

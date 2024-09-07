@@ -6,8 +6,8 @@
     using Asland.Interfaces.ViewModels.Common;
     using Asland.Interfaces.ViewModels.Ribbon;
     using Asland.ViewModels.Common;
-    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.ViewModel;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// View model describing the ribbon view.
@@ -131,7 +131,7 @@
                 new MainViewMessage(
                     view);
 
-            Messenger.Default.Send<MainViewMessage>(message);
+            CommonMessenger.Default.Send<MainViewMessage>(message);
         }
 
         /// <summary>

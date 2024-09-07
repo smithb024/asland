@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Asland" xmlns:ribbon="clr-namespace:Asland.Views.Ribbon" 
         xmlns:body="clr-namespace:Asland.Views.Body"
         xmlns:status="clr-namespace:Asland.Views.Status"
-        DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="900" 

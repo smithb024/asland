@@ -151,8 +151,8 @@
                 if (this.isEditing != value)
                 {
                     this.isEditing = value;
-                    this.RaisePropertyChangedEvent(nameof(this.IsEditing));
-                    this.RaisePropertyChangedEvent(nameof(this.EditingText));
+                    this.OnPropertyChanged(nameof(this.IsEditing));
+                    this.OnPropertyChanged(nameof(this.EditingText));
                 }
             }
         }
@@ -239,7 +239,7 @@
 
             this.ResetSelectedPage(newPageName);
 
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.OnPropertyChanged(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>
@@ -286,7 +286,7 @@
 
             this.CurrentWorkspace = this.detailsViewModel;
             this.IsEditing = false;
-            this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+            this.OnPropertyChanged(nameof(this.CurrentWorkspace));
         }
 
         /// <summary>

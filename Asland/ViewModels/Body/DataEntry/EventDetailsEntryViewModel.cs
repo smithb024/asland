@@ -7,7 +7,7 @@
     using Asland.Interfaces.ViewModels.Body.DataEntry;
     using Asland.ViewModels.Common;
     using Interfaces.ViewModels.Common;
-    using GalaSoft.MvvmLight;
+    using NynaeveLib.ViewModel;
 
     /// <summary>
     /// View model which supports a view reposible for the entry of the event details.
@@ -119,7 +119,7 @@
 
             set
             {
-                this.Set(ref this.location, value);
+                this.SetProperty(ref this.location, value);
                 this.observations.SetLocation(this.location);
             }
         }
@@ -136,7 +136,7 @@
 
             set
             {
-                this.Set(ref this.date, value);
+                this.SetProperty(ref this.date, value);
                 this.observations.SetDate(this.date);
             }
         }
@@ -153,7 +153,7 @@
 
             set
             {
-                this.Set(ref this.notes, value);
+                this.SetProperty(ref this.notes, value);
                 this.observations.SetNotes(this.notes);
             }
         }
@@ -171,7 +171,7 @@
 
             set
             {
-                this.Set(ref this.isSeen, value);
+                this.SetProperty(ref this.isSeen, value);
                 this.setIsSeen.Invoke(this.isSeen);
             }
         }

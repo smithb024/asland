@@ -110,7 +110,7 @@
                             this.dataManager,
                             this.fileFactory,
                             this.pathManager);
-                    this.RaisePropertyChangedEvent(nameof(this.CurrentWorkspace));
+                    this.OnPropertyChanged(nameof(this.CurrentWorkspace));
                 }
             }
         }

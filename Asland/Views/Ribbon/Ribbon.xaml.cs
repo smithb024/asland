@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace Asland.Views.Ribbon
+﻿namespace Asland.Views.Ribbon
 {
+    using Asland.Interfaces.ViewModels.Ribbon;
+    using CommunityToolkit.Mvvm.DependencyInjection;
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for Ribbon.xaml
     /// </summary>
     public partial class Ribbon : UserControl
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="Ribbon"/> class.
+        /// </summary>
         public Ribbon()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.DataContext = Ioc.Default.GetService<IRibbonViewModel>();
         }
     }
 }

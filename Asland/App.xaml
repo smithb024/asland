@@ -16,8 +16,6 @@
                 <ResourceDictionary Source="/Asland;component/Views/Styles/ButtonStyles.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-
-            <viewModels:ViewModelLocator x:Key="ViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

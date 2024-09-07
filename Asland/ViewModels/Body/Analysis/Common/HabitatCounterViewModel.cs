@@ -41,7 +41,7 @@
         public void CountHabitat()
         {
             ++this.Count;
-            this.RaisePropertyChangedEvent(nameof(this.Count));
+            this.OnPropertyChanged(nameof(this.Count));
         }
     }
 }

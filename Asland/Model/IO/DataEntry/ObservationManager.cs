@@ -5,8 +5,8 @@
     using Asland.Common.Enums;
     using Asland.Common.Messages;
     using Asland.Interfaces.Model.IO.DataEntry;
-    using GalaSoft.MvvmLight.Messaging;
     using NynaeveLib.Utils;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// Manages the observations made in a single event.
@@ -110,7 +110,7 @@
                 AppStatusMessage message =
                     new AppStatusMessage(
                         $"Date {this.observations.Date} is invalid. Using Now.");
-                Messenger.Default.Send(message);
+                CommonMessenger.Default.Send(message);
                 returnDate = DateTime.Now;
             }
             else

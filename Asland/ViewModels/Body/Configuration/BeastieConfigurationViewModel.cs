@@ -11,8 +11,8 @@
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Configuration;
     using Asland.Model.IO.Data;
-    using GalaSoft.MvvmLight;
     using NynaeveLib.Commands;
+    using NynaeveLib.ViewModel;
 
     public class BeastieConfigurationViewModel : ViewModelBase, IBeastieConfigurationViewModel
     {
@@ -187,7 +187,7 @@
                 if (this.beastieIndex != value)
                 {
                     this.beastieIndex = value;
-                    this.RaisePropertyChanged(nameof(this.BeastieIndex));
+                    this.OnPropertyChanged(nameof(this.BeastieIndex));
                     this.Load();
                 }
             }
@@ -204,7 +204,7 @@
             }
             set
             {
-                this.Set(ref this.name, value);
+                this.SetProperty(ref this.name, value);
             }
         }
 
@@ -219,7 +219,7 @@
             }
             set
             {
-                this.Set(ref this.nameLatin, value);
+                this.SetProperty(ref this.nameLatin, value);
             }
         }
 
@@ -242,8 +242,8 @@
                 if (this.beastieImageListIndex != value)
                 {
                     this.beastieImageListIndex = value;
-                    this.RaisePropertyChanged(nameof(this.BeastieImageListIndex));
-                    this.RaisePropertyChanged(nameof(this.ImagePath));
+                    this.OnPropertyChanged(nameof(this.BeastieImageListIndex));
+                    this.OnPropertyChanged(nameof(this.ImagePath));
                 }
             }
         }
@@ -264,7 +264,7 @@
             }
             set
             {
-                this.Set(ref this.size, value);
+                this.SetProperty(ref this.size, value);
             }
         }
 
@@ -279,7 +279,7 @@
             }
             set
             {
-                this.Set(ref this.wingspan, value);
+                this.SetProperty(ref this.wingspan, value);
             }
         }
 
@@ -299,7 +299,7 @@
             }
             set
             {
-                this.Set(ref this.presenceListIndex, value);
+                this.SetProperty(ref this.presenceListIndex, value);
             }
         }
 
@@ -314,7 +314,7 @@
             }
             set
             {
-                this.Set(ref this.genus, value);
+                this.SetProperty(ref this.genus, value);
             }
         }
 
@@ -329,7 +329,7 @@
             }
             set
             {
-                this.Set(ref this.genusLatin, value);
+                this.SetProperty(ref this.genusLatin, value);
             }
         }
 
@@ -344,7 +344,7 @@
             }
             set
             {
-                this.Set(ref this.subFamily, value);
+                this.SetProperty(ref this.subFamily, value);
             }
         }
 
@@ -359,7 +359,7 @@
             }
             set
             {
-                this.Set(ref this.subFamilyLatin, value);
+                this.SetProperty(ref this.subFamilyLatin, value);
             }
         }
 
@@ -374,7 +374,7 @@
             }
             set
             {
-                this.Set(ref this.family, value);
+                this.SetProperty(ref this.family, value);
             }
         }
 
@@ -389,7 +389,7 @@
             }
             set
             {
-                this.Set(ref this.familyLatin, value);
+                this.SetProperty(ref this.familyLatin, value);
             }
         }
 
@@ -404,7 +404,7 @@
             }
             set
             {
-                this.Set(ref this.order, value);
+                this.SetProperty(ref this.order, value);
             }
         }
 
@@ -419,7 +419,7 @@
             }
             set
             {
-                this.Set(ref this.orderLatin, value);
+                this.SetProperty(ref this.orderLatin, value);
             }
         }
 
@@ -434,7 +434,7 @@
             }
             set
             {
-                this.Set(ref this.beastieClass, value);
+                this.SetProperty(ref this.beastieClass, value);
             }
         }
 
@@ -449,7 +449,7 @@
             }
             set
             {
-                this.Set(ref this.classLatin, value);
+                this.SetProperty(ref this.classLatin, value);
             }
         }
 
