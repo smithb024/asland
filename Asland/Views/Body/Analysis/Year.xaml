@@ -4,9 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asland.Views.Body.Analysis"
+             xmlns:year="clr-namespace:Asland.Views.Body.Analysis.Yr"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="100" Height="100" Background="LightCoral">
-            
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <year:YearSummary 
+            Grid.Row="1" 
+            Background="{StaticResource StdBackground}"
+            DataContext="{Binding Path=Summary}"/>
     </Grid>
 </UserControl>
