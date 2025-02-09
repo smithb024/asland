@@ -92,7 +92,8 @@
                 new AnalysisViewModel(
                     locationSearch,
                     pathManager,
-                    dataModel);
+                    dataModel,
+                    yearSearcher);
 
             this.currentView = this.dataEntryViewModel;
 
@@ -104,10 +105,7 @@
         /// </summary>
         public object CurrentView
         {
-            get
-            {
-                return this.currentView;
-            }
+            get => this.currentView;
 
             private set
             {

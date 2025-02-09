@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
+    using Asland.Interfaces.Common.Utils;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Year;
     using Asland.ViewModels.Body.Analysis.Year;
@@ -12,6 +13,11 @@
     public class YearViewModel : ViewModelBase, IYearViewModel
     {
         /// <summary>
+        /// The year searcher.
+        /// </summary>
+        private readonly IYearSearcher yearSearcher;
+
+        /// <summary>
         /// The index of the currently selected year.
         /// </summary>
         private int selectedYearIndex;
@@ -19,18 +25,15 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="YearViewModel"/> class.
         /// </summary>
-        public YearViewModel() 
+        /// <param name="yearSearcher">the year searcher</param>
+        public YearViewModel(IYearSearcher yearSearcher) 
         {
             this.Summary =
                 new YearSummaryViewModel();
 
-            this.Years = 
-                new ObservableCollection<string>()
-                {
-                    "1",
-                    "2"
-                };
-            this.selectedYearIndex = -1;
+            this.yearSearcher = yearSearcher;
+            this.Years = this.yearSearcher.FindRawYears();
+            this.selectedYearIndex = this.Years.Count - 1;
         }
 
         /// <summary>
