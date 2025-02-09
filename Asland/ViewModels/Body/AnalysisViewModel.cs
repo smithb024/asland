@@ -11,6 +11,7 @@
     using System.Collections.Generic;
     using Asland.Interfaces;
     using Asland.Interfaces.Model.IO.Data;
+    using Asland.Interfaces.Common.Utils;
 
     /// <summary>
     /// View model which suports the analysis view.
@@ -54,10 +55,12 @@
         /// <param name="locationSearch">The location search factory</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">The data model</param>
+        /// <param name="yearSearcher">the year searcher</param>
         public AnalysisViewModel(
             ILocationSearchFactory locationSearch,
             IPathManager pathManager,
-            IDataManager dataModel)
+            IDataManager dataModel,
+            IYearSearcher yearSearcher)
         {
             this.PageSelector = new List<IPageSelector>();
             this.beastieViewModel =
@@ -70,7 +73,7 @@
                     dataModel);
             this.yearViewModel =
                 new YearViewModel(
-                    );
+                    yearSearcher);
 
             IPageSelector beastieSelector =
                 new PageSelector(

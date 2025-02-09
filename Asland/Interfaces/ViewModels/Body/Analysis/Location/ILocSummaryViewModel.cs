@@ -1,7 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Location
 {
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
-    using Asland.Interfaces.ViewModels.Body.Reports;
     using System.Collections.ObjectModel;
 
     /// <summary>
