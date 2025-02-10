@@ -73,7 +73,9 @@
                     dataModel);
             this.yearViewModel =
                 new YearViewModel(
-                    yearSearcher);
+                    yearSearcher,
+                    pathManager,
+                    dataModel);
 
             IPageSelector beastieSelector =
                 new PageSelector(

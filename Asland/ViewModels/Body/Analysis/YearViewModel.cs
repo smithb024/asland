@@ -1,6 +1,8 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
+    using Asland.Interfaces;
     using Asland.Interfaces.Common.Utils;
+    using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Year;
     using Asland.ViewModels.Body.Analysis.Year;
@@ -26,10 +28,17 @@
         /// Initialises a new instance of the <see cref="YearViewModel"/> class.
         /// </summary>
         /// <param name="yearSearcher">the year searcher</param>
-        public YearViewModel(IYearSearcher yearSearcher) 
+        /// <param name="pathManager">the path manager</param>
+        /// <param name="dataModel">The data model</param>
+        public YearViewModel(
+            IYearSearcher yearSearcher,
+            IPathManager pathManager,
+            IDataManager dataModel) 
         {
             this.Summary =
-                new YearSummaryViewModel();
+                new YearSummaryViewModel(
+                    pathManager,
+                    dataModel.FindBeastie);
 
             this.yearSearcher = yearSearcher;
             this.Years = this.yearSearcher.FindRawYears();
@@ -56,6 +65,9 @@
 
                 this.selectedYearIndex = value;
                 this.OnPropertyChanged(nameof(this.YearIndex));
+
+                this.Summary.SetNewYear(
+                    this.Years[this.YearIndex]);
             }
         }
 

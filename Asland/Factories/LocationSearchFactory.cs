@@ -17,7 +17,7 @@
         /// <summary>
         /// The path Manager.
         /// </summary>
-        private IPathManager pathManager;
+        private readonly IPathManager pathManager;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="IPathManager"/> class.
