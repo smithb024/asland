@@ -117,10 +117,12 @@
     <Compile Include="Factories\BeastieDataFileFactory.cs" />
     <Compile Include="Factories\BeastieSearchFactory.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
+    <Compile Include="Factories\TimeSearchFactory.cs" />
     <Compile Include="Factories\LocationSearchFactory.cs" />
     <Compile Include="Interfaces\Common\Utils\IYearSearcher.cs" />
     <Compile Include="Interfaces\Factories\IBeastieDataFileFactory.cs" />
     <Compile Include="Interfaces\Factories\IBeastieSearchFactory.cs" />
+    <Compile Include="Interfaces\Factories\ITimeSearchFactory.cs" />
     <Compile Include="Interfaces\Factories\ILocationSearchFactory.cs" />
     <Compile Include="Interfaces\IAsLogger.cs" />
     <Compile Include="Interfaces\IPathManager.cs" />

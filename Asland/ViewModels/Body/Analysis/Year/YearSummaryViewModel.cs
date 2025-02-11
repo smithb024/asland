@@ -77,7 +77,8 @@
         /// <param name="name">The name of the new year</param>
         public void SetNewYear(string name)
         {
-
+            this.Count = 0;
+            this.Beasties.Clear();
         }
 
         /// <summary>

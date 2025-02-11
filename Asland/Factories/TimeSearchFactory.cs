@@ -8,11 +8,12 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
 
     /// <summary>
-    /// Factory which is used to search for location data.
+    /// Factory which is used to search for data across a specific time period.
     /// </summary>
-    public class LocationSearchFactory : ILocationSearchFactory
+    public class TimeSearchFactory : ITimeSearchFactory
     {
         /// <summary>
         /// The path Manager.
@@ -20,24 +21,24 @@
         private readonly IPathManager pathManager;
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="LocationSearchFactory"/> class.
+        /// Initialises a new instance of the <see cref="TimeSearchFactory"/> class.
         /// </summary>
         /// <param name="pathManager">The path manager</param>
-        public LocationSearchFactory(IPathManager pathManager) 
+        public TimeSearchFactory(IPathManager pathManager) 
         {
             this.pathManager = pathManager;
         }
 
         /// <summary>
-        /// Find and return data for a specific location.
+        /// Find and return data for a specific year.
         /// </summary>
-        /// <param name="locationAction">
-        /// The action which is used to pass the found location back to the calling class.
+        /// <param name="timeAction">
+        /// The action which is used to pass the found data back to the calling class.
         /// </param>
-        /// <param name="name">name to search for</param>
+        /// <param name="year">year to search for</param>
         public void Find(
-            Action<RawObservationsString> locationAction,
-            string name)
+            Action<RawObservationsString> timeAction,
+            string year)
         {
             Task.Run(() =>
             {
@@ -51,6 +52,12 @@
                     // Loop through the files and open each on in turn.
                     foreach (string directory in subdirectoryEntries)
                     {
+                        // Only interested if the year is equal to the input.
+                        if (!string.Equals(year, Path.GetFileName(directory), StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
                         string[] rawFiles = Directory.GetFiles(directory);
 
                         foreach (string file in rawFiles)
@@ -59,17 +66,11 @@
                                 XmlFileIo.ReadXml<RawObservationsString>(
                                     file);
 
-                            // Only interested if the location is equal to the name.
-                            if (!string.Equals(raw.Location, name, StringComparison.OrdinalIgnoreCase))
-                            {
-                                continue;
-                            }
-
                             // Pass the deserialised file to the view model on the UI thread.
                             App.Current.Dispatcher.Invoke(
                                 new Action(() =>
                                 {
-                                    locationAction.Invoke(raw);
+                                    timeAction.Invoke(raw);
                                 }));
                         }
                     }
@@ -77,7 +78,7 @@
                 catch (NullReferenceException ex)
                 {
                     Logger.Instance.WriteLog(
-                        $"Location Search Factory Failed opening raw file: {ex}");
+                        $"Time Search Factory Failed opening raw file: {ex}");
                 }
             });
         }
