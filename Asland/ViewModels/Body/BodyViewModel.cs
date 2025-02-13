@@ -58,6 +58,7 @@
         /// <param name="fileFactory">beastie file factory</param>
         /// <param name="logger">the logger</param>
         /// <param name="locationSearch">the location search factory</param>
+        /// <param name="timeSearch">the time search factory</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="yearSearcher">the year searcher</param>
         public BodyViewModel(
@@ -66,6 +67,7 @@
             IBeastieDataFileFactory fileFactory,
             IAsLogger logger,
             ILocationSearchFactory locationSearch,
+            ITimeSearchFactory timeSearch,
             IPathManager pathManager,
             IYearSearcher yearSearcher)
         {
@@ -91,6 +93,7 @@
             this.analysisViewModel =
                 new AnalysisViewModel(
                     locationSearch,
+                    timeSearch,
                     pathManager,
                     dataModel,
                     yearSearcher);

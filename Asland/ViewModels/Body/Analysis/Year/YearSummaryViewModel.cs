@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using Asland.Interfaces;
+    using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Interfaces.ViewModels.Body.Analysis.Year;
     using Asland.Model.IO;
@@ -23,6 +24,11 @@
         private readonly IPathManager pathManager;
 
         /// <summary>
+        /// The time search factory.
+        /// </summary>
+        private readonly ITimeSearchFactory timeSearchFactory;
+
+        /// <summary>
         /// Function used to retrieve a specific beastie from the model.
         /// </summary>
         private readonly Func<string, Beastie> getBeastie;
@@ -35,12 +41,15 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="YearSummaryViewModel"/> class.
         /// </summary>
+        /// <param name="search">The search factory</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="getBeastie">Find a specific <see cref="Beastie"/>.</param>
         public YearSummaryViewModel(
+            ITimeSearchFactory search,
             IPathManager pathManager,
             Func<string, Beastie> getBeastie) 
         {
+            this.timeSearchFactory = search;
             this.pathManager = pathManager;
             this.getBeastie = getBeastie;
 
@@ -79,6 +88,9 @@
         {
             this.Count = 0;
             this.Beasties.Clear();
+            this.timeSearchFactory.Find(
+               this.ActionUpdate,
+               name);
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 {
     using Asland.Interfaces;
     using Asland.Interfaces.Common.Utils;
+    using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Year;
@@ -27,21 +28,23 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="YearViewModel"/> class.
         /// </summary>
+        /// <param name="search">The search factory</param>
         /// <param name="yearSearcher">the year searcher</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">The data model</param>
         public YearViewModel(
+            ITimeSearchFactory search,
             IYearSearcher yearSearcher,
             IPathManager pathManager,
             IDataManager dataModel) 
         {
             this.Summary =
                 new YearSummaryViewModel(
+                    search,
                     pathManager,
                     dataModel.FindBeastie);
 
-            this.yearSearcher = yearSearcher;
-            this.Years = this.yearSearcher.FindRawYears();
+            this.Years = yearSearcher.FindRawYears();
             this.selectedYearIndex = this.Years.Count - 1;
         }
 
