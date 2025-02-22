@@ -1,7 +1,5 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Common
 {
-    using Asland.Common.Enums;
-
     /// <summary>
     /// This interface counts a single string.
     /// </summary>

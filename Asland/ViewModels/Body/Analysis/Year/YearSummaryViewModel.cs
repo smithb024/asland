@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using Asland.Common.Enums;
     using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
@@ -55,12 +56,18 @@
 
             this.count = 0;
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
+            this.Locations = new ObservableCollection<IStringCounterViewModel>();
         }
 
         /// <summary>
         /// Gets the beasties present in the analysis.
         /// </summary>
         public ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; private set; }
+
+        /// <summary>
+        /// Gets the locations present in the analysis.
+        /// </summary>
+        public ObservableCollection<IStringCounterViewModel> Locations { get; private set; }
 
         /// <summary>
         /// Gets the number events counted in the analysis.
@@ -103,6 +110,7 @@
         {
             ++this.Count;
 
+
             // Handle beasties.
             this.AssessAllBeasties();
 
@@ -129,6 +137,36 @@
             }
 
             this.OnPropertyChanged(nameof(this.Beasties));
+
+            // Handle locations.
+            IStringCounterViewModel locationViewModel = 
+                this.FindLocation(
+                    observation.Location);
+
+            if (locationViewModel == null)
+            {
+                locationViewModel =
+                    new StringCounterViewModel(
+                        observation.Location);
+                this.Locations.Add(locationViewModel);
+
+                // Sort the habitats icons.
+                List<IStringCounterViewModel> habitatSortable =
+                    new List<IStringCounterViewModel>(
+                        this.Locations);
+                habitatSortable = habitatSortable.OrderBy(a => a.Name).ToList();
+
+                for (int i = 0; i < habitatSortable.Count; i++)
+                {
+                    this.Locations.Move(this.Locations.IndexOf(habitatSortable[i]), i);
+                }
+
+                this.OnPropertyChanged(nameof(this.Locations));
+            }
+            else
+            {
+                locationViewModel.CountOne();
+            }
         }
 
         /// <summary>
@@ -171,6 +209,26 @@
                 if (beastie.Name.Equals(name))
                 {
                     return beastie;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Find the view model for the location called <paramref name="observation"/>.
+        /// </summary>
+        /// <param name="name">The location to find</param>
+        /// <returns>
+        /// The found location. Null if one can't be found.
+        /// </returns>
+        private IStringCounterViewModel FindLocation(string name)
+        {
+            foreach (IStringCounterViewModel location in this.Locations)
+            {
+                if (name == location.Name)
+                {
+                    return location;
                 }
             }
 

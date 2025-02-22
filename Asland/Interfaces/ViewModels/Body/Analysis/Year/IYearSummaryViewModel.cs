@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Year
 {
+    using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using System.Collections.ObjectModel;
 
@@ -17,6 +18,11 @@
         /// Gets the beasties present in the analysis.
         /// </summary>
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
+
+        /// <summary>
+        /// Gets the locations present in the analysis.
+        /// </summary>
+        ObservableCollection<IStringCounterViewModel> Locations { get; }
 
         /// <summary>
         /// Sets a new year for which to display a new set of summary data.

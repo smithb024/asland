@@ -181,8 +181,10 @@
             this.OnPropertyChanged(nameof (this.Beasties));
 
             // Handle Intensities
-            ObservationIntensity intensity;
-            bool intensitySuccess = Enum.TryParse(observation.Intensity, out intensity);
+            bool intensitySuccess =
+                Enum.TryParse(
+                    observation.Intensity,
+                    out ObservationIntensity intensity);
 
             if (intensitySuccess)
             {

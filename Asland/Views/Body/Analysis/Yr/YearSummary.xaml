@@ -13,6 +13,31 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Locations" 
+               Foreground="{StaticResource StdForeground}"
+               FontSize="16"
+               Margin="5,10,5,5"
+               HorizontalAlignment="Center"/>
+            <ScrollViewer Background="Transparent"
+                         Margin="5"
+                         MaxHeight="150"
+                         VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Path=Locations}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <common:CommonCounterIcon/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+
         <ScrollViewer Background="Transparent"
                      Grid.Column="1">
             <ItemsControl ItemsSource="{Binding Path=Beasties}">
