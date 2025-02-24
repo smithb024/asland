@@ -220,12 +220,6 @@
     <Compile Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml.cs">
       <DependentUpon>CommonCounterIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml.cs">
-      <DependentUpon>HabitatAnalysisIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml.cs">
-      <DependentUpon>IntensityAnalysisIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Body\Analysis\Location.xaml.cs">
       <DependentUpon>Location.xaml</DependentUpon>
     </Compile>
@@ -320,14 +314,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
