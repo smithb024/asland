@@ -46,6 +46,8 @@
 
             this.Years = yearSearcher.FindRawYears();
             this.selectedYearIndex = this.Years.Count - 1;
+            this.Summary.SetNewYear(
+                    this.Years[this.YearIndex]);
         }
 
         /// <summary>
