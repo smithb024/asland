@@ -28,7 +28,7 @@
                HorizontalAlignment="Center"/>
             <ScrollViewer Background="Transparent"
                          Margin="5"
-                         MaxHeight="150"
+                         MaxHeight="600"
                          VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Path=Locations}">
                     <ItemsControl.ItemsPanel>
