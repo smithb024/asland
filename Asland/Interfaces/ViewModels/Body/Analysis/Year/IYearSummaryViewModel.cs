@@ -15,6 +15,11 @@
         int Count { get; }
 
         /// <summary>
+        /// Gets the name of the currently selected year.
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
         /// Gets the beasties present in the analysis.
         /// </summary>
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }

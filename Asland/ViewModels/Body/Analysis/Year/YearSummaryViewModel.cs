@@ -55,9 +55,15 @@
             this.getBeastie = getBeastie;
 
             this.count = 0;
+            this.Name = string.Empty;
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
             this.Locations = new ObservableCollection<IStringCounterViewModel>();
         }
+
+        /// <summary>
+        /// Gets the name of the currently selected year.
+        /// </summary>
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets the beasties present in the analysis.
@@ -95,6 +101,9 @@
         {
             this.Count = 0;
             this.Beasties.Clear();
+            this.Name = name;
+            this.OnPropertyChanged(nameof(this.Name));
+
             this.timeSearchFactory.Find(
                this.ActionUpdate,
                name);
