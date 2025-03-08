@@ -1,7 +1,7 @@
-﻿using Asland.Common.Enums;
-
-namespace Asland.Common.Messages
+﻿namespace Asland.Common.Messages
 {
+    using Asland.Common.Enums;
+
     /// <summary>
     /// Massage used to indiicate which view to display.
     /// </summary>
