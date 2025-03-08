@@ -62,8 +62,8 @@
             this.Dates = new ObservableCollection<string>();
 
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
-            this.Intensities = new ObservableCollection<IIntensityCounterViewModel>();
-            this.Habitats = new ObservableCollection<IHabitatCounterViewModel>();
+            this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
+            this.Habitats = new ObservableCollection<IEnumCounterViewModel<ObservationHabitat>>();
         }
 
         /// <summary>
@@ -110,12 +110,12 @@
         /// <summary>
         /// Gets the intensities present in the analysis.
         /// </summary>
-        public ObservableCollection<IIntensityCounterViewModel> Intensities { get; private set; }
+        public ObservableCollection<IEnumCounterViewModel<ObservationIntensity>> Intensities { get; private set; }
 
         /// <summary>
         /// Gets the habitats present in the analysis.
         /// </summary>
-        public ObservableCollection<IHabitatCounterViewModel> Habitats { get; private set; }
+        public ObservableCollection<IEnumCounterViewModel<ObservationHabitat>> Habitats { get; private set; }
 
         /// <summary>
         /// Gets the dates of visits to the location.
@@ -181,22 +181,26 @@
             this.OnPropertyChanged(nameof (this.Beasties));
 
             // Handle Intensities
-            ObservationIntensity intensity;
-            bool intensitySuccess = Enum.TryParse(observation.Intensity, out intensity);
+            bool intensitySuccess =
+                Enum.TryParse(
+                    observation.Intensity,
+                    out ObservationIntensity intensity);
 
             if (intensitySuccess)
             {
-                IIntensityCounterViewModel intensityViewModel = this.Find(intensity);
+                IEnumCounterViewModel<ObservationIntensity> intensityViewModel = this.Find(intensity);
 
                 if (intensityViewModel == null)
                 {
                     intensityViewModel = 
-                        new IntensityCounterViewModel(
+                        new EnumCounterViewModel<ObservationIntensity>(
                             intensity);
                     this.Intensities.Add(intensityViewModel);
 
                     // Sort the intensity icons.
-                    List<IIntensityCounterViewModel> intensitySortable = new List<IIntensityCounterViewModel>(this.Intensities);
+                    List<IEnumCounterViewModel<ObservationIntensity>> intensitySortable =
+                        new List<IEnumCounterViewModel<ObservationIntensity>>(
+                            this.Intensities);
                     intensitySortable = intensitySortable.OrderBy(a => a.Name).ToList();
 
                     for (int i = 0; i < intensitySortable.Count; i++)
@@ -208,7 +212,7 @@
                 }
                 else
                 {
-                    intensityViewModel.CountIntensity();
+                    intensityViewModel.CountOne();
                 }
             }
 
@@ -220,17 +224,19 @@
 
                 if (habitatSuccess)
                 {
-                    IHabitatCounterViewModel habitatViewModel = this.Find(habitat);
+                    IEnumCounterViewModel<ObservationHabitat> habitatViewModel = this.Find(habitat);
 
                     if (habitatViewModel == null)
                     {
                         habitatViewModel =
-                            new HabitatCounterViewModel(
+                            new EnumCounterViewModel<ObservationHabitat>(
                                 habitat);
                         this.Habitats.Add(habitatViewModel);
 
                         // Sort the habitats icons.
-                        List<IHabitatCounterViewModel> habitatSortable = new List<IHabitatCounterViewModel>(this.Habitats);
+                        List<IEnumCounterViewModel<ObservationHabitat>> habitatSortable =
+                            new List<IEnumCounterViewModel<ObservationHabitat>>(
+                                this.Habitats);
                         habitatSortable = habitatSortable.OrderBy(a => a.Name).ToList();
 
                         for (int i = 0; i < habitatSortable.Count; i++)
@@ -242,7 +248,7 @@
                     }
                     else
                     {
-                        habitatViewModel.CountHabitat();
+                        habitatViewModel.CountOne();
                     }
                 }
             }
@@ -312,9 +318,9 @@
         /// <returns>
         /// The found intensity. Null if one can't be found.
         /// </returns>
-        private IIntensityCounterViewModel Find(ObservationIntensity observation)
+        private IEnumCounterViewModel<ObservationIntensity> Find(ObservationIntensity observation)
         {
-            foreach (IIntensityCounterViewModel intensity in this.Intensities)
+            foreach (IEnumCounterViewModel<ObservationIntensity> intensity in this.Intensities)
             {
                 if (observation == intensity.Name)
                 {
@@ -332,9 +338,9 @@
         /// <returns>
         /// The found habitat. Null if one can't be found.
         /// </returns>
-        private IHabitatCounterViewModel Find(ObservationHabitat observation)
+        private IEnumCounterViewModel<ObservationHabitat> Find(ObservationHabitat observation)
         {
-            foreach (IHabitatCounterViewModel habitat in this.Habitats)
+            foreach (IEnumCounterViewModel<ObservationHabitat> habitat in this.Habitats)
             {
                 if (observation == habitat.Name)
                 {

@@ -34,6 +34,7 @@
                 .AddSingleton<IYearSearcher, YearSearcher>()
                 .AddSingleton<IPathManager, PathManager>()
                 .AddSingleton<ILocationSearchFactory, LocationSearchFactory>()
+                .AddSingleton<ITimeSearchFactory, TimeSearchFactory>()
                 .AddSingleton<IDataManager, DataManager>()
                 .AddSingleton<IBeastieSearchFactory, BeastieSearchFactory>()
                 .AddSingleton<IBeastieDataFileFactory, BeastieDataFileFactory>()

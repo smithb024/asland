@@ -117,10 +117,12 @@
     <Compile Include="Factories\BeastieDataFileFactory.cs" />
     <Compile Include="Factories\BeastieSearchFactory.cs" />
     <Compile Include="Factories\IO\XmlFileIo.cs" />
+    <Compile Include="Factories\TimeSearchFactory.cs" />
     <Compile Include="Factories\LocationSearchFactory.cs" />
     <Compile Include="Interfaces\Common\Utils\IYearSearcher.cs" />
     <Compile Include="Interfaces\Factories\IBeastieDataFileFactory.cs" />
     <Compile Include="Interfaces\Factories\IBeastieSearchFactory.cs" />
+    <Compile Include="Interfaces\Factories\ITimeSearchFactory.cs" />
     <Compile Include="Interfaces\Factories\ILocationSearchFactory.cs" />
     <Compile Include="Interfaces\IAsLogger.cs" />
     <Compile Include="Interfaces\IPathManager.cs" />
@@ -128,8 +130,8 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IHabitatCounterViewModel.cs" />
-    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IIntensityCounterViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IEnumCounterViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IStringCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IBeastieViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Location\ILocSummaryViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\IYearViewModel.cs" />
@@ -176,8 +178,8 @@
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
-    <Compile Include="ViewModels\Body\Analysis\Common\HabitatCounterViewModel.cs" />
-    <Compile Include="ViewModels\Body\Analysis\Common\IntensityCounterViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\EnumCounterViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\StringCounterViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Location\LocSummaryViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\YearViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\LocationViewModel.cs" />
@@ -215,11 +217,8 @@
     <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
       <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml.cs">
-      <DependentUpon>HabitatAnalysisIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml.cs">
-      <DependentUpon>IntensityAnalysisIcon.xaml</DependentUpon>
+    <Compile Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml.cs">
+      <DependentUpon>CommonCounterIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Analysis\Location.xaml.cs">
       <DependentUpon>Location.xaml</DependentUpon>
@@ -314,11 +313,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Body\Analysis\Common\HabitatAnalysisIcon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Body\Analysis\Common\IntensityAnalysisIcon.xaml">
+    <Page Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

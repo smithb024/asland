@@ -53,11 +53,13 @@
         /// Initialises a new instance of the <see cref="AnalysisViewModel"/> class.
         /// </summary>
         /// <param name="locationSearch">The location search factory</param>
+        /// <param name="timeSearch">The time search factory</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">The data model</param>
         /// <param name="yearSearcher">the year searcher</param>
         public AnalysisViewModel(
             ILocationSearchFactory locationSearch,
+            ITimeSearchFactory timeSearch,
             IPathManager pathManager,
             IDataManager dataModel,
             IYearSearcher yearSearcher)
@@ -73,7 +75,10 @@
                     dataModel);
             this.yearViewModel =
                 new YearViewModel(
-                    yearSearcher);
+                    timeSearch,
+                    yearSearcher,
+                    pathManager,
+                    dataModel);
 
             IPageSelector beastieSelector =
                 new PageSelector(

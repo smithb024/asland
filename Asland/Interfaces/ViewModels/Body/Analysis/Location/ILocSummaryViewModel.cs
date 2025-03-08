@@ -1,5 +1,6 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Location
 {
+    using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using System.Collections.ObjectModel;
 
@@ -26,12 +27,12 @@
         /// <summary>
         /// Gets the intensities present in the analysis.
         /// </summary>
-        ObservableCollection<IIntensityCounterViewModel> Intensities { get; }
+        ObservableCollection<IEnumCounterViewModel<ObservationIntensity>> Intensities { get; }
 
         /// <summary>
         /// Gets the habitats present in the analysis.
         /// </summary>
-        ObservableCollection<IHabitatCounterViewModel> Habitats { get; }
+        ObservableCollection<IEnumCounterViewModel<ObservationHabitat>> Habitats { get; }
 
         /// <summary>
         /// Gets the dates of visits to the location.

@@ -1,16 +1,14 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Common
 {
-    using Asland.Common.Enums;
-
     /// <summary>
-    /// This interface counts a single habitat.
+    /// This interface counts a single string.
     /// </summary>
-    public interface IHabitatCounterViewModel
+    public interface IStringCounterViewModel
     {
         /// <summary>
-        /// Gets the <see cref="ObservationHabitat"/> which is the subject of this view model.
+        /// Gets the string which is the subject of this view model.
         /// </summary>
-        ObservationHabitat Name { get; }
+        string Name { get; }
 
         /// <summary>
         /// Gets the <see cref="Name"/> as a string.
@@ -25,6 +23,6 @@
         /// <summary>
         /// Add one to the <see cref="Count"/>.
         /// </summary>
-        void CountHabitat();
+        void CountOne();
     }
 }

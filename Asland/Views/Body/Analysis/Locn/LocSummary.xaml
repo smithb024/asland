@@ -71,7 +71,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <common:IntensityAnalysisIcon/>
+                            <common:CommonCounterIcon/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -94,7 +94,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <common:HabitatAnalysisIcon/>
+                            <common:CommonCounterIcon/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

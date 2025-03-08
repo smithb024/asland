@@ -1,16 +1,16 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Common
 {
-    using Asland.Common.Enums;
+    using System;
 
     /// <summary>
-    /// This interface counts a single intensity.
+    /// This interface counts a single habitat.
     /// </summary>
-    public interface IIntensityCounterViewModel
+    public interface IEnumCounterViewModel<T> where T : Enum
     {
         /// <summary>
-        /// Gets the <see cref="ObservationIntensity"/> which is the subject of this view model.
+        /// Gets the <see cref="T"/> which is the subject of this view model.
         /// </summary>
-        ObservationIntensity Name { get; }
+        T Name { get; }
 
         /// <summary>
         /// Gets the <see cref="Name"/> as a string.
@@ -25,6 +25,6 @@
         /// <summary>
         /// Add one to the <see cref="Count"/>.
         /// </summary>
-        void CountIntensity();
+        void CountOne();
     }
 }

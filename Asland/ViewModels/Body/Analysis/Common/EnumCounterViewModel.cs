@@ -1,29 +1,26 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Common
 {
-    using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using NynaeveLib.ViewModel;
+    using System;
 
-    /// <summary>
-    /// View model which counts a single instensity.
-    /// </summary>
-    public class IntensityCounterViewModel : ViewModelBase, IIntensityCounterViewModel
+    public class EnumCounterViewModel<T> : ViewModelBase, IEnumCounterViewModel<T> where T : Enum
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="IntensityCounterViewModel"/> class.
+        /// Initialises a new instance of the <see cref="EnumCounterViewModel"/> class.
         /// </summary>
-        /// <param name="name">The name of the intensity</param>
-        public IntensityCounterViewModel(
-            ObservationIntensity name) 
-        { 
+        /// <param name="name">The name of the habitat</param>
+        public EnumCounterViewModel(
+            T name)
+        {
             this.Name = name;
             this.Count = 1;
         }
 
         /// <summary>
-        /// Gets the <see cref="ObservationIntensity"/> which is the subject of this view model.
+        /// Gets the <see cref="T"/> which is the subject of this view model.
         /// </summary>
-        public ObservationIntensity Name { get; }
+        public T Name { get; }
 
         /// <summary>
         /// Gets the <see cref="Name"/> as a string.
@@ -38,7 +35,7 @@
         /// <summary>
         /// Add one to the <see cref="Count"/>.
         /// </summary>
-        public void CountIntensity()
+        public void CountOne()
         {
             ++this.Count;
             this.OnPropertyChanged(nameof(this.Count));

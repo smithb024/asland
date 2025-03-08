@@ -3,14 +3,14 @@
     using System.Windows.Controls;
 
     /// <summary>
-    /// Interaction logic for HabitatAnalysisIcon.xaml
+    /// Interaction logic for CommonCounterIcon.xaml
     /// </summary>
-    public partial class HabitatAnalysisIcon : UserControl
+    public partial class CommonCounterIcon : UserControl
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="HabitatAnalysisIcon"/> class.
+        /// Initialises a new instance of the <see cref="CommonCounterIcon"/> class.
         /// </summary>
-        public HabitatAnalysisIcon()
+        public CommonCounterIcon()
         {
             this.InitializeComponent();
         }

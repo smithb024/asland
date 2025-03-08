@@ -5,30 +5,30 @@
     using NynaeveLib.ViewModel;
 
     /// <summary>
-    /// View model which counts a single habitat.
+    /// View model which counts a single string.
     /// </summary>
-    public class HabitatCounterViewModel : ViewModelBase, IHabitatCounterViewModel
+    public class StringCounterViewModel : ViewModelBase, IStringCounterViewModel
     {
         /// <summary>
-        /// Initialises a new instance of the <see cref="HabitatCounterViewModel"/> class.
+        /// Initialises a new instance of the <see cref="StringCounterViewModel"/> class.
         /// </summary>
-        /// <param name="name">The name of the habitat</param>
-        public HabitatCounterViewModel(
-            ObservationHabitat name) 
+        /// <param name="name">The name of the object being counted</param>
+        public StringCounterViewModel(
+            string name) 
         { 
             this.Name = name;
             this.Count = 1;
         }
 
         /// <summary>
-        /// Gets the <see cref="ObservationHabitat"/> which is the subject of this view model.
+        /// Gets the string which is the subject of this view model.
         /// </summary>
-        public ObservationHabitat Name { get; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the <see cref="Name"/> as a string.
         /// </summary>
-        public string Description => this.Name.ToString();
+        public string Description => this.Name;
 
         /// <summary>
         /// Gets the total number of occurances of <see cref="Name"/>.
@@ -38,7 +38,7 @@
         /// <summary>
         /// Add one to the <see cref="Count"/>.
         /// </summary>
-        public void CountHabitat()
+        public void CountOne()
         {
             ++this.Count;
             this.OnPropertyChanged(nameof(this.Count));
