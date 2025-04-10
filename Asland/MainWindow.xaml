@@ -11,9 +11,8 @@
         Height="900" 
         Width="1065">
 
-    <Grid>
+    <Grid Background="{StaticResource StdBackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -21,12 +20,10 @@
 
         <ribbon:Ribbon
             Grid.Row="0"/>
-        <TextBlock 
-            Grid.Row="1"
-            Text="{Binding TestString}"/>
         <body:BodyView 
-            Grid.Row="2"/>
+            Grid.Row="1"
+            Margin="0,2,0,0"/>
         <status:StatusBar
-            Grid.Row="3"/>
+            Grid.Row="2"/>
     </Grid>
 </Window>
