@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:local="clr-namespace:Asland.Views.Common" xmlns:i1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             xmlns:local="clr-namespace:Asland.Views.Common"
+             xmlns:i1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+             xmlns:commonConverters="clr-namespace:NynaeveLib.Enumerations.Converters;assembly=NynaeveLib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <commonConverters:BoolToVisCollapsedVisibilityConverter x:Key="boolVisibilityConverter"/>
+    </UserControl.Resources>
+    
     <StackPanel>
         <TextBlock Text="{Binding Path=Name}"
                    Foreground="White"/>
@@ -19,9 +27,33 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border 
+                    <Grid
+                        Margin="1"
+                        Background="{StaticResource ButtonBackground}">
+                        <Ellipse Visibility="{Binding Path=IsSelected, Converter={StaticResource boolVisibilityConverter}}">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5" Center="0.5, 0.5" RadiusX="0.75" RadiusY="0.75">
+                                    <RadialGradientBrush.GradientStops>
+                                        <GradientStop Color="{StaticResource ButtonIsSelectedColour}" Offset="0"/>
+                                        <GradientStop Color="{StaticResource ButtonBackgroundColour}" Offset="0.8"/>
+                                    </RadialGradientBrush.GradientStops>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock 
+                            Text="{Binding Path=Name}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource StdForeground}"/>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonDown">
+                                <i:InvokeCommandAction Command="{Binding SelectStateCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Grid>
+                    <!--<Border 
                         BorderThickness="2"
-                        Background="LightGray">
+                        Background="{StaticResource ButtonBackground}">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="BorderBrush">
@@ -45,8 +77,12 @@
                                 <i:InvokeCommandAction Command="{Binding SelectStateCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <TextBlock Text="{Binding Path=Name}"/>
-                    </Border>
+                        <TextBlock
+                            Text="{Binding Path=Name}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource StdForeground}"/>
+                    </Border>-->
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
