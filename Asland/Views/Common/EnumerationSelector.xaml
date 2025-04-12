@@ -51,38 +51,6 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Grid>
-                    <!--<Border 
-                        BorderThickness="2"
-                        Background="{StaticResource ButtonBackground}">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="BorderBrush">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="HotPink"/>
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
-                                        <Setter Property="BorderBrush">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="Gray"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseLeftButtonDown">
-                                <i:InvokeCommandAction Command="{Binding SelectStateCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <TextBlock
-                            Text="{Binding Path=Name}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="{StaticResource StdForeground}"/>
-                    </Border>-->
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

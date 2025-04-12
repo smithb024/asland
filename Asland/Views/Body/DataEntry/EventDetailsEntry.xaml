@@ -40,14 +40,18 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <DatePicker SelectedDate="{Binding Date}"/>
+                    <DatePicker
+                        SelectedDate="{Binding Date}"
+                        Margin="0,0,0,5"/>
                     <CheckBox 
                         Content="Seen"
                         Foreground="White"
-                        IsChecked="{Binding IsSeen}"/>
+                        IsChecked="{Binding IsSeen}"
+                        Margin="0,0,0,5"/>
                     <TextBox 
                         Text="{Binding Path=Notes, UpdateSourceTrigger=PropertyChanged}"
-                        TextWrapping="Wrap"/>
+                        TextWrapping="Wrap"
+                        Margin="0,0,0,5"/>
 
                     <common:EnumerationSelector 
                         Margin="5"
