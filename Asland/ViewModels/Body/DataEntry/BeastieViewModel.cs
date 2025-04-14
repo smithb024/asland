@@ -5,6 +5,8 @@
     using Asland.Common.Enums;
     using Asland.ViewModels.Body.Common;
     using Asland.Interfaces;
+    using System.Windows.Input;
+    using NynaeveLib.Commands;
 
     /// <summary>
     /// View model used to describe a single beastie for display on the raw data entry view.
@@ -69,6 +71,9 @@
             this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
+            this.SelectCommand =
+                new CommonCommand(
+                    this.Select);
         }
 
         /// <summary>
@@ -93,6 +98,19 @@
                         this.isSeen);
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the command presented to the user to allow them to select this beastie.
+        /// </summary>
+        public ICommand SelectCommand { get; }
+
+        /// <summary>
+        /// Invert <see cref="IsSelected"/>. 
+        /// </summary>
+        private void Select()
+        {
+            this.IsSelected = !this.IsSelected;
         }
     }
 }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:Asland.Views.Body.DataEntry"
              xmlns:converters="clr-namespace:Asland.Common.Converters"
              mc:Ignorable="d" 
@@ -51,6 +52,13 @@
                 FontStyle="Italic"
                 HorizontalAlignment="Center"
                 Text="{Binding Path=LatinName}"/>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding Path=SelectCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
         </Grid>
     </Border>
 </UserControl>
