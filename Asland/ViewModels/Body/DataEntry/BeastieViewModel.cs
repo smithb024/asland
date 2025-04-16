@@ -5,6 +5,8 @@
     using Asland.Common.Enums;
     using Asland.ViewModels.Body.Common;
     using Asland.Interfaces;
+    using System.Windows.Input;
+    using NynaeveLib.Commands;
 
     /// <summary>
     /// View model used to describe a single beastie for display on the raw data entry view.
@@ -12,19 +14,19 @@
     public class BeastieViewModel : BeastieIconBaseViewModel, IBeastieViewModel
     {
         /// <summary>
+        /// Indicates whether the view model is managing seen or heard observations.
+        /// </summary>
+        private readonly bool isSeen;
+
+        /// <summary>
         /// Set the beastie as observed in the model.
         /// </summary>
-        private Action<string, bool, bool> setObservation;
+        private readonly Action<string, bool, bool> setObservation;
 
         /// <summary>
         /// Field indicating whether this beastie has been selected as part of the current event.
         /// </summary>
         private bool isSelected;
-
-        /// <summary>
-        /// Indicates whether the view model is managing seen or heard observations.
-        /// </summary>
-        private bool isSeen;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieViewModel"/> class.
@@ -69,6 +71,9 @@
             this.isSelected = isSelected;
             this.isSeen = isSeen;
             this.setObservation = setObservation;
+            this.SelectCommand =
+                new CommonCommand(
+                    this.Select);
         }
 
         /// <summary>
@@ -93,6 +98,19 @@
                         this.isSeen);
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the command presented to the user to allow them to select this beastie.
+        /// </summary>
+        public ICommand SelectCommand { get; }
+
+        /// <summary>
+        /// Invert <see cref="IsSelected"/>. 
+        /// </summary>
+        private void Select()
+        {
+            this.IsSelected = !this.IsSelected;
         }
     }
 }
