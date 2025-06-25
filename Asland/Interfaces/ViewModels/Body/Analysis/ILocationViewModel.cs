@@ -39,6 +39,11 @@
         bool IsRspb { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to just show NNR locations.
+        /// </summary>
+        bool IsNnr { get; set; }
+
+        /// <summary>
         /// Gets the summary for the selected location.
         /// </summary>
         ILocSummaryViewModel Summary { get; }
