@@ -57,6 +57,11 @@
         private bool isRspb;
 
         /// <summary>
+        /// Show the NNR locations.
+        /// </summary>
+        private bool isNnr;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="LocationViewModel"/> class.
         /// </summary>
         /// <param name="search">The search factory.</param>
@@ -162,6 +167,7 @@
                     this.OnPropertyChanged(nameof(this.IsWt));
                     this.OnPropertyChanged(nameof(this.IsWwt));
                     this.OnPropertyChanged(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsNnr));
                 }
 
                 this.OnPropertyChanged(nameof(this.IsNt));
@@ -189,10 +195,12 @@
                     this.isNt = false;
                     this.isWwt = false;
                     this.isRspb = false;
+                    this.isNnr = false;
 
                     this.OnPropertyChanged(nameof(this.IsNt));
                     this.OnPropertyChanged(nameof(this.IsWwt));
                     this.OnPropertyChanged(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsNnr));
                 }
 
                 this.OnPropertyChanged(nameof(this.IsWt));
@@ -220,10 +228,12 @@
                     this.isWt = false;
                     this.isNt = false;
                     this.isRspb = false;
+                    this.isNnr = false;
 
                     this.OnPropertyChanged(nameof(this.IsWt));
                     this.OnPropertyChanged(nameof(this.IsNt));
                     this.OnPropertyChanged(nameof(this.IsRspb));
+                    this.OnPropertyChanged(nameof(this.IsNnr));
                 }
 
                 this.OnPropertyChanged(nameof(this.IsWwt));
@@ -251,13 +261,48 @@
                     this.isWt = false;
                     this.isWwt = false;
                     this.isNt = false;
+                    this.isNnr = false;
 
                     this.OnPropertyChanged(nameof(this.IsWt));
                     this.OnPropertyChanged(nameof(this.IsWwt));
                     this.OnPropertyChanged(nameof(this.IsNt));
+                    this.OnPropertyChanged(nameof(this.IsNnr));
                 }
 
                 this.OnPropertyChanged(nameof(this.IsRspb));
+                this.ResetLocationsCollection();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to just show NNR locations.
+        /// </summary>
+        public bool IsNnr
+        {
+            get => this.isNnr;
+            set
+            {
+                if (this.isNnr == value)
+                {
+                    return;
+                }
+
+                this.isNnr = value;
+
+                if (this.isNnr == true)
+                {
+                    this.isWt = false;
+                    this.isWwt = false;
+                    this.isNt = false;
+                    this.isRspb = false;
+
+                    this.OnPropertyChanged(nameof(this.IsWt));
+                    this.OnPropertyChanged(nameof(this.IsWwt));
+                    this.OnPropertyChanged(nameof(this.IsNt));
+                    this.OnPropertyChanged(nameof(this.IsRspb));
+                }
+
+                this.OnPropertyChanged(nameof(this.IsNnr));
                 this.ResetLocationsCollection();
             }
         }
@@ -304,6 +349,14 @@
                 else if (this.CheckFilter(
                     this.isWwt,
                     "WWT",
+                    location,
+                    ref filteredLocations))
+                {
+                    continue;
+                }
+                else if (this.CheckFilter(
+                    this.isNnr,
+                    "NNR",
                     location,
                     ref filteredLocations))
                 {

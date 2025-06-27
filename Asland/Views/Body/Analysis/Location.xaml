@@ -57,6 +57,14 @@
                 Foreground="White"
                 Content="RSPB"
                 IsChecked="{Binding Path=IsRspb}"/>
+            
+            <CheckBox 
+                Margin="5,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                Content="NNR"
+                IsChecked="{Binding Path=IsNnr}"/>
         </StackPanel>
         
         <location:LocSummary 
