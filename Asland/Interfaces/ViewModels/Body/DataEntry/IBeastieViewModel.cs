@@ -1,6 +1,5 @@
 ﻿namespace Asland.Interfaces.ViewModels.Body.DataEntry
 {
-    using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Common;
     using System.Windows.Input;
 
