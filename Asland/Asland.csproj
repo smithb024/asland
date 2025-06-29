@@ -102,8 +102,10 @@
     </ApplicationDefinition>
     <Compile Include="AsLogger.cs" />
     <Compile Include="Common\Converters\IntensityToBrushConverter.cs" />
+    <Compile Include="Common\Converters\PresenceSelectedToBrushConverter.cs" />
     <Compile Include="Common\Converters\PercentageConverter.cs" />
     <Compile Include="Common\Converters\PresenceToBrushConverter.cs" />
+    <Compile Include="Common\Converters\PresenceUtility.cs" />
     <Compile Include="Common\Enums\MainViews.cs" />
     <Compile Include="Common\Enums\ObservationHabitat.cs" />
     <Compile Include="Common\Enums\ObservationWeather.cs" />
