@@ -11,13 +11,19 @@
 
     <UserControl.Resources>
         <converters:PresenceToBrushConverter x:Key="PresenceConverter"/>
+        <converters:PresenceSelectedToBrushConverter x:Key="PresenceSelectedConverter"/>
     </UserControl.Resources>
 
     <Border
-        BorderBrush="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}"
         BorderThickness="5"
         Width="180"
         Height="130">
+        <Border.BorderBrush>
+            <MultiBinding Converter="{StaticResource PresenceSelectedConverter}">
+                <Binding Path="IsSelected"/>
+                <Binding Path="Presence"/>
+            </MultiBinding>
+        </Border.BorderBrush>
         <Grid Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

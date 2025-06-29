@@ -37,38 +37,9 @@
             }
             else
             {
-                Presence convertedState = (Presence)value;
-
-                switch (convertedState)
-                {
-                    case Presence.Breeding:
-                        convertedColour = Colors.Tomato;
-                        break;
-
-                    case Presence.Hibernates:
-                        convertedColour = Colors.PowderBlue;
-                        break;
-
-                    case Presence.NonBreeding:
-                        convertedColour = Colors.DodgerBlue;
-                        break;
-
-                    case Presence.Passing:
-                        convertedColour = Colors.DarkGoldenrod;
-                        break;
-
-                    case Presence.Resident:
-                        convertedColour = Colors.ForestGreen;
-                        break;
-
-                    case Presence.Vagrant:
-                        convertedColour = Colors.LightSteelBlue;
-                        break;
-
-                    default:
-                        convertedColour = Colors.HotPink;
-                        break;
-                }
+                convertedColour = 
+                    PresenceUtility.Translate(
+                        (Presence) value);
             }
 
             return new SolidColorBrush(convertedColour);
