@@ -285,6 +285,9 @@
     <Compile Include="Views\Common\EnumerationSelector.xaml.cs">
       <DependentUpon>EnumerationSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Icons\HighIntensityIcon.xaml.cs">
+      <DependentUpon>HighIntensityIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ribbon\Ribbon.xaml.cs">
       <DependentUpon>Ribbon.xaml</DependentUpon>
     </Compile>
@@ -400,6 +403,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Common\EnumerationSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\HighIntensityIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
