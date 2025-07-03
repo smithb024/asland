@@ -17,7 +17,9 @@
               nameof(HighIntensityBrush),
               typeof(Brush),
               typeof(HighIntensityIcon),
-              new PropertyMetadata(new SolidColorBrush(Colors.HotPink)));
+              new PropertyMetadata(
+                  new SolidColorBrush(Colors.HotPink),
+                  OnHighIntensityPropertyChanged));
 
         /// <summary>
         /// Initialises a new instance of the <see cref="HighIntensityIcon"/> class.
@@ -25,6 +27,8 @@
         public HighIntensityIcon()
         {
             this.InitializeComponent();
+            this.HighIntensityPath.Fill = this.HighIntensityBrush;
+            this.HighIntensityPath.Stroke = this.HighIntensityBrush;
         }
 
         /// <summary>
@@ -34,6 +38,23 @@
         {
             get => (Brush)this.GetValue(HighIntensityBrushProperty);
             set => this.SetValue(HighIntensityBrushProperty, value);
+        }
+
+        /// <summary>
+        /// The brush changed event
+        /// </summary>
+        /// <param name="d">The sender</param>
+        /// <param name="e">The event argument</param>
+        private static void OnHighIntensityPropertyChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            if (d is HighIntensityIcon highIntensity) 
+            {
+                Brush newBrush = e.NewValue as Brush;
+                highIntensity.HighIntensityPath.Fill = newBrush;
+                highIntensity.HighIntensityPath.Stroke = newBrush;
+            }
         }
     }
 }
