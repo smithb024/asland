@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Asland.Views.Icons.MediumIntensityIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="341*"/>
+        </Grid.ColumnDefinitions>
+        <Path 
+            x:Name="MediumIntensityPath"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M141.42135,0 C251.87829,0 341.42135,89.543053 341.42135,200 341.42135,310.45694 251.87829,400 141.42135,400 86.192883,400 36.192883,377.61423 0,341.42136 L141.42135,200 z"/>
+    </Grid>
+
+</UserControl>
