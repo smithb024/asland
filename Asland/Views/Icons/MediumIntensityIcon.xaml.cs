@@ -12,9 +12,9 @@
         /// <summary>
         /// Used to paint this icon
         /// </summary>
-        public static readonly DependencyProperty MediumIntensityBrushProperty =
+        public static readonly DependencyProperty FillIconProperty =
             DependencyProperty.Register(
-              nameof(MediumIntensityBrush),
+              nameof(FillIcon),
               typeof(Brush),
               typeof(MediumIntensityIcon),
               new PropertyMetadata(
@@ -27,17 +27,17 @@
         public MediumIntensityIcon()
         {
             this.InitializeComponent();
-            this.MediumIntensityPath.Fill = this.MediumIntensityBrush;
-            this.MediumIntensityPath.Stroke = this.MediumIntensityBrush;
+            this.MediumIntensityPath.Fill = this.FillIcon;
+            this.MediumIntensityPath.Stroke = this.FillIcon;
         }
 
         /// <summary>
         /// Gets or sets the brush used to paint the icon.
         /// </summary>
-        public Brush MediumIntensityBrush
+        public Brush FillIcon
         {
-            get => (Brush)this.GetValue(MediumIntensityBrushProperty);
-            set => this.SetValue(MediumIntensityBrushProperty, value);
+            get => (Brush)this.GetValue(FillIconProperty);
+            set => this.SetValue(FillIconProperty, value);
         }
 
         /// <summary>

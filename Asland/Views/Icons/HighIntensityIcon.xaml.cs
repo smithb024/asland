@@ -12,9 +12,9 @@
         /// <summary>
         /// Used to paint this icon
         /// </summary>
-        public static readonly DependencyProperty HighIntensityBrushProperty =
+        public static readonly DependencyProperty FillIconProperty =
             DependencyProperty.Register(
-              nameof(HighIntensityBrush),
+              nameof(FillIcon),
               typeof(Brush),
               typeof(HighIntensityIcon),
               new PropertyMetadata(
@@ -27,17 +27,17 @@
         public HighIntensityIcon()
         {
             this.InitializeComponent();
-            this.HighIntensityPath.Fill = this.HighIntensityBrush;
-            this.HighIntensityPath.Stroke = this.HighIntensityBrush;
+            this.HighIntensityPath.Fill = this.FillIcon;
+            this.HighIntensityPath.Stroke = this.FillIcon;
         }
 
         /// <summary>
         /// Gets or sets the brush used to paint the icon.
         /// </summary>
-        public Brush HighIntensityBrush
+        public Brush FillIcon
         {
-            get => (Brush)this.GetValue(HighIntensityBrushProperty);
-            set => this.SetValue(HighIntensityBrushProperty, value);
+            get => (Brush)this.GetValue(FillIconProperty);
+            set => this.SetValue(FillIconProperty, value);
         }
 
         /// <summary>

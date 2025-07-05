@@ -12,11 +12,11 @@
         /// <summary>
         /// Used to paint this icon
         /// </summary>
-        public static readonly DependencyProperty LowIntensityBrushProperty =
+        public static readonly DependencyProperty FillIconProperty =
             DependencyProperty.Register(
-              nameof(LowIntensityBrush),
+              nameof(FillIcon),
               typeof(Brush),
-              typeof(MediumIntensityIcon),
+              typeof(LowIntensityIcon),
               new PropertyMetadata(
                   new SolidColorBrush(Colors.HotPink),
                   OnLowIntensityPropertyChanged));
@@ -27,17 +27,17 @@
         public LowIntensityIcon()
         {
             this.InitializeComponent();
-            this.LowIntensityPath.Fill = this.LowIntensityBrush;
-            this.LowIntensityPath.Stroke = this.LowIntensityBrush;
+            this.LowIntensityPath.Fill = this.FillIcon;
+            this.LowIntensityPath.Stroke = this.FillIcon;
         }
 
         /// <summary>
         /// Gets or sets the brush used to paint the icon.
         /// </summary>
-        public Brush LowIntensityBrush
+        public Brush FillIcon
         {
-            get => (Brush)this.GetValue(LowIntensityBrushProperty);
-            set => this.SetValue(LowIntensityBrushProperty, value);
+            get => (Brush)this.GetValue(FillIconProperty);
+            set => this.SetValue(FillIconProperty, value);
         }
 
         /// <summary>
