@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Asland.Views.Icons.LowIntensityIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Path 
+            x:Name="LowIntensityPath"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M0,0 C110.45694,0 200,89.543053 200,200 200,255.22847 177.61423,305.22845 141.42136,341.42136 L0,200 z"/>
+    </Grid>
+</UserControl>
