@@ -39,7 +39,7 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"/>
 
-        <icons:LowIntensityIcon
+        <icons:SeaIcon
             Grid.Row="2"
             HorizontalAlignment="Right"
             Width="20"
@@ -49,7 +49,7 @@
         
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding SelectNewEvent}"/>
+                <i:InvokeCommandAction Command="{Binding Path=SelectNewEvent}"/>
             </i:EventTrigger>
         </i:Interaction.Triggers>
 

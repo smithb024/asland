@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Asland.Views.Icons.SeaIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+             mc:Ignorable="d"  
+             d:DesignHeight="400" 
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Path 
+            x:Name="SeaIconPath"
+            Grid.Row="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M208.53081,39.999996 L208.53081,99.999992 265.40283,99.999992 265.40283,39.999996 z M170.6161,0 L303.31754,0 303.31754,149.11623 315.90988,148.67406 C331.54919,148.06349 347.03534,147.27467 362.35156,146.31354 L379.13147,145.18411 379.13147,300.00262 140.29967,300.00262 136.86937,298.35599 C57.659061,259.42505 5.6048555,201.75255 0.051707029,136.80676 L0,135.99998 25.124109,138.9865 C71.034317,144.00305 118.93977,147.42868 168.31792,149.07979 L170.6161,149.14891 z"/>
+    </Grid>
+
+</UserControl>

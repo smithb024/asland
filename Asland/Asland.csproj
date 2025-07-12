@@ -294,6 +294,9 @@
     <Compile Include="Views\Icons\MediumIntensityIcon.xaml.cs">
       <DependentUpon>MediumIntensityIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Icons\SeaIcon.xaml.cs">
+      <DependentUpon>SeaIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ribbon\Ribbon.xaml.cs">
       <DependentUpon>Ribbon.xaml</DependentUpon>
     </Compile>
@@ -421,6 +424,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\MediumIntensityIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\SeaIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
