@@ -5,30 +5,30 @@
     using System.Windows.Media;
 
     /// <summary>
-    /// Interaction logic for SeaIcon.xaml
+    /// Interaction logic for RailIcon.xaml
     /// </summary>
-    public partial class SeaIcon : UserControl
+    public partial class RailIcon : UserControl
     {
         /// <summary>
         /// Used to paint this icon
         /// </summary>
         public static readonly DependencyProperty FillIconProperty =
             DependencyProperty.Register(
-              nameof(FillIcon),
-              typeof(Brush),
-              typeof(SeaIcon),
-              new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
-                  OnSeaIconPropertyChanged));
+                nameof(FillIcon),
+                typeof(Brush),
+                typeof(RailIcon),
+                new PropertyMetadata(
+                    new SolidColorBrush(Colors.HotPink),
+                    OnRailIconPropertyChanged));
 
         /// <summary>
-        /// Initialises a new instance of the <see cref="SeaIcon"/> class.
+        /// Initialises a new instance of the <see cref="RailIcon"/> class.
         /// </summary>
-        public SeaIcon()
+        public RailIcon()
         {
             this.InitializeComponent();
-            this.SeaIconPath.Fill = this.FillIcon;
-            this.SeaIconPath.Stroke = this.FillIcon;
+            this.RailIconPath.Fill = this.FillIcon;
+            this.RailIconPath.Stroke = this.FillIcon;
         }
 
         /// <summary>
@@ -45,15 +45,15 @@
         /// </summary>
         /// <param name="d">The sender</param>
         /// <param name="e">The event argument</param>
-        private static void OnSeaIconPropertyChanged(
+        private static void OnRailIconPropertyChanged(
             DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            if (d is SeaIcon mediumIntensity)
+            if (d is RailIcon railIcon)
             {
                 Brush newBrush = e.NewValue as Brush;
-                mediumIntensity.SeaIconPath.Fill = newBrush;
-                mediumIntensity.SeaIconPath.Stroke = newBrush;
+                railIcon.RailIconPath.Fill = newBrush;
+                railIcon.RailIconPath.Stroke = newBrush;
             }
         }
     }

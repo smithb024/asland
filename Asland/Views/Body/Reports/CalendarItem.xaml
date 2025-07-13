@@ -39,7 +39,7 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"/>
 
-        <icons:SeaIcon
+        <icons:RailIcon
             Grid.Row="2"
             HorizontalAlignment="Right"
             Width="20"
