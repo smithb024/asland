@@ -28,15 +28,8 @@
         [XmlElement("habitat")]
         public List<ObservationHabitat> Habitats
         {
-            get
-            {
-                return this.habitats;
-            }
-
-            set
-            {
-                this.habitats = value;
-            }
+            get => this.habitats;
+            set => this.habitats = value;
         }
     }
 }

@@ -27,15 +27,8 @@
         [XmlElement("page")]
         public List<Page> Pages
         {
-            get
-            {
-                return this.pages;
-            }
-
-            set
-            {
-                this.pages = value;
-            }
+            get => this.pages;
+            set => this.pages = value;
         }
     }
 }
