@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Asland.Views.Icons.SnapshotIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="250*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
+        <Path 
+            x:Name="SnapshotIconPath"
+            Grid.Row="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M200,39.999996 C246.9442,40 285,78.055794 285,125 285,171.9442 246.9442,210 200,210 153.0558,210 115,171.9442 115,125 115,78.055794 153.0558,40 200,39.999996 z M200,25 C144.77153,25 100,69.771523 100,125 100,180.22847 144.77153,225 200,225 255.22847,225 300,180.22847 300,125 300,69.771523 255.22847,25 200,25 z M150,0 L250,0 300,50 330,50 330,35.000004 C330,29.477152 334.47714,25 340,25 L360,25 C365.52286,25 370,29.477152 370,35.000004 L370,50 390,50 C395.52286,50 400,54.477154 400,60.000004 L400,240 C400,245.52284 395.52286,250 390,250 L10.000002,250 C4.4771523,250 0,245.52284 0,240 L0,60.000004 C0,54.477154 4.4771523,50 10.000002,50 L100,50 z"/>
+    </Grid>
+</UserControl>
