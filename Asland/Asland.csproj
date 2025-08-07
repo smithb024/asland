@@ -303,6 +303,9 @@
     <Compile Include="Views\Icons\SnapshotIcon.xaml.cs">
       <DependentUpon>SnapshotIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Icons\WalkIcon.xaml.cs">
+      <DependentUpon>WalkIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ribbon\Ribbon.xaml.cs">
       <DependentUpon>Ribbon.xaml</DependentUpon>
     </Compile>
@@ -442,6 +445,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\SnapshotIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\WalkIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

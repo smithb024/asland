@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Asland.Views.Icons.WalkIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Path 
+            x:Name="WalkIconPath"
+            Grid.Column="1" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M119.99999,100 C126.90356,100 132.99017,103.49778 136.58431,108.81782 L137.21958,109.86349 234,226 206,254 140,174.8 140,253.2 233.06807,364.88168 234.14214,365.85788 C237.76143,369.47717 240,374.47717 240,380 240,391.04568 231.0457,400 220,400 213.09644,400 207.00983,396.50223 203.41569,391.18219 L202.78042,390.13651 119.99999,290.79999 37.219597,390.13647 36.58432,391.18219 C32.99017,396.50223 26.903561,400 19.999992,400 8.9543076,400 0,391.04568 0,380 0,374.47717 2.2385788,369.47717 5.8578644,365.85788 L6.9319153,364.88171 100,253.2 100,174.8 34,254 6,226 102.78043,109.86349 103.41569,108.81782 C107.00983,103.49778 113.09644,100 119.99999,100 z M119.99999,0 C142.09139,0 160,17.908609 160,40.000004 160,62.091389 142.09139,80 119.99999,80 97.908609,80 80,62.091389 80.000002,40.000004 80,17.908609 97.908609,0 119.99999,0 z"/>
+
+    </Grid>
+</UserControl>

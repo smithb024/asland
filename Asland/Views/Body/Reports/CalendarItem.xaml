@@ -39,7 +39,7 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"/>
 
-        <icons:SnapshotIcon
+        <icons:WalkIcon
             Grid.Row="2"
             HorizontalAlignment="Right"
             Width="20"
