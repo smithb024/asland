@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Asland.Views.Icons.RunIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asland.Views.Icons"
+                      mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Path 
+            x:Name="RunIconPath"
+            Grid.Column="0" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Stretch="Fill"
+            Data="M140,100 L280,100 282.04487,100.10327 C287.71776,100.67938 292.68976,103.62632 295.95444,107.93766 L295.99157,107.99157 394,206 366,234 280,148 180.00001,248 180.00001,380 C180,391.04569 171.04569,400 160,400 148.95431,400 140,391.04569 140,380 L140,260 20,260 C8.9542999,260 0,251.0457 0,240 0,228.9543 8.9542999,220 20,220 L152,220 232,140 140,140 z M280,0 C302.09139,3.3080578E-06 320,17.908613 320,40.000003 320,62.091392 302.09139,80.000003 280,80.000003 257.90861,80.000003 240,62.091392 240,40.000003 240,17.908613 257.90861,3.3080578E-06 280,0 z"/>
+
+    </Grid>
+</UserControl>
