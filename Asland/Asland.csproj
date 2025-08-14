@@ -288,6 +288,9 @@
     <Compile Include="Views\Icons\CommuteIcon.xaml.cs">
       <DependentUpon>CommuteIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Icons\CyclingIcon.xaml.cs">
+      <DependentUpon>CyclingIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Icons\HighIntensityIcon.xaml.cs">
       <DependentUpon>HighIntensityIcon.xaml</DependentUpon>
     </Compile>
@@ -431,6 +434,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Icons\CommuteIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Icons\CyclingIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
