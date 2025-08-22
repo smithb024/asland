@@ -161,6 +161,7 @@
     <Compile Include="Interfaces\ViewModels\Common\IEnumComponentViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IEnumSelectorCompoundViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Common\IEnumSelectorViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Icons\IIntensityIconViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\IStatusBarViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Ribbon\IRibbonViewModel.cs" />
@@ -207,6 +208,16 @@
     <Compile Include="ViewModels\Common\EnumComponentViewModel.cs" />
     <Compile Include="ViewModels\Common\EnumSelectorCompoundViewModel.cs" />
     <Compile Include="ViewModels\Common\EnumSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Icons\CyclingIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\HighIntensityIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\RailIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\SnapshotIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\WalkIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\RunIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\SeaIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\LowIntensityIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\MediumIntensityIconViewModel.cs" />
+    <Compile Include="ViewModels\Icons\CommuteIconViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Ribbon\RibbonViewModel.cs" />
     <Compile Include="ViewModels\StatusBarViewModel.cs" />
