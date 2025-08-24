@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace Asland.Views.Body.Reports
+﻿namespace Asland.Views.Body.Reports
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for CalendarItem.xaml
     /// </summary>
     public partial class CalendarItem : UserControl
     {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="CalendarItem"/> class.
+        /// </summary>
         public CalendarItem()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

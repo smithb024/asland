@@ -5,7 +5,7 @@
     /// <summary>
     /// View model which uses a common control to tell the view to draw a cycling icon.
     /// </summary>
-    public class CyclineIconViewModel : IIntensityIconViewModel
+    public class CyclingIconViewModel : IIntensityIconViewModel
     {
     }
 }

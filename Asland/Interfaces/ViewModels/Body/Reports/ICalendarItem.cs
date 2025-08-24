@@ -2,6 +2,7 @@
 {
     using System.Windows.Input;
     using Asland.Common.Enums;
+    using Asland.Interfaces.ViewModels.Icons;
 
     /// <summary>
     /// Interface for a view model which supports a single calendar item on the reports tab.
@@ -22,6 +23,11 @@
         /// Gets the intensity of the event.
         /// </summary>
         ObservationIntensity Intensity { get; }
+
+        /// <summary>
+        /// Gets the view model which is used to draw the intensity icon on the calendar view.
+        /// </summary>
+        IIntensityIconViewModel IntensityIcon { get; }
 
         /// <summary>
         /// Gets the command used to select a new event.

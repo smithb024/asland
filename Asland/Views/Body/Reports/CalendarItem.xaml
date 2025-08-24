@@ -4,12 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asland.Views.Body.Reports"
+             xmlns:viewModels="clr-namespace:Asland.ViewModels.Icons"
+             xmlns:icon="clr-namespace:Asland.Views.Icons"
              xmlns:converters="clr-namespace:Asland.Common.Converters"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:icons="clr-namespace:Asland.Views.Icons"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:CommuteIconViewModel}">
+            <icon:CommuteIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CyclingIconViewModel}">
+            <icon:CyclingIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:HighIntensityIconViewModel}">
+            <icon:HighIntensityIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:MediumIntensityIconViewModel}">
+            <icon:MediumIntensityIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:LowIntensityIconViewModel}">
+            <icon:LowIntensityIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:RailIconViewModel}">
+            <icon:RailIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:RunIconViewModel}">
+            <icon:RunIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SeaIconViewModel}">
+            <icon:SeaIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SnapshotIconViewModel}">
+            <icon:SnapshotIcon/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:WalkIconViewModel}">
+            <icon:WalkIcon/>
+        </DataTemplate>
+
         <converters:IntensityToBrushConverter x:Key="IntensityConverter"/>
     </UserControl.Resources>
 
@@ -39,13 +72,13 @@
             VerticalAlignment="Center"
             TextWrapping="Wrap"/>
 
-        <icons:CyclingIcon
+        <ContentControl
             Grid.Row="2"
             HorizontalAlignment="Right"
             Width="20"
             Height="20"
             Margin="10"
-            FillIcon="White"/>
+            Content="{Binding Path=IntensityIcon}" />
         
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseLeftButtonDown">
