@@ -18,7 +18,7 @@
                 typeof(Brush),
                 typeof(RailIcon),
                 new PropertyMetadata(
-                    new SolidColorBrush(Colors.HotPink),
+                    new SolidColorBrush(Colors.White),
                     OnRailIconPropertyChanged));
 
         /// <summary>

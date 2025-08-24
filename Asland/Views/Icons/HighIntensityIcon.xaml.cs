@@ -18,7 +18,7 @@
               typeof(Brush),
               typeof(HighIntensityIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnHighIntensityPropertyChanged));
 
         /// <summary>

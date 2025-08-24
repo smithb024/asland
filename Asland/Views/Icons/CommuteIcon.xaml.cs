@@ -19,7 +19,7 @@
               typeof(Brush),
               typeof(CommuteIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnCommuteIconPropertyChanged));
 
         /// <summary>

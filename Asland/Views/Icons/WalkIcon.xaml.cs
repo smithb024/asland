@@ -18,7 +18,7 @@
               typeof(Brush),
               typeof(WalkIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnWalkIconPropertyChanged));
 
         /// <summary>

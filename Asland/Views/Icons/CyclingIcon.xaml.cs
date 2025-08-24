@@ -18,7 +18,7 @@
               typeof(Brush),
               typeof(CyclingIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnCyclingIconPropertyChanged));
 
         /// <summary>

@@ -18,7 +18,7 @@
               typeof(Brush),
               typeof(SnapshotIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnSnapshotIconPropertyChanged));
 
         /// <summary>

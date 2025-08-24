@@ -18,7 +18,7 @@
               typeof(Brush),
               typeof(SeaIcon),
               new PropertyMetadata(
-                  new SolidColorBrush(Colors.HotPink),
+                  new SolidColorBrush(Colors.White),
                   OnSeaIconPropertyChanged));
 
         /// <summary>
