@@ -33,15 +33,9 @@
         [XmlAttribute("name")]
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get => this.name;
 
-            set
-            {
-                this.name = value;
-            }
+            set => this.name = value;
         }
 
         /// <summary>
@@ -50,15 +44,8 @@
         [XmlElement("beastie")]
         public List<string> Beasties
         {
-            get
-            {
-                return this.beasties;
-            }
-
-            set
-            {
-                this.beasties = value;
-            }
+            get => this.beasties;
+            set => this.beasties = value;
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿namespace Asland.ViewModels.Body.Reports
 {
-    using System;
-    using System.Windows.Input;
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Reports;
+    using Asland.Interfaces.ViewModels.Icons;
+    using Asland.ViewModels.Icons;
+    using Asland.Views.Icons;
     using NynaeveLib.Commands;
+    using System;
+    using System.Windows.Input;
 
     /// <summary>
     /// A view model which supports a single calendar item on the reports tab.
@@ -61,6 +64,51 @@
         /// Gets the intensity of the event.
         /// </summary>
         public ObservationIntensity Intensity { get; }
+
+        /// <summary>
+        /// Gets the view model which is used to draw the intensity icon on the calendar view.
+        /// </summary>
+        public IIntensityIconViewModel IntensityIcon 
+        { 
+            get
+            {
+                switch (this.Intensity)
+                {
+                    case ObservationIntensity.H:
+                        return new HighIntensityIconViewModel();
+
+                    case ObservationIntensity.M:
+                        return new MediumIntensityIconViewModel();
+
+                    case ObservationIntensity.L:
+                        return new LowIntensityIconViewModel();
+
+                    case ObservationIntensity.Snapshot:
+                        return new SnapshotIconViewModel();
+
+                    case ObservationIntensity.Commute:
+                        return new CommuteIconViewModel();
+
+                    case ObservationIntensity.Run:
+                        return new RunIconViewModel();
+
+                    case ObservationIntensity.Cycling:
+                        return new CyclingIconViewModel();
+
+                    case ObservationIntensity.Walk:
+                        return new WalkIconViewModel();
+
+                    case ObservationIntensity.RailJourney:
+                        return new RailIconViewModel();
+
+                    case ObservationIntensity.SeaJourney:
+                        return new SeaIconViewModel();
+
+                    default:
+                        return null;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the command used to select a new event.

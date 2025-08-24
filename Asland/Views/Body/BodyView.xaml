@@ -27,6 +27,6 @@
     </UserControl.Resources>
 
     <Grid>
-        <ContentControl Content="{Binding CurrentView}" />
+        <ContentControl Content="{Binding Path=CurrentView}" />
     </Grid>
 </UserControl>
