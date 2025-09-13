@@ -1,4 +1,5 @@
 ﻿using Asland.Common.Enums;
+using Asland.Common.Utils;
 using System.Windows.Media;
 
 namespace Asland.Common.Converters
@@ -19,25 +20,25 @@ namespace Asland.Common.Converters
             switch (prescence)
             {
                 case Presence.Breeding:
-                    return Colors.Tomato;
+                    return ColourLibrary.Breeding;
 
                 case Presence.Hibernates:
-                    return Colors.PowderBlue;
+                    return ColourLibrary.Hibernates;
 
                 case Presence.NonBreeding:
-                    return Colors.DodgerBlue;
+                    return ColourLibrary.NonBreeding;
 
                 case Presence.Passing:
-                    return Colors.DarkGoldenrod;
+                    return ColourLibrary.Passing;
 
                 case Presence.Resident:
-                    return Colors.ForestGreen;
+                    return ColourLibrary.Resident;
 
                 case Presence.Vagrant:
-                    return Colors.LightSteelBlue;
+                    return ColourLibrary.Vagrant;
 
                 default:
-                    return Colors.HotPink;
+                    return ColourLibrary.UnknownColour;
             }
         }
     }

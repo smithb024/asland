@@ -61,5 +61,36 @@
         /// A colour which is used for sea.
         /// </summary>
         public static Color Sea => Colors.Goldenrod;
+
+        /// <summary>
+        /// A colour used for a beastie which comes to breed.
+        /// </summary>
+        public static Color Breeding => Colors.Tomato;
+
+        /// <summary>
+        /// A colour used for a beastie which stays year round, but which hibernates.
+        /// </summary>
+        public static Color Hibernates => Colors.PowderBlue;
+
+        /// <summary>
+        /// A colour used for a beastie which comes to over winter.
+        /// </summary>
+        public static Color NonBreeding => Colors.DodgerBlue;
+
+        /// <summary>
+        /// A colour for a beastie which migrates through.
+        /// </summary>
+        public static Color Passing => Colors.DarkGoldenrod;
+
+        /// <summary>
+        /// A colour for a beastie which lives year round.
+        /// </summary>
+        public static Color Resident => Colors.ForestGreen;
+
+        /// <summary>
+        /// A colour for a rare/unusual beastie.
+        /// </summary>
+        public static Color Vagrant => Colors.LightSteelBlue;
+
     }
 }
