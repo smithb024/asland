@@ -92,5 +92,10 @@
         /// </summary>
         public static Color Vagrant => Colors.LightSteelBlue;
 
+        /// <summary>
+        /// A colour for an icon which has been selected.
+        /// </summary>
+        public static Color IsSelected => Colors.LightGoldenrodYellow;
+
     }
 }
