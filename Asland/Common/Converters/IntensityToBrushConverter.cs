@@ -5,6 +5,7 @@
     using System.Windows.Media;
 
     using Asland.Common.Enums;
+    using Asland.Common.Utils;
 
     /// <summary>
     /// Used to convert a <see cref="ComponentState"/> value to a <see cref="Brush"/> to be used
@@ -33,7 +34,7 @@
               value == null ||
               value.GetType() != typeof(ObservationIntensity))
             {
-                convertedColour = Colors.HotPink;
+                convertedColour = ColourLibrary.UnknownColour;
             }
             else
             {
@@ -42,47 +43,47 @@
                 switch (convertedState)
                 {
                     case ObservationIntensity.Snapshot:
-                        convertedColour = Colors.Indigo;
+                        convertedColour = ColourLibrary.Snapshot;
                         break;
 
                     case ObservationIntensity.H:
-                        convertedColour = Colors.DarkGreen;
+                        convertedColour = ColourLibrary.HighIntensity;
                         break;
 
                     case ObservationIntensity.M:
-                        convertedColour = Colors.ForestGreen;
+                        convertedColour = ColourLibrary.MediumIntensity;
                         break;
 
                     case ObservationIntensity.L:
-                        convertedColour = Colors.Olive;
+                        convertedColour = ColourLibrary.LowIntensity;
                         break;
 
                     case ObservationIntensity.Run:
-                        convertedColour = Colors.DarkBlue;
+                        convertedColour = ColourLibrary.Run;
                         break;
 
                     case ObservationIntensity.Cycling:
-                        convertedColour = Colors.MediumBlue;
+                        convertedColour = ColourLibrary.Cycling;
                         break;
 
                     case ObservationIntensity.Walk:
-                        convertedColour = Colors.RoyalBlue;
+                        convertedColour = ColourLibrary.Walk;
                         break;
 
                     case ObservationIntensity.Commute:
-                        convertedColour = Colors.IndianRed;
+                        convertedColour = ColourLibrary.Commute;
                         break;
 
                     case ObservationIntensity.RailJourney:
-                        convertedColour = Colors.DarkGoldenrod;
+                        convertedColour = ColourLibrary.Rail;
                         break;
 
                     case ObservationIntensity.SeaJourney:
-                        convertedColour = Colors.Goldenrod;
+                        convertedColour = ColourLibrary.Sea;
                         break;
 
                     default:
-                        convertedColour = Colors.Black;
+                        convertedColour = ColourLibrary.UnknownColour;
                         break;
                 }
             }

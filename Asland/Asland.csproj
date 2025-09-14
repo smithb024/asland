@@ -115,6 +115,7 @@
     <Compile Include="Common\Enums\Presence.cs" />
     <Compile Include="Common\Messages\AppStatusMessage.cs" />
     <Compile Include="Common\Messages\MainViewMessage.cs" />
+    <Compile Include="Common\Utils\ColourLibrary.cs" />
     <Compile Include="Common\Utils\YearSearcher.cs" />
     <Compile Include="Factories\BeastieDataFileFactory.cs" />
     <Compile Include="Factories\BeastieSearchFactory.cs" />

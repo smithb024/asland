@@ -1,10 +1,10 @@
 ﻿namespace Asland.Common.Converters
 {
+    using Asland.Common.Enums;
+    using Asland.Common.Utils;
     using System;
     using System.Windows.Data;
     using System.Windows.Media;
-
-    using Asland.Common.Enums;
 
     /// <summary>
     /// Used to convert a <see cref="ComponentState"/> value to a <see cref="Brush"/> to be used
@@ -33,7 +33,7 @@
               value == null ||
               value.GetType() != typeof(Presence))
             {
-                convertedColour = Colors.HotPink;
+                convertedColour = ColourLibrary.UnknownColour;
             }
             else
             {

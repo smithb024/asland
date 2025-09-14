@@ -1,6 +1,7 @@
 ﻿namespace Asland.Common.Converters
 {
     using Asland.Common.Enums;
+    using Asland.Common.Utils;
     using System;
     using System.Globalization;
     using System.Windows.Data;
@@ -35,16 +36,16 @@
 
             if (values.Length != 2)
             {
-                convertedColour = Colors.HotPink;
+                convertedColour = ColourLibrary.UnknownColour;
             }
             else if (values[0].GetType() != typeof(bool) ||
                 values[1].GetType() != typeof(Presence))
             {
-                convertedColour = Colors.HotPink;
+                convertedColour = ColourLibrary.UnknownColour;
             }
             else if ((bool)values[0])
             {
-                convertedColour = Colors.LightGoldenrodYellow;
+                convertedColour = ColourLibrary.IsSelected;
             }
             else
             {
