@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Windows;
     using Asland.Common.Messages;
     using Asland.Factories.IO;
     using Asland.Interfaces;
@@ -36,6 +37,11 @@
         private readonly Action<string> openEventCommand;
 
         /// <summary>
+        /// Lookup to get the name to month integer.
+        /// </summary>
+        private readonly Dictionary<string, int> monthDictionary = new Dictionary<string, int>();
+
+        /// <summary>
         /// The index of the currently selected year.
         /// </summary>
         private int yearsIndex;
@@ -44,11 +50,6 @@
         /// The last selected month.
         /// </summary>
         private string currentMonth;
-
-        /// <summary>
-        /// Lookup to get the name to month integer.
-        /// </summary>
-        private Dictionary<string, int> monthDictionary = new Dictionary<string, int>();
 
         /// <summary>
         /// Initialises a new instance of the <see cref="CalendarViewModel"/> class.
@@ -102,6 +103,7 @@
             string monthName =
                 this.monthDictionary.FirstOrDefault(x => x.Value == DateTime.Now.Month).Key;
             this.NewPage(monthName);
+            CommonMessenger.Default.Register<RefreshCurrentCalendarPageMessage>(this, this.Redraw);
         }
 
         /// <summary>
@@ -150,7 +152,52 @@
         private void NewPage(string newPageName)
         {
             this.SetMonth(newPageName);
+            this.Redraw();
+            
+        }
 
+        /// <summary>
+        /// Inform each of the components in the month selector collection of the name of the 
+        /// currently selected month.
+        /// </summary>
+        /// <param name="pageName">page name</param>
+        private void SetMonth(string monthName)
+        {
+            this.currentMonth = monthName;
+            foreach (IPageSelector monthSelector in this.MonthSelector)
+            {
+                monthSelector.SelectedButton(monthName);
+            }
+        }
+
+        /// <summary>
+        /// Find and return the paths to all events in the currently selected month.
+        /// </summary>
+        /// <returns>collection of paths</returns>
+        private List<string> FindEventPaths()
+        {
+            List<string> paths =
+                this.yearSearcher.FindAllRawObservationsInAMonth(
+                    this.Years[this.YearsIndex],
+                    this.monthDictionary[this.currentMonth]);
+
+            return paths;
+        }
+
+        /// <summary>
+        /// A redraw message has been received.
+        /// </summary>
+        /// <param name="message">the redraw request message</param>
+        private void Redraw(RefreshCurrentCalendarPageMessage message)
+        {
+            this.Redraw();
+        }
+
+        /// <summary>
+        /// Redraw the page.
+        /// </summary>
+        private void Redraw()
+        {
             List<string> eventPaths = this.FindEventPaths();
 
             this.Events.Clear();
@@ -187,34 +234,6 @@
             }
 
             this.OnPropertyChanged(nameof(this.Events));
-        }
-
-        /// <summary>
-        /// Inform each of the components in the month selector collection of the name of the 
-        /// currently selected month.
-        /// </summary>
-        /// <param name="pageName">page name</param>
-        private void SetMonth(string monthName)
-        {
-            this.currentMonth = monthName;
-            foreach (IPageSelector monthSelector in this.MonthSelector)
-            {
-                monthSelector.SelectedButton(monthName);
-            }
-        }
-
-        /// <summary>
-        /// Find and return the paths to all events in the currently selected month.
-        /// </summary>
-        /// <returns>collection of paths</returns>
-        private List<string> FindEventPaths()
-        {
-            List<string> paths =
-                this.yearSearcher.FindAllRawObservationsInAMonth(
-                    this.Years[this.YearsIndex],
-                    this.monthDictionary[this.currentMonth]);
-
-            return paths;
         }
     }
 }

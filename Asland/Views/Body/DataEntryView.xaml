@@ -51,19 +51,19 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 <TextBlock
-                    Text="{Binding EditingText}"/>
+                    Text="{Binding Path=EditingText}"/>
                 <Button
                     Margin="5"
                     Width="100"
                     Height="25"
-                    Command="{Binding LoadCommand}"
+                    Command="{Binding Path=LoadCommand}"
                     Style="{StaticResource ButtonStyle}"
                     Content="Load"/>
                 <Button 
                     Margin="5"
                     Width="100"
                     Height="25"
-                    Command="{Binding SaveCommand}"
+                    Command="{Binding Path=SaveCommand}"
                     Style="{StaticResource ButtonStyle}"
                     Content="Save"/>
             </StackPanel>

@@ -114,6 +114,7 @@
     <Compile Include="Common\Enums\ObservationTimeOfDay.cs" />
     <Compile Include="Common\Enums\Presence.cs" />
     <Compile Include="Common\Messages\AppStatusMessage.cs" />
+    <Compile Include="Common\Messages\RefreshCurrentCalendarPageMessage.cs" />
     <Compile Include="Common\Messages\MainViewMessage.cs" />
     <Compile Include="Common\Utils\ColourLibrary.cs" />
     <Compile Include="Common\Utils\YearSearcher.cs" />

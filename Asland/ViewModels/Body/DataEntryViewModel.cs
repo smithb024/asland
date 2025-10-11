@@ -1,10 +1,7 @@
 ﻿namespace Asland.ViewModels.Body
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Windows.Forms;
-    using System.Windows.Input;
     using Asland.Common.Enums;
+    using Asland.Common.Messages;
     using Asland.Interfaces;
     using Asland.Interfaces.Model.IO.DataEntry;
     using Asland.Interfaces.ViewModels.Body;
@@ -16,6 +13,11 @@
     using NynaeveLib.Commands;
     using NynaeveLib.Utils;
     using NynaeveLib.ViewModel;
+    using System;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
+    using System.Windows.Input;
+    using CommonMessenger = NynaeveLib.Messenger.Messenger;
 
     /// <summary>
     /// View model which suports the data entry view.
@@ -160,7 +162,7 @@
         /// <summary>
         /// Gets a string which describes the editing status.
         /// </summary>
-        public string EditingText => isEditing ? "Editing" : string.Empty;
+        public string EditingText => this.isEditing ? "Editing" : string.Empty;
 
         /// <summary>
         /// Save the current event.
@@ -172,6 +174,8 @@
             if (success)
             {
                 this.Reset();
+                RefreshCurrentCalendarPageMessage message = new RefreshCurrentCalendarPageMessage();
+                CommonMessenger.Default.Send(message);
             }
         }
 

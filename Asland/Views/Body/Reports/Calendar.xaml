@@ -24,8 +24,8 @@
                 Height="25"
                 Margin="0,5,0,5"
                 Grid.Column="0"
-                ItemsSource="{Binding Years}"
-                SelectedIndex="{Binding YearsIndex}"/>
+                ItemsSource="{Binding Path=Years}"
+                SelectedIndex="{Binding Path=YearsIndex}"/>
 
             <ItemsControl 
                 Grid.Column="1"
