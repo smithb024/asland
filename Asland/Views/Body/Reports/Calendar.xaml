@@ -21,9 +21,10 @@
             </Grid.ColumnDefinitions>
 
             <ComboBox 
-                Height="25"
+                Height="20"
                 Margin="0,5,0,5"
                 Grid.Column="0"
+                Style="{StaticResource ComboBoxStyle}"
                 ItemsSource="{Binding Path=Years}"
                 SelectedIndex="{Binding Path=YearsIndex}"/>
 

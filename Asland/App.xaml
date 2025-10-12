@@ -11,10 +11,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Asland;component/Views/Styles/ColourDictionary.xaml">
-                </ResourceDictionary>
-                <ResourceDictionary Source="/Asland;component/Views/Styles/ButtonStyles.xaml">
-                </ResourceDictionary>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/ColourDictionary.xaml"/>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/GenericStyle.xaml"/>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Asland;component/Views/Styles/ComboBoxStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
