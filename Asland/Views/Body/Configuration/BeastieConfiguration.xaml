@@ -91,6 +91,7 @@
             <ComboBox 
                 Margin="0,5,0,5"
                 Height="25"
+                Style="{StaticResource ComboBoxStyle}"
                 ItemsSource="{Binding BeastieImageList}"
                 SelectedIndex="{Binding BeastieImageListIndex}"/>
 
@@ -117,8 +118,9 @@
             <ComboBox 
                 Height="25"
                 Margin="0,5,0,5"
-                ItemsSource="{Binding PresenceList}"
-                SelectedIndex="{Binding PresenceListIndex}"/>
+                Style="{StaticResource ComboBoxStyle}"
+                ItemsSource="{Binding Path=PresenceList}"
+                SelectedIndex="{Binding Path=PresenceListIndex}"/>
 
         </StackPanel>
 
