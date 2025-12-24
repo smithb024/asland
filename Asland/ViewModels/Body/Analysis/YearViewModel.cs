@@ -32,16 +32,19 @@
         /// <param name="yearSearcher">the year searcher</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">The data model</param>
+        /// <param name="logger">The logger</param>
         public YearViewModel(
             ITimeSearchFactory search,
             IYearSearcher yearSearcher,
             IPathManager pathManager,
-            IDataManager dataModel) 
+            IDataManager dataModel,
+            IAsLogger logger) 
         {
             this.Summary =
                 new YearSummaryViewModel(
                     search,
                     pathManager,
+                    logger,
                     dataModel.FindBeastie);
 
             this.Years = yearSearcher.FindRawYears();

@@ -30,6 +30,11 @@
         private readonly ITimeSearchFactory timeSearchFactory;
 
         /// <summary>
+        /// The logger
+        /// </summary>
+        private readonly IAsLogger logger;
+
+        /// <summary>
         /// Function used to retrieve a specific beastie from the model.
         /// </summary>
         private readonly Func<string, Beastie> getBeastie;
@@ -44,14 +49,17 @@
         /// </summary>
         /// <param name="search">The search factory</param>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="logger">the logger</param>
         /// <param name="getBeastie">Find a specific <see cref="Beastie"/>.</param>
         public YearSummaryViewModel(
             ITimeSearchFactory search,
             IPathManager pathManager,
+            IAsLogger logger,
             Func<string, Beastie> getBeastie) 
         {
             this.timeSearchFactory = search;
             this.pathManager = pathManager;
+            this.logger = logger;
             this.getBeastie = getBeastie;
 
             this.count = 0;
@@ -104,6 +112,7 @@
             this.Name = name;
             this.OnPropertyChanged(nameof(this.Name));
 
+            this.Locations.Clear();
             this.timeSearchFactory.Find(
                this.ActionUpdate,
                name);
@@ -186,6 +195,13 @@
         private void CreateNewBeastie(string name)
         {
             Beastie beastie = this.getBeastie(name);
+
+            if (beastie == null) 
+            {
+                this.logger.WriteLine($"{nameof(YearSummaryViewModel)} Fault. Can't find beastie {name}");
+                return;
+            }
+
             IBeastieAnalysisIconViewModel beastieIcon =
                 new BeastieAnalysisIconViewModel(
                     this.pathManager,
