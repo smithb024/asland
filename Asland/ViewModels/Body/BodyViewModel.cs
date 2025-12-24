@@ -96,6 +96,7 @@
                     timeSearch,
                     pathManager,
                     dataModel,
+                    logger,
                     yearSearcher);
 
             this.currentView = this.dataEntryViewModel;

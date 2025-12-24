@@ -56,12 +56,14 @@
         /// <param name="timeSearch">The time search factory</param>
         /// <param name="pathManager">the path manager</param>
         /// <param name="dataModel">The data model</param>
+        /// <param name="logger">The logger</param>
         /// <param name="yearSearcher">the year searcher</param>
         public AnalysisViewModel(
             ILocationSearchFactory locationSearch,
             ITimeSearchFactory timeSearch,
             IPathManager pathManager,
             IDataManager dataModel,
+            IAsLogger logger,
             IYearSearcher yearSearcher)
         {
             this.PageSelector = new List<IPageSelector>();
@@ -78,7 +80,8 @@
                     timeSearch,
                     yearSearcher,
                     pathManager,
-                    dataModel);
+                    dataModel,
+                    logger);
 
             IPageSelector beastieSelector =
                 new PageSelector(
