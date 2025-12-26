@@ -62,6 +62,21 @@
         private bool isNnr;
 
         /// <summary>
+        /// The collection of years.
+        /// </summary>
+        private ObservableCollection<string> years;
+
+        /// <summary>
+        /// The index of the currently selected year.
+        /// </summary>
+        private int selectedYearsIndex;
+
+        /// <summary>
+        /// Indicates whether <see cref="Years"/> should be enabled.
+        /// </summary>
+        private bool isYearEnabled;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="LocationViewModel"/> class.
         /// </summary>
         /// <param name="search">The search factory.</param>
@@ -73,6 +88,8 @@
             IDataManager dataModel)
         {
             this.locations = new ObservableCollection<string>();
+            this.years = new ObservableCollection<string>();
+            this.isYearEnabled = false;
 
             string basePath = pathManager.RawDataPath;
             string[] subdirectoryEntries = Directory.GetDirectories(basePath);
@@ -116,6 +133,7 @@
                     dataModel.FindBeastie);
             this.displayedLocations = this.locations;
             this.selectedLocationIndex = -1;
+            this.selectedYearsIndex = -1;
         }
 
         /// <summary>
@@ -311,6 +329,50 @@
         /// Gets the summary for the selected location.
         /// </summary>
         public ILocSummaryViewModel Summary { get; }
+
+        /// <summary>
+        /// Gets a collection of years assocated with the currently selected location.
+        /// </summary>
+        public ObservableCollection<string> Years => this.years;
+
+        /// <summary>
+        /// Gets or sets the index of the currently selected year.
+        /// </summary>
+        public int YearsIndex
+        {
+            get => this.selectedYearsIndex;
+            set
+            {
+                if (this.selectedYearsIndex == value)
+                {
+                    return;
+                }
+
+                this.selectedYearsIndex = value;
+                this.OnPropertyChanged(nameof(this.YearsIndex));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicated whether the <see cref="Years"/> control is enabled.
+        /// </summary>
+        /// <remarks>
+        /// It will be enabled if there are multiple years available to choose.
+        /// </remarks>
+        public bool IsYearEnabled 
+        {
+            get => this.isYearEnabled;
+            set
+            {
+                if (this.isYearEnabled == value)
+                {
+                    return;
+                }
+
+                this.isYearEnabled = value;
+                this.OnPropertyChanged(nameof(this.IsYearEnabled));
+            }
+        }
 
         /// <summary>
         /// Reset the locations list using the filters if required.
