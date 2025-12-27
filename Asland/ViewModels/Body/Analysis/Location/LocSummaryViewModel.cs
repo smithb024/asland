@@ -35,6 +35,14 @@
         private readonly Func<string, Beastie> getBeastie;
 
         /// <summary>
+        /// Action used to record a year.
+        /// </summary>
+        /// <remarks>
+        /// This information will be used by the location view model to filter on a specific year.
+        /// </remarks>
+        private readonly Action<string> addYear;
+
+        /// <summary>
         /// The name of the current location.
         /// </summary>
         private string name;
@@ -49,14 +57,18 @@
         /// </summary>
         /// <param name="search">the search factory</param>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="getBeastie">a method used return a beastie</param>
+        /// <param name="addYear">a method used to record a year</param>
         public LocSummaryViewModel(
             ILocationSearchFactory search,
             IPathManager pathManager,
-            Func<string, Beastie> getBeastie)
+            Func<string, Beastie> getBeastie,
+            Action<string> addYear)
         {
             this.locationSearchFactory = search;
             this.pathManager = pathManager;
             this.getBeastie = getBeastie;
+            this.addYear = addYear;
             this.name = string.Empty;
             this.count = 0;
             this.Dates = new ObservableCollection<string>();
@@ -152,6 +164,12 @@
         {
             ++this.Count;
             this.Dates.Add(observation.Date);
+            string year =
+                observation.Date.Substring(
+                    Math.Max(
+                        0, 
+                        observation.Date.Length - 4));
+            this.addYear.Invoke(year);
 
             // Handle beasties.
             this.AssessAllBeasties();

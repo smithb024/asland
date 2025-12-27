@@ -59,11 +59,11 @@
         int YearsIndex { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicated whether the <see cref="Years"/> control is enabled.
+        /// Gets a value indicated whether the <see cref="Years"/> control is enabled.
         /// </summary>
         /// <remarks>
         /// It will be enabled if there are multiple years available to choose.
         /// </remarks>
-        bool IsYearEnabled { get; set; }
+        bool IsYearEnabled { get; }
     }
 }

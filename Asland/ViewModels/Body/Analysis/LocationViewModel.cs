@@ -130,7 +130,8 @@
                 new LocSummaryViewModel(
                     search,
                     pathManager,
-                    dataModel.FindBeastie);
+                    dataModel.FindBeastie,
+                    this.AddYear);
             this.displayedLocations = this.locations;
             this.selectedLocationIndex = -1;
             this.selectedYearsIndex = -1;
@@ -144,6 +145,11 @@
         /// <summary>
         /// Gets or sets the index of the currently selected location.
         /// </summary>
+        /// <remarks>
+        /// When a new index is selected, rebuild the <see cref="Years"/> property and ask the
+        /// <see cref="Summary"/> to rebuild itself. Ensure that the enable state of 
+        /// <see cref="Years"/> is refreshed.
+        /// </remarks>
         public int LocationIndex
         {
             get => this.selectedLocationIndex;
@@ -156,6 +162,7 @@
 
                 this.selectedLocationIndex = value;
                 this.OnPropertyChanged(nameof(this.LocationIndex));
+                this.ResetYears();
                 this.Summary.SetNewLocation(
                     this.Locations[this.LocationIndex]);
             }
@@ -354,25 +361,12 @@
         }
 
         /// <summary>
-        /// Gets or sets a value indicated whether the <see cref="Years"/> control is enabled.
+        /// Gets a value indicated whether the <see cref="Years"/> control is enabled.
         /// </summary>
         /// <remarks>
         /// It will be enabled if there are multiple years available to choose.
         /// </remarks>
-        public bool IsYearEnabled 
-        {
-            get => this.isYearEnabled;
-            set
-            {
-                if (this.isYearEnabled == value)
-                {
-                    return;
-                }
-
-                this.isYearEnabled = value;
-                this.OnPropertyChanged(nameof(this.IsYearEnabled));
-            }
-        }
+        public bool IsYearEnabled => this.Years != null && this.Years.Count > 2;
 
         /// <summary>
         /// Reset the locations list using the filters if required.
@@ -470,6 +464,33 @@
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Add a year to <see cref="years"/> if it doesn't already exist.
+        /// </summary>
+        /// <param name="year">The year to add</param>
+        private void AddYear(string year)
+        {
+            if (this.years.Contains(year)) 
+            {
+                return;
+            }
+
+            this.years.Add(year);
+            this.OnPropertyChanged(nameof(this.Years));
+            this.OnPropertyChanged(nameof(this.IsYearEnabled));
+        }
+
+        /// <summary>
+        /// Reset the <see cref="years"/> property by clearing it, then added an empty value.
+        /// </summary>
+        private void ResetYears() 
+        {
+            this.years.Clear();
+            this.years.Add(string.Empty);
+            this.OnPropertyChanged(nameof(this.Years));
+            this.OnPropertyChanged(nameof(this.IsYearEnabled));
         }
     }
 }
