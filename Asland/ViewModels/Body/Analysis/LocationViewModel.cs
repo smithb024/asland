@@ -357,6 +357,8 @@
 
                 this.selectedYearsIndex = value;
                 this.OnPropertyChanged(nameof(this.YearsIndex));
+                this.Summary.SetSpecificYear(
+                    this.Years[this.YearsIndex]);
             }
         }
 
