@@ -44,5 +44,12 @@
         /// </summary>
         /// <param name="name">The name of the new location</param>
         void SetNewLocation(string name);
+
+        /// <summary>
+        /// Sets a new year for which to display a new set of summary data. This refers to the
+        /// currently selected location.
+        /// </summary>
+        /// <param name="year">The new year, empty represents all years</param>
+        void SetSpecificYear(string year);
     }
 }

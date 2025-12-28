@@ -35,6 +35,14 @@
         private readonly Func<string, Beastie> getBeastie;
 
         /// <summary>
+        /// Action used to record a year.
+        /// </summary>
+        /// <remarks>
+        /// This information will be used by the location view model to filter on a specific year.
+        /// </remarks>
+        private readonly Action<string> addYear;
+
+        /// <summary>
         /// The name of the current location.
         /// </summary>
         private string name;
@@ -45,21 +53,41 @@
         private int count;
 
         /// <summary>
+        /// The currently selected year.
+        /// </summary>
+        private string year;
+
+        /// <summary>
+        /// Manages the type of search.
+        /// </summary>
+        /// <remarks>
+        /// This is set when displaying data for a specific year. This helps manage the information 
+        /// is throughput.
+        /// </remarks>
+        private bool searchingForYear;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="LocSummaryViewModel"/> class.
         /// </summary>
         /// <param name="search">the search factory</param>
         /// <param name="pathManager">the path manager</param>
+        /// <param name="getBeastie">a method used return a beastie</param>
+        /// <param name="addYear">a method used to record a year</param>
         public LocSummaryViewModel(
             ILocationSearchFactory search,
             IPathManager pathManager,
-            Func<string, Beastie> getBeastie)
+            Func<string, Beastie> getBeastie,
+            Action<string> addYear)
         {
             this.locationSearchFactory = search;
             this.pathManager = pathManager;
             this.getBeastie = getBeastie;
+            this.addYear = addYear;
             this.name = string.Empty;
             this.count = 0;
+            this.year = string.Empty;
             this.Dates = new ObservableCollection<string>();
+            this.searchingForYear = false;
 
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
@@ -132,11 +160,24 @@
         public void SetNewLocation(string name)
         {
             this.Name = name;
-            this.Count = 0;
-            this.Dates.Clear();
-            this.Beasties.Clear();
-            this.Intensities.Clear();
-            this.Habitats.Clear();
+            this.year = string.Empty;
+            this.Clear();
+            this.searchingForYear = false;
+            this.locationSearchFactory.Find(
+                this.ActionUpdate,
+                this.Name);
+        }
+
+        /// <summary>
+        /// Sets a new year for which to display a new set of summary data. This refers to the
+        /// currently selected location.
+        /// </summary>
+        /// <param name="year">The new year, empty represents all years</param>
+        public void SetSpecificYear(string year)
+        {
+            this.year = year;
+            this.Clear();
+            this.searchingForYear = !string.IsNullOrEmpty(year);
             this.locationSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
@@ -150,6 +191,28 @@
         /// </param>
         private void ActionUpdate(RawObservationsString observation)
         {
+            string year =
+                observation.Date.Substring(
+                    Math.Max(
+                        0,
+                        observation.Date.Length - 4));
+
+            if (this.searchingForYear)
+            {
+                // If searching for a year, check to see if this observation is from the correct
+                // year.
+                if (string.Compare(this.year, year, StringComparison.OrdinalIgnoreCase) != 0) 
+                {
+                    return;
+                }
+            }
+            else
+            {
+                // If not searching for a year, invoke the add year method to update a list of 
+                // found years elsewhere.
+                this.addYear.Invoke(year);
+            }
+
             ++this.Count;
             this.Dates.Add(observation.Date);
 
@@ -349,6 +412,18 @@
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Clear all collections.
+        /// </summary>
+        private void Clear()
+        {
+            this.Count = 0;
+            this.Dates.Clear();
+            this.Beasties.Clear();
+            this.Intensities.Clear();
+            this.Habitats.Clear();
         }
     }
 }

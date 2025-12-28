@@ -47,5 +47,23 @@
         /// Gets the summary for the selected location.
         /// </summary>
         ILocSummaryViewModel Summary { get; }
+
+        /// <summary>
+        /// Gets a collection of years assocated with the currently selected location.
+        /// </summary>
+        ObservableCollection<string> Years { get; }
+
+        /// <summary>
+        /// Gets or sets the index of the currently selected year.
+        /// </summary>
+        int YearsIndex { get; set; }
+
+        /// <summary>
+        /// Gets a value indicated whether the <see cref="Years"/> control is enabled.
+        /// </summary>
+        /// <remarks>
+        /// It will be enabled if there are multiple years available to choose.
+        /// </remarks>
+        bool IsYearEnabled { get; }
     }
 }
