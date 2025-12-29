@@ -36,13 +36,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
                     <DatePicker
                         SelectedDate="{Binding Date}"
-                        Margin="0,0,0,5"/>
+                        Margin="0,22,0,5"/>
                     <CheckBox 
                         Content="Seen"
                         Foreground="White"
@@ -56,24 +55,23 @@
                     <common:EnumerationSelector 
                         Margin="5"
                         DataContext="{Binding LengthSelector}"/>
+
+                    <common:EnumerationSelector 
+                        Margin="5"
+                        DataContext="{Binding TimeOfDaySelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
                     <common:EnumerationSelector 
                         Margin="5"
-                        DataContext="{Binding TimeOfDaySelector}"/>
+                        DataContext="{Binding WeatherSelector}"/>
+
                     <common:EnumerationSelector 
                         Margin="5"
                         DataContext="{Binding IntensitySelector}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
-                    <common:EnumerationSelector 
-                        Margin="5"
-                        DataContext="{Binding WeatherSelector}"/>
-                </StackPanel>
-
-                <StackPanel Grid.Column="3">
                     <common:EnumerationSelector 
                         Margin="5"
                         DataContext="{Binding HabitatSelector}"/>
