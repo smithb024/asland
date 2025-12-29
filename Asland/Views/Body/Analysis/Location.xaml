@@ -80,7 +80,7 @@
         
         <location:LocSummary 
             Grid.Row="1" 
-            Background="{StaticResource StdBackground}"
+            Background="{StaticResource StdDataEntryBackgroundColour}"
             DataContext="{Binding Path=Summary}"/>
     </Grid>
 </UserControl>
