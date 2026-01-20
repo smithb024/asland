@@ -60,6 +60,7 @@
 
                 this.selectedBeastieIndex = value;
                 this.OnPropertyChanged(nameof(this.BeastieIndex));
+                this.Summary.SetNewBeastie(this.Beasties[this.BeastieIndex]);
             }
         }
 

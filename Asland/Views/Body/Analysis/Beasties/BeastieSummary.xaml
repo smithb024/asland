@@ -12,6 +12,14 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="{Binding Path=Name}" 
+                       Foreground="{StaticResource StdForeground}"
+                       TextWrapping="Wrap"
+                       FontSize="20"
+                       Margin="5"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
     
 </UserControl>
