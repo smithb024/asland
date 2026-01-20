@@ -20,6 +20,11 @@
         string Name { get; }
 
         /// <summary>
+        /// Gets the number of beasties in the summary.
+        /// </summary>
+        int BeastieCount { get; }
+
+        /// <summary>
         /// Gets the beasties present in the analysis.
         /// </summary>
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }

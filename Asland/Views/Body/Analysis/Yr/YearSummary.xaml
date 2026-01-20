@@ -21,6 +21,22 @@
                 Margin="5"
                 HorizontalAlignment="Center"/>
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Beastie Count" 
+                           Foreground="{StaticResource StdForeground}"
+                           Margin="5"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=BeastieCount}" 
+                           Foreground="{StaticResource StdForeground}"
+                           Margin="5"
+                           Grid.Column="1"
+                           HorizontalAlignment="Center"/>
+            </Grid>
+
             <TextBlock Text="Locations" 
                Foreground="{StaticResource StdForeground}"
                FontSize="16"

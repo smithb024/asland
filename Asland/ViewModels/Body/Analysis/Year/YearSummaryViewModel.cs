@@ -45,6 +45,11 @@
         private int count;
 
         /// <summary>
+        /// The number of beasties counted in the analysis.
+        /// </summary>
+        private int beastieCount;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="YearSummaryViewModel"/> class.
         /// </summary>
         /// <param name="search">The search factory</param>
@@ -63,6 +68,7 @@
             this.getBeastie = getBeastie;
 
             this.count = 0;
+            this.beastieCount = 0;
             this.Name = string.Empty;
             this.Beasties = new ObservableCollection<IBeastieAnalysisIconViewModel>();
             this.Locations = new ObservableCollection<IStringCounterViewModel>();
@@ -72,6 +78,24 @@
         /// Gets the name of the currently selected year.
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the number of beasties in the summary.
+        /// </summary>
+        public int BeastieCount 
+        {
+            get => this.beastieCount;
+            private set
+            {
+                if (this.beastieCount == value)
+                {
+                    return;
+                }
+
+                this.beastieCount = value;
+                this.OnPropertyChanged(nameof(this.BeastieCount));
+            }
+        }
 
         /// <summary>
         /// Gets the beasties present in the analysis.
@@ -108,6 +132,7 @@
         public void SetNewYear(string name)
         {
             this.Count = 0;
+            this.BeastieCount = 0;
             this.Beasties.Clear();
             this.Name = name;
             this.OnPropertyChanged(nameof(this.Name));
@@ -218,6 +243,7 @@
 
             beastieIcon.CountBeastie();
             this.Beasties.Add(beastieIcon);
+            ++this.BeastieCount;
         }
 
         /// <summary>
