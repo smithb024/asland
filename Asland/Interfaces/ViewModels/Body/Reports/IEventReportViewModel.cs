@@ -55,6 +55,11 @@
         ObservableCollection<IBeastieReportIconViewModel> Beasties { get; }
 
         /// <summary>
+        /// Gets the number of <see cref="Beasties"/>.
+        /// </summary>
+        int BeastieCounter { get; }
+
+        /// <summary>
         /// Open the event specified by the path.
         /// </summary>
         /// <param name="path">

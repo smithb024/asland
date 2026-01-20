@@ -39,6 +39,10 @@
                        Foreground="{StaticResource StdForeground}"
                        Margin="5"
                        HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=BeastieCounter}" 
+                       Foreground="{StaticResource StdForeground}"
+                       Margin="5"
+                       HorizontalAlignment="Center"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

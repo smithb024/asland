@@ -97,6 +97,11 @@
         public ObservableCollection<IBeastieReportIconViewModel> Beasties { get; }
 
         /// <summary>
+        /// Gets the number of <see cref="Beasties"/>.
+        /// </summary>
+        public int BeastieCounter => this.Beasties?.Count ?? 0;
+
+        /// <summary>
         /// Open the event specified by the path.
         /// </summary>
         /// <param name="path">
@@ -171,6 +176,7 @@
             this.OnPropertyChanged(nameof(this.Weather));
             this.OnPropertyChanged(nameof(this.Habitats));
             this.OnPropertyChanged(nameof(this.Beasties));
+            this.OnPropertyChanged(nameof(this.BeastieCounter));
         }
     }
 }
