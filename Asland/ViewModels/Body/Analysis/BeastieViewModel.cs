@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
+    using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Beasties;
@@ -27,12 +28,18 @@
         /// Initialises a new instance of the <see cref="BeastieViewModel"/> class
         /// </summary>
         /// <param name="dataManager">data manager</param>
+        /// <param name="beastieSearchFactory">
+        /// The instance of the beastie search factory.
+        /// </param>
         public BeastieViewModel(
-            IDataManager dataManager) 
+            IDataManager dataManager,
+            IBeastieSearchFactory beastieSearchFactory) 
         {
             this.beasties = new ObservableCollection<string>();
             this.selectedBeastieIndex = -1;
-            this.Summary = new BeastieSummaryViewModel();
+            this.Summary = 
+                new BeastieSummaryViewModel(
+                    beastieSearchFactory);
 
             foreach (Beastie beastie in dataManager.Beasties)
             {

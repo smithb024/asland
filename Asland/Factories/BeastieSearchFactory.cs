@@ -1,9 +1,16 @@
 ﻿namespace Asland.Factories
 {
-    using System.Collections.Generic;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
+    using Asland.Factories.IO;
+    using Asland.Model.IO;
     using Asland.Model.IO.Data;
+    using NynaeveLib.Logger;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The object with manages search access to the beasties. 
@@ -13,16 +20,24 @@
         /// <summary>
         ///  The data manager.
         /// </summary>
-        private IDataManager dataManager;
+        private readonly IDataManager dataManager;
+
+        /// <summary>
+        /// The path Manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieDataFileFactory"/> class.
         /// </summary>
         /// <param name="dataManager">The data manager</param>
+        /// <param name="pathManager">The path manager</param>
         public BeastieSearchFactory(
-            IDataManager dataManager)
+            IDataManager dataManager,
+            IPathManager pathManager)
         {
             this.dataManager = dataManager;
+            this.pathManager = pathManager;
         }
 
         /// <summary>
@@ -56,6 +71,65 @@
                     b => string.Compare(b.Name, name) == 0);
 
             return foundBeastie;
+        }
+
+        /// <summary>
+        /// Find and return data for a specific beastie.
+        /// </summary>
+        /// <remarks>
+        /// It returns the data by calling <paramref name="beastieAction"/> for each observation 
+        /// containing the named beastie.
+        /// </remarks>
+        /// <param name="beastieAction">
+        /// The action which is used to pass the found raw data back to the calling class.
+        /// </param>
+        /// <param name="name">name to search for</param>
+        public void Find(
+            Action<RawObservationsString> locationAction,
+            string name)
+        {
+            Task.Run(() =>
+            {
+                // Get the collection of all files.
+                string[] subdirectoryEntries =
+                    Directory.GetDirectories(
+                        this.pathManager.RawDataPath);
+
+                try
+                {
+                    // Loop through the files and open each on in turn.
+                    foreach (string directory in subdirectoryEntries)
+                    {
+                        string[] rawFiles = Directory.GetFiles(directory);
+
+                        foreach (string file in rawFiles)
+                        {
+                            RawObservationsString raw =
+                                XmlFileIo.ReadXml<RawObservationsString>(
+                                    file);
+
+                            // Only interested if the location is equal to the name.
+                            if (!raw.Species.Kind.Contains(name) &&
+                                !raw.Heard.Kind.Contains(name))
+                            {
+                                continue;
+                            }
+
+                            // Pass the deserialised file to the view model on the UI thread.
+                            App.Current.Dispatcher.Invoke(
+                                new Action(() =>
+                                {
+                                    locationAction.Invoke(raw);
+                                }));
+                        }
+                    }
+                }
+                catch (NullReferenceException ex)
+                {
+                    Logger.Instance.WriteLog(
+                        $"Beastie Search Factory Failed opening raw file: {ex}");
+                }
+            });
         }
     }
 }

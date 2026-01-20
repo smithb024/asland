@@ -1,7 +1,9 @@
 ﻿namespace Asland.Interfaces.Factories
 {
-    using System.Collections.Generic;
+    using Asland.Model.IO;
     using Asland.Model.IO.Data;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface used to describe the object with manages search access to the beasties. 
@@ -19,6 +21,21 @@
         /// </summary>
         /// <param name="name">name to search for</param>
         /// <returns>found beastie</returns>
-        Beastie Find(string name); 
+        Beastie Find(string name);
+
+        /// <summary>
+        /// Find and return data for a specific beastie.
+        /// </summary>
+        /// <remarks>
+        /// It returns the data by calling <paramref name="beastieAction"/> for each observation 
+        /// containing the named beastie.
+        /// </remarks>
+        /// <param name="beastieAction">
+        /// The action which is used to pass the found raw data back to the calling class.
+        /// </param>
+        /// <param name="name">name to search for</param>
+        void Find(
+            Action<RawObservationsString> beastieAction,
+            string name);
     }
 }
