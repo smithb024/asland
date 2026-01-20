@@ -3,8 +3,9 @@
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Reports;
     using Asland.Interfaces.ViewModels.Icons;
+    using Asland.Factories.IO;
+    using Asland.Model.IO;
     using Asland.ViewModels.Icons;
-    using Asland.Views.Icons;
     using NynaeveLib.Commands;
     using System;
     using System.Windows.Input;
@@ -27,23 +28,24 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="CalendarItem"/> calendar.
         /// </summary>
-        /// <param name="day">the day of the event</param>
-        /// <param name="name">the name of the event</param>
-        /// <param name="intensity">
-        /// The intensity of the event.
+        /// <param name="observations">the raw observations</param>
+        /// <param name="path">the path to the raw event</param>
+        /// <param name="openEventData">
+        /// The command which is used to open and display the event.
         /// </param>
         public CalendarItem(
-            string day,
-            string name,
-            ObservationIntensity intensity,
+            RawObservations observations,
             string path,
             Action<string> openEventData)
         {
-            this.Day = day;
-            this.Name = name;
-            this.Intensity = intensity;
             this.path = path;
+            this.Day = observations.Date.Substring(0, 2);
+            this.Name = observations.Location;
+            this.Intensity = observations.Intensity;
             this.openEventData = openEventData;
+            this.BeastieCounter =
+                observations.Species.Kind.Count +
+                observations.Heard.Kind.Count;
 
             this.SelectNewEvent =
                 new CommonCommand(
@@ -59,6 +61,11 @@
         /// Gets the name of the event represented by this item.
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the number of beasties present in the event. 
+        /// </summary>
+        public int BeastieCounter { get; }
 
         /// <summary>
         /// Gets the intensity of the event.

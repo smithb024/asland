@@ -20,6 +20,11 @@
         string Name { get; }
 
         /// <summary>
+        /// Gets the number of beasties present in the event. 
+        /// </summary>
+        int BeastieCounter { get; }
+
+        /// <summary>
         /// Gets the intensity of the event.
         /// </summary>
         ObservationIntensity Intensity { get; }

@@ -20,6 +20,11 @@
         int Count { get; }
 
         /// <summary>
+        /// Gets the number of beastes present in the location.
+        /// </summary>
+        int BeastieCount { get; }
+
+        /// <summary>
         /// Gets the beasties present in the analysis.
         /// </summary>
         ObservableCollection<IBeastieAnalysisIconViewModel> Beasties { get; }
