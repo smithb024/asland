@@ -19,12 +19,13 @@
                 FontSize="20"
                 Margin="5"
                 HorizontalAlignment="Center"/>
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Times Visited:" 
+                <TextBlock Text="Times Visited" 
                            Foreground="{StaticResource StdForeground}"
                            Margin="5"
                            HorizontalAlignment="Center"/>
@@ -34,6 +35,23 @@
                            Grid.Column="1"
                            HorizontalAlignment="Center"/>
             </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Beastie Count" 
+                           Foreground="{StaticResource StdForeground}"
+                           Margin="5"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=BeastieCount}" 
+                           Foreground="{StaticResource StdForeground}"
+                           Margin="5"
+                           Grid.Column="1"
+                           HorizontalAlignment="Center"/>
+            </Grid>
+            
             <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto"
                           MaxHeight="300">

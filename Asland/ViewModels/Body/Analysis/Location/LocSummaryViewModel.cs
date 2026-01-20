@@ -53,6 +53,11 @@
         private int count;
 
         /// <summary>
+        /// The number of beasties present in the location.
+        /// </summary>
+        private int beastieCounter;
+
+        /// <summary>
         /// The currently selected year.
         /// </summary>
         private string year;
@@ -85,6 +90,7 @@
             this.addYear = addYear;
             this.name = string.Empty;
             this.count = 0;
+            this.beastieCounter = 0;
             this.year = string.Empty;
             this.Dates = new ObservableCollection<string>();
             this.searchingForYear = false;
@@ -127,6 +133,24 @@
 
                 this.count = value;
                 this.OnPropertyChanged(nameof(this.Count));
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of beastes present in the location.
+        /// </summary>
+        public int BeastieCount
+        {
+            get => this.beastieCounter;
+            private set
+            {
+                if (this.beastieCounter == value)
+                {
+                    return;
+                }
+
+                this.beastieCounter = value;
+                this.OnPropertyChanged(nameof(this.BeastieCount));
             }
         }
 
@@ -352,6 +376,7 @@
 
             beastieIcon.CountBeastie();
             this.Beasties.Add(beastieIcon);
+            ++this.BeastieCount;
         }
 
         /// <summary>
@@ -420,6 +445,7 @@
         private void Clear()
         {
             this.Count = 0;
+            this.BeastieCount = 0;
             this.Dates.Clear();
             this.Beasties.Clear();
             this.Intensities.Clear();
