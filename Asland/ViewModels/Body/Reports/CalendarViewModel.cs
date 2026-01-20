@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Windows;
     using Asland.Common.Messages;
     using Asland.Factories.IO;
     using Asland.Interfaces;
@@ -212,9 +211,7 @@
 
                     ICalendarItem calendarItem =
                         new CalendarItem(
-                            observations.Date.Substring(0, 2),
-                            observations.Location,
-                            observations.Intensity,
+                            observations,
                             eventPath,
                             this.openEventCommand);
 
