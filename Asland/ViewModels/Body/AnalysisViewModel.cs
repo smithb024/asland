@@ -69,7 +69,7 @@
             this.PageSelector = new List<IPageSelector>();
             this.beastieViewModel =
                 new BeastieViewModel(
-                    );
+                    dataModel);
             this.locationViewModel =
                 new LocationViewModel(
                     locationSearch,
