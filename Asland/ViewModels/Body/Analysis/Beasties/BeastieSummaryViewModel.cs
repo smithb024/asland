@@ -37,6 +37,7 @@
             this.beastieSearchFactory = beastieSearchFactory;
 
             this.name = string.Empty;
+            this.Years = new ObservableCollection<IStringCounterViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
             this.Habitats = new ObservableCollection<IEnumCounterViewModel<ObservationHabitat>>();
         }
@@ -58,6 +59,11 @@
                 this.OnPropertyChanged(nameof(this.Name));
             }
         }
+
+        /// <summary>
+        /// Gets the years present in the analysis.
+        /// </summary>
+        public ObservableCollection<IStringCounterViewModel> Years { get; private set; }
 
         /// <summary>
         /// Gets the intensities present in the analysis.

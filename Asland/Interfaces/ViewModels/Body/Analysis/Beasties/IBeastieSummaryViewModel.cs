@@ -1,9 +1,9 @@
-﻿using Asland.Common.Enums;
-using Asland.Interfaces.ViewModels.Body.Analysis.Common;
-using System.Collections.ObjectModel;
-
-namespace Asland.Interfaces.ViewModels.Body.Analysis.Beasties
+﻿namespace Asland.Interfaces.ViewModels.Body.Analysis.Beasties
 {
+    using Asland.Common.Enums;
+    using Asland.Interfaces.ViewModels.Body.Analysis.Common;
+    using System.Collections.ObjectModel;
+
     /// <summary>
     /// Interface which supports the summary view on the beastie analysis page.
     /// </summary>
@@ -13,6 +13,11 @@ namespace Asland.Interfaces.ViewModels.Body.Analysis.Beasties
         /// Gets the name of the current beastie.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Gets the years present in the analysis.
+        /// </summary>
+        ObservableCollection<IStringCounterViewModel> Years { get; }
 
         /// <summary>
         /// Gets the intensities present in the analysis.
