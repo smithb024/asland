@@ -2,6 +2,7 @@
 {
     using Asland.Common.Enums;
     using Asland.Interfaces.Factories;
+    using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Beasties;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Model.IO;
@@ -96,11 +97,39 @@
         /// </param>
         private void ActionUpdate(RawObservationsString observation)
         {
+            // Handle years
             string year =
                 observation.Date.Substring(
                     Math.Max(
                         0,
                         observation.Date.Length - 4));
+
+            IStringCounterViewModel yearViewModel = this.FindYear(year);
+
+            if (yearViewModel == null)
+            {
+                yearViewModel =
+                    new StringCounterViewModel(
+                        year);
+                this.Years.Add(yearViewModel);
+
+                // Sort the years icons.
+                List<IStringCounterViewModel> yearSortable =
+                    new List<IStringCounterViewModel>(
+                        this.Years);
+                yearSortable = yearSortable.OrderBy(a => a.Name).ToList();
+
+                for (int i = 0; i < yearSortable.Count; i++)
+                {
+                    this.Years.Move(this.Years.IndexOf(yearSortable[i]), i);
+                }
+
+                this.OnPropertyChanged(nameof(this.Years));
+            }
+            else 
+            {
+                yearViewModel.CountOne();
+            }
 
             // Handle Intensities
             bool intensitySuccess =
@@ -174,6 +203,26 @@
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Find the view model for the year called <paramref name="year"/>.
+        /// </summary>
+        /// <param name="year">The year to find</param>
+        /// <returns>
+        /// The found year. Null if one can't be found.
+        /// </returns>
+        private IStringCounterViewModel FindYear(string year)
+        {
+            foreach (IStringCounterViewModel y in this.Years)
+            {
+                if (year == y.Name)
+                {
+                    return y;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
