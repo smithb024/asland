@@ -270,6 +270,7 @@
         /// </summary>
         private void Clear()
         {
+            this.Years.Clear();
             this.Intensities.Clear();
             this.Habitats.Clear();
         }
