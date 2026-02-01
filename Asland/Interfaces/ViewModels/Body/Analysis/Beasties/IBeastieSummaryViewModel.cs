@@ -20,6 +20,11 @@
         ObservableCollection<IStringCounterViewModel> Years { get; }
 
         /// <summary>
+        /// Gets the meteorological seasons present in the analysis.
+        /// </summary>
+        ObservableCollection<IStringCounterViewModel> MeteorologicalSeasons { get; }
+
+        /// <summary>
         /// Gets the intensities present in the analysis.
         /// </summary>
         ObservableCollection<IEnumCounterViewModel<ObservationIntensity>> Intensities { get; }

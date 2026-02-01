@@ -1,5 +1,6 @@
 ﻿namespace Asland.ViewModels.Body.Analysis
 {
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.Model.IO.Data;
     using Asland.Interfaces.ViewModels.Body.Analysis;
@@ -31,15 +32,18 @@
         /// <param name="beastieSearchFactory">
         /// The instance of the beastie search factory.
         /// </param>
+        /// <param name="logger">The instance of the logger.</param>
         public BeastieViewModel(
             IDataManager dataManager,
-            IBeastieSearchFactory beastieSearchFactory) 
+            IBeastieSearchFactory beastieSearchFactory,
+            IAsLogger logger) 
         {
             this.beasties = new ObservableCollection<string>();
             this.selectedBeastieIndex = -1;
             this.Summary = 
                 new BeastieSummaryViewModel(
-                    beastieSearchFactory);
+                    beastieSearchFactory,
+                    logger);
 
             foreach (Beastie beastie in dataManager.Beasties)
             {

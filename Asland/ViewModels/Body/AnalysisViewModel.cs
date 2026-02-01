@@ -72,7 +72,8 @@
             this.beastieViewModel =
                 new BeastieViewModel(
                     dataModel,
-                    beastieSearch);
+                    beastieSearch,
+                    logger);
             this.locationViewModel =
                 new LocationViewModel(
                     locationSearch,

@@ -1,8 +1,8 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Beasties
 {
     using Asland.Common.Enums;
+    using Asland.Interfaces;
     using Asland.Interfaces.Factories;
-    using Asland.Interfaces.ViewModels.Body.Analysis;
     using Asland.Interfaces.ViewModels.Body.Analysis.Beasties;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
     using Asland.Model.IO;
@@ -19,9 +19,34 @@
     public class BeastieSummaryViewModel : ViewModelBase, IBeastieSummaryViewModel
     {
         /// <summary>
+        /// The text to display for spring.
+        /// </summary>
+        private const string Spring = "Spring";
+
+        /// <summary>
+        /// The text to display for summer.
+        /// </summary>
+        private const string Summer = "Summer";
+
+        /// <summary>
+        /// The text to display for autumn.
+        /// </summary>
+        private const string Autumn = "Autumn";
+
+        /// <summary>
+        /// The text to display for winter.
+        /// </summary>
+        private const string Winter = "Winter";
+
+        /// <summary>
         /// The instance of the search factory.
         /// </summary>
         private readonly IBeastieSearchFactory beastieSearchFactory;
+
+        /// <summary>
+        /// The instance of the logger;
+        /// </summary>
+        private readonly IAsLogger logger;
 
         /// <summary>
         /// The name of the current beastie.
@@ -32,13 +57,17 @@
         /// Initialises a new instance of the <see cref="BeastieSummaryViewModel"/> class.
         /// </summary>
         /// <param name="beastieSearchFactory">The instance of the search factory</param>
+        /// <param name="logger">the instance of the logger</param>
         public BeastieSummaryViewModel(
-            IBeastieSearchFactory beastieSearchFactory) 
+            IBeastieSearchFactory beastieSearchFactory,
+            IAsLogger logger) 
         {
             this.beastieSearchFactory = beastieSearchFactory;
+            this.logger = logger;
 
             this.name = string.Empty;
             this.Years = new ObservableCollection<IStringCounterViewModel>();
+            this.MeteorologicalSeasons = new ObservableCollection<IStringCounterViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
             this.Habitats = new ObservableCollection<IEnumCounterViewModel<ObservationHabitat>>();
         }
@@ -65,6 +94,11 @@
         /// Gets the years present in the analysis.
         /// </summary>
         public ObservableCollection<IStringCounterViewModel> Years { get; private set; }
+
+        /// <summary>
+        /// Gets the meteorological seasons present in the analysis.
+        /// </summary>
+        public ObservableCollection<IStringCounterViewModel> MeteorologicalSeasons { get; private set; }
 
         /// <summary>
         /// Gets the intensities present in the analysis.
@@ -129,6 +163,55 @@
             else 
             {
                 yearViewModel.CountOne();
+            }
+
+            // Handle meteorological seasons
+            string month;
+
+            try
+            {
+                month = observation.Date.Substring(3, 2);
+            }
+            catch (Exception ex)
+            {
+                this.logger.WriteLine($"Failed to read month from a date: EX: {ex}");
+                month = string.Empty;
+            }
+
+            string meteorologicalSeason =
+                this.DetermineSeason(
+                    month);
+
+            IStringCounterViewModel seasonViewModel = 
+                this.FindSeason(
+                    meteorologicalSeason);
+
+            if (seasonViewModel == null)
+            {
+                seasonViewModel =
+                    new StringCounterViewModel(
+                        meteorologicalSeason);
+                this.MeteorologicalSeasons.Add(seasonViewModel);
+
+                // Sort the meteorological season icons.
+                List<IStringCounterViewModel> seasonSortable =
+                    new List<IStringCounterViewModel>(
+                        this.MeteorologicalSeasons);
+                seasonSortable = seasonSortable.OrderBy(a => a.Name).ToList();
+
+                for (int i = 0; i < seasonSortable.Count; i++)
+                {
+                    this.MeteorologicalSeasons.Move(
+                        this.MeteorologicalSeasons.IndexOf(
+                            seasonSortable[i]), 
+                        i);
+                }
+
+                this.OnPropertyChanged(nameof(this.MeteorologicalSeasons));
+            }
+            else
+            {
+                seasonViewModel.CountOne();
             }
 
             // Handle Intensities
@@ -226,6 +309,26 @@
         }
 
         /// <summary>
+        /// Find the view model for the meteorological season called <paramref name="season"/>.
+        /// </summary>
+        /// <param name="season">The meteorological season to find</param>
+        /// <returns>
+        /// The found meteorological season. Null if one can't be found.
+        /// </returns>
+        private IStringCounterViewModel FindSeason(string season)
+        {
+            foreach (IStringCounterViewModel y in this.MeteorologicalSeasons)
+            {
+                if (season == y.Name)
+                {
+                    return y;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Find the view model for the intensity called <paramref name="observation"/>.
         /// </summary>
         /// <param name="name">The intensity to find</param>
@@ -266,11 +369,46 @@
         }
 
         /// <summary>
+        /// Determine which meteorological season, the record is from.
+        /// </summary>
+        /// <param name="month">the month to check.</param>
+        /// <returns>The meteorological season</returns>
+        private string DetermineSeason(string month)
+        {
+            switch (month)
+            {
+                case "03":
+                case "04":
+                case "05":
+                    return Spring;
+
+                case "06":
+                case "07":
+                case "08":
+                    return Summer;
+
+                case "09":
+                case "10":
+                case "11":
+                    return Autumn;
+
+                case "12":
+                case "01":
+                case "02":
+                    return Winter;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Clear all collections.
         /// </summary>
         private void Clear()
         {
             this.Years.Clear();
+            this.MeteorologicalSeasons.Clear();
             this.Intensities.Clear();
             this.Habitats.Clear();
         }
