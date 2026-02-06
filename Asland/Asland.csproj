@@ -234,6 +234,9 @@
     <Compile Include="Views\Body\Analysis\Beasties\BeastieSummary.xaml.cs">
       <DependentUpon>BeastieSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Body\Analysis\Beasties\BeastieSummaryIcon.xaml.cs">
+      <DependentUpon>BeastieSummaryIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
       <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
     </Compile>
@@ -360,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Beasties\BeastieSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Beasties\BeastieSummaryIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

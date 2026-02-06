@@ -5,8 +5,10 @@
     using Asland.Interfaces.Factories;
     using Asland.Interfaces.ViewModels.Body.Analysis.Beasties;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
+    using Asland.Interfaces.ViewModels.Body.Common;
     using Asland.Model.IO;
     using Asland.ViewModels.Body.Analysis.Common;
+    using Asland.ViewModels.Body.Common;
     using NynaeveLib.ViewModel;
     using System;
     using System.Collections.Generic;
@@ -44,6 +46,11 @@
         private readonly IBeastieSearchFactory beastieSearchFactory;
 
         /// <summary>
+        /// The instance of the path manager.
+        /// </summary>
+        private readonly IPathManager pathManager;
+
+        /// <summary>
         /// The instance of the logger;
         /// </summary>
         private readonly IAsLogger logger;
@@ -56,16 +63,27 @@
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieSummaryViewModel"/> class.
         /// </summary>
+        /// <param name="pathManager">The instance of the path manager.</param>
         /// <param name="beastieSearchFactory">The instance of the search factory</param>
         /// <param name="logger">the instance of the logger</param>
         public BeastieSummaryViewModel(
+            IPathManager pathManager,
             IBeastieSearchFactory beastieSearchFactory,
             IAsLogger logger) 
         {
             this.beastieSearchFactory = beastieSearchFactory;
+            this.pathManager = pathManager;
             this.logger = logger;
 
             this.name = string.Empty;
+            this.BeastieIcon =
+                new BeastieIconBaseViewModel(
+                    pathManager,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    string.Empty,
+                    Presence.Passing);
             this.Years = new ObservableCollection<IStringCounterViewModel>();
             this.MeteorologicalSeasons = new ObservableCollection<IStringCounterViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
@@ -89,6 +107,11 @@
                 this.OnPropertyChanged(nameof(this.Name));
             }
         }
+
+        /// <summary>
+        /// Gets the beastie icon.
+        /// </summary>
+        public IBeastieIconBaseViewModel BeastieIcon { get; private set; }
 
         /// <summary>
         /// Gets the years present in the analysis.
@@ -121,6 +144,19 @@
             this.beastieSearchFactory.Find(
                 this.ActionUpdate,
                 this.Name);
+
+            Model.IO.Data.Beastie beastie =
+                this.beastieSearchFactory.Find(
+                    this.Name);
+            this.BeastieIcon =
+                new BeastieIconBaseViewModel(
+                    this.pathManager,
+                    beastie.Name,
+                    beastie.DisplayName,
+                    beastie.LatinName,
+                    beastie.Image,
+                    beastie.Presence);
+            this.OnPropertyChanged(nameof(this.BeastieIcon));
         }
 
         /// <summary>

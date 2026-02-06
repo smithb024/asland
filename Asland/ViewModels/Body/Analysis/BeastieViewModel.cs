@@ -29,12 +29,14 @@
         /// Initialises a new instance of the <see cref="BeastieViewModel"/> class
         /// </summary>
         /// <param name="dataManager">data manager</param>
+        /// <param name="pathManager">path manager</param>
         /// <param name="beastieSearchFactory">
         /// The instance of the beastie search factory.
         /// </param>
         /// <param name="logger">The instance of the logger.</param>
         public BeastieViewModel(
             IDataManager dataManager,
+            IPathManager pathManager,
             IBeastieSearchFactory beastieSearchFactory,
             IAsLogger logger) 
         {
@@ -42,6 +44,7 @@
             this.selectedBeastieIndex = -1;
             this.Summary = 
                 new BeastieSummaryViewModel(
+                    pathManager,
                     beastieSearchFactory,
                     logger);
 

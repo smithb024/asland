@@ -2,6 +2,8 @@
 {
     using Asland.Common.Enums;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
+    using Asland.Interfaces.ViewModels.Body.Common;
+    using Asland.ViewModels.Body.Analysis;
     using System.Collections.ObjectModel;
 
     /// <summary>
@@ -13,6 +15,11 @@
         /// Gets the name of the current beastie.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// Gets the beastie icon.
+        /// </summary>
+        IBeastieIconBaseViewModel BeastieIcon { get; }
 
         /// <summary>
         /// Gets the years present in the analysis.

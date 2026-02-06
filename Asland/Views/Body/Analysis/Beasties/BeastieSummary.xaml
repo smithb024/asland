@@ -21,6 +21,8 @@
                        Margin="5"
                        HorizontalAlignment="Center"/>
 
+            <local:BeastieSummaryIcon DataContext="{Binding Path=BeastieIcon}"/>
+
             <TextBlock Text="Years" 
                Foreground="{StaticResource StdForeground}"
                FontSize="16"
