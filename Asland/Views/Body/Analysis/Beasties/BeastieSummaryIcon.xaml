@@ -10,44 +10,35 @@
 
     <UserControl.Resources>
         <converters:PresenceToBrushConverter x:Key="PresenceConverter"/>
-        <converters:PresenceSelectedToBrushConverter x:Key="PresenceSelectedConverter"/>
     </UserControl.Resources>
 
-    <Border
-        BorderThickness="5"
-        Width="180"
-        Height="130">
-        <Border.BorderBrush>
-            <MultiBinding Converter="{StaticResource PresenceSelectedConverter}">
-                <Binding Path="IsSelected"/>
-                <Binding Path="Presence"/>
-            </MultiBinding>
-        </Border.BorderBrush>
-        <Grid Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <Grid Background="{Binding Path=Presence, Converter={StaticResource PresenceConverter}}"
+          Width="275"
+          Height="130">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <TextBlock 
-                Grid.Row="0"
-                FontWeight="Bold"
-                HorizontalAlignment="Center"
-                Text="{Binding Path=CommonName}"/>
+        <TextBlock 
+            Grid.Row="0"
+            FontWeight="Bold"
+            FontSize="20"
+            HorizontalAlignment="Center"
+            Text="{Binding Path=CommonName}"/>
 
-            <Image 
+        <Image 
                 Grid.Row="1"
                 Width="100"
                 Height="80"
                 Source="{Binding Path=ImagePath}"/>
 
-            <TextBlock 
+        <TextBlock 
                 Grid.Row="2"
                 FontStyle="Italic"
                 HorizontalAlignment="Center"
                 Text="{Binding Path=LatinName}"/>
 
-        </Grid>
-    </Border>
+    </Grid>
 </UserControl>
