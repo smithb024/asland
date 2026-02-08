@@ -13,101 +13,114 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <local:BeastieSummaryIcon DataContext="{Binding Path=BeastieIcon}"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <TextBlock Text="Years" 
-               Foreground="{StaticResource StdForeground}"
-               FontSize="16"
-               Margin="5,10,5,5"
-               HorizontalAlignment="Center"/>
-            <ScrollViewer Background="Transparent"
-                         Margin="5"
-                         MaxHeight="600"
-                         VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Path=Years}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <common:CommonCounterIcon/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <local:BeastieSummaryIcon 
+                Grid.Row="0"
+                DataContext="{Binding Path=BeastieIcon}"/>
 
-            <TextBlock Text="Met Seasons" 
-               Foreground="{StaticResource StdForeground}"
-               FontSize="16"
-               Margin="5,10,5,5"
-               HorizontalAlignment="Center"/>
-            <ScrollViewer Background="Transparent"
-                         Margin="5"
-                         MaxHeight="600"
-                         VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Path=MeteorologicalSeasons}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <common:CommonCounterIcon/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <ScrollViewer 
+                VerticalScrollBarVisibility="Auto" 
+                Grid.Row="1"
+                Margin="0,5">
+                <StackPanel>
+                    <TextBlock Text="Years" 
+                               Foreground="{StaticResource StdForeground}"
+                               FontSize="16"
+                               Margin="5,10,5,5"
+                               HorizontalAlignment="Center"/>
+                    <ScrollViewer Background="Transparent"
+                                  Margin="5"
+                                  MaxHeight="600"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Path=Years}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <common:CommonCounterIcon/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
 
-            <TextBlock Text="Intensity" 
-                Foreground="{StaticResource StdForeground}"
-                FontSize="16"
-                Margin="5,10,5,5"
-                HorizontalAlignment="Center"/>
-            <ScrollViewer Background="Transparent"
-                          Margin="5"
-                          MaxHeight="150"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Path=Intensities}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <common:CommonCounterIcon/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                    <TextBlock Text="Met Seasons" 
+                               Foreground="{StaticResource StdForeground}"
+                               FontSize="16"
+                               Margin="5,10,5,5"
+                               HorizontalAlignment="Center"/>
+                    <ScrollViewer Background="Transparent"
+                                  Margin="5"
+                                  MaxHeight="600"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Path=MeteorologicalSeasons}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <common:CommonCounterIcon/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
 
-            <TextBlock Text="Habitats" 
-                Foreground="{StaticResource StdForeground}"
-                FontSize="16"
-                Margin="5,10,5,5"
-                HorizontalAlignment="Center"/>
-            <ScrollViewer Background="Transparent"
-                          Margin="5"
-                          MaxHeight="150"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Path=Habitats}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <common:CommonCounterIcon/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    <TextBlock Text="Intensity" 
+                               Foreground="{StaticResource StdForeground}"
+                               FontSize="16"
+                               Margin="5,10,5,5"
+                               HorizontalAlignment="Center"/>
+                    <ScrollViewer Background="Transparent"
+                                  Margin="5"
+                                  MaxHeight="150"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Path=Intensities}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <common:CommonCounterIcon/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <TextBlock Text="Habitats" 
+                               Foreground="{StaticResource StdForeground}"
+                               FontSize="16"
+                               Margin="5,10,5,5"
+                               HorizontalAlignment="Center"/>
+                    <ScrollViewer Background="Transparent"
+                                  Margin="5"
+                                  MaxHeight="150"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Path=Habitats}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <common:CommonCounterIcon/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </StackPanel>
             </ScrollViewer>
-        </StackPanel>
+        </Grid>
     </Grid>
-    
 </UserControl>
