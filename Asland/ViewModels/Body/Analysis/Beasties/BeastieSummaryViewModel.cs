@@ -85,9 +85,22 @@
                     string.Empty,
                     Presence.Passing);
             this.Years = new ObservableCollection<IStringCounterViewModel>();
-            this.MeteorologicalSeasons = new ObservableCollection<IStringCounterViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
             this.Habitats = new ObservableCollection<IEnumCounterViewModel<ObservationHabitat>>();
+
+            IStringCounterViewModel spring = new StringCounterViewModel(Spring, 0);
+            IStringCounterViewModel summer = new StringCounterViewModel(Summer, 0);
+            IStringCounterViewModel autumn = new StringCounterViewModel(Autumn, 0);
+            IStringCounterViewModel winter = new StringCounterViewModel(Winter, 0);
+            this.MeteorologicalSeasons =
+                new ObservableCollection<IStringCounterViewModel>
+                {
+                    spring,
+                    summer,
+                    autumn,
+                    winter
+                };
+
         }
 
         /// <summary>
@@ -224,26 +237,7 @@
 
             if (seasonViewModel == null)
             {
-                seasonViewModel =
-                    new StringCounterViewModel(
-                        meteorologicalSeason);
-                this.MeteorologicalSeasons.Add(seasonViewModel);
-
-                // Sort the meteorological season icons.
-                List<IStringCounterViewModel> seasonSortable =
-                    new List<IStringCounterViewModel>(
-                        this.MeteorologicalSeasons);
-                seasonSortable = seasonSortable.OrderBy(a => a.Name).ToList();
-
-                for (int i = 0; i < seasonSortable.Count; i++)
-                {
-                    this.MeteorologicalSeasons.Move(
-                        this.MeteorologicalSeasons.IndexOf(
-                            seasonSortable[i]), 
-                        i);
-                }
-
-                this.OnPropertyChanged(nameof(this.MeteorologicalSeasons));
+               // fault
             }
             else
             {
@@ -447,6 +441,15 @@
             this.MeteorologicalSeasons.Clear();
             this.Intensities.Clear();
             this.Habitats.Clear();
+
+            IStringCounterViewModel spring = new StringCounterViewModel(Spring, 0);
+            IStringCounterViewModel summer = new StringCounterViewModel(Summer, 0);
+            IStringCounterViewModel autumn = new StringCounterViewModel(Autumn, 0);
+            IStringCounterViewModel winter = new StringCounterViewModel(Winter, 0);
+            this.MeteorologicalSeasons.Add(spring);
+            this.MeteorologicalSeasons.Add(summer);
+            this.MeteorologicalSeasons.Add(autumn);
+            this.MeteorologicalSeasons.Add(winter);
         }
     }
 }

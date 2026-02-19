@@ -13,11 +13,13 @@
         /// Initialises a new instance of the <see cref="StringCounterViewModel"/> class.
         /// </summary>
         /// <param name="name">The name of the object being counted</param>
+        /// <param name="count">Initial count</param>
         public StringCounterViewModel(
-            string name) 
+            string name,
+            int count = 1) 
         { 
             this.Name = name;
-            this.Count = 1;
+            this.Count = count;
         }
 
         /// <summary>
