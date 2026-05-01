@@ -42,6 +42,11 @@
         ObservableCollection<IEnumCounterViewModel<ObservationHabitat>> Habitats { get; }
 
         /// <summary>
+        /// Gets all the locations present in the analysis.
+        /// </summary>
+        ObservableCollection<ILocationAnalysisIconViewModel> Locations { get; }
+
+        /// <summary>
         /// Sets a new beastie for which to display a new set of summary data.
         /// </summary>
         /// <param name="name">The name of the new beastie</param>

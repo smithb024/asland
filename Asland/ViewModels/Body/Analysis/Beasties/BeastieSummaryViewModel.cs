@@ -87,6 +87,7 @@
             this.Years = new ObservableCollection<IStringCounterViewModel>();
             this.Intensities = new ObservableCollection<IEnumCounterViewModel<ObservationIntensity>>();
             this.Habitats = new ObservableCollection<IEnumCounterViewModel<ObservationHabitat>>();
+            this.Locations = new ObservableCollection<ILocationAnalysisIconViewModel>();
 
             IStringCounterViewModel spring = new StringCounterViewModel(Spring, 0);
             IStringCounterViewModel summer = new StringCounterViewModel(Summer, 0);
@@ -145,6 +146,11 @@
         /// Gets the habitats present in the analysis.
         /// </summary>
         public ObservableCollection<IEnumCounterViewModel<ObservationHabitat>> Habitats { get; private set; }
+
+        /// <summary>
+        /// Gets all the locations present in the analysis.
+        /// </summary>
+        public ObservableCollection<ILocationAnalysisIconViewModel> Locations { get; private set; }
 
         /// <summary>
         /// Sets a new beastie for which to display a new set of summary data.
@@ -316,6 +322,31 @@
                     }
                 }
             }
+
+            // Handle locations.
+            foreach (string name in observation.Species.Kind)
+            {
+                ILocationAnalysisIconViewModel icon = this.Find(name);
+
+                if (icon != null)
+                {
+                    icon.CountLocation();
+                    continue;
+                }
+
+                this.CreateNewLocation(name);
+            }
+
+            // Sort the location icons by name.
+            List<ILocationAnalysisIconViewModel> sortableList = new List<ILocationAnalysisIconViewModel>(this.Locations);
+            sortableList = sortableList.OrderBy(a => a.Name).ToList();
+
+            for (int i = 0; i < sortableList.Count; i++)
+            {
+                this.Locations.Move(this.Locations.IndexOf(sortableList[i]), i);
+            }
+
+            this.OnPropertyChanged(nameof(this.Locations));
         }
 
         /// <summary>
@@ -433,6 +464,41 @@
         }
 
         /// <summary>
+        /// Create a new location icon and bring the assessment count up to be consistent with the
+        /// existing icons.
+        /// </summary>
+        /// <param name="name">The name of the location</param>
+        private void CreateNewLocation(string name)
+        {
+            ILocationAnalysisIconViewModel locationIcon =
+                new LocationAnalysisIconViewModel(
+                    name);
+
+            locationIcon.CountLocation();
+            this.Locations.Add(locationIcon);
+        }
+
+        /// <summary>
+        /// Find the view model for the beastie called <paramref name="name"/>.
+        /// </summary>
+        /// <param name="name">The name of the beastie to find</param>
+        /// <returns>
+        /// The found beastie. Null if one can't be found.
+        /// </returns>
+        private ILocationAnalysisIconViewModel Find(string name)
+        {
+            foreach (ILocationAnalysisIconViewModel locations in this.Locations)
+            {
+                if (locations.Name.Equals(name))
+                {
+                    return locations;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Clear all collections.
         /// </summary>
         private void Clear()
@@ -441,6 +507,7 @@
             this.MeteorologicalSeasons.Clear();
             this.Intensities.Clear();
             this.Habitats.Clear();
+            this.Locations.Clear();
 
             IStringCounterViewModel spring = new StringCounterViewModel(Spring, 0);
             IStringCounterViewModel summer = new StringCounterViewModel(Summer, 0);
