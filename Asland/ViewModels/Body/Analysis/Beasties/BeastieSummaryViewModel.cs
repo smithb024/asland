@@ -324,17 +324,15 @@
             }
 
             // Handle locations.
-            foreach (string name in observation.Species.Kind)
+            ILocationAnalysisIconViewModel icon = this.Find(observation.Location);
+
+            if (icon != null)
             {
-                ILocationAnalysisIconViewModel icon = this.Find(name);
-
-                if (icon != null)
-                {
-                    icon.CountLocation();
-                    continue;
-                }
-
-                this.CreateNewLocation(name);
+                icon.CountLocation();
+            }
+            else
+            {
+                this.CreateNewLocation(observation.Location);
             }
 
             // Sort the location icons by name.
