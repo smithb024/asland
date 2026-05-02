@@ -15,20 +15,23 @@
 
     <StackPanel Orientation="Vertical">
         <Border  Width="180"
+                 Height="35"
+                 Background="ForestGreen"
                  BorderBrush="{StaticResource StdDataEntryBackgroundColour}"
                  BorderThickness="1">
             <TextBlock 
-                    Grid.Row="0"
-                    FontWeight="Bold"
-                    HorizontalAlignment="Center"
-                    Text="{Binding Path=Name}"/>
+                Grid.Row="0"
+                FontWeight="Bold"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                Text="{Binding Path=Name}"/>
         </Border>
 
         <Border  Width="180"
+                 Background="ForestGreen"
                  BorderBrush="{StaticResource StdDataEntryBackgroundColour}"
                  BorderThickness="1">
                 <TextBlock 
-                    Background="ForestGreen"
                     Grid.Column="0"
                     FontWeight="Bold"
                     HorizontalAlignment="Center"
