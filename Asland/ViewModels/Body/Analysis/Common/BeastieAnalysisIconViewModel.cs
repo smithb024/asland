@@ -36,6 +36,7 @@
         {
             this.Count = 0;
             this.Total = 0;
+            this.Percentage = 0;
             this.PercentageString = "0.00%";
         }
 

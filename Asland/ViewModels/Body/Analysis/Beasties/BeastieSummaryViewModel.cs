@@ -61,6 +61,11 @@
         private string name;
 
         /// <summary>
+        /// Dictionary which is used count the number of times each location is visited.
+        /// </summary>
+        private Dictionary<string, int> locationsDictionary;
+
+        /// <summary>
         /// Initialises a new instance of the <see cref="BeastieSummaryViewModel"/> class.
         /// </summary>
         /// <param name="pathManager">The instance of the path manager.</param>
@@ -102,6 +107,7 @@
                     winter
                 };
 
+            this.locationsDictionary = new Dictionary<string, int>();
         }
 
         /// <summary>
@@ -348,6 +354,39 @@
         }
 
         /// <summary>
+        /// Receive the location from the next open file. Count it.
+        /// </summary>
+        /// <remarks>
+        /// Rather than going back through all the files later, the location of each one is passed
+        /// directly into this view model so that we can count how many times each location was 
+        /// visited. This allows us to see how often the beastie was seen at each individual 
+        /// location. 
+        /// </remarks>
+        /// <param name="location">The location to be counted.</param>
+        private void ActionUpdate(string location)
+        {
+            if (this.locationsDictionary.ContainsKey(location)) 
+            { 
+                ++this.locationsDictionary[location];
+            }
+            else
+            {
+                this.locationsDictionary.Add(location, 1);
+            }
+        }
+
+        /// <summary>
+        /// The update has finished, set the location totals.
+        /// </summary>
+        private void Complete()
+        {
+            foreach (ILocationAnalysisIconViewModel location in this.Locations)
+            {
+                location.SetTotal(this.locationsDictionary[location.Name]);
+            }
+        }
+
+        /// <summary>
         /// Find the view model for the year called <paramref name="year"/>.
         /// </summary>
         /// <param name="year">The year to find</param>
@@ -506,6 +545,8 @@
             this.Intensities.Clear();
             this.Habitats.Clear();
             this.Locations.Clear();
+
+            this.locationsDictionary.Clear();
 
             IStringCounterViewModel spring = new StringCounterViewModel(Spring, 0);
             IStringCounterViewModel summer = new StringCounterViewModel(Summer, 0);
