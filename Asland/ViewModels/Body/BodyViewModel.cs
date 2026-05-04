@@ -67,6 +67,7 @@
             IBeastieDataFileFactory fileFactory,
             IAsLogger logger,
             ILocationSearchFactory locationSearch,
+            IBeastieSearchFactory beastieSearch,
             ITimeSearchFactory timeSearch,
             IPathManager pathManager,
             IYearSearcher yearSearcher)
@@ -93,6 +94,7 @@
             this.analysisViewModel =
                 new AnalysisViewModel(
                     locationSearch,
+                    beastieSearch,
                     timeSearch,
                     pathManager,
                     dataModel,

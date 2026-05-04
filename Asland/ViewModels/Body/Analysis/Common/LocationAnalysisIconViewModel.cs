@@ -1,39 +1,21 @@
 ﻿namespace Asland.ViewModels.Body.Analysis.Common
 {
-    using Asland.Common.Enums;
-    using Asland.Interfaces;
     using Asland.Interfaces.ViewModels.Body.Analysis.Common;
-    using Asland.ViewModels.Body.Common;
+    using NynaeveLib.ViewModel;
 
     /// <summary>
-    /// A view model to describe a single beastie on the analysis view.
+    /// A view model to describe a single location on the analysis view.
     /// </summary>
-    public class BeastieAnalysisIconViewModel : BeastieIconBaseViewModel, IBeastieAnalysisIconViewModel
+    public class LocationAnalysisIconViewModel : ViewModelBase, ILocationAnalysisIconViewModel
     {
         /// <summary>
         /// Initialises a new instance of the <see cref="BeastieAnalysisIconViewModel"/> class.
         /// </summary>
-        /// <param name="pathManager">the path manager</param>
-        /// <param name="name">the name of the beastie</param>
-        /// <param name="commonName">the display name of the beastie</param>
-        /// <param name="latinName">the latin name of the beastie</param>
-        /// <param name="imagePath">the path to the beastie's image</param>
-        /// <param name="presence">the presence of the beastie in the locality</param>
-        public BeastieAnalysisIconViewModel(
-            IPathManager pathManager,
-            string name,
-            string commonName,
-            string latinName,
-            string imagePath,
-            Presence presence)
-            : base(
-                  pathManager,
-                  name,
-                  commonName,
-                  latinName,
-                  imagePath,
-                  presence)
+        /// <param name="name">the name of the location</param>
+        public LocationAnalysisIconViewModel(
+            string name)
         {
+            this.Name = name;
             this.Count = 0;
             this.Total = 0;
             this.Percentage = 0;
@@ -41,17 +23,22 @@
         }
 
         /// <summary>
-        /// Gets the total number of times this beastie has been counted.
+        /// Gets the name of the location.
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// Gets the total number of times this location has been counted.
         /// </summary>
         public int Count { get; private set; }
 
         /// <summary>
-        /// Gets the total number of times this beastie has been assessed.
+        /// Gets the total number of times this location has been assessed.
         /// </summary>
         public int Total { get; private set; }
 
         /// <summary>
-        /// Gets the totla number of times this beastie has been counted as a percentage of the
+        /// Gets the totla number of times this location has been counted as a percentage of the
         /// number of times it has been assessed. 
         /// </summary>
         public double Percentage { get; private set; }
@@ -62,22 +49,21 @@
         public string PercentageString { get; private set; }
 
         /// <summary>
-        /// Count the beastie.
+        /// Count the location.
         /// </summary>
-        public void CountBeastie()
+        public void CountLocation()
         {
             ++this.Count;
             this.OnPropertyChanged(nameof(this.Count));
-            this.CalculatePercentage();
         }
 
         /// <summary>
-        /// Increase the assessment count. This should always be called, whether the beastie is 
-        /// counted or not.
+        /// Set the total number of times this location has been visited.
         /// </summary>
-        public void AssessBeastie()
+        /// <param name="total">The total number of times.</param>
+        public void SetTotal(int total)
         {
-            ++this.Total;
+            this.Total = total;
             this.OnPropertyChanged(nameof(this.Total));
             this.CalculatePercentage();
         }

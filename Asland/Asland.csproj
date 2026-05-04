@@ -133,6 +133,8 @@
     <Compile Include="Interfaces\Model\IO\DataEntry\IEventEntry.cs" />
     <Compile Include="Interfaces\Model\IO\DataEntry\IObservationManager.cs" />
     <Compile Include="Interfaces\Model\IO\Data\IDataManager.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Beasties\IBeastieSummaryViewModel.cs" />
+    <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\ILocationAnalysisIconViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IBeastieAnalysisIconViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IEnumCounterViewModel.cs" />
     <Compile Include="Interfaces\ViewModels\Body\Analysis\Common\IStringCounterViewModel.cs" />
@@ -182,6 +184,8 @@
     <Compile Include="PathManager.cs" />
     <Compile Include="ViewModels\Body\AnalysisViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\BeastieViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Beasties\BeastieSummaryViewModel.cs" />
+    <Compile Include="ViewModels\Body\Analysis\Common\LocationAnalysisIconViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\BeastieAnalysisIconViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\EnumCounterViewModel.cs" />
     <Compile Include="ViewModels\Body\Analysis\Common\StringCounterViewModel.cs" />
@@ -229,11 +233,20 @@
     <Compile Include="Views\Body\Analysis\Beastie.xaml.cs">
       <DependentUpon>Beastie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Body\Analysis\Beasties\BeastieSummary.xaml.cs">
+      <DependentUpon>BeastieSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Analysis\Beasties\BeastieSummaryIcon.xaml.cs">
+      <DependentUpon>BeastieSummaryIcon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml.cs">
       <DependentUpon>BeastieAnalysisIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml.cs">
       <DependentUpon>CommonCounterIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Body\Analysis\Common\LocationAnalysisIcon.xaml.cs">
+      <DependentUpon>LocationAnalysisIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Body\Analysis\Location.xaml.cs">
       <DependentUpon>Location.xaml</DependentUpon>
@@ -354,11 +367,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Body\Analysis\Beasties\BeastieSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Beasties\BeastieSummaryIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Body\Analysis\Common\BeastieAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Body\Analysis\Common\CommonCounterIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Body\Analysis\Common\LocationAnalysisIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
