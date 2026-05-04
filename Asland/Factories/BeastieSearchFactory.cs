@@ -83,9 +83,18 @@
         /// <param name="beastieAction">
         /// The action which is used to pass the found raw data back to the calling class.
         /// </param>
+        /// <param name="countLocation">
+        /// The action which used to pass a location name back to the calling class. Every 
+        /// location should be sent so that they can all be counted.
+        /// </param>
+        /// <param name="complete">
+        /// The action which is used to indicate that the job has been completed.
+        /// </param>
         /// <param name="name">name to search for</param>
         public void Find(
             Action<RawObservationsString> locationAction,
+            Action<string> countLocation,
+            Action complete,
             string name)
         {
             Task.Run(() =>
@@ -108,6 +117,8 @@
                                 XmlFileIo.ReadXml<RawObservationsString>(
                                     file);
 
+                            countLocation.Invoke(raw.Location);
+
                             // Only interested if the location is equal to the name.
                             if (!raw.Species.Kind.Contains(name) &&
                                 !raw.Heard.Kind.Contains(name))
@@ -123,6 +134,8 @@
                                 }));
                         }
                     }
+
+                    complete.Invoke();
                 }
                 catch (NullReferenceException ex)
                 {

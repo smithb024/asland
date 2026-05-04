@@ -28,14 +28,42 @@
         </Border>
 
         <Border  Width="180"
-                 Background="ForestGreen"
                  BorderBrush="{StaticResource StdDataEntryBackgroundColour}"
                  BorderThickness="1">
+
+            <Grid
+                x:Name="CounterGrid"
+                Background="{StaticResource LightBackground}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle 
+                    HorizontalAlignment="Left"
+                    Fill="ForestGreen"
+                    Height="20"
+                    Grid.ColumnSpan="2">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentageConverter}">
+                            <Binding Path="Percentage"/>
+                            <Binding ElementName="CounterGrid" Path="ActualWidth"/>
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
                 <TextBlock 
                     Grid.Column="0"
                     FontWeight="Bold"
                     HorizontalAlignment="Center"
                     Text="{Binding Path=Count}"/>
+
+                <TextBlock 
+                    Grid.Column="1"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Path=PercentageString}"/>
+            </Grid>
         </Border>
     </StackPanel>
 </UserControl>

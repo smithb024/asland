@@ -168,6 +168,8 @@
             this.Clear();
             this.beastieSearchFactory.Find(
                 this.ActionUpdate,
+                this.ActionUpdate,
+                this.Complete,
                 this.Name);
 
             Model.IO.Data.Beastie beastie =
