@@ -93,6 +93,12 @@
         public static Color Vagrant => Colors.LightSteelBlue;
 
         /// <summary>
+        /// A colour for a escaped beastie and which has a population but is not on the 
+        /// national list.
+        /// </summary>
+        public static Color Feral => Colors.BurlyWood;
+
+        /// <summary>
         /// A colour for an icon which has been selected.
         /// </summary>
         public static Color IsSelected => Colors.LightGoldenrodYellow;

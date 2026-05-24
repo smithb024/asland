@@ -37,6 +37,9 @@ namespace Asland.Common.Converters
                 case Presence.Vagrant:
                     return ColourLibrary.Vagrant;
 
+                case Presence.Feral:
+                    return ColourLibrary.Feral;
+
                 default:
                     return ColourLibrary.UnknownColour;
             }

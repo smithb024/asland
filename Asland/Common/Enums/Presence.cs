@@ -33,6 +33,11 @@
         /// <summary>
         /// Rare vistor
         /// </summary>
-        Vagrant
+        Vagrant,
+
+        /// <summary>
+        /// Escaped from captivity and not on the national list.
+        /// </summary>
+        Feral
     }
 }
