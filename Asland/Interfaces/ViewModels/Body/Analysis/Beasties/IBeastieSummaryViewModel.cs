@@ -17,6 +17,11 @@
         string Name { get; }
 
         /// <summary>
+        /// Gets the total number of times current beastie has been counted.
+        /// </summary>
+        int Total { get; }
+
+        /// <summary>
         /// Gets the beastie icon.
         /// </summary>
         IBeastieIconBaseViewModel BeastieIcon { get; }
