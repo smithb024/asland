@@ -61,6 +61,11 @@
         private string name;
 
         /// <summary>
+        /// The total number of time the current beastie has been counted.
+        /// </summary>
+        private int total;
+
+        /// <summary>
         /// Dictionary which is used count the number of times each location is visited.
         /// </summary>
         private Dictionary<string, int> locationsDictionary;
@@ -81,6 +86,7 @@
             this.logger = logger;
 
             this.name = string.Empty;
+            this.total = 0;
             this.BeastieIcon =
                 new BeastieIconBaseViewModel(
                     pathManager,
@@ -125,6 +131,24 @@
 
                 this.name = value;
                 this.OnPropertyChanged(nameof(this.Name));
+            }
+        }
+
+        /// <summary>
+        /// Gets the total number of times current beastie has been counted.
+        /// </summary>
+        public int Total
+        {
+            get => this.total;
+            private set
+            {
+                if (this.total == value)
+                {
+                    return;
+                }
+
+                this.total = value;
+                this.OnPropertyChanged(nameof(this.Total));
             }
         }
 
@@ -194,6 +218,9 @@
         /// </param>
         private void ActionUpdate(RawObservationsString observation)
         {
+            // Count
+            ++this.Total;
+
             // Handle years
             string year =
                 observation.Date.Substring(
@@ -542,6 +569,7 @@
         /// </summary>
         private void Clear()
         {
+            this.Total = 0;
             this.Years.Clear();
             this.MeteorologicalSeasons.Clear();
             this.Intensities.Clear();

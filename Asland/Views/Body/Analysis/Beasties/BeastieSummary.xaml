@@ -28,6 +28,25 @@
                 Grid.Row="1"
                 Margin="0,5">
                 <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Total" 
+                                   Grid.Column="0"
+                                   Foreground="{StaticResource StdForeground}"
+                                   FontSize="16"
+                                   Margin="5,10,5,5"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=Total}" 
+                                   Grid.Column="1"
+                                   Foreground="{StaticResource StdForeground}"
+                                   FontSize="16"
+                                   Margin="5,10,5,5"
+                                   HorizontalAlignment="Center"/>
+                    </Grid>
+                    
                     <TextBlock Text="Years" 
                                Foreground="{StaticResource StdForeground}"
                                FontSize="16"
